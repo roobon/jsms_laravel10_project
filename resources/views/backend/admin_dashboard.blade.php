@@ -65,7 +65,9 @@
 <script src="{{asset('dist/js/dashboard2-data.js')}}"></script>
 
 @endsection
-
+@section('title')
+	Jahanara SMS: Admin Dashboard
+@endsection
 
 @section('content')
 <div class="container-fluid">
@@ -203,7 +205,7 @@
 				</div>
 				<div class="panel-wrapper collapse in">
 					<div class="panel-body">
-						<img src="{{asset('images/welcome.jpeg')}}" style="width:100%" alt="">
+						<img src="{{asset('images/welcome1.jpg')}}" style="width:100%" alt="">
 					</div>
 				</div>
 			</div>
