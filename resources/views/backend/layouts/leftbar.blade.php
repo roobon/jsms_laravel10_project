@@ -41,10 +41,10 @@
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#pointlist"><i class="icon-basket-loaded mr-10"></i>Points<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="pointlist" class="collapse collapse-level-1">
 							<li>
-								<a href="{{route('retailer.index')}}">All Points</a>
+								<a href="{{route('points.index')}}">All Points</a>
 							</li>
 							<li>
-								<a href="{{route('retailer.create')}}">New Point</a>
+								<a href="{{route('points.create')}}">New Point</a>
 							</li>	
 						</ul>
 					</li>
@@ -56,6 +56,17 @@
 							</li>
 							<li>
 								<a href="{{route('retailer.create')}}">New Sale</a>
+							</li>	
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#emplist"><i class="icon-basket-loaded mr-10"></i>Employees<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="emplist" class="collapse collapse-level-1">
+							<li>
+								<a href="{{route('employee.index')}}">All Sales</a>
+							</li>
+							<li>
+								<a href="{{route('employee.create')}}">New Sale</a>
 							</li>	
 						</ul>
 					</li>

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('points', function (Blueprint $table) {
             $table->id();
+            $table->string('point_name', 50);
+            $table->string('point_address');
             $table->timestamps();
         });
     }

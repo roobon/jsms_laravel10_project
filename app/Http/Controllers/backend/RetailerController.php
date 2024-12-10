@@ -12,10 +12,9 @@ class RetailerController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    { {
-            $items = Retailer::orderBy('id', 'desc')->get();
-            return view('backend.retailer.index', compact('items'));
-        }
+    {
+        $items = Retailer::orderBy('id', 'desc')->get();
+        return view('backend.retailer.index', compact('items'));
     }
 
     /**

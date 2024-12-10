@@ -3,6 +3,8 @@
 use App\Http\Controllers\backend\DoctorController;
 use App\Http\Controllers\backend\SpecialistController;
 use App\Http\Controllers\backend\CompanyController;
+use App\Http\Controllers\backend\EmployeeController;
+use App\Http\Controllers\backend\PointController;
 use App\Http\Controllers\backend\RetailerController;
 use App\Http\Controllers\frontend\AppointmentController;
 use App\Http\Controllers\ProfileController;
@@ -60,8 +62,8 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/doctor', DoctorController::class);
     Route::resource('/company', CompanyController::class);
     Route::resource('/retailer', RetailerController::class);
-    Route::resource('/point', RetailerController::class);
-    Route::resource('/employee', RetailerController::class);
+    Route::resource('/points', PointController::class);
+    Route::resource('/employee', EmployeeController::class);
     Route::resource('/user_permission', RetailerController::class);
     Route::resource('/sales', RetailerController::class);
     Route::resource('/received', RetailerController::class);
