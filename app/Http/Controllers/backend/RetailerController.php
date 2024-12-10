@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Company;
+use App\Models\Retailer;
 use Illuminate\Http\Request;
 
-class CompanyController extends Controller
+class RetailerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     { {
-            $items = Company::orderBy('id', 'desc')->get();
-            return view('backend.company.index', compact('items'));
+            $items = Retailer::orderBy('id', 'desc')->get();
+            return view('backend.retailer.index', compact('items'));
         }
     }
 
@@ -23,7 +23,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('backend.company.create');
+        return view('backend.retailer.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class CompanyController extends Controller
 
         );
 
-        $company = new Company;
+        $company = new Retailer;
 
         $company->company_name = $request->company_name;
         $company->business_starts = $request->start_date;
@@ -61,29 +61,29 @@ class CompanyController extends Controller
 
         $company->save();
 
-        return redirect()->route('company.index')->with('msg', "Successfully Company Created");
+        return redirect()->route('retailer.index')->with('msg', "Successfully Retailer Created");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Company $company)
+    public function show(Retailer $retailer)
     {
-        return view('backend.company.show', compact('company'));
+        return view('backend.retailer.show', compact('retailer'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Company $company)
+    public function edit(Retailer $retailer)
     {
-        return view('backend.company.edit', compact('company'));
+        return view('backend.retailer.edit', compact('retailer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, Retailer $retailer)
     {
         $request->validate(
             [
@@ -99,29 +99,29 @@ class CompanyController extends Controller
 
         );
 
-        $company->company_name = $request->company_name;
-        $company->business_starts = $request->start_date;
-        $company->security_money = $request->security_money;
-        $company->company_address = $request->address;
-        $company->contact_person = $request->contact_person;
-        $company->contact_number = $request->contact_number;
-        $company->contact_email  = $request->contact_email;
-        $company->website = $request->website;
-        $company->last_business_date = $request->last_business;
-        $company->last_balance = $request->last_balance;
-        $company->status = $request->status;
+        $retailer->company_name = $request->company_name;
+        $retailer->business_starts = $request->start_date;
+        $retailer->security_money = $request->security_money;
+        $retailer->company_address = $request->address;
+        $retailer->contact_person = $request->contact_person;
+        $retailer->contact_number = $request->contact_number;
+        $retailer->contact_email  = $request->contact_email;
+        $retailer->website = $request->website;
+        $retailer->last_business_date = $request->last_business;
+        $retailer->last_balance = $request->last_balance;
+        $retailer->status = $request->status;
 
-        $company->update();
+        $retailer->update();
 
-        return redirect()->route('company.index')->with('msg', "Successfully Company Updated");
+        return redirect()->route('retailer.index')->with('msg', "Successfully retailer Updated");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company)
+    public function destroy(Retailer $retailer)
     {
-        $company->delete();
-        return redirect()->route('company.index')->with('msg', 'Deleted Successfully');
+        $retailer->delete();
+        return redirect()->route('retailer.index')->with('msg', 'Deleted Successfully');
     }
 }

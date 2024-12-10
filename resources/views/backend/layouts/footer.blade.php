@@ -9,7 +9,7 @@
 						</ul>
 					</div>
 					<div class="col-sm-7 text-right">
-						<p>2016 &copy; Kenny. Pampered by Hencework</p>
+						<p>2025 &copy; Jahanara Traders</p>
 					</div>
 				</div>
 			</footer>

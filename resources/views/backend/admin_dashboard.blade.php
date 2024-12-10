@@ -94,7 +94,7 @@
 			<div class="panel panel-default card-view">
 				<div class="panel-heading">
 					<div class="pull-left">
-						<h6 class="panel-title txt-dark">Literacy</h6>
+						<h6 class="panel-title txt-dark">Total Company</h6>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -107,7 +107,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-up txt-success"></i></span><span class="counter">15</span><span>%</span>
+										<span class="counter-cap"><i class="fa  fa-level-up txt-success"></i></span><span class="counter">2</span><span></span>
 									</div>
 								</div>
 							</div>
@@ -120,7 +120,7 @@
 			<div class="panel panel-default card-view">
 				<div class="panel-heading">
 					<div class="pull-left">
-						<h6 class="panel-title txt-dark">Population</h6>
+						<h6 class="panel-title txt-dark">Total Retailers</h6>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -133,7 +133,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-up txt-success"></i></span><span class="counter">10</span><span>m</span>
+										<span class="counter-cap"><i class="fa  fa-level-up txt-success"></i></span><span class="counter">50</span><span></span>
 									</div>
 								</div>
 							</div>
@@ -146,7 +146,7 @@
 			<div class="panel panel-default card-view">
 				<div class="panel-heading">
 					<div class="pull-left">
-						<h6 class="panel-title txt-dark">Animal growth</h6>
+						<h6 class="panel-title txt-dark">Total Centers</h6>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -159,7 +159,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">3</span><span>%</span>
+										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">5</span><span></span>
 									</div>
 								</div>
 							</div>
@@ -172,7 +172,7 @@
 			<div class="panel panel-default card-view">
 				<div class="panel-heading">
 					<div class="pull-left">
-						<h6 class="panel-title txt-dark">total waste</h6>
+						<h6 class="panel-title txt-dark">Total Stock</h6>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -185,7 +185,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">1122</span>
+										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">11225</span>
 									</div>
 								</div>
 							</div>
@@ -205,7 +205,7 @@
 				</div>
 				<div class="panel-wrapper collapse in">
 					<div class="panel-body">
-						<img src="{{asset('images/welcome1.jpg')}}" style="width:100%" alt="">
+						<img src="{{asset('images/1714359282802.gif')}}" style="width:100%" alt="">
 					</div>
 				</div>
 			</div>

@@ -27,13 +27,35 @@
 						</ul>
 					</li>
 					<li>
-						<a href="javascript:void(0);" data-toggle="collapse" data-target="#drlist"><i class="icon-basket-loaded mr-10"></i>Doctors<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
-						<ul id="drlist" class="collapse collapse-level-1">
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#rtlist"><i class="icon-basket-loaded mr-10"></i>Retailers<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="rtlist" class="collapse collapse-level-1">
 							<li>
-								<a href="{{route('doctor.index')}}">All Doctors</a>
+								<a href="{{route('retailer.index')}}">All Retailers</a>
 							</li>
 							<li>
-								<a href="{{route('doctor.create')}}">New Doctor</a>
+								<a href="{{route('retailer.create')}}">New Retailer</a>
+							</li>	
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#pointlist"><i class="icon-basket-loaded mr-10"></i>Points<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="pointlist" class="collapse collapse-level-1">
+							<li>
+								<a href="{{route('retailer.index')}}">All Points</a>
+							</li>
+							<li>
+								<a href="{{route('retailer.create')}}">New Point</a>
+							</li>	
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#saleslist"><i class="icon-basket-loaded mr-10"></i>Sales<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="saleslist" class="collapse collapse-level-1">
+							<li>
+								<a href="{{route('retailer.index')}}">All Sales</a>
+							</li>
+							<li>
+								<a href="{{route('retailer.create')}}">New Sale</a>
 							</li>	
 						</ul>
 					</li>

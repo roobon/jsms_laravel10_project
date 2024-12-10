@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\DoctorController;
 use App\Http\Controllers\backend\SpecialistController;
 use App\Http\Controllers\backend\CompanyController;
+use App\Http\Controllers\backend\RetailerController;
 use App\Http\Controllers\frontend\AppointmentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,19 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/specialist', SpecialistController::class);
     Route::resource('/doctor', DoctorController::class);
     Route::resource('/company', CompanyController::class);
+    Route::resource('/retailer', RetailerController::class);
+    Route::resource('/point', RetailerController::class);
+    Route::resource('/employee', RetailerController::class);
+    Route::resource('/user_permission', RetailerController::class);
+    Route::resource('/sales', RetailerController::class);
+    Route::resource('/received', RetailerController::class);
+    Route::resource('/payments', RetailerController::class);
+    Route::resource('/investments', RetailerController::class);
+    Route::resource('/insentives', RetailerController::class);
+    Route::resource('/slabs', RetailerController::class);
+    Route::resource('/display_centers', RetailerController::class);
+    Route::resource('/expires', RetailerController::class);
+    Route::resource('/claims', RetailerController::class);
 });
 
 // Doctor Routes
