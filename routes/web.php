@@ -46,13 +46,14 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-// Admin Routes
+// Admin Login
 Route::middleware('guest:admin')->prefix('admin')->group(function () {
 
     Route::get('login', [App\Http\Controllers\Auth\Admin\LoginController::class, 'login'])->name('admin.login');
     Route::post('login', [App\Http\Controllers\Auth\Admin\LoginController::class, 'check_user']);
 });
 
+// Admin Dashboard
 Route::middleware('auth:admin')->prefix('admin')->group(function () {
 
     Route::post('logout', [App\Http\Controllers\Auth\Admin\LoginController::class, 'logout'])->name('admin.logout');

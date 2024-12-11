@@ -6,6 +6,10 @@
 		.input-group-addon {
 			background-color: rgba(236, 236, 236, 0.383)
 		}
+		label {
+			background-color: rgba(236, 236, 236, 0.383);
+			padding: 13px;
+		}
 	</style>
 @endsection
 
@@ -61,7 +65,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Starts*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Starting Date*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="date" name="start_date" value="{{old('start_date')}}" class="form-control" id="exampleInputuname_4">
@@ -79,7 +83,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Address*</label>
+															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Company Address*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Address" rows="10">{{old('address')}}</textarea>
@@ -115,7 +119,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Website</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Company Website</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="text" name="website" value="{{old('website')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Web address">
@@ -124,7 +128,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business Date</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="date" name="last_business" value="{{old('last_business')}}" class="form-control" id="exampleInputuname_4">

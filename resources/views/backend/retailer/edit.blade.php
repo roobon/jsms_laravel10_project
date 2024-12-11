@@ -57,6 +57,24 @@
 												</div>
 											</div>
 											<div class="form-group">
+												<label for="exampleInputuname_4" class="col-sm-3 control-label">Proprieter Name*</label>
+												<div class="col-sm-9">
+													<div class="input-group">
+														<input type="text" name="proprietor_name" value="{{$retailer->proprietor_name ?? old('proprietor_name') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter Proprietor Name">
+														<div class="input-group-addon"></div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="exampleInputuname_4" class="col-sm-3 control-label">Trade Lisence</label>
+												<div class="col-sm-9">
+													<div class="input-group">
+														<input type="text" name="trade_lisence" value="{{$retailer->trade_lisence ?? old('trade_lisence') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter Trade Lisence Number">
+														<div class="input-group-addon"></div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
 												<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Starts*</label>
 												<div class="col-sm-9">
 													<div class="input-group">
@@ -106,7 +124,7 @@
 												<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business</label>
 												<div class="col-sm-9">
 													<div class="input-group">
-														<input type="date" name="last_business" value="{{$retailer->last_business_date ?? old('last_business') }}" class="form-control" id="exampleInputuname_4">
+														<input type="date" name="last_business" value="{{$retailer->last_business ?? old('last_business') }}" class="form-control" id="exampleInputuname_4">
 														<div class="input-group-addon"></div>
 													</div>
 												</div>

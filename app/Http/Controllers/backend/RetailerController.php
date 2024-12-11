@@ -32,10 +32,10 @@ class RetailerController extends Controller
     {
         $request->validate(
             [
-                'company_name' => 'required | max:100 | min:5',
-                'start_date' => 'required',
-                'security_money' => 'required',
+                'shop_name' => 'required | max:100 | min:5',
+                'business_starts' => 'required',
                 'address' => 'min:8',
+                'trade_lisence' => 'required',
                 'contact_person' => 'min:4',
                 'contact_number' => 'min:11',
                 'contact_email' => 'email',
@@ -44,21 +44,21 @@ class RetailerController extends Controller
 
         );
 
-        $company = new Retailer;
+        $retailer = new Retailer;
 
-        $company->company_name = $request->company_name;
-        $company->business_starts = $request->start_date;
-        $company->security_money = $request->security_money;
-        $company->company_address = $request->address;
-        $company->contact_person = $request->contact_person;
-        $company->contact_number = $request->contact_number;
-        $company->contact_email  = $request->contact_email;
-        $company->website = $request->website;
-        $company->last_business_date = $request->last_business;
-        $company->last_balance = $request->last_balance;
-        $company->status = $request->status;
+        $retailer->shop_name = $request->shop_name;
+        $retailer->proprietor_name = $request->proprieter_name;
+        $retailer->business_starts = $request->business_starts;
+        $retailer->shop_address = $request->address;
+        $retailer->trade_lisence = $request->trade_lisence;
+        $retailer->contact_person = $request->contact_person;
+        $retailer->contact_number = $request->contact_number;
+        $retailer->contact_email  = $request->contact_email;
+        $retailer->last_business = $request->last_business;
+        $retailer->last_balance = $request->last_balance;
+        $retailer->status = $request->status;
 
-        $company->save();
+        $retailer->save();
 
         return redirect()->route('retailer.index')->with('msg', "Successfully Retailer Created");
     }
@@ -86,10 +86,10 @@ class RetailerController extends Controller
     {
         $request->validate(
             [
-                'company_name' => 'required | max:100 | min:5',
-                'start_date' => 'required',
-                'security_money' => 'required',
+                'shop_name' => 'required | max:100 | min:5',
+                'business_starts' => 'required',
                 'address' => 'min:8',
+                'trade_lisence' => 'required',
                 'contact_person' => 'min:4',
                 'contact_number' => 'min:11',
                 'contact_email' => 'email',
@@ -98,15 +98,15 @@ class RetailerController extends Controller
 
         );
 
-        $retailer->company_name = $request->company_name;
-        $retailer->business_starts = $request->start_date;
-        $retailer->security_money = $request->security_money;
-        $retailer->company_address = $request->address;
+        $retailer->shop_name = $request->shop_name;
+        $retailer->proprietor_name = $request->proprietor_name;
+        $retailer->business_starts = $request->business_starts;
+        $retailer->shop_address = $request->address;
+        $retailer->trade_lisence = $request->trade_lisence;
         $retailer->contact_person = $request->contact_person;
         $retailer->contact_number = $request->contact_number;
         $retailer->contact_email  = $request->contact_email;
-        $retailer->website = $request->website;
-        $retailer->last_business_date = $request->last_business;
+        $retailer->last_business = $request->last_business;
         $retailer->last_balance = $request->last_balance;
         $retailer->status = $request->status;
 

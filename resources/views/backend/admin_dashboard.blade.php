@@ -73,19 +73,10 @@
 <div class="container-fluid">
 
 	<!-- Title -->
-	<div class="row heading-bg  bg-yellow">
+	<div class="row heading-bg  bg-blue">
 		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-			<h5 class="txt-light">demographical</h5>
+			<h5 class="txt-light">Admin Dashboard</h5>
 		</div>
-		<!-- Breadcrumb -->
-		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-			<ol class="breadcrumb">
-				<li><a href="index.html">Dashboard</a></li>
-				<li><a href="#"><span>dashboard</span></a></li>
-				<li class="active"><span>demographical</span></li>
-			</ol>
-		</div>
-		<!-- /Breadcrumb -->
 	</div>
 	<!-- /Title -->
 	<!-- Row -->
@@ -201,7 +192,7 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default card-view">
 				<div class="panel-heading">
-					<h5>Admin Dashboard</h5>
+					<h5></h5>
 				</div>
 				<div class="panel-wrapper collapse in">
 					<div class="panel-body">

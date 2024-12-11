@@ -79,6 +79,15 @@
 															</div>
 														</div>
 														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Contact Person*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="text" name="contact_person" value="{{old('contact_person')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Contact Person">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Contact Number*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
@@ -100,7 +109,7 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Trade Lisence</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="text" name="trade_lisence" value="{{old('contact_person')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Contact person">
+																	<input type="text" name="trade_lisence" value="{{old('trade_lisence')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Trade Lisence Number">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
