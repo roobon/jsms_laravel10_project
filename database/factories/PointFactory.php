@@ -25,6 +25,7 @@ class PointFactory extends Factory
         return [
             'point_name' => fake()->name(),
             'point_address' => fake()->address(),
+            'opening_date' => $this->faker->dateTimeBetween('-1 year', 'now')
         ];
     }
 }

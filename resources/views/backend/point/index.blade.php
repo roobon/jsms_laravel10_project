@@ -50,7 +50,8 @@
 													<tr>
                                                         <th>ID</th>
 														<th>Point Name</th>
-														<th>Point Address</th>
+														<th>Point/Center Address</th>
+														<th>Establishment Date</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</thead>
@@ -58,7 +59,8 @@
 													<tr>
 														<th>ID</th>
 														<th>Point Name</th>
-														<th>Point Address</th>													
+														<th>Point/Center Address</th>
+														<th>Establishment Date</th>													
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</tfoot>
@@ -68,6 +70,7 @@
 														<td>{{$loop->iteration}}</td>
 														<td>{{$item->point_name}}</td>
 														<td>{{$item->point_address}}</td>
+														<td>{{$item->opening_date}}</td>
 														<td style="width: 15%;" class="text-center">
 														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('points.destroy', $item->id)}}" method="post">
 														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('points.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	

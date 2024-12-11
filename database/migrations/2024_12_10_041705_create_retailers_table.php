@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('retailers', function (Blueprint $table) {
             $table->id();
-            $table->string('shop_name', 50);
+            $table->string('shop_name', 60);
             $table->string('proprietor_name', 50);
             $table->string('shop_address');
-            $table->string('trade_lisence', 50);
+            $table->string('trade_lisence', 50)->nullable();
+            $table->string('contact_person', 50);
             $table->string('contact_number', 20);
-            $table->string('contact_email', 50)->unique();
+            $table->string('contact_email', 50)->nullable();
             $table->date('business_starts');
-            $table->date('last_business')->nullable();
+            $table->date('last_business');
             $table->decimal('last_balance', total: 8, places: 2)->default(0);
             $table->enum('status', ['active', 'inactive']);
-            $table->string('contact_person', 50);
             $table->timestamps();
         });
     }

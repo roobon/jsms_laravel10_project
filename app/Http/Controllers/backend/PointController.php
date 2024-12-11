@@ -5,6 +5,9 @@ namespace App\Http\Controllers\backend;
 use App\Models\Point;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
+use Illuminate\Support\Facades\DB;
+
 
 
 class PointController extends Controller
@@ -53,7 +56,12 @@ class PointController extends Controller
      */
     public function show(Point $point)
     {
-        return view('backend.point.show', compact('point'));
+        $employee = DB::table('employees')->where('point_id', $point->id)->where('designation', 'Manager')->get();
+        if (count($employee) > 0) {
+            return view('backend.point.show', compact('point', 'employee'));
+        } else {
+            return view('backend.point.show', compact('point'));
+        }
     }
 
     /**

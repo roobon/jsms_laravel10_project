@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('point_name', 50);
             $table->string('point_address');
+            $table->date('opening_date');
             $table->timestamps();
         });
     }

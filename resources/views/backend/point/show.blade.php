@@ -46,21 +46,19 @@
 												
 												
 												<h3 class="mb-20">{{$point->point_name}}</h3>
-												<div class="product-price head-font mb-30">{{$point->point_address}} 
+												<div class="product-price head-font mb-30">Address: {{$point->point_address}} 
 												</div>
 												
 												<h4 class="mb-20">Business Info</h4>
-												<p class="mb-50">Business Starting Date: {{$point->business_starts}} <br>
-												Last Business Date: {{$point->last_business}} <br>	
-												Last Business Balance: {{$point->last_balance}}	
-												
+												<p class="mb-50">Point Establishment Date: {{$point->opening_date}} <br>											
 												</p>
 			
 												<h4 class="mb-20">Contact Info</h4>
-												<p class="mb-50">Contact Person: {{$point->contact_person}} <br>
-												Mobile Number: {{$point->contact_number}}
+												<p class="mb-50">Contact Person: {{$employee[0]->name ?? ''}} <br>
+													Designation: {{$employee[0]->designation ?? ''}} <br>
+												Mobile Number: {{$employee[0]->contact_number ?? ''}}
 												<br>
-												Email Address: {{$point->contact_email}}
+												Email Address: {{$employee[0]->address ?? ''}}
 												</p>
 												
 												

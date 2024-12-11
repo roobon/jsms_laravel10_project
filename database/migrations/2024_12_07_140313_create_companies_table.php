@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('company_name', 50);
             $table->date('business_starts');
             $table->decimal('security_money', total: 8, places: 2);
-            $table->string('company_address');
+            $table->string('company_address')->nullable();
             $table->string('contact_person', 50);
             $table->string('contact_number', 20);
-            $table->string('contact_email', 50)->unique();
-            $table->string('website', 100);
+            $table->string('contact_email', 50)->nullable();
+            $table->string('website', 100)->nullable();
             $table->date('last_business_date')->nullable();
             $table->decimal('last_balance', total: 8, places: 2)->default(0);
             $table->enum('status', ['active', 'inactive']);
