@@ -98,7 +98,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-up txt-success"></i></span><span class="counter">2</span><span></span>
+										<span class="counter-cap"><i class="fa  fa-level-up txt-success"></i></span><span class="counter">{{$totalCompany}}</span><span></span>
 									</div>
 								</div>
 							</div>
@@ -124,7 +124,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-up txt-success"></i></span><span class="counter">50</span><span></span>
+										<span class="counter-cap"><i class="fa  fa-level-up txt-success"></i></span><span class="counter">{{$totalRetailer}}</span><span></span>
 									</div>
 								</div>
 							</div>
@@ -137,7 +137,7 @@
 			<div class="panel panel-default card-view">
 				<div class="panel-heading">
 					<div class="pull-left">
-						<h6 class="panel-title txt-dark">Total Centers</h6>
+						<h6 class="panel-title txt-dark">Total Points</h6>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -150,7 +150,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">5</span><span></span>
+										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">{{$totalPoint}}</span><span></span>
 									</div>
 								</div>
 							</div>
@@ -163,7 +163,111 @@
 			<div class="panel panel-default card-view">
 				<div class="panel-heading">
 					<div class="pull-left">
-						<h6 class="panel-title txt-dark">Total Stock</h6>
+						<h6 class="panel-title txt-dark">Total Employees</h6>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-wrapper collapse in">
+					<div class="panel-body">
+						<div class="sm-graph-box">
+							<div class="row">
+								<div class="col-xs-6">
+									<div id="sparkline_7"></div>
+								</div>
+								<div class="col-xs-6">
+									<div class="counter-wrap text-right">
+										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">{{$totalEmployee}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+			<div class="panel panel-default card-view">
+				<div class="panel-heading">
+					<div class="pull-left">
+						<h6 class="panel-title txt-dark">Total Sales</h6>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-wrapper collapse in">
+					<div class="panel-body">
+						<div class="sm-graph-box">
+							<div class="row">
+								<div class="col-xs-6">
+									<div id="sparkline_7"></div>
+								</div>
+								<div class="col-xs-6">
+									<div class="counter-wrap text-right">
+										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">11225</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+			<div class="panel panel-default card-view">
+				<div class="panel-heading">
+					<div class="pull-left">
+						<h6 class="panel-title txt-dark">Total Purchases</h6>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-wrapper collapse in">
+					<div class="panel-body">
+						<div class="sm-graph-box">
+							<div class="row">
+								<div class="col-xs-6">
+									<div id="sparkline_7"></div>
+								</div>
+								<div class="col-xs-6">
+									<div class="counter-wrap text-right">
+										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">11225</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+			<div class="panel panel-default card-view">
+				<div class="panel-heading">
+					<div class="pull-left">
+						<h6 class="panel-title txt-dark">Total Investments</h6>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-wrapper collapse in">
+					<div class="panel-body">
+						<div class="sm-graph-box">
+							<div class="row">
+								<div class="col-xs-6">
+									<div id="sparkline_7"></div>
+								</div>
+								<div class="col-xs-6">
+									<div class="counter-wrap text-right">
+										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">11225</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+			<div class="panel panel-default card-view">
+				<div class="panel-heading">
+					<div class="pull-left">
+						<h6 class="panel-title txt-dark">Total Profit</h6>
 					</div>
 					<div class="clearfix"></div>
 				</div>

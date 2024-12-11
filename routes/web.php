@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\AdminHomeController;
 use App\Http\Controllers\backend\DoctorController;
 use App\Http\Controllers\backend\SpecialistController;
 use App\Http\Controllers\backend\CompanyController;
@@ -58,7 +59,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
 
     Route::post('logout', [App\Http\Controllers\Auth\Admin\LoginController::class, 'logout'])->name('admin.logout');
 
-    Route::view('/dashboard', 'backend.admin_dashboard');
+    Route::get('/dashboard', [AdminHomeController::class, 'index']);
     Route::resource('/specialist', SpecialistController::class);
     Route::resource('/doctor', DoctorController::class);
     Route::resource('/company', CompanyController::class);
