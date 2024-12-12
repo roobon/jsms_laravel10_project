@@ -7,6 +7,7 @@ use App\Http\Controllers\backend\CompanyController;
 use App\Http\Controllers\backend\EmployeeController;
 use App\Http\Controllers\backend\PointController;
 use App\Http\Controllers\backend\RetailerController;
+use App\Http\Controllers\backend\SalesController;
 use App\Http\Controllers\frontend\AppointmentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -67,7 +68,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/points', PointController::class);
     Route::resource('/employee', EmployeeController::class);
     Route::resource('/user_permission', RetailerController::class);
-    Route::resource('/sales', RetailerController::class);
+    Route::resource('/sales', SalesController::class);
     Route::resource('/received', RetailerController::class);
     Route::resource('/payments', RetailerController::class);
     Route::resource('/investments', RetailerController::class);

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
+use App\Models\Point;
 use Illuminate\Http\Request;
+
 
 
 class EmployeeController extends Controller
@@ -23,7 +25,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('backend.employee.create');
+        $points = Point::all();
+        return view('backend.employee.create', compact('points'));
     }
 
     /**

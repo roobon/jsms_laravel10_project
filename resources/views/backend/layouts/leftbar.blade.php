@@ -52,10 +52,10 @@
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#saleslist"><i class="icon-rocket mr-10"></i>Sales<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="saleslist" class="collapse collapse-level-1">
 							<li>
-								<a href="{{route('retailer.index')}}">All Sales</a>
+								<a href="{{route('sales.index')}}">All Sales</a>
 							</li>
 							<li>
-								<a href="{{route('retailer.create')}}">New Sale</a>
+								<a href="{{route('sales.create')}}">New Sale</a>
 							</li>	
 						</ul>
 					</li>
