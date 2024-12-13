@@ -4,6 +4,10 @@
 	@parent
 @endsection
 
+@section('title')
+	JSMS: Company List
+@endsection
+
 @section('content')
 <div class="container-fluid">
 				
@@ -11,7 +15,7 @@
 				<div class="row heading-bg bg-green">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
-					<h5 class="txt-light">List of Company</h5>
+					<h5 class="txt-light">Company List</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
@@ -32,7 +36,7 @@
 							<div class="panel-heading">
 								<div class="pull-left">
 									@include('backend.layouts.success')
-									<h6 class="panel-title txt-dark">Company List</h6>
+									{{-- <h6 class="panel-title txt-dark">Company List</h6> --}}
 								</div>
 								<div class="pull-right"><a href="{{route('company.create')}}" class="btn btn-success">New Company</a></div>
 								<div class="clearfix"></div>

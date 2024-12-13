@@ -12,10 +12,10 @@
 <div class="container-fluid">
 				
 				<!-- Title -->
-				<div class="row heading-bg bg-green">
+				<div class="row heading-bg bg-blue">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
-					<h5 class="txt-light">List of Employee</h5>
+					<h5 class="txt-light">Employee List</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
@@ -36,7 +36,7 @@
 							<div class="panel-heading">
 								<div>
 									@include('backend.layouts.success')
-									<h6 class="panel-title txt-dark">Employee List</h6>
+									{{-- <h6 class="panel-title txt-dark">Employee List</h6> --}}
 								</div>
 								<div class="pull-right"><a href="{{route('employee.create')}}" class="btn btn-success">New Employee</a></div>
 								<div class="clearfix"></div>
@@ -51,7 +51,6 @@
                                                         <th>ID</th>
 														<th>Employee Name</th>
 														<th>Designation</th>
-														<th>Joining Date</th>
 														<th>Email</th>
 														<th>Phone</th>
 														<th style="width: 15%;" class="text-center">Action</th>
@@ -62,7 +61,6 @@
 														<th>ID</th>
 														<th>Employee Name</th>
 														<th>Designation</th>
-														<th>Joining Date</th>
 														<th>Email</th>
 														<th>Phone</th>
 														<th style="width: 15%;" class="text-center">Action</th>
@@ -74,7 +72,6 @@
 														<td>{{$loop->iteration}}</td>
 														<td>{{$item->name}}</td>
 														<td>{{$item->designation}}</td>
-														<td>{{$item->joining_date}}</td>
 														<td>{{$item->contact_email }}</td>
 														<td>{{$item->contact_number}}</td>
 														<td style="width: 15%;" class="text-center">

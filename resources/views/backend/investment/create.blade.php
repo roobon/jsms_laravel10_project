@@ -10,7 +10,7 @@
 @endsection
 
 @section('title')
-	Sale Entry
+	Company Entry
 @endsection
 
 @section('content')
@@ -19,14 +19,14 @@
 				<!-- Title -->
 				<div class="row heading-bg bg-green">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-					  <h5 class="txt-light">Selling Entry Form</h5>
+					  <h5 class="txt-light">Retailer Entry Form</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="index.html">Dashboard</a></li>
-						<li><a href="#"><span>remployees</span></a></li>
-						<li class="active"><span>New employee</span></li>
+						<li><a href="#"><span>retailers</span></a></li>
+						<li class="active"><span>New retailer</span></li>
 					  </ol>
 					</div>
 					<!-- /Breadcrumb -->
@@ -39,7 +39,7 @@
 							<div class="panel panel-default card-view">
 								<div class="panel-heading">
 									<div class="pull-left">
-										<h6 class="panel-title txt-dark">Enter Employee Details</h6>
+										<h6 class="panel-title txt-dark">Enter Retailer Details</h6>
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -49,54 +49,13 @@
 										<div class="row">
 											<div class="col-sm-12 col-xs-12">
 												<div class="form-wrap">
-													<form class="form-horizontal" method="post" action="{{route('sales.store')}}">
+													<form class="form-horizontal" method="post" action="{{route('retailer.store')}}">
 														@csrf
                                                         <div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Retailer Name*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Shop Name*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<select name="point" class="form-control" id="retailerId">
-																		<option value="">Select one</option>
-																		@foreach($retailers as $retailer)
-																		<option value="{{$retailer->id}}">{{$retailer->shop_name}}</option>
-																		@endforeach
-																	</select>
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Vourcher Number*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="name" value="{{old('name')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Voucher Number">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Designation*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<select name="designation" class="form-control">
-																		<option value="">Select one</option>
-																		<option value="Manager">Manager</option>
-																		<option value="Collection Officer">Collection Officer</option>
-																	</select>
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Point Name*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<select name="point" class="form-control">
-																		<option value="">Select one</option>
-																		@foreach($points as $point)
-																		<option value="{{$point->id}}">{{$point->point_name}}</option>
-																		@endforeach
-																	</select>
+																	<input type="text" name="shop_name" value="{{old('shop_name')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Shop Name">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
@@ -207,21 +166,4 @@
 
 @section('scripts')
     @parent
-	<script>
-		$(document).ready(function () {
-			$('#retailerId').on('change', function(){
-				let id =$('#retailerId').val();
-
-				$.ajax({
-					type: "GET",
-					url: "/sales/",
-					data: "data: id",
-					dataType: "dataType",
-					success: function (response) {
-						
-					}
-				});
-			})
-		});
-	</script>
 @endsection

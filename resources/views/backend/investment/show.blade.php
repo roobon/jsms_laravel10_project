@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-	Sales Details
+	Company Details
 @endsection
 
 @section('content')
@@ -20,8 +20,8 @@
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="index.html">Dashboard</a></li>
-						<li><a href="#"><span>Sales</span></a></li>
-						<li class="active"><span>Sales Details</span></li>
+						<li><a href="#"><span>table</span></a></li>
+						<li class="active"><span>Export</span></li>
 					  </ol>
 					</div>
 					<!-- /Breadcrumb -->
@@ -37,36 +37,34 @@
 									<div class="row">
 										<div class="col-md-5">
 											<div class="item-big">
-												<img class="img-responsive" id="item-display" src="{{asset('images/sales/novoucher.jpg')}}" alt="voucher"/>
+												<img class="img-responsive" id="item-display" src="{{asset('images/point/store_nophoto.jpg')}}" alt="product"/>
 											</div>
 										</div>
 											
 										<div class="col-md-7">
 											<div class="product-detail-wrap">
-												{{-- @php dd($sales) @endphp --}}
 												
-												<h3 class="mb-20">{{$sales->name}}</h3>
-												<div class="product-price head-font mb-30">{{$sales->invoice_number}} 
+												
+												<h3 class="mb-20">{{$point->point_name}}</h3>
+												<div class="product-price head-font mb-30">Address: {{$point->point_address}} 
 												</div>
 												
-												<h4 class="mb-20">Retailer Info</h4>
-												<p class="mb-50">Business Starting Date: {{$sales->shop_name}} <br>
-												Last Business Date: {{$sales->last_business}} <br>	
-												Last Business Balance: {{$sales->last_balance}}	
-												
+												<h4 class="mb-20">Business Info</h4>
+												<p class="mb-50">Point Establishment Date: {{$point->opening_date}} <br>											
 												</p>
 			
-												<h4 class="mb-20">Point Info</h4>
-												<p class="mb-50">Contact Person: {{$sales->contact_person}} <br>
-												Mobile Number: {{$sales->contact_number}}
+												<h4 class="mb-20">Contact Info</h4>
+												<p class="mb-50">Contact Person: {{$employee[0]->name ?? ''}} <br>
+													Designation: {{$employee[0]->designation ?? ''}} <br>
+												Mobile Number: {{$employee[0]->contact_number ?? ''}}
 												<br>
-												Email Address: {{$sales->contact_email}}
+												Email Address: {{$employee[0]->address ?? ''}}
 												</p>
 												
 												
 												
 												<div class="btn-group mr-10">
-													<a href="{{route('sales.index')}}" class="btn btn-success btn-anim"><i class="fa  fa-angle-double-left"></i><span class="btn-text">Back to Sales list</span></a>
+													<a href="{{route('points.index')}}" class="btn btn-success btn-anim"><i class="fa  fa-angle-double-left"></i><span class="btn-text">Back to points list</span></a>
 												</div>
 												
 											</div>

@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Sales;
+use App\Models\OutgoingSale;
+use App\Models\Point;
+use App\Models\Retailer;
+//use App\Models\Sales;
 use Illuminate\Http\Request;
+
+
 
 
 class SalesController extends Controller
@@ -14,7 +19,7 @@ class SalesController extends Controller
      */
     public function index()
     {
-        $items = Sales::orderBy('id', 'desc')->get();
+        $items = OutgoingSale::orderBy('id', 'desc')->get();
         return view('backend.sales.index', compact('items'));
     }
 
@@ -23,7 +28,9 @@ class SalesController extends Controller
      */
     public function create()
     {
-        return view('backend.sales.create');
+        $points = Point::all();
+        $retailers = Retailer::all();
+        return view('backend.sales.create', compact('points', 'retailers'));
     }
 
     /**
@@ -45,7 +52,7 @@ class SalesController extends Controller
 
         );
 
-        $sales = new Sales;
+        $sales = new OutgoingSale;
 
         $sales->shop_name = $request->shop_name;
         $sales->proprietor_name = $request->proprieter_name;
@@ -67,15 +74,16 @@ class SalesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Sales $sales)
+    public function show(OutgoingSale $sales)
     {
+
         return view('backend.sales.show', compact('sales'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Sales $sales)
+    public function edit(OutgoingSale $sales)
     {
         return view('backend.sales.edit', compact('sales'));
     }
@@ -83,7 +91,7 @@ class SalesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sales $sales)
+    public function update(Request $request, OutgoingSale $sales)
     {
         //
     }
@@ -91,8 +99,9 @@ class SalesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Sales $sales)
+    public function destroy(OutgoingSale $sales)
     {
+        return ($sales);
         $sales->delete();
         return redirect()->route('sales.index')->with('msg', 'Deleted Successfully');
     }

@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-	Point List
+	JSMS: Point List
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
 				<div class="row heading-bg bg-green">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
-					<h5 class="txt-light">List of Point</h5>
+					<h5 class="txt-light">Point List</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
@@ -36,7 +36,7 @@
 							<div class="panel-heading">
 								<div>
 									@include('backend.layouts.success')
-									<h6 class="panel-title txt-dark">Point List</h6>
+									{{-- <h6 class="panel-title txt-dark">Point List</h6> --}}
 								</div>
 								<div class="pull-right"><a href="{{route('points.create')}}" class="btn btn-success">New Point</a></div>
 								<div class="clearfix"></div>
@@ -50,16 +50,16 @@
 													<tr>
                                                         <th>ID</th>
 														<th>Point Name</th>
-														<th>Point/Center Address</th>
+														<th style="width: 10%;">Point/Center Address</th>
 														<th>Establishment Date</th>
-														<th style="width: 15%;" class="text-center">Action</th>
+														<th style="width: 10%;" class="text-center">Action</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
 														<th>ID</th>
 														<th>Point Name</th>
-														<th>Point/Center Address</th>
+														<th style="width: 15%;">Point/Center Address</th>
 														<th>Establishment Date</th>													
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
@@ -69,7 +69,7 @@
                                                     <tr>
 														<td>{{$loop->iteration}}</td>
 														<td>{{$item->point_name}}</td>
-														<td>{{$item->point_address}}</td>
+														<td style="width: 10%;">{{$item->point_address}}</td>
 														<td>{{$item->opening_date}}</td>
 														<td style="width: 15%;" class="text-center">
 														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('points.destroy', $item->id)}}" method="post">

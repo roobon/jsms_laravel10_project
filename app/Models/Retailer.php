@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Retailer extends Model
 {
     use HasFactory;
+    protected $table = 'retailers';
+
+    public function sales()
+    {
+        return $this->hasMany(OutgoingSale::class);
+    }
 }

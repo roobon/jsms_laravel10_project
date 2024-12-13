@@ -68,6 +68,7 @@ class RetailerController extends Controller
      */
     public function show(Retailer $retailer)
     {
+        //dd($retailer);
         return view('backend.retailer.show', compact('retailer'));
     }
 

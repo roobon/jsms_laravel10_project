@@ -9,8 +9,15 @@ class Point extends Model
 {
     use HasFactory;
 
+    protected $table = 'points';
+
     public function employee()
     {
         return $this->hasMany(Employee::class);
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(OutgoingSale::class);
     }
 }

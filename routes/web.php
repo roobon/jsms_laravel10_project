@@ -5,6 +5,7 @@ use App\Http\Controllers\backend\DoctorController;
 use App\Http\Controllers\backend\SpecialistController;
 use App\Http\Controllers\backend\CompanyController;
 use App\Http\Controllers\backend\EmployeeController;
+use App\Http\Controllers\backend\InvestmentController;
 use App\Http\Controllers\backend\PointController;
 use App\Http\Controllers\backend\RetailerController;
 use App\Http\Controllers\backend\SalesController;
@@ -67,16 +68,15 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/retailer', RetailerController::class);
     Route::resource('/points', PointController::class);
     Route::resource('/employee', EmployeeController::class);
-    Route::resource('/user_permission', RetailerController::class);
     Route::resource('/sales', SalesController::class);
     Route::resource('/received', RetailerController::class);
-    Route::resource('/payments', RetailerController::class);
-    Route::resource('/investments', RetailerController::class);
-    Route::resource('/insentives', RetailerController::class);
-    Route::resource('/slabs', RetailerController::class);
-    Route::resource('/display_centers', RetailerController::class);
-    Route::resource('/expires', RetailerController::class);
-    Route::resource('/claims', RetailerController::class);
+    Route::resource('/payment', RetailerController::class);
+    Route::resource('/investment', InvestmentController::class);
+    Route::resource('/insentive', RetailerController::class);
+    Route::resource('/slab', RetailerController::class);
+    Route::resource('/display_center', RetailerController::class);
+    Route::resource('/expired', RetailerController::class);
+    Route::resource('/claim', RetailerController::class);
 });
 
 // Doctor Routes

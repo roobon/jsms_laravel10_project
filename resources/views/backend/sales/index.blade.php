@@ -50,10 +50,12 @@
 													<tr>
                                                         <th>ID</th>
 														<th>Retailer Name</th>
-														<th>Designation</th>
-														<th>Joining Date</th>
-														<th>Email</th>
-														<th>Phone</th>
+														<th>Invoice</th>
+														<th>Sales</th>
+														<th>Collecton</th>
+														<th>Due</th>
+														<th>Realization</th>
+														<th>Point/Center</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</thead>
@@ -61,10 +63,12 @@
 													<tr>
 														<th>ID</th>
 														<th>Retailer Name</th>
-														<th>Designation</th>
-														<th>Joining Date</th>
-														<th>Email</th>
-														<th>Phone</th>
+														<th>Invoice</th>
+														<th>Sales</th>
+														<th>Collecton</th>
+														<th>Due</th>
+														<th>Realization</th>
+														<th>Point/Center</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</tfoot>
@@ -72,25 +76,22 @@
 													@foreach($items as $item)
                                                     <tr>
 														<td>{{$loop->iteration}}</td>
-														<td>{{$item->retailer_id}}</td>
-														<td>{{$item->designation}}</td>
-														<td>{{$item->joining_date}}</td>
-														<td>{{$item->contact_email }}</td>
-														<td>{{$item->contact_number}}</td>
+														<td>{{$item->retailer->shop_name}}</td>
+														<td>{{$item->invoice_number}}</td>
+														<td>{{$item->total_amount}}</td>
+														<td>{{$item->collection_amount }}</td>
+														<td>{{$item->due_amount }}</td>
+														<td>{{$item->due_realization }}</td>
+														<td>{{$item->point->point_name}}</td>
 														<td style="width: 15%;" class="text-center">
-															
-														  
-														
-														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('employee.destroy', $item->id)}}" method="post">
-														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('employee.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
-														<a href="{{route('employee.edit', $item->id)}}" class="btn btn-primary btn-icon-anim btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
+														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('sales.destroy', $item->id)}}" method="post">
+														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('sales.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
+														<a href="{{route('sales.edit', $item->id)}}" class="btn btn-primary btn-icon-anim btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
 														@csrf
 														@method('DELETE')
 														<button class="btn btn-danger btn-icon-anim btn-circle"  type="submit" name="submit"><i class="glyphicon glyphicon-trash"></i></button>
 														</form>
-														
-														</td>
-														
+														</td>	
 													</tr>
 													@endforeach
 												</tbody>
