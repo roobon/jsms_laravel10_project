@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->enum('transfer_method', ['banktransfer', 'rtgs']);
+            $table->string('cheque_voucher', 60);
+            $table->date('payment_date');
+            $table->decimal('payment_amount', total: 8, places: 2);
+            $table->integer('point_id');
+            $table->integer('company_id');
+            $table->integer('employee_id');
+            $table->string('payment_note', 100)->nullable();
+            $table->string('cheque_voucher_photo');
             $table->timestamps();
         });
     }

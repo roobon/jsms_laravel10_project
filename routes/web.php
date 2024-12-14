@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\backend\AdminHomeController;
+use App\Http\Controllers\backend\AjaxController;
 use App\Http\Controllers\backend\DoctorController;
 use App\Http\Controllers\backend\SpecialistController;
 use App\Http\Controllers\backend\CompanyController;
 use App\Http\Controllers\backend\EmployeeController;
 use App\Http\Controllers\backend\InvestmentController;
+use App\Http\Controllers\backend\PaymentController;
 use App\Http\Controllers\backend\PointController;
+use App\Http\Controllers\backend\ReportController;
 use App\Http\Controllers\backend\RetailerController;
 use App\Http\Controllers\backend\SalesController;
 use App\Http\Controllers\frontend\AppointmentController;
@@ -70,13 +73,16 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/employee', EmployeeController::class);
     Route::resource('/sales', SalesController::class);
     Route::resource('/received', RetailerController::class);
-    Route::resource('/payment', RetailerController::class);
+    Route::resource('/payment', PaymentController::class);
     Route::resource('/investment', InvestmentController::class);
     Route::resource('/insentive', RetailerController::class);
     Route::resource('/slab', RetailerController::class);
     Route::resource('/display_center', RetailerController::class);
     Route::resource('/expired', RetailerController::class);
     Route::resource('/claim', RetailerController::class);
+    Route::resource('/report', ReportController::class);
+    // Route::get('/report/{id}', [ReportController::class, 'companyReport'])->name('compRR');
+    // Route::get('/report/{id}', [ReportController::class, 'retailerReport']);
 });
 
 // Doctor Routes
@@ -91,3 +97,5 @@ Route::middleware('auth:doctor')->prefix('doctor')->group(function () {
 
     Route::view('/dashboard', 'backend.doctor_dashboard');
 });
+
+Route::get('info', [AjaxController::class, 'retailerInfo'])->name('info');

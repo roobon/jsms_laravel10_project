@@ -25,8 +25,8 @@
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="index.html">Dashboard</a></li>
-						<li><a href="#"><span>remployees</span></a></li>
-						<li class="active"><span>New employee</span></li>
+						<li><a href="#"><span>Sells</span></a></li>
+						<li class="active"><span>New sell</span></li>
 					  </ol>
 					</div>
 					<!-- /Breadcrumb -->
@@ -39,7 +39,7 @@
 							<div class="panel panel-default card-view">
 								<div class="panel-heading">
 									<div class="pull-left">
-										<h6 class="panel-title txt-dark">Enter Employee Details</h6>
+										<h6 class="panel-title txt-dark">Enter Sell Details</h6>
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -69,24 +69,44 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Vourcher Number*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="text" name="name" value="{{old('name')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Voucher Number">
+																	<input type="text" name="voucher" value="{{old('voucher')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Voucher Number">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Designation*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Total Amount*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<select name="designation" class="form-control">
+																	<input type="text" name="total_amount" value="{{old('total_amount')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Total Amount">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Collection Amount*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="text" name="collection_amount" value="{{old('collection_amount')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Collection Amount">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Employee Name*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<select name="point" class="form-control" id="retailerId">
 																		<option value="">Select one</option>
-																		<option value="Manager">Manager</option>
-																		<option value="Collection Officer">Collection Officer</option>
+																		@foreach($retailers as $retailer)
+																		<option value="{{$retailer->id}}">{{$retailer->shop_name}}</option>
+																		@endforeach
 																	</select>
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
 														</div>
+														
 														<div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Point Name*</label>
 															<div class="col-sm-9">
@@ -101,87 +121,21 @@
 																</div>
 															</div>
 														</div>
+														
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Proprieter Name*</label>
+															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Note</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="text" name="proprieter_name" value="{{old('proprieter_name')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Proprieter Name">
+																	<textarea type="text" name="note" class="form-control" id="exampleInputEmail_4" placeholder="Enter any message" rows="10">{{old('note')}}</textarea>
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Address*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Address" rows="10">{{old('address')}}</textarea>
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Contact Number*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="contact_number" value="{{old('contact_number')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Contact Number">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Email</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="contact_email" value="{{old('contact_email')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Email address">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Trade Lisence</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="trade_lisence" value="{{old('contact_person')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Contact person">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Starts*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Sales Date*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="date" name="business_starts" value="{{old('business_starts')}}" class="form-control" id="exampleInputuname_4">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business Date</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="date" name="last_business" value="{{old('last_business')}}" class="form-control" id="exampleInputuname_4">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Balance</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="last_balance" value="{{old('last_balance')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Last Balance">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Status</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<select name="status" id="" class="form-control">
-																		<option value="">Select one</option>
-																		<option value="active">Active</option>
-																		<option value="inactive">Inactive</option>
-																	</select>
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
@@ -214,11 +168,17 @@
 
 				$.ajax({
 					type: "GET",
-					url: "/sales/",
-					data: "data: id",
-					dataType: "dataType",
+					url: "info",
+					data: {
+						"_token": "{{ csrf_token() }}",
+						"data":"Hello World"
+					},
+					
 					success: function (response) {
-						
+						alert('Success');
+					},
+					error: function(response){
+						alert("fail");
 					}
 				});
 			})

@@ -159,6 +159,18 @@
 							</li>	
 						</ul>
 					</li>
+					<hr>
+					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#reptlist"><i class="icon-paper-clip mr-10"></i>Reports<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="reptlist" class="collapse collapse-level-1">
+							<li>
+								<a href="{{route('report.index')}}">Company wise Monthly Report</a>
+							</li>
+							<li>
+								<a href="#">Retailer wise Monthly Report</a>
+							</li>	
+						</ul>
+					</li>
 					
 				</ul>
 			</div>

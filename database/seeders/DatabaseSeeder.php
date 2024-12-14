@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
+        //\App\Models\User::factory(10)->create();
 
         //\App\Models\Specialist::factory(50)->create();
 
@@ -22,12 +22,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        \App\Models\Admin::create([
-            'name' => 'Ziaul Habib',
-            'email' => 'roobon@gmail.com',
-            'password' => Hash::make('admin123'),
-            'status' => 'active'
-        ]);
+        // \App\Models\Admin::create([
+        //     'name' => 'Ziaul Habib',
+        //     'email' => 'roobon@gmail.com',
+        //     'password' => Hash::make('admin123'),
+        //     'status' => 'active'
+        // ]);
 
         // \App\Models\Doctor::create(
         //     [
@@ -44,5 +44,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Retailer::factory(100)->create();
         \App\Models\Point::factory(10)->create();
         \App\Models\Employee::factory(20)->create();
+        \App\Models\Sales::factory(50)->create();
+        \App\Models\Payment::factory(50)->create();
     }
 }

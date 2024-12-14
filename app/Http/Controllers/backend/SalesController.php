@@ -105,4 +105,9 @@ class SalesController extends Controller
         $sales->delete();
         return redirect()->route('sales.index')->with('msg', 'Deleted Successfully');
     }
+
+    public function retailerInfo(Request $request)
+    {
+        return $request;
+    }
 }
