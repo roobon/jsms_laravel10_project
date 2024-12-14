@@ -55,7 +55,7 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Retailer Name*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<select name="point" class="form-control" id="retailerId">
+																	<select name="retailer" class="form-control" id="retailerId">
 																		<option value="">Select one</option>
 																		@foreach($retailers as $retailer)
 																		<option value="{{$retailer->id}}">{{$retailer->shop_name}}</option>
@@ -96,10 +96,10 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Employee Name*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<select name="point" class="form-control" id="retailerId">
+																	<select name="employee" class="form-control" id="retailerId">
 																		<option value="">Select one</option>
-																		@foreach($retailers as $retailer)
-																		<option value="{{$retailer->id}}">{{$retailer->shop_name}}</option>
+																		@foreach($employees as $employee)
+																		<option value="{{$employee->id}}">{{$employee->name}}</option>
 																		@endforeach
 																	</select>
 																	<div class="input-group-addon"></div>
@@ -135,7 +135,7 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Sales Date*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="date" name="business_starts" value="{{old('business_starts')}}" class="form-control" id="exampleInputuname_4">
+																	<input type="date" name="sales_date" value="{{old('sales_date')}}" class="form-control" id="exampleInputuname_4">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>

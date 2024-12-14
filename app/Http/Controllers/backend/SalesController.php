@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use App\Models\OutgoingSale;
 use App\Models\Point;
 use App\Models\Retailer;
 //use App\Models\Sales;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
 
 
 
@@ -30,7 +34,8 @@ class SalesController extends Controller
     {
         $points = Point::all();
         $retailers = Retailer::all();
-        return view('backend.sales.create', compact('points', 'retailers'));
+        $employees = Employee::all();
+        return view('backend.sales.create', compact('points', 'retailers', 'employees'));
     }
 
     /**
@@ -40,35 +45,41 @@ class SalesController extends Controller
     {
         $request->validate(
             [
-                'shop_name' => 'required | max:100 | min:5',
-                'business_starts' => 'required',
-                'address' => 'min:8',
-                'trade_lisence' => 'required',
-                'contact_person' => 'min:4',
-                'contact_number' => 'min:11',
-                'contact_email' => 'email',
-                'status' => 'required',
+                'retailer' => 'required',
+                'voucher' => 'required',
+                'total_amount' => 'required',
+                'collection_amount' => 'required',
+                'employee' => 'required',
+                'point' => 'required',
+                'sales_date' => 'required',
             ],
 
         );
 
         $sales = new OutgoingSale;
 
-        $sales->shop_name = $request->shop_name;
-        $sales->proprietor_name = $request->proprieter_name;
-        $sales->business_starts = $request->business_starts;
-        $sales->shop_address = $request->address;
-        $sales->trade_lisence = $request->trade_lisence;
-        $sales->contact_person = $request->contact_person;
-        $sales->contact_number = $request->contact_number;
-        $sales->contact_email  = $request->contact_email;
-        $sales->last_business = $request->last_business;
-        $sales->last_balance = $request->last_balance;
-        $sales->status = $request->status;
-
+        $sales->retailer_id = $request->retailer;
+        $sales->invoice_number = $request->voucher;
+        $sales->total_amount = $request->total_amount;
+        $sales->collection_amount = $request->collection_amount;
+        $sales->due_amount = $sales->total_amount - $sales->collection_amount;
+        $sales->due_realization = '100';
+        $sales->point_id = $request->point;
+        $sales->employee_id = $request->employee;
+        $sales->sales_date = $request->sales_date;
+        $sales->voucher_photo = 'images/voucher/no_voucherphoto.jpg';
         $sales->save();
 
-        return redirect()->route('sales.index')->with('msg', "Successfully Retailer Created");
+        DB::table('sales_payment_stock')->insert([
+            'point_id' =>  $request->point,
+            'sales_amount' =>  $request->total_amount,
+            'collection_amount' =>  $request->collection_amount,
+            'deposit_amount' =>  '0',
+            'stock_amount' =>  '0',
+            'ledger_view' =>  '0',
+        ]);
+
+        return redirect()->route('sales.index')->with('msg', "Successfully Sales Entered");
     }
 
     /**
