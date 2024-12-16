@@ -36,8 +36,9 @@ class PointController extends Controller
     {
         $request->validate(
             [
-                'point_name' => 'required | max:100 | min:5',
-                'point_address' => 'required'
+                'point_name' => 'required',
+                'point_address' => 'required',
+                'opening_date' => 'required'
             ],
 
         );
@@ -46,9 +47,10 @@ class PointController extends Controller
 
         $point->point_name = $request->point_name;
         $point->point_address = $request->point_address;
+        $point->opening_date = $request->opening_date;
         $point->save();
 
-        return redirect()->route('point.index')->with('msg', "Successfully Point Created");
+        return redirect()->route('points.index')->with('msg', "Center Created Successfully ");
     }
 
     /**
@@ -58,9 +60,9 @@ class PointController extends Controller
     {
         $employee = DB::table('employees')->where('point_id', $point->id)->where('designation', 'Manager')->get();
         if (count($employee) > 0) {
-            return view('backend.point.show', compact('point', 'employee'));
+            return view('backend.points.show', compact('point', 'employee'));
         } else {
-            return view('backend.point.show', compact('point'));
+            return view('backend.points.show', compact('point'));
         }
     }
 
@@ -79,17 +81,19 @@ class PointController extends Controller
     {
         $request->validate(
             [
-                'point_name' => 'required | max:100 | min:5',
-                'point_address' => 'required'
+                'point_name' => 'required | min:5',
+                'point_address' => 'required',
+                'opening_date' => 'required'
             ],
 
         );
 
         $point->point_name = $request->point_name;
         $point->point_address = $request->point_address;
+        $point->opening_date = $request->opening_date;
         $point->update();
 
-        return redirect()->route('point.index')->with('msg', "Successfully Point Updated");
+        return redirect()->route('points.index')->with('msg', "Point Updated Successfully ");
     }
 
     /**
@@ -98,6 +102,6 @@ class PointController extends Controller
     public function destroy(Point $point)
     {
         $point->delete();
-        return redirect()->route('point.index')->with('msg', 'Deleted Successfully');
+        return redirect()->route('points.index')->with('msg', 'Deleted Successfully');
     }
 }

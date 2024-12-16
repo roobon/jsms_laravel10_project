@@ -74,33 +74,19 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Point Name*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<select name="point" class="form-control">
-																		<option value="">Select one</option>
-																		@foreach($points as $point)
-																		<option value="{{$point->id}}">{{$point->point_name}}</option>
-																		@endforeach
-																	</select>
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Proprieter Name*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="proprieter_name" value="{{old('proprieter_name')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Proprieter Name">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
 															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Address*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Address" rows="10">{{old('address')}}</textarea>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Date of Birth*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="date" name="dob" value="{{old('dob')}}" class="form-control" id="exampleInputuname_4">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
@@ -123,6 +109,31 @@
 																</div>
 															</div>
 														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Point Name*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<select name="point" class="form-control">
+																		<option value="">Select one</option>
+																		@foreach($points as $point)
+																		<option value="{{$point->id}}">{{$point->point_name}}</option>
+																		@endforeach
+																	</select>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Proprieter Name*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="text" name="proprieter_name" value="{{old('proprieter_name')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Proprieter Name">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														
+														
 														<div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Trade Lisence</label>
 															<div class="col-sm-9">

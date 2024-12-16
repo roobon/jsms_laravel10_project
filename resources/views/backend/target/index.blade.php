@@ -12,7 +12,7 @@
 <div class="container-fluid">
 				
 				<!-- Title -->
-				<div class="row heading-bg bg-green">
+				<div class="row heading-bg bg-blue">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
 					<h5 class="txt-light">Target List</h5>
@@ -36,9 +36,8 @@
 							<div class="panel-heading">
 								<div>
 									@include('backend.layouts.success')
-									{{-- <h6 class="panel-title txt-dark">Point List</h6> --}}
 								</div>
-								<div class="pull-right"><a href="{{route('target.create')}}" class="btn btn-success">New Target</a></div>
+								<div class="pull-right"><a href="{{route('target.create')}}" class="btn btn-primary">New Target</a></div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="panel-wrapper collapse in">
@@ -50,7 +49,7 @@
 													<tr>
                                                         <th>ID</th>
 														<th>Target Duration</th>
-														<th>IMG Target</th>
+														<th>IMS Target</th>
 														<th>Collection Target</th>
 														<th>Center</th>
 														<th>Company Name</th>

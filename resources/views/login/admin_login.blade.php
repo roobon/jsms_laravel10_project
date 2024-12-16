@@ -14,9 +14,6 @@
 		
 		<!-- vector map CSS -->
 		<link href="{{asset('vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-		
-		
-		
 		<!-- Custom CSS -->
 		<link href="{{asset('dist/css/style.css')}}" rel="stylesheet" type="text/css">
 	</head>
@@ -69,10 +66,6 @@
 															</div>
 															
 															<div class="form-group">
-																<div class="checkbox checkbox-success pr-10 pull-left">
-																	<input id="checkbox_2" required="" type="checkbox">
-																	<label for="checkbox_2"> keep me logged in </label>
-																</div>
 																<a class="capitalize-font txt-danger block pt-5 pull-right" href="#">forgot password</a>
 																<div class="clearfix"></div>
 															</div>

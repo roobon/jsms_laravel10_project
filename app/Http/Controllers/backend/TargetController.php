@@ -67,7 +67,7 @@ class TargetController extends Controller
             ->get();
 
         if (count($row) > 0) {
-            return redirect()->back()->with('error', "Target Entry Already Exist");
+            return redirect()->back()->with('error', "Sorry, Target Entry Already Exist");
         } else {
             $target->save();
             DB::table('sales_payments_stocks')->insert([

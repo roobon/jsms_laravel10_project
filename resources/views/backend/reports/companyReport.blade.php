@@ -7,9 +7,10 @@
 			font-size: 30px;
 		}
 		.report-header {
-			border: 1px solid blue;
-			padding:20px;
-			background-color: aqua
+			border: 1px solid rgb(13, 0, 255);
+			padding:15px;
+			background-color: rgba(26, 8, 87, 0.551);
+			color: white;
 		}
 	</style>
 @endsection
@@ -25,14 +26,14 @@
 				<div class="row heading-bg bg-blue">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
-					<h5 class="txt-light">Employee List</h5>
+					<h5 class="txt-light">Companywise Monthly Report</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="index.html">Dashboard</a></li>
-						<li><a href="#"><span>Employees</span></a></li>
-						<li class="active"><span>Employee list</span></li>
+						<li><a href="#"><span>Reports</span></a></li>
+						<li class="active"><span>Comopanywise</span></li>
 					  </ol>
 					</div>
 					<!-- /Breadcrumb -->
@@ -48,7 +49,7 @@
 									@include('backend.layouts.success')
 									{{-- <h6 class="panel-title txt-dark">Employee List</h6> --}}
 								</div>
-								<div class="pull-right"><a href="{{route('employee.create')}}" class="btn btn-success">New Employee</a></div>
+								
 								<div class="clearfix"></div>
 							</div>
 							<div class="panel-wrapper collapse in">
@@ -57,7 +58,7 @@
 										<div class="table-responsive">
 											<table id="example" class="table table-hover display  pb-30" >
 												<caption class="report-header">
-													<div class="report-caption">Companywise Report</div>
+													<div class="report-caption">Companywise Monthly Report</div>
 													<span class="report-title">Company Name: SQUARE <br>
 														Duration: 1-12-2024 to 31-12-2024
 													</span>

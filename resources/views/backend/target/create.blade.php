@@ -17,7 +17,7 @@
 <div class="container-fluid">
 				
 				<!-- Title -->
-				<div class="row heading-bg bg-green">
+				<div class="row heading-bg bg-blue">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					  <h5 class="txt-light">Target Entry Form</h5>
 					</div>
@@ -37,6 +37,10 @@
 				<div class="row">	
 						<div class="col-md-8 col-md-offset-2">
 							<div class="panel panel-default card-view">
+								<div>
+									@include('backend.layouts.error')
+									{{-- <h6 class="panel-title txt-dark">Point List</h6> --}}
+								</div>
 								<div class="panel-heading">
 									<div class="text-center">
 										<h6 class="panel-title txt-dark form-title">New Target Details</h6>

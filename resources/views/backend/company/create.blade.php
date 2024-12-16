@@ -31,7 +31,7 @@
 <div class="container-fluid">
 				
 				<!-- Title -->
-				<div class="row heading-bg bg-green">
+				<div class="row heading-bg bg-blue">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					  <h5 class="txt-light">Company Entry Form</h5>
 					</div>
@@ -170,7 +170,7 @@
 														</div>
 														<div class="form-group mb-0">
 															<div class="col-sm-offset-3 col-sm-9">
-																<button type="submit" class="btn btn-success btn-block">Submit</button>
+																<button type="submit" class="btn btn-primary btn-block">Submit</button>
 															</div>
 														</div>
 													</form>

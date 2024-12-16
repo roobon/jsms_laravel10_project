@@ -12,7 +12,7 @@
 <div class="container-fluid">
 				
 				<!-- Title -->
-				<div class="row heading-bg bg-green">
+				<div class="row heading-bg bg-blue">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
 					<h5 class="txt-light">Company List</h5>
@@ -34,7 +34,7 @@
 					<div class="col-sm-12">
 						<div class="panel panel-default card-view">
 							<div class="panel-heading">
-								<div class="pull-left">
+								<div class="panel-heading">
 									@include('backend.layouts.success')
 									{{-- <h6 class="panel-title txt-dark">Company List</h6> --}}
 								</div>

@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-	Employee List
+	JSMS: Employee List
 @endsection
 
 @section('content')
@@ -75,9 +75,6 @@
 														<td>{{$item->contact_email }}</td>
 														<td>{{$item->contact_number}}</td>
 														<td style="width: 15%;" class="text-center">
-															
-														  
-														
 														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('employee.destroy', $item->id)}}" method="post">
 														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('employee.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
 														<a href="{{route('employee.edit', $item->id)}}" class="btn btn-primary btn-icon-anim btn-circle"><i class="glyphicon glyphicon-edit"></i></a>

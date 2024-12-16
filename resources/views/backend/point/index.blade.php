@@ -5,24 +5,24 @@
 @endsection
 
 @section('title')
-	JSMS: Point List
+	JSMS: Center List
 @endsection
 
 @section('content')
 <div class="container-fluid">
 				
 				<!-- Title -->
-				<div class="row heading-bg bg-green">
+				<div class="row heading-bg bg-blue">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
-					<h5 class="txt-light">Point List</h5>
+					<h5 class="txt-light">Center List</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="index.html">Dashboard</a></li>
-						<li><a href="#"><span>Points</span></a></li>
-						<li class="active"><span>Point list</span></li>
+						<li><a href="#"><span>Centers</span></a></li>
+						<li class="active"><span>Center list</span></li>
 					  </ol>
 					</div>
 					<!-- /Breadcrumb -->
@@ -38,7 +38,7 @@
 									@include('backend.layouts.success')
 									{{-- <h6 class="panel-title txt-dark">Point List</h6> --}}
 								</div>
-								<div class="pull-right"><a href="{{route('points.create')}}" class="btn btn-success">New Point</a></div>
+								<div class="pull-right"><a href="{{route('points.create')}}" class="btn btn-primary">New Center</a></div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="panel-wrapper collapse in">
@@ -51,7 +51,7 @@
                                                         <th>ID</th>
 														<th>Point Name</th>
 														<th style="width: 10%;">Point/Center Address</th>
-														<th>Establishment Date</th>
+														<th>Opening Date</th>
 														<th style="width: 10%;" class="text-center">Action</th>
 													</tr>
 												</thead>
@@ -60,7 +60,7 @@
 														<th>ID</th>
 														<th>Point Name</th>
 														<th style="width: 15%;">Point/Center Address</th>
-														<th>Establishment Date</th>													
+														<th>Opening Date</th>													
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</tfoot>

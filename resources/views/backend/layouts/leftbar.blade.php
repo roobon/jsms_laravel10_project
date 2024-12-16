@@ -50,13 +50,13 @@
 						</ul>
 					</li>
 					<li>
-						<a href="javascript:void(0);" data-toggle="collapse" data-target="#pointlist"><i class="icon-flag mr-10"></i>Points<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#pointlist"><i class="icon-flag mr-10"></i>Centers<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="pointlist" class="collapse collapse-level-1">
 							<li>
-								<a href="{{route('points.index')}}">All Points</a>
+								<a href="{{route('points.index')}}">All Centers</a>
 							</li>
 							<li>
-								<a href="{{route('points.create')}}">New Point</a>
+								<a href="{{route('points.create')}}">New Center</a>
 							</li>	
 						</ul>
 					</li>
