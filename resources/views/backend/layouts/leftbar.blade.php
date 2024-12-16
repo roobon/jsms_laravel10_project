@@ -5,6 +5,17 @@
 						
 					</li>
 					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#targlist"><i class="icon-eyeglass mr-10"></i>Monthly Targets<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="targlist" class="collapse collapse-level-1">
+							<li>
+								<a href="{{route('target.index')}}">All Targets</a>
+							</li>
+							<li>
+								<a href="{{route('target.create')}}">New Target</a>
+							</li>	
+						</ul>
+					</li>
+					<li>
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><i class="icon-social-dropbox mr-10"></i>Stocks<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="ecom_dr" class="collapse collapse-level-1">
 							<li>
@@ -159,18 +170,18 @@
 							</li>	
 						</ul>
 					</li>
-					<hr>
+					
 					<li>
-						<a href="javascript:void(0);" data-toggle="collapse" data-target="#reptlist"><i class="icon-paper-clip mr-10"></i>Reports<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#reptlist"><i class="icon-notebook mr-10"></i>Reports<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="reptlist" class="collapse collapse-level-1">
 							<li>
-								<a href="{{route('report.index')}}">Company wise Monthly Report</a>
+								<a href="{{route('companywise.index')}}">Company wise Monthly Report</a>
 							</li>
 							<li>
 								<a href="#">Retailer wise Monthly Report</a>
 							</li>	
 						</ul>
-					</li>
+					</li>				
 					
 				</ul>
 			</div>

@@ -70,21 +70,6 @@ class SalesController extends Controller
         $sales->voucher_photo = 'images/voucher/no_voucherphoto.jpg';
         $sales->save();
 
-        // DB::table('sales_payment_stock')->updateOrInsert(
-        //     ['point_id' =>  $request->point],
-        //     [
-        //         'point_id' =>  $request->point,
-        //         'sales_amount' =>  $request->total_amount,
-        //         'collection_amount' =>  $request->collection_amount,
-        //         'deposit_amount' =>  '0',
-        //         'stock_amount' =>  '0',
-        //         'ledger_view' =>  '0',
-        //     ]
-        // );
-        // $affected = DB::table('users')
-        // ->where('id', 1)
-        // ->update(['votes' => 1]);
-
         if ($prev = DB::table('sales_payment_stock')->find($request->point)) {
             DB::table('sales_payment_stock')->where('point_id', $request->point)
                 ->update([

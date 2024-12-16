@@ -2,6 +2,16 @@
 
 @section('styles')
 	@parent
+	<style>
+		.report-caption {
+			font-size: 30px;
+		}
+		.report-header {
+			border: 1px solid blue;
+			padding:20px;
+			background-color: aqua
+		}
+	</style>
 @endsection
 
 @section('title')
@@ -46,50 +56,64 @@
 									<div class="table-wrap">
 										<div class="table-responsive">
 											<table id="example" class="table table-hover display  pb-30" >
+												<caption class="report-header">
+													<div class="report-caption">Companywise Report</div>
+													<span class="report-title">Company Name: SQUARE <br>
+														Duration: 1-12-2024 to 31-12-2024
+													</span>
+												</caption>
 												<thead>
 													<tr>
                                                         <th>ID</th>
-														<th>Employee Name</th>
-														<th>Designation</th>
-														<th>Email</th>
-														<th>Phone</th>
-														<th style="width: 15%;" class="text-center">Action</th>
+														<th>Center</th>
+														<th>IMS Target</th>
+														<th>Collection Target</th>
+														<th>Sales upto</th>
+														<th>Collection</th>
+														<th>Deposit to Bank</th>
+														<th>Depost VS Collection</th>
+														<th>Due Begning Month</th>
+														<th>Due Endof Month</th>
+														<th>Godown Stock</th>
+														<th>Ledger View</th>
+														
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
 														<th>ID</th>
-														<th>Employee Name</th>
-														<th>Designation</th>
-														<th>Email</th>
-														<th>Phone</th>
-														<th style="width: 15%;" class="text-center">Action</th>
+														<th>Center</th>
+														<th>IMS Target</th>
+														<th>Collection Target</th>
+														<th>Sales upto</th>
+														<th>Collection</th>
+														<th>Deposit to Bank</th>
+														<th>Depost VS Collection</th>
+														<th>Due Begning Month</th>
+														<th>Due Endof Month</th>
+														<th>Godown Stock</th>
+														<th>Ledger View</th>
+														
 													</tr>
 												</tfoot>
 												<tbody>
-													{{-- @foreach($items as $item) --}}
-                                                    {{-- <tr>
+													@foreach($items as $item) 
+                                                    	<tr>
 														<td>{{$loop->iteration}}</td>
-														<td>{{$item->name}}</td>
-														<td>{{$item->designation}}</td>
-														<td>{{$item->contact_email }}</td>
-														<td>{{$item->contact_number}}</td>
-														<td style="width: 15%;" class="text-center">
-															
-														  
-														
-														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('employee.destroy', $item->id)}}" method="post">
-														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('employee.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
-														<a href="{{route('employee.edit', $item->id)}}" class="btn btn-primary btn-icon-anim btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
-														@csrf
-														@method('DELETE')
-														<button class="btn btn-danger btn-icon-anim btn-circle"  type="submit" name="submit"><i class="glyphicon glyphicon-trash"></i></button>
-														</form>
-														
-														</td>
+														<td>{{$item->point_name}}</td>
+														<td>{{$item->ims_target}}</td>
+														<td>{{$item->collection_target}}</td>
+														<td>{{$item->sales_amount}}</td>
+														<td>{{$item->collection_amount}}</td>
+														<td>{{$item->deposit_amount}}</td>
+														<td>{{$item->collection_target - $item->deposit_amount}}</td>
+														<td>{{$item->startMonthdue}}</td>
+														<td>{{$item->endMonthdue}}</td>
+														<td>{{$item->GodownStock}}</td>
+														<td>{{$item->ledgerView}}</td>
 														
 													</tr>
-													@endforeach --}}
+													@endforeach
 												</tbody>
 											</table>
 										</div>

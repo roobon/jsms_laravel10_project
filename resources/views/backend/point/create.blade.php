@@ -10,7 +10,7 @@
 @endsection
 
 @section('title')
-	Company Entry
+	Point Entry
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
 				<!-- Title -->
 				<div class="row heading-bg bg-green">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-					  <h5 class="txt-light">Retailer Entry Form</h5>
+					  <h5 class="txt-light">Point Entry Form</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
@@ -38,8 +38,8 @@
 						<div class="col-md-8 col-md-offset-2">
 							<div class="panel panel-default card-view">
 								<div class="panel-heading">
-									<div class="pull-left">
-										<h6 class="panel-title txt-dark">Enter Retailer Details</h6>
+									<div class="text-center">
+										<h6 class="panel-title txt-dark form-title">New Point Details</h6>
 									</div>
 									<div class="clearfix"></div>
 								</div>

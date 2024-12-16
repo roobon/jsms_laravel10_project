@@ -12,10 +12,9 @@ class CompanyController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    { {
-            $items = Company::orderBy('id', 'desc')->get();
-            return view('backend.company.index', compact('items'));
-        }
+    {
+        $items = Company::orderBy('id', 'desc')->get();
+        return view('backend.company.index', compact('items'));
     }
 
     /**

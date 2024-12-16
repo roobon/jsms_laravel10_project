@@ -7,8 +7,18 @@
 			background-color: rgba(236, 236, 236, 0.383)
 		}
 		label {
-			background-color: rgba(236, 236, 236, 0.383);
+			
 			padding: 13px;
+			
+		 	
+		}
+		.form-title {
+			font-size:25px;
+			background-color: rgba(226, 230, 226, 0.772);
+			padding: 25px;
+			width: 100%;
+			color: rgb(213, 231, 210);
+			text-shadow: 2px 2px 4px #000000;
 		}
 	</style>
 @endsection
@@ -42,8 +52,8 @@
 						<div class="col-md-8 col-md-offset-2">
 							<div class="panel panel-default card-view">
 								<div class="panel-heading">
-									<div class="pull-left">
-										<h6 class="panel-title txt-dark">Enter Company Details</h6>
+									<div class="text-center">
+										<h6 class="panel-title txt-dark form-title">New Company Details</h6>
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -65,7 +75,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Starting Date*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Starts*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="date" name="start_date" value="{{old('start_date')}}" class="form-control" id="exampleInputuname_4">
@@ -86,7 +96,7 @@
 															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Company Address*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Address" rows="10">{{old('address')}}</textarea>
+																	<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Company Address" rows="10">{{old('address')}}</textarea>
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
@@ -160,7 +170,7 @@
 														</div>
 														<div class="form-group mb-0">
 															<div class="col-sm-offset-3 col-sm-9">
-																<button type="submit" class="btn btn-info ">Submit</button>
+																<button type="submit" class="btn btn-success btn-block">Submit</button>
 															</div>
 														</div>
 													</form>

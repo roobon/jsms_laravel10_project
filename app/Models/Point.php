@@ -20,4 +20,9 @@ class Point extends Model
     {
         return $this->hasMany(OutgoingSale::class);
     }
+
+    public function target()
+    {
+        return $this->hasMany(Target::class);
+    }
 }

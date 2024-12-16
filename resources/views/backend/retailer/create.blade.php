@@ -38,8 +38,8 @@
 						<div class="col-md-8 col-md-offset-2">
 							<div class="panel panel-default card-view">
 								<div class="panel-heading">
-									<div class="pull-left">
-										<h6 class="panel-title txt-dark">Enter Retailer Details</h6>
+									<div class="text-center">
+										<h6 class="panel-title txt-dark form-title">New Retailer Details</h6>
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -55,7 +55,7 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Shop Name*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="text" name="shop_name" value="{{old('shop_name')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Shop Name">
+																	<input type="text" name="shop_name" value="{{old('shop_name')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Retailer/Shop Name">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
@@ -73,7 +73,7 @@
 															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Address*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Address" rows="10">{{old('address')}}</textarea>
+																	<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Retailer Address" rows="10">{{old('address')}}</textarea>
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
@@ -156,7 +156,7 @@
 														</div>
 														<div class="form-group mb-0">
 															<div class="col-sm-offset-3 col-sm-9">
-																<button type="submit" class="btn btn-info ">SUBMIT</button>
+																<button type="submit" class="btn btn-success btn-block">SUBMIT</button>
 															</div>
 														</div>
 													</form>

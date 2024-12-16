@@ -12,8 +12,10 @@ use App\Http\Controllers\backend\PointController;
 use App\Http\Controllers\backend\ReportController;
 use App\Http\Controllers\backend\RetailerController;
 use App\Http\Controllers\backend\SalesController;
+use App\Http\Controllers\backend\TargetController;
 use App\Http\Controllers\frontend\AppointmentController;
 use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -80,7 +82,8 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/display_center', RetailerController::class);
     Route::resource('/expired', RetailerController::class);
     Route::resource('/claim', RetailerController::class);
-    Route::resource('/report', ReportController::class);
+    Route::resource('/report/companywise', ReportController::class);
+    Route::resource('/target', TargetController::class);
     // Route::get('/report/{id}', [ReportController::class, 'companyReport'])->name('compRR');
     // Route::get('/report/{id}', [ReportController::class, 'retailerReport']);
 });
