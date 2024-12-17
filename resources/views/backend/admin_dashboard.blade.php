@@ -202,7 +202,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">11225</span>
+										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">{{$sales}}</span>
 									</div>
 								</div>
 							</div>
@@ -215,7 +215,7 @@
 			<div class="panel panel-default card-view">
 				<div class="panel-heading">
 					<div class="pull-left">
-						<h6 class="panel-title txt-dark">Total Purchases</h6>
+						<h6 class="panel-title txt-dark">Total Payments</h6>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -228,7 +228,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">11225</span>
+										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">{{$payments}}</span>
 									</div>
 								</div>
 							</div>
