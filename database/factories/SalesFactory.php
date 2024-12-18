@@ -24,13 +24,13 @@ class SalesFactory extends Factory
     public function definition(): array
     {
         return [
-            'retailer_id' =>  random_int(1, 100),
+            'retailer_id' =>  random_int(1, 20),
             'invoice_number' => Str::random(20),
             'total_amount' =>  random_int(5000, 10000),
             'collection_amount' =>  random_int(5000, 10000),
             'due_amount' =>  random_int(2000, 5000),
             'due_realization' =>  random_int(5000, 10000),
-            'employee_id' => random_int(1, 20),
+            'employee_id' => random_int(1, 10),
             'point_id' => random_int(1, 10),
             'sales_date' => $this->faker->dateTimeBetween('-1 month', 'now'),
             'voucher_photo' => 'images/sales/no_voucherhoto.jpg',

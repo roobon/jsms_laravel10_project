@@ -70,25 +70,18 @@ class SalesController extends Controller
         $sales->voucher_photo = 'images/voucher/no_voucherphoto.jpg';
         $sales->save();
 
-        if ($prev = DB::table('sales_payment_stock')->find($request->point)) {
-            DB::table('sales_payment_stock')->where('point_id', $request->point)
+        if ($prev = DB::table('sales_payments_stocks')->find($request->point)) {
+            DB::table('sales_payments_stocks')->where('point_id', $request->point)
                 ->update([
 
                     'sales_amount' =>  $request->total_amount + $prev->sales_amount,
-                    'collection_amount' =>  $request->collection_amount + $prev->collection_amount,
-                    'deposit_amount' =>  '0',
-                    'stock_amount' =>  '0',
-                    'ledger_view' =>  '0',
-
+                    'collection_amount' =>  $request->collection_amount + $prev->collection_amount
                 ]);
         } else {
-            DB::table('sales_payment_stock')->insert([
+            DB::table('sales_payments_stocks')->insert([
                 'point_id' =>  $request->point,
                 'sales_amount' =>  $request->total_amount,
-                'collection_amount' =>  $request->collection_amount,
-                'deposit_amount' =>  '0',
-                'stock_amount' =>  '0',
-                'ledger_view' =>  '0',
+                'collection_amount' =>  $request->collection_amount
             ]);
         }
 

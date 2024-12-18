@@ -13,4 +13,9 @@ class Company extends Model
     {
         return $this->hasMany(Target::class);
     }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

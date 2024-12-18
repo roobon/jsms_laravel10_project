@@ -98,7 +98,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-up txt-success"></i></span><span class="counter">{{$totalCompany}}</span><span></span>
+										<span class="counter-cap"><i class="txt-success"></i></span><span class="counter">{{$totalCompany}}</span><span></span>
 									</div>
 								</div>
 							</div>
@@ -124,7 +124,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-up txt-success"></i></span><span class="counter">{{$totalRetailer}}</span><span></span>
+										<span class="counter-cap"><i class="txt-success"></i></span><span class="counter">{{$totalRetailer}}</span><span></span>
 									</div>
 								</div>
 							</div>
@@ -150,7 +150,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">{{$totalPoint}}</span><span></span>
+										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$totalPoint}}</span><span></span>
 									</div>
 								</div>
 							</div>
@@ -176,7 +176,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">{{$totalEmployee}}</span>
+										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$totalEmployee}}</span>
 									</div>
 								</div>
 							</div>
@@ -201,8 +201,8 @@
 									<div id="sparkline_7"></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">{{$sales}}</span>
+									<div class="counter-wrap text-center">
+										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$sales}}TK</span>
 									</div>
 								</div>
 							</div>
@@ -228,7 +228,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">{{$payments}}</span>
+										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$payments}}TK</span>
 									</div>
 								</div>
 							</div>
@@ -254,7 +254,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">11225</span>
+										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">11225</span>
 									</div>
 								</div>
 							</div>
@@ -280,7 +280,7 @@
 								</div>
 								<div class="col-xs-6">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="fa  fa-level-down txt-danger"></i></span><span class="counter">11225</span>
+										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">11225</span>
 									</div>
 								</div>
 							</div>

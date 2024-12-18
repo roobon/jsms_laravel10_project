@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-	Sales List
+	Payment List
 @endsection
 
 @section('content')
@@ -15,14 +15,14 @@
 				<div class="row heading-bg bg-green">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
-					<h5 class="txt-light">Sales List</h5>
+					<h5 class="txt-light">Payments List</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="index.html">Dashboard</a></li>
-						<li><a href="#"><span>Sales</span></a></li>
-						<li class="active"><span>Sales list</span></li>
+						<li><a href="#"><span>Payments</span></a></li>
+						<li class="active"><span>Payments list</span></li>
 					  </ol>
 					</div>
 					<!-- /Breadcrumb -->
@@ -37,7 +37,7 @@
 								<div>
 									@include('backend.layouts.success')	
 								</div>
-								<div class="pull-right"><a href="{{route('sales.create')}}" class="btn btn-success">New Sale</a></div>
+								<div class="pull-right"><a href="{{route('payment.create')}}" class="btn btn-success">New Payment</a></div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="panel-wrapper collapse in">
@@ -48,26 +48,24 @@
 												<thead>
 													<tr>
                                                         <th>ID</th>
-														<th>Retailer Name</th>
-														<th>Invoice</th>
-														<th>Sales</th>
-														<th>Collecton</th>
-														<th>Due</th>
-														<th>Realization</th>
-														<th>Point/Center</th>
+														<th>Transfer Method</th>
+														<th>Cheque/Voucher</th>
+														<th>Payment Date</th>
+														<th>Amount</th>
+														<th>Center Name</th>
+														<th>Company Name</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
 														<th>ID</th>
-														<th>Retailer Name</th>
-														<th>Invoice</th>
-														<th>Sales</th>
-														<th>Collecton</th>
-														<th>Due</th>
-														<th>Realization</th>
-														<th>Point/Center</th>
+														<th>Transfer Method</th>
+														<th>Cheque/Voucher</th>
+														<th>Payment Date</th>
+														<th>Amount</th>
+														<th>Center Name</th>
+														<th>Company Name</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</tfoot>
@@ -75,13 +73,12 @@
 													@foreach($items as $item)
                                                     <tr>
 														<td>{{$loop->iteration}}</td>
-														<td>{{$item->retailer->shop_name}}</td>
-														<td>{{$item->invoice_number}}</td>
-														<td>{{$item->total_amount}}</td>
-														<td>{{$item->collection_amount }}</td>
-														<td>{{$item->due_amount }}</td>
-														<td>{{$item->due_realization }}</td>
-														<td>{{$item->point->point_name}}</td>
+														<td>{{$item->transfer_method}}</td>
+														<td>{{$item->cheque_voucher}}</td>
+														<td>{{$item->payment_date}}</td>
+														<td>{{$item->payment_amount }}</td>
+														<td>{{$item->point->point_name }}</td>
+														<td>{{$item->company->company_name }}</td>
 														<td style="width: 15%;" class="text-center">
 														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('sales.destroy', $item->id)}}" method="post">
 														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('sales.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
