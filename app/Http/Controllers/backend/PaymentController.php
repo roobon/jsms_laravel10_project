@@ -8,6 +8,7 @@ use App\Models\Employee;
 use App\Models\Payment;
 use App\Models\Point;
 use App\Models\Retailer;
+use App\Models\SalePaymentStock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -41,48 +42,57 @@ class PaymentController extends Controller
     {
         $request->validate(
             [
-                'retailer' => 'required',
+                'transfer_method' => 'required',
                 'voucher' => 'required',
-                'total_amount' => 'required',
-                'collection_amount' => 'required',
-                'employee' => 'required',
+                'payment_amount' => 'required',
                 'point' => 'required',
-                'sales_date' => 'required',
+                'company' => 'required',
+                'employee' => 'required',
+                'payment_date' => 'required',
             ],
 
         );
 
-        $sales = new Payment;
+        $payment = new Payment;
 
-        $sales->retailer_id = $request->retailer;
-        $sales->invoice_number = $request->voucher;
-        $sales->total_amount = $request->total_amount;
-        $sales->collection_amount = $request->collection_amount;
-        $sales->due_amount = $sales->total_amount - $sales->collection_amount;
-        $sales->due_realization = '100';
-        $sales->point_id = $request->point;
-        $sales->employee_id = $request->employee;
-        $sales->sales_date = $request->sales_date;
-        $sales->voucher_photo = 'images/voucher/no_voucherphoto.jpg';
-        $sales->save();
+        $payment->transfer_method = $request->transfer_method;
+        $payment->cheque_voucher = $request->voucher;
+        $payment->payment_amount = $request->payment_amount;
+        $payment->point_id = $request->point;
+        $payment->employee_id = $request->employee;
+        $payment->company_id = $request->company;
+        $payment->payment_date = $request->payment_date;
+        $payment->cheque_voucher_photo = 'images/payment/nophoto.jpg';
+        //$payment->save();
 
-        if ($prev = DB::table('sales_payments_stocks')->find($request->point)) {
-            DB::table('sales_payments_stocks')->where('point_id', $request->point)
-                ->update([
+        // Get Year and Month from Received date
+        $timestamp = strtotime($request->payment_date);
+        $m = date('m', $timestamp);
+        $y = date('Y', $timestamp);
 
-                    'sales_amount' =>  $request->total_amount + $prev->sales_amount,
-                    'collection_amount' =>  $request->collection_amount + $prev->collection_amount
-                ]);
+
+        // Check Target
+        $row = DB::table('targets')
+            ->whereYear('start_date', $y)
+            ->whereMonth('start_date', $m)
+            ->where('point_id', '=', $request->point)
+            ->where('company_id', '=', $request->company)
+            ->get();
+
+        if (count($row) == 0) {
+            return redirect()->back()->with('error', "Sorry, No Target Available for entering Stocks");
         } else {
-            DB::table('sales_payments_stocks')->insert([
-                'point_id' =>  $request->point,
-                'sales_amount' =>  $request->total_amount,
-                'collection_amount' =>  $request->collection_amount
-            ]);
+            $payment->save();
+
+            // To update the point record where month and year matched from received date
+            $stock = SalePaymentStock::where('point_id', $request->point)
+                ->whereMonth('start_date', $m)->whereYear('start_date', $y)->first();
+            $stock->deposit_amount  = $stock->deposit_amount + $request->payment_amount;
+
+            $stock->update();
+
+            return redirect()->route('payment.index')->with('msg', "Successfully Payment Added");
         }
-
-
-        return redirect()->route('sales.index')->with('msg', "Successfully Sales Entered");
     }
 
     /**

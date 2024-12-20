@@ -38,6 +38,7 @@
 						<div class="col-md-8 col-md-offset-2">
 							<div class="panel panel-default card-view">
 								<div class="panel-heading">
+									@include('backend.layouts.error')
 									<div class="pull-left">
 										<h6 class="panel-title txt-dark">New Stock Details</h6>
 									</div>

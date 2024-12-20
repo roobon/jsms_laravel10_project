@@ -18,7 +18,7 @@ class ReportController extends Controller
             ->get();
 
 
-        return view('backend.reports.companyReport', compact('items'));
+        return view('backend.reports.companyReportBN', compact('items'));
     }
 
     // public function create()

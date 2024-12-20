@@ -63,20 +63,35 @@ class StockController extends Controller
         $stock->invoice_photo = 'images/stock/nophoto.jpg';
         $stock->employee_id  = $request->employee;
 
-        $stock->save();
+
         // Get Year and Month from Received date
         $timestamp = strtotime($request->received_date);
         $m = date('m', $timestamp);
         $y = date('Y', $timestamp);
 
-        // To update the point record where month and year matched from received date
-        $stock = SalePaymentStock::where('point_id', $request->point)
-            ->whereMonth('start_date', $m)->whereYear('start_date', $y)->first();
-        $stock->godownstock = $stock->godownstock + $request->product_amount;
 
-        $stock->update();
+        // Check Target
+        $row = DB::table('targets')
+            ->whereYear('start_date', $y)
+            ->whereMonth('start_date', $m)
+            ->where('point_id', '=', $request->point)
+            ->where('company_id', '=', $request->company)
+            ->get();
 
-        return redirect()->route('stock.index')->with('msg', "Successfully Stock Added");
+        if (count($row) == 0) {
+            return redirect()->back()->with('error', "Sorry, No Target Available for entering Stocks");
+        } else {
+            $stock->save();
+
+            // To update the point record where month and year matched from received date
+            $stock = SalePaymentStock::where('point_id', $request->point)
+                ->whereMonth('start_date', $m)->whereYear('start_date', $y)->first();
+            $stock->godownstock = $stock->godownstock + $request->product_amount;
+
+            $stock->update();
+
+            return redirect()->route('stock.index')->with('msg', "Successfully Stock Added");
+        }
     }
 
     /**

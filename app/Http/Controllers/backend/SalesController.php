@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\Point;
 use App\Models\Retailer;
+use App\Models\SalePaymentStock;
 use App\Models\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,22 +64,54 @@ class SalesController extends Controller
         $sales->employee_id = $request->employee;
         $sales->sales_date = $request->sales_date;
         $sales->voucher_photo = 'images/voucher/no_voucherphoto.jpg';
-        $sales->save();
 
-        if ($prev = DB::table('sales_payments_stocks')->find($request->point)) {
-            DB::table('sales_payments_stocks')->where('point_id', $request->point)
-                ->update([
 
-                    'sales_amount' =>  $request->total_amount + $prev->sales_amount,
-                    'collection_amount' =>  $request->collection_amount + $prev->collection_amount
-                ]);
+        // Get Year and Month from Received date
+        $timestamp = strtotime($request->sales_date);
+        $m = date('m', $timestamp);
+        $y = date('Y', $timestamp);
+
+
+        // Check Target
+        $row = DB::table('targets')
+            ->whereYear('start_date', $y)
+            ->whereMonth('start_date', $m)
+            ->where('point_id', '=', $request->point)
+            //->where('company_id', '=', $request->company)
+            ->get();
+
+        if (count($row) == 0) {
+            return redirect()->back()->with('error', "Sorry, No Target Available for entering Stocks");
         } else {
-            DB::table('sales_payments_stocks')->insert([
-                'point_id' =>  $request->point,
-                'sales_amount' =>  $request->total_amount,
-                'collection_amount' =>  $request->collection_amount
-            ]);
+            $sales->save();
+
+            // To update the point record where month and year matched from received date
+            $stock = SalePaymentStock::where('point_id', $request->point)
+                ->whereMonth('start_date', $m)->whereYear('start_date', $y)->first();
+
+            $stock->sales_amount = $stock->sales_amount + $request->total_amount;
+            $stock->collection_amount = $stock->collection_amount + $request->collection_amount;
+
+            $stock->update();
+
+            return redirect()->route('sales.index')->with('msg', "Successfully Sales Added");
         }
+
+
+        // if ($prev = DB::table('sales_payments_stocks')->find($request->point)) {
+        //     DB::table('sales_payments_stocks')->where('point_id', $request->point)
+        //         ->update([
+
+        //             'sales_amount' =>  $request->total_amount + $prev->sales_amount,
+        //             'collection_amount' =>  $request->collection_amount + $prev->collection_amount
+        //         ]);
+        // } else {
+        //     DB::table('sales_payments_stocks')->insert([
+        //         'point_id' =>  $request->point,
+        //         'sales_amount' =>  $request->total_amount,
+        //         'collection_amount' =>  $request->collection_amount
+        //     ]);
+        // }
 
 
         return redirect()->route('sales.index')->with('msg', "Successfully Sales Entered");

@@ -58,25 +58,25 @@
 										<div class="table-responsive">
 											<table id="example" class="table table-hover display  pb-30" >
 												<caption class="report-header">
-													<div class="report-caption">Companywise Monthly Report</div>
-													<span class="report-title">Company Name: SQUARE <br>
-														Duration: 1-12-2024 to 31-12-2024
+													<div class="report-caption">টার্গেট-বিক্রি-জমা</div>
+													<span class="report-title">কোম্পানী নাম: স্কয়ার <br>
+														সময়কাল:  থেকে 
 													</span>
 												</caption>
 												<thead>
 													<tr>
-                                                        <th>ID</th>
-														<th>Center</th>
-														<th>IMS Target</th>
-														<th>Collection Target</th>
-														<th>Sales upto</th>
-														<th>Collection</th>
-														<th>Deposit to Bank</th>
-														<th>Depost VS Collection</th>
-														<th>Due Begning Month</th>
-														<th>Due Endof Month</th>
-														<th>Godown Stock</th>
-														<th>Ledger View</th>
+                                                        <th>ক্রমিক নং</th>
+														<th>সেন্টার</th>
+														<th>আই এমএস টার্গেট (১০০%)</th>
+														<th>কালেকশন টার্গেট (৯৫%)</th>
+														<th>এ পর্যন্ত বিক্রি</th>
+														<th>কালেকশন</th>
+														<th>স্কয়ার কোডে ব্যাংকে জমা</th>
+														<th>পার্থক্য (কালেকশন টার্গেট বনাম ব্যাংকে জমা)</th>
+														<th>বাকীর পরিমাণ মাসের শুরুতে ()</th>
+														<th>বাকীর পরিমাণ মাসের শেষে ()</th>
+														<th>গোডাউন স্টক</th>
+														<th>লেজার ভিউ</th>
 														
 													</tr>
 												</thead>
@@ -109,7 +109,7 @@
 														<td>{{$item->deposit_amount}}</td>
 														<td>{{$item->collection_target - $item->deposit_amount}}</td>
 														<td>{{$item->startMonthdue}}</td>
-														<td>{{$item->endMonthdue}}</td>
+														<td>{{$item->startMonthdue - $item->sales_amount }}</td>
 														<td>{{$item->godownstock}}</td>
 														<td>{{$item->ledgerView}}</td>
 														
