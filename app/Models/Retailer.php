@@ -12,6 +12,6 @@ class Retailer extends Model
 
     public function sales()
     {
-        return $this->hasMany(OutgoingSale::class);
+        return $this->hasMany(Sales::class);
     }
 }

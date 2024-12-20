@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('start_date');
             $table->date('end_date');
-            $table->decimal('ims_target', total: 8, places: 2)->default(0);
-            $table->decimal('collection_target', total: 8, places: 2)->default(0);
+            $table->decimal('ims_target', total: 12, places: 2)->default(0);
+            $table->decimal('collection_target', total: 12, places: 2)->default(0);
             $table->integer('point_id');
             $table->integer('company_id');
             $table->timestamps();

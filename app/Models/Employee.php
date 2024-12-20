@@ -9,8 +9,18 @@ class Employee extends Model
 {
     use HasFactory;
 
-    public function point()
+    // public function point()
+    // {
+    //     return $this->belongsTo(Point::class, 'point_id');
+    // }
+
+    public function sales()
     {
-        return $this->belongsTo(Point::class, 'point_id');
+        return $this->hasMany(Sales::class);
+    }
+
+    public function stock()
+    {
+        return $this->hasMany(Stock::class);
     }
 }

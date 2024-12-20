@@ -14,7 +14,7 @@
 				<!-- Title -->
 				<div class="row heading-bg bg-green">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-					  <h5 class="txt-light">Export</h5>
+					  <h5 class="txt-light">Sales Details</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
@@ -37,7 +37,7 @@
 									<div class="row">
 										<div class="col-md-5">
 											<div class="item-big">
-												<img class="img-responsive" id="item-display" src="{{asset('images/sales/novoucher.jpg')}}" alt="voucher"/>
+												<img class="img-responsive" id="item-display" src="{{asset('images/sales/no_voucherphoto.jpg')}}" alt="voucher"/>
 											</div>
 										</div>
 											
@@ -45,22 +45,35 @@
 											<div class="product-detail-wrap">
 												{{-- @php dd($sales) @endphp --}}
 												
-												<h3 class="mb-20">{{$sales->retailer->shop_name}}</h3>
-												<div class="product-price head-font mb-30">{{$sales->invoice_number}} 
+												<h3 class="mb-20">Sales Info</h3>
+												<div class="product-price head-font mb-30">Voucher: {{$sales->invoice_number}} <br>
+													Total Sales: {{$sales->total_amount}} <br>
+													Collection Amount: {{$sales->collection_amount}} <br>
+													Due Amount: {{$sales->due_amount}} <br> 
+													Due Realization: {{$sales->due_realization}} <br>
 												</div>
 												
 												<h4 class="mb-20">Retailer Info</h4>
-												<p class="mb-50">Business Starting Date: {{$sales->shop_name}} <br>
-												Last Business Date: {{$sales->last_business}} <br>	
-												Last Business Balance: {{$sales->last_balance}}	
-												
+												<p class="mb-50">Retailer Name: {{$sales->retailer->shop_name}} <br>
+													Proprietor Name: {{$sales->retailer->proprietor_name}} <br>
+													Shop Address: {{$sales->retailer->shop_address}} <br>	
+													Contact Person: {{$sales->retailer->contact_person}} <br>
+													Contact Number: {{$sales->retailer->contact_number}}	
 												</p>
 			
-												<h4 class="mb-20">Point Info</h4>
-												<p class="mb-50">Contact Person: {{$sales->contact_person}} <br>
-												Mobile Number: {{$sales->contact_number}}
-												<br>
-												Email Address: {{$sales->contact_email}}
+												<h4 class="mb-20">Center Info</h4>
+												<p class="mb-50">Center Name: {{$sales->point->point_name}} <br>
+													Address: {{$sales->point->point_address}}
+												</p>
+
+												<h4 class="mb-20">Employee Info</h4>
+												<p class="mb-50">Employee Name: {{$sales->employee->name}} <br>
+													Designation: {{$sales->employee->designation}} <br>
+													Mobile Number: {{$sales->employee->contact_number}}<br>
+													Address: {{$sales->employee->address}}<br>
+													Email Address: {{$sales->contact_email}} <br>
+													Photo: <br>
+													<img src="{{asset($sales->employee->photo)}}" style="max-width:400px" alt=""> <br>
 												</p>
 												
 												

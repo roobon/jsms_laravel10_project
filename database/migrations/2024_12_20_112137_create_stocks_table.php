@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('investments', function (Blueprint $table) {
+        Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('item_name', 60);
-            $table->string('item_details');
-            $table->decimal('item_price', total: 12, places: 2)->default(0);
-            $table->date('investment_date');
+            $table->string('invoice_number', 50);
+            $table->decimal('product_amount', total: 10, places: 2);
+            $table->integer('company_id');
             $table->integer('point_id');
-            $table->integer('employee_id');
-            $table->string('investment_photo');
+            $table->date('received_date');
+            $table->string('invoice_photo');
+            $table->integer('employee_id'); // Received by
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('investments');
+        Schema::dropIfExists('stocks');
     }
 };

@@ -5,15 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sales extends Model
+class Stock extends Model
 {
     use HasFactory;
-    protected $table = 'sales';
 
-    public function retailer()
-    {
-        return $this->belongsTo(Retailer::class, 'retailer_id');
-    }
+    protected $table = 'stocks';
 
     public function point()
     {
@@ -23,5 +19,10 @@ class Sales extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'employee_id');
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id');
     }
 }

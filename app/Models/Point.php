@@ -18,7 +18,7 @@ class Point extends Model
 
     public function sales()
     {
-        return $this->hasMany(OutgoingSale::class);
+        return $this->hasMany(Sales::class);
     }
 
     public function payment()
@@ -29,5 +29,10 @@ class Point extends Model
     public function target()
     {
         return $this->hasMany(Target::class);
+    }
+
+    public function stock()
+    {
+        return $this->hasMany(Stock::class);
     }
 }

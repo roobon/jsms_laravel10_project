@@ -19,6 +19,12 @@
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><i class="icon-social-dropbox mr-10"></i>Stocks<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="ecom_dr" class="collapse collapse-level-1">
 							<li>
+								<a href="{{route('stock.index')}}">All Stocks</a>
+							</li>
+							<li>
+								<a href="{{route('stock.create')}}">New Stock Details</a>
+							</li>
+							<li>
 								<a href="#">Current Month Stocks</a>
 							</li>
 							<li>
