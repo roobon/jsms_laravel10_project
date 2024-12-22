@@ -14,10 +14,7 @@ class ReportController extends Controller
     {
         $items = DB::table('sales_payments_stocks')
             ->join('points', 'points.id', '=', 'sales_payments_stocks.point_id')
-            ->where('company_id', '=', '1')
             ->get();
-
-
         return view('backend.reports.companyReportBN', compact('items'));
     }
 

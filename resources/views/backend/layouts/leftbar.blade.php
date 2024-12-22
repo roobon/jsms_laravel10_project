@@ -88,17 +88,7 @@
 							</li>	
 						</ul>
 					</li>
-					<li>
-						<a href="javascript:void(0);" data-toggle="collapse" data-target="#purchalist"><i class="icon-basket-loaded mr-10"></i>Purchases<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
-						<ul id="purchalist" class="collapse collapse-level-1">
-							<li>
-								<a href="{{route('sales.index')}}">All Purchases</a>
-							</li>
-							<li>
-								<a href="{{route('sales.create')}}">New Purchase</a>
-							</li>	
-						</ul>
-					</li>
+					
 					<li>
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#paymelist"><i class="icon-credit-card mr-10"></i>Payments<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="paymelist" class="collapse collapse-level-1">

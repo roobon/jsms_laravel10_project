@@ -12,6 +12,7 @@
 			background-color: rgba(26, 8, 87, 0.551);
 			color: white;
 		}
+		
 	</style>
 @endsection
 
@@ -55,20 +56,21 @@
 							<div class="panel-wrapper collapse in">
 								<div class="panel-body">
 									<div class="table-wrap">
-										<div class="table-responsive">
+										<div class="table-bordered">
 											<table id="example" class="table table-hover display  pb-30" >
 												<caption class="report-header">
-													<div class="report-caption">টার্গেট-বিক্রি-জমা</div>
-													<span class="report-title">কোম্পানী নাম: স্কয়ার <br>
-														সময়কাল:  থেকে 
+													<div class="report-caption">স্কয়ার টয়লেট্রিজ</div>
+													<div>চলমান প্রতিবেদন</div>
+													<span class="report-title"><br>
+														তাং -- হতে -- তারিখ পর্যন্ত  
 													</span>
 												</caption>
 												<thead>
 													<tr>
                                                         <th>ক্রমিক নং</th>
 														<th>সেন্টার</th>
-														<th>আই এমএস টার্গেট (১০০%)</th>
-														<th>কালেকশন টার্গেট (৯৫%)</th>
+														<th class="colwidth">আই এমএস টার্গেট (১০০%)</th>
+														<th class="colwidth">কালেকশন টার্গেট (৯৫%)</th>
 														<th>এ পর্যন্ত বিক্রি</th>
 														<th>কালেকশন</th>
 														<th>স্কয়ার কোডে ব্যাংকে জমা</th>
@@ -76,7 +78,7 @@
 														<th>বাকীর পরিমাণ মাসের শুরুতে ()</th>
 														<th>বাকীর পরিমাণ মাসের শেষে ()</th>
 														<th>গোডাউন স্টক</th>
-														<th>লেজার ভিউ</th>
+														<th>লেজার ডিউ</th>
 														
 													</tr>
 												</thead>
@@ -93,7 +95,7 @@
 														<th>Due Begning Month</th>
 														<th>Due Endof Month</th>
 														<th>Godown Stock</th>
-														<th>Ledger View</th>
+														<th>Ledger Due</th>
 														
 													</tr>
 												</tfoot>
@@ -131,4 +133,13 @@
 
 @section('scripts')
     @parent
+	<script>
+		$(document).ready(function () {
+			
+			$(".sorting").css({"background-color": "#ccc", "font-size": "130%", "width": "10px", "height": "100px"});
+			$(".sorting_asc").css({"background-color": "#eed", "font-size": "130%", "width": "10px"});
+			$("td").css({"background-color": "#fff", "font-size": "130%", "width": "10px"});
+			
+		});
+	</script>
 @endsection
