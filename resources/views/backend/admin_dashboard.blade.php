@@ -75,7 +75,7 @@
 	<!-- Title -->
 	<div class="row heading-bg  bg-blue">
 		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-			<h5 class="txt-light">Admin Dashboard</h5>
+			<h5 class="txt-light">Dashboard</h5>
 		</div>
 	</div>
 	<!-- /Title -->
@@ -92,11 +92,8 @@
 				<div class="panel-wrapper collapse in">
 					<div class="panel-body">
 						<div class="sm-graph-box">
-							<div class="row">
-								<div class="col-xs-6">
-									<div id="sparkline_1"></div>
-								</div>
-								<div class="col-xs-6">
+							<div class="row">				
+								<div class="col-xs-12">
 									<div class="counter-wrap text-right">
 										<span class="counter-cap"><i class="txt-success"></i></span><span class="counter">{{$totalCompany}}</span><span></span>
 									</div>
@@ -119,10 +116,7 @@
 					<div class="panel-body">
 						<div class="sm-graph-box">
 							<div class="row">
-								<div class="col-xs-6">
-									<div id="sparkline_2"></div>
-								</div>
-								<div class="col-xs-6">
+								<div class="col-xs-12">
 									<div class="counter-wrap text-right">
 										<span class="counter-cap"><i class="txt-success"></i></span><span class="counter">{{$totalRetailer}}</span><span></span>
 									</div>
@@ -145,10 +139,7 @@
 					<div class="panel-body">
 						<div class="sm-graph-box">
 							<div class="row">
-								<div class="col-xs-6">
-									<div id="sparkline_6"></div>
-								</div>
-								<div class="col-xs-6">
+								<div class="col-xs-12">
 									<div class="counter-wrap text-right">
 										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$totalPoint}}</span><span></span>
 									</div>
@@ -171,12 +162,42 @@
 					<div class="panel-body">
 						<div class="sm-graph-box">
 							<div class="row">
-								<div class="col-xs-6">
-									<div id="sparkline_7"></div>
-								</div>
-								<div class="col-xs-6">
+								<div class="col-xs-12">
 									<div class="counter-wrap text-right">
 										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$totalEmployee}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="row heading-bg  bg-blue">
+		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+			<h5 class="txt-light">Current Month figures</h5>
+		</div>
+	</div>
+
+	<div class="row">
+		
+		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+			<div class="panel panel-default card-view">
+				<div class="panel-heading">
+					<div class="pull-left">
+						<h6 class="panel-title txt-dark">Total Sales Target</h6>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-wrapper collapse in">
+					<div class="panel-body">
+						<div class="sm-graph-box">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="counter-wrap text-center">
+										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$targets>0 ? $targets . ' Tk' :'No Targets'}}</span>
 									</div>
 								</div>
 							</div>
@@ -197,12 +218,9 @@
 					<div class="panel-body">
 						<div class="sm-graph-box">
 							<div class="row">
-								<div class="col-xs-6">
-									<div id="sparkline_7"></div>
-								</div>
-								<div class="col-xs-6">
+								<div class="col-xs-12">
 									<div class="counter-wrap text-center">
-										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$sales}}TK</span>
+										<span class="counter">{{$sales>0 ? $sales . ' Tk' :'No Sales'}}</span>
 									</div>
 								</div>
 							</div>
@@ -223,12 +241,9 @@
 					<div class="panel-body">
 						<div class="sm-graph-box">
 							<div class="row">
-								<div class="col-xs-6">
-									<div id="sparkline_7"></div>
-								</div>
-								<div class="col-xs-6">
+								<div class="col-xs-12">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$payments}}TK</span>
+										<span class="counter">{{$payments>0 ? $payments . ' Tk' :'No Payments'}}</span>
 									</div>
 								</div>
 							</div>
@@ -241,7 +256,7 @@
 			<div class="panel panel-default card-view">
 				<div class="panel-heading">
 					<div class="pull-left">
-						<h6 class="panel-title txt-dark">Total Investments</h6>
+						<h6 class="panel-title txt-dark">Total Stocks</h6>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -249,38 +264,9 @@
 					<div class="panel-body">
 						<div class="sm-graph-box">
 							<div class="row">
-								<div class="col-xs-6">
-									<div id="sparkline_7"></div>
-								</div>
-								<div class="col-xs-6">
+								<div class="col-xs-12">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">11225</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-			<div class="panel panel-default card-view">
-				<div class="panel-heading">
-					<div class="pull-left">
-						<h6 class="panel-title txt-dark">Total Profit</h6>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="panel-wrapper collapse in">
-					<div class="panel-body">
-						<div class="sm-graph-box">
-							<div class="row">
-								<div class="col-xs-6">
-									<div id="sparkline_7"></div>
-								</div>
-								<div class="col-xs-6">
-									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">11225</span>
+									<span class="counter">{{$payments>0 ? $payments . ' Tk' :'No Stocks'}}</span>
 									</div>
 								</div>
 							</div>

@@ -28,6 +28,12 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin123'),
             'status' => 'active'
         ]);
+        \App\Models\Admin::create([
+            'name' => 'Syed Mahbubul Habib',
+            'email' => 'smahbub.bd@gmail.com',
+            'password' => Hash::make('admin123'),
+            'status' => 'active'
+        ]);
 
         // \App\Models\Doctor::create(
         //     [
@@ -40,10 +46,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([CompanySeeder::class]);
         $this->call([CompanySeeder::class]);
-        \App\Models\Retailer::factory(20)->create();
-        \App\Models\Point::factory(10)->create();
-        \App\Models\Employee::factory(10)->create();
-        \App\Models\Sales::factory(10)->create();
-        \App\Models\Payment::factory(10)->create();
+        //\App\Models\Retailer::factory(20)->create();
+        //\App\Models\Point::factory(4)->create();
+        //\App\Models\Employee::factory(10)->create();
+        //\App\Models\Sales::factory(10)->create();
+        //\App\Models\Payment::factory(10)->create();
     }
 }

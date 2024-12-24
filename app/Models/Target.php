@@ -9,6 +9,8 @@ class Target extends Model
 {
     use HasFactory;
 
+    protected $table = 'targets';
+
     public function point()
     {
         return $this->belongsTo(Point::class, 'point_id');

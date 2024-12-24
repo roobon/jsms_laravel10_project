@@ -9,15 +9,19 @@ use App\Models\Payment;
 use App\Models\Point;
 use App\Models\Retailer;
 use App\Models\Sales;
+use App\Models\Target;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+
+
 
 
 class AdminHomeController extends Controller
 {
     public function index()
     {
+        $targets = Target::select('*')->whereMonth('start_date', Carbon::now()->month)->sum('ims_target');
         $sales = Sales::select('*')->whereMonth('sales_date', Carbon::now()->month)->sum('total_amount');
         $payments = Payment::select('*')->whereMonth('payment_date', Carbon::now()->month)->sum('payment_amount');
         $totalCompany = Company::all()->count();
@@ -26,6 +30,6 @@ class AdminHomeController extends Controller
         $totalEmployee = Employee::all()->count();
 
         //return $totalCompany;
-        return view('backend.admin_dashboard', compact('totalCompany', 'totalPoint', 'totalRetailer', 'totalEmployee', 'sales', 'payments'));
+        return view('backend.admin_dashboard', compact('totalCompany', 'totalPoint', 'totalRetailer', 'totalEmployee', 'targets', 'sales', 'payments'));
     }
 }
