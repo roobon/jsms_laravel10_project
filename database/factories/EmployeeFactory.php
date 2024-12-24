@@ -34,7 +34,7 @@ class EmployeeFactory extends Factory
             'photo' => 'images/employee/noempphoto.jpg',
             'nid' => Str::random(10),
             'resume' => $this->faker->sentence,
-            'point_id' => random_int(1, 10),
+            'point_id' => random_int(1, 4),
             'status' => 'active',
         ];
     }

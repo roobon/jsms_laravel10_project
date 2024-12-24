@@ -10,12 +10,12 @@
 
 @section('content')
 <div class="container-fluid">
-				
+@inject('carbon', 'Carbon\Carbon')				
 				<!-- Title -->
 				<div class="row heading-bg bg-blue">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
-					<h5 class="txt-light">Target List</h5>
+					<h5 class="txt-light">Monthly Target List from all Centers</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
@@ -48,7 +48,7 @@
 												<thead>
 													<tr>
                                                         <th>ID</th>
-														<th>Target Duration</th>
+														<th>Target Month</th>
 														<th>IMS Target</th>
 														<th>Collection Target</th>
 														<th>Center</th>
@@ -59,7 +59,7 @@
 												<tfoot>
 													<tr>
 														<th>ID</th>
-														<th>Target Duration</th>
+														<th>Target Month</th>
 														<th>IMS Target</th>
 														<th>Collection Target</th>
 														<th>Center</th>
@@ -69,11 +69,12 @@
 												</tfoot>
 												<tbody>
 													@foreach($items as $item)
+													
                                                     <tr>
 														<td>{{$loop->iteration}}</td>
-														<td>{{$item->start_date}} - {{$item->end_date}}</td>
-														<td>{{$item->ims_target}}</td>
-														<td>{{$item->collection_target}}</td>
+														<td>{{$carbon::parse($item->start_date)->format('M-Y')}}</td>
+														<td>Tk {{number_format($item->ims_target, 2)}}</td>
+														<td>Tk {{number_format($item->ims_target * $item->collection_target /100, 2)}}</td>
 														<td>{{$item->point->point_name}}</td>
 														<td>{{$item->company->company_name}}</td>
 														<td style="width: 15%;" class="text-center">
@@ -103,4 +104,9 @@
 
 @section('scripts')
     @parent
+	<script>
+		$(document).ready(function () {
+			$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
+		});
+	</script>
 @endsection

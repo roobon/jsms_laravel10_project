@@ -31,7 +31,7 @@ class SalesFactory extends Factory
             'due_amount' =>  random_int(2000, 5000),
             'due_realization' =>  random_int(5000, 10000),
             'employee_id' => random_int(1, 10),
-            'point_id' => random_int(1, 10),
+            'point_id' => random_int(1, 4),
             'sales_date' => $this->faker->dateTimeBetween('-1 month', 'now'),
             'voucher_photo' => 'images/sales/no_voucherhoto.jpg',
         ];

@@ -25,7 +25,7 @@ class PaymentFactory extends Factory
             'cheque_voucher' => Str::random(20),
             'payment_date' => $this->faker->dateTimeBetween('-1 month', 'now'),
             'payment_amount' =>  random_int(5000, 10000),
-            'point_id' => random_int(1, 10),
+            'point_id' => random_int(1, 4),
             'company_id' => random_int(1, 4),
             'employee_id' => random_int(1, 20),
             'payment_note' =>  Str::random(20),

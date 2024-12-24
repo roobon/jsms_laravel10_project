@@ -53,8 +53,8 @@
 														<th>Sales</th>
 														<th>Collecton</th>
 														<th>Due</th>
-														<th>Realization</th>
 														<th>Point/Center</th>
+														<th>Company</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</thead>
@@ -66,8 +66,8 @@
 														<th>Sales</th>
 														<th>Collecton</th>
 														<th>Due</th>
-														<th>Realization</th>
 														<th>Point/Center</th>
+														<th>Company</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</tfoot>
@@ -80,7 +80,7 @@
 														<td>{{$item->total_amount}}</td>
 														<td>{{$item->collection_amount }}</td>
 														<td>{{$item->due_amount }}</td>
-														<td>{{$item->due_realization }}</td>
+														<td>{{$item->point->point_name}}</td>
 														<td>{{$item->point->point_name}}</td>
 														<td style="width: 15%;" class="text-center">
 														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('sales.destroy', $item->id)}}" method="post">

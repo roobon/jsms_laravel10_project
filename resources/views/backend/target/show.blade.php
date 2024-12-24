@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-	Company Details
+	Target Details
 @endsection
 
 @section('content')
@@ -45,12 +45,12 @@
 											<div class="product-detail-wrap">
 												
 												
-												<h3 class="mb-20">{{$point->point_name}}</h3>
-												<div class="product-price head-font mb-30">Address: {{$point->point_address}} 
+												<h3 class="mb-20">{{$target->point_name}}</h3>
+												<div class="product-price head-font mb-30">Address: {{$target->point_address}} 
 												</div>
 												
 												<h4 class="mb-20">Business Info</h4>
-												<p class="mb-50">Point Establishment Date: {{$point->opening_date}} <br>											
+												<p class="mb-50">Point Establishment Date: {{$target->opening_date}} <br>											
 												</p>
 			
 												<h4 class="mb-20">Contact Info</h4>
@@ -64,7 +64,7 @@
 												
 												
 												<div class="btn-group mr-10">
-													<a href="{{route('points.index')}}" class="btn btn-success btn-anim"><i class="fa  fa-angle-double-left"></i><span class="btn-text">Back to points list</span></a>
+													<a href="{{route('target.index')}}" class="btn btn-success btn-anim"><i class="fa  fa-angle-double-left"></i><span class="btn-text">Back to target list</span></a>
 												</div>
 												
 											</div>

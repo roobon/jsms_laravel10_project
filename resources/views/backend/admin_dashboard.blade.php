@@ -197,7 +197,7 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="counter-wrap text-center">
-										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$targets>0 ? $targets . ' Tk' :'No Targets'}}</span>
+										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$targets>0 ? number_format($targets, 2) . ' Tk' :'No Targets'}}</span>
 									</div>
 								</div>
 							</div>
@@ -220,7 +220,7 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="counter-wrap text-center">
-										<span class="counter">{{$sales>0 ? $sales . ' Tk' :'No Sales'}}</span>
+										<span class="counter">{{$sales>0 ? number_format($sales, 2) . ' Tk' :'No Sales'}}</span>
 									</div>
 								</div>
 							</div>
@@ -243,7 +243,7 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="counter-wrap text-right">
-										<span class="counter">{{$payments>0 ? $payments . ' Tk' :'No Payments'}}</span>
+										<span class="counter">{{$payments>0 ? number_format($payments, 2) . ' Tk' :'No Payments'}}</span>
 									</div>
 								</div>
 							</div>
@@ -266,7 +266,7 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="counter-wrap text-right">
-									<span class="counter">{{$payments>0 ? $payments . ' Tk' :'No Stocks'}}</span>
+									<span class="counter">{{$payments>0 ? number_format($payments,2) . ' Tk' :'No Stocks'}}</span>
 									</div>
 								</div>
 							</div>

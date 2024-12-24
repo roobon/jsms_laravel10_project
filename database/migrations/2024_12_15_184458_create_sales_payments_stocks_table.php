@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sales_payments_stocks', function (Blueprint $table) {
             $table->id();
             $table->decimal('ims_target', total: 12, places: 2)->default(0);
-            $table->decimal('collection_target', total: 12, places: 2)->default(0);
+            $table->integer('collection_target');
             $table->date('start_date');
             $table->date('end_date');
             $table->decimal('sales_amount', total: 12, places: 2)->default(0);
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->decimal('collTargetVSdeposit', total: 12, places: 2)->default(0);
             $table->decimal('startMonthdue', total: 12, places: 2)->default(0);
             $table->decimal('endMonthdue', total: 12, places: 2)->default(0);
-            $table->decimal('GodownStock', total: 12, places: 2)->default(0);
+            $table->decimal('godownstock', total: 12, places: 2)->default(0);
             $table->decimal('ledgerView', total: 12, places: 2)->default(0);
             $table->integer('point_id');
             $table->integer('company_id');

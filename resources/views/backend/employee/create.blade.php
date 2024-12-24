@@ -67,7 +67,9 @@
 																	<select name="designation" class="form-control">
 																		<option value="">Select one</option>
 																		<option value="Manager">Manager</option>
-																		<option value="Collection Officer">Collection Officer</option>
+																		<option value="Delivery Man">Delivery Man</option>
+																		<option value="Van Driver">Van Driver</option>
+																		<option value="Store Keeper">Store Keeper</option>
 																	</select>
 																	<div class="input-group-addon"></div>
 																</div>
@@ -83,7 +85,16 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Date of Birth*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Date of Birth</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="date" name="dob" value="{{old('dob')}}" class="form-control" id="exampleInputuname_4">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Joining Date*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="date" name="dob" value="{{old('dob')}}" class="form-control" id="exampleInputuname_4">
@@ -101,10 +112,55 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Email</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Email Address</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="text" name="contact_email" value="{{old('contact_email')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Email address">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Password</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="password" name="contact_email" value="{{old('contact_email')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Password">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Repeat Password</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="text" name="repeat_password" value="{{old('repeat_password')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Password Again">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Photo</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="file" name="photo" value="{{old('photo')}}" class="form-control" id="exampleInputuname_4">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">NID</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="file" name="nid" value="{{old('nid')}}" class="form-control" id="exampleInputuname_4">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Resume</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="file" name="resume" value="{{old('nid')}}" class="form-control" id="exampleInputuname_4">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
@@ -119,53 +175,6 @@
 																		<option value="{{$point->id}}">{{$point->point_name}}</option>
 																		@endforeach
 																	</select>
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Proprieter Name*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="proprieter_name" value="{{old('proprieter_name')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Proprieter Name">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														
-														
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Trade Lisence</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="trade_lisence" value="{{old('contact_person')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Contact person">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Starts*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="date" name="business_starts" value="{{old('business_starts')}}" class="form-control" id="exampleInputuname_4">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business Date</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="date" name="last_business" value="{{old('last_business')}}" class="form-control" id="exampleInputuname_4">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Balance</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="last_balance" value="{{old('last_balance')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Last Balance">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>

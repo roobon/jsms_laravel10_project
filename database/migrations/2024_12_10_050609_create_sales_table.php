@@ -18,11 +18,11 @@ return new class extends Migration
             $table->decimal('total_amount', total: 10, places: 2);
             $table->decimal('collection_amount', total: 10, places: 2)->default(0);
             $table->decimal('due_amount', total: 10, places: 2);
-            $table->decimal('due_realization', total: 10, places: 2);
-            $table->integer('employee_id');
             $table->integer('point_id');
+            $table->integer('company_id');
             $table->date('sales_date');
             $table->string('voucher_photo');
+            $table->integer('employee_id');
             $table->timestamps();
         });
     }

@@ -80,7 +80,7 @@ class PaymentController extends Controller
             ->get();
 
         if (count($row) == 0) {
-            return redirect()->back()->with('error', "Sorry, No Target Available for entering Stocks");
+            return redirect()->back()->with('error', "Sorry, No Target Entry Available for entering Payments");
         } else {
             $payment->save();
 

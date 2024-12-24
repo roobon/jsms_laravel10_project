@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Point;
 use App\Models\Target;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 
 
 class TargetController extends Controller
@@ -42,6 +44,7 @@ class TargetController extends Controller
                 'end_date' => 'required',
                 'ims_target' => 'required',
                 'collection_target' => 'required',
+                'working_days' => 'required',
                 'point' => 'required',
                 'company' => 'required'
 
@@ -55,6 +58,7 @@ class TargetController extends Controller
         $target->end_date = $request->end_date;
         $target->ims_target = $request->ims_target;
         $target->collection_target = $request->collection_target;
+        $target->working_days = $request->working_days;
         $target->point_id = $request->point;
         $target->company_id = $request->company;
 
