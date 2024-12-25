@@ -16,6 +16,17 @@
 						</ul>
 					</li>
 					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#paymelist"><i class="icon-credit-card mr-10"></i>Payments<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="paymelist" class="collapse collapse-level-1">
+							<li>
+								<a href="{{route('payment.index')}}">All Payments</a>
+							</li>
+							<li>
+								<a href="{{route('payment.create')}}">New Payment</a>
+							</li>	
+						</ul>
+					</li>
+					<li>
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><i class="icon-social-dropbox mr-10"></i>Stocks<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="ecom_dr" class="collapse collapse-level-1">
 							<li>
@@ -31,6 +42,17 @@
 								<a href="#">Previous Month Stocks</a>
 							</li>
 								
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#saleslist"><i class="icon-rocket mr-10"></i>Sales<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="saleslist" class="collapse collapse-level-1">
+							<li>
+								<a href="{{route('sales.index')}}">All Sales</a>
+							</li>
+							<li>
+								<a href="{{route('sales.create')}}">New Sale</a>
+							</li>	
 						</ul>
 					</li>
 					<li>
@@ -77,29 +99,9 @@
 							</li>	
 						</ul>
 					</li>
-					<li>
-						<a href="javascript:void(0);" data-toggle="collapse" data-target="#saleslist"><i class="icon-rocket mr-10"></i>Sales<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
-						<ul id="saleslist" class="collapse collapse-level-1">
-							<li>
-								<a href="{{route('sales.index')}}">All Sales</a>
-							</li>
-							<li>
-								<a href="{{route('sales.create')}}">New Sale</a>
-							</li>	
-						</ul>
-					</li>
 					
-					<li>
-						<a href="javascript:void(0);" data-toggle="collapse" data-target="#paymelist"><i class="icon-credit-card mr-10"></i>Payments<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
-						<ul id="paymelist" class="collapse collapse-level-1">
-							<li>
-								<a href="{{route('payment.index')}}">All Payments</a>
-							</li>
-							<li>
-								<a href="{{route('payment.create')}}">New Payment</a>
-							</li>	
-						</ul>
-					</li>
+					
+					
 					<li>
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#investlist"><i class="icon-diamond mr-10"></i>Investments<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="investlist" class="collapse collapse-level-1">

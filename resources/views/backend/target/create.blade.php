@@ -56,6 +56,34 @@
 													<form class="form-horizontal" method="post" action="{{route('target.store')}}">
 														@csrf
                                                         <div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Target for*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<select name="point" class="form-control">
+																		<option value="">Select one</option>
+																		@foreach($points as $point)
+																		<option value="{{$point->id}}">{{$point->point_name}}</option>
+																		@endforeach
+																	</select>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Target Set by*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<select name="company" class="form-control">
+																		<option value="">Select one</option>
+																		@foreach($companies as $company)
+																		<option value="{{$company->id}}">{{$company->company_name}}</option>
+																		@endforeach
+																	</select>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Start Date*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
@@ -86,7 +114,7 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Collection Target*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="text" name="collection_target" value="{{old('collection_target')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Collection Target Percentage">
+																	<input type="text" name="collection_target" value="{{old('collection_target')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Collection Target (%) ">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
@@ -95,39 +123,11 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Working Days*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="text" name="working_days" value="{{old('working_days')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Current month Working Days">
+																	<input type="text" name="working_days" value="{{old('working_days')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Numbr of Working Days for Current month">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Point Name*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<select name="point" class="form-control">
-																		<option value="">Select one</option>
-																		@foreach($points as $point)
-																		<option value="{{$point->id}}">{{$point->point_name}}</option>
-																		@endforeach
-																	</select>
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Company Name*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<select name="company" class="form-control">
-																		<option value="">Select one</option>
-																		@foreach($companies as $company)
-																		<option value="{{$company->id}}">{{$company->company_name}}</option>
-																		@endforeach
-																	</select>
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
+														</div>	
 														<div class="form-group mb-0">
 															<div class="col-sm-offset-3 col-sm-9">
 																<button type="submit" class="btn btn-success btn-block">SUBMIT</button>

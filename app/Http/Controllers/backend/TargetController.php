@@ -101,7 +101,9 @@ class TargetController extends Controller
      */
     public function edit(Target $target)
     {
-        return view('backend.target.edit', compact('target'));
+        $points = Point::orderBy('id')->get();
+        $companies = Company::orderBy('id')->get();
+        return view('backend.target.edit', compact('target', 'points', 'companies'));
     }
 
     /**

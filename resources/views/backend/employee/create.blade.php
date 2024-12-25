@@ -76,7 +76,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Address*</label>
+															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Address</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Address" rows="10">{{old('address')}}</textarea>
@@ -97,7 +97,7 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Joining Date*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="date" name="dob" value="{{old('dob')}}" class="form-control" id="exampleInputuname_4">
+																	<input type="date" name="joining_date" value="{{old('joining_date')}}" class="form-control" id="exampleInputuname_4">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
@@ -121,19 +121,19 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Password</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Password*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="password" name="contact_email" value="{{old('contact_email')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Password">
+																	<input type="password" name="password" class="form-control" id="exampleInputuname_4" placeholder="Enter Password">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Repeat Password</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Repeat Password*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="text" name="repeat_password" value="{{old('repeat_password')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Password Again">
+																	<input type="password" name="password_confirmation" class="form-control" id="exampleInputuname_4" placeholder="Enter Password Again">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
@@ -160,13 +160,13 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Resume</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="file" name="resume" value="{{old('nid')}}" class="form-control" id="exampleInputuname_4">
+																	<input type="file" name="resume" value="{{old('resume')}}" class="form-control" id="exampleInputuname_4">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Point Name*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Center Name*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<select name="point" class="form-control">

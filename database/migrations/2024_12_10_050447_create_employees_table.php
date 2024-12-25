@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('contact_email', 50)->unique();
             $table->string('password');
             $table->string('photo');
-            $table->string('nid', 20)->unique();
+            $table->string('nid', 50)->unique();
             $table->string('resume');
             $table->integer('point_id');
             $table->enum('status', ['active', 'inactive']);
