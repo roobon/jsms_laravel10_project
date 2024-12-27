@@ -102,4 +102,5 @@ Route::middleware('auth:doctor')->prefix('doctor')->group(function () {
     Route::view('/dashboard', 'backend.doctor_dashboard');
 });
 
-Route::get('info', [AjaxController::class, 'retailerInfo'])->name('info');
+
+Route::get('/info', [AjaxController::class, 'retailerInfo'])->name('info');

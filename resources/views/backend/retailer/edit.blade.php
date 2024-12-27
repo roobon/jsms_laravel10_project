@@ -19,8 +19,8 @@
 		<!-- Breadcrumb -->
 		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 		  <ol class="breadcrumb">
-			<li><a href="index.html">Dashboard</a></li>
-			<li><a href="#"><span>retailer</span></a></li>
+			<li><a href="{{url('/admin/dashboard')}}">Dashboard</a></li>
+			<li><a href="{{route('retailer.index')}}"><span>retailer</span></a></li>
 			<li class="active"><span>Edit Retailer</span></li>
 		  </ol>
 		</div>
@@ -48,7 +48,7 @@
 											@method('PUT')
 											@csrf
 											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">Retailer Name*</label>
+												<label for="exampleInputuname_4" class="col-sm-3 control-label">Shop Name*</label>
 												<div class="col-sm-9">
 													<div class="input-group">
 														<input type="text" name="shop_name" value="{{$retailer->shop_name ?? old('shop_name') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter retailer Name">
@@ -61,6 +61,24 @@
 												<div class="col-sm-9">
 													<div class="input-group">
 														<input type="text" name="proprietor_name" value="{{$retailer->proprietor_name ?? old('proprietor_name') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter Proprietor Name">
+														<div class="input-group-addon"></div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="exampleInputuname_4" class="col-sm-3 control-label">Market Name</label>
+												<div class="col-sm-9">
+													<div class="input-group">
+														<input type="text" name="market_name" value="{{$retailer->market_name ?? old('market_name') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter Market Name">
+														<div class="input-group-addon"></div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="exampleInputEmail_4" class="col-sm-3 control-label">Address*</label>
+												<div class="col-sm-9">
+													<div class="input-group">
+														<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Shop Address" rows="10">{{$retailer->shop_address ?? old('address') }}</textarea>
 														<div class="input-group-addon"></div>
 													</div>
 												</div>
@@ -84,15 +102,7 @@
 												</div>
 											</div>
 							
-											<div class="form-group">
-												<label for="exampleInputEmail_4" class="col-sm-3 control-label">Address*</label>
-												<div class="col-sm-9">
-													<div class="input-group">
-														<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Shop Address" rows="10">{{$retailer->shop_address ?? old('address') }}</textarea>
-														<div class="input-group-addon"></div>
-													</div>
-												</div>
-											</div>
+											
 											<div class="form-group">
 												<label for="exampleInputuname_4" class="col-sm-3 control-label">Contact Person*</label>
 												<div class="col-sm-9">
@@ -134,6 +144,34 @@
 												<div class="col-sm-9">
 													<div class="input-group">
 														<input type="text" name="last_balance" value="{{$retailer->last_balance ?? old('last_balance') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter Last Balance">
+														<div class="input-group-addon"></div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="exampleInputuname_4" class="col-sm-3 control-label">Point Name*</label>
+												<div class="col-sm-9">
+													<div class="input-group">
+														<select name="point" class="form-control">
+															<option value="">Select one</option>
+															@foreach($points as $point)
+															<option value="{{$point->id}}" {{($retailer->point_id == $point->id) ? 'selected=selected': ''}}>{{$point->point_name}}</option>
+															@endforeach
+														</select>
+														<div class="input-group-addon"></div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="exampleInputuname_4" class="col-sm-3 control-label">Employee Name*</label>
+												<div class="col-sm-9">
+													<div class="input-group">
+														<select name="employee" class="form-control" id="retailerId">
+															<option value="">Select one</option>
+															@foreach($employees as $employee)
+															<option value="{{$employee->id}}" {{($retailer->employee_id == $employee->id) ? 'selected=selected': ''}}>{{$employee->name}}</option>
+															@endforeach
+														</select>
 														<div class="input-group-addon"></div>
 													</div>
 												</div>

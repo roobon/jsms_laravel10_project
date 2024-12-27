@@ -65,6 +65,9 @@
 																</div>
 															</div>
 														</div>
+														<div id="retailerData" class="form-group">
+															
+														</div>
 														<div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Vourcher Number*</label>
 															<div class="col-sm-9">
@@ -121,6 +124,20 @@
 																</div>
 															</div>
 														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Company Name*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<select name="company" class="form-control">
+																		<option value="">Select one</option>
+																		@foreach($companies as $company)
+																		<option value="{{$company->id}}">{{$company->company_name}}</option>
+																		@endforeach
+																	</select>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
 														
 														<div class="form-group">
 															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Note</label>
@@ -142,7 +159,7 @@
 														</div>
 														<div class="form-group mb-0">
 															<div class="col-sm-offset-3 col-sm-9">
-																<button type="submit" class="btn btn-info ">SUBMIT</button>
+																<button type="submit" id="btnSub" class="btn btn-info ">SUBMIT</button>
 															</div>
 														</div>
 													</form>
@@ -165,22 +182,60 @@
 		$(document).ready(function () {
 			$('#retailerId').on('change', function(){
 				let id =$('#retailerId').val();
-
+				let receivedData ='';
 				$.ajax({
 					type: "GET",
-					url: "info",
+					url: "/info",
 					data: {
-						"_token": "{{ csrf_token() }}",
-						"data":"Hello World"
+						"_token":"{{ csrf_token() }}",
+						id:id	
 					},
-					
 					success: function (response) {
-						alert('Success');
+						//alert(response.retailer);
+						console.log(response.retailer);
+						receivedData = response.retailer;
+						$('#retailerData').html(detailInfo());
+						if(receivedData.status == 'inactive') {
+							$('#btnSub').attr('disabled','disabled');
+						} else {
+							$('#btnSub').removeAttr("disabled");
+						}
 					},
-					error: function(response){
-						alert("fail");
+					error: function (response){
+						alert("Failed to run");
 					}
 				});
+
+				function detailInfo(){
+					let content= '';
+					content += '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="panel panel-info card-view"><div class="panel-heading">';
+
+					content += '<h6 class="panel-title txt-dark">Retailer Information</h6></div>';
+					content += '<div  class="panel-wrapper collapse in"><div  class="panel-body">';
+					content += '<div class="table-wrap mt-40">';
+					content +=	'<div class="table-responsive">'
+					content +=	'<table class="table table-striped table-bordered mb-0">'
+					content +=	'<thead><tr><td colspan="2"><h4>' + receivedData.shop_name +  '</h4></td>';	
+					content +=	'</tr></thead><tbody>';
+					content +=	'<tr><td> Proprietor Name</td><td>' + receivedData.shop_name +  '</td></tr>';
+					content +=	'<tr><td> Market Name</td><td>' + receivedData.market_name +  '</td></tr>';
+					content +=	'<tr><td> Shop Address</td><td>' + receivedData.shop_address +  '</td></tr>';
+					content +=	'<tr><td> Current Due</td><td>' + receivedData.current_due +  '</td></tr>';
+					content +=	'<tr><td> Responsible Employee</td><td>' + receivedData.name +  '</td></tr>';
+					content +=	'<tr><td> Center</td><td>' + receivedData.shop_name +  '</td></tr>';
+					content +=	'<tr><td> Status</td><td><h5>' + receivedData.status + '</h5></td></tr>';
+					content +=  '</tbody></table></div></div>';
+					content += '</div></div></div></div>';
+						
+								return content;
+				}
+				/*
+									
+																	
+																			
+																		
+
+				*/
 			})
 		});
 	</script>

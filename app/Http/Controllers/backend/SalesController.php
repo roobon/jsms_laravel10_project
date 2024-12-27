@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Employee;
 use App\Models\Point;
 use App\Models\Retailer;
@@ -31,7 +32,8 @@ class SalesController extends Controller
         $points = Point::all();
         $retailers = Retailer::all();
         $employees = Employee::all();
-        return view('backend.sales.create', compact('points', 'retailers', 'employees'));
+        $companies = Company::all();
+        return view('backend.sales.create', compact('points', 'retailers', 'employees', 'companies'));
     }
 
     /**
@@ -59,8 +61,8 @@ class SalesController extends Controller
         $sales->total_amount = $request->total_amount;
         $sales->collection_amount = $request->collection_amount;
         $sales->due_amount = $sales->total_amount - $sales->collection_amount;
-        $sales->due_realization = '100';
         $sales->point_id = $request->point;
+        $sales->company_id = $request->company;
         $sales->employee_id = $request->employee;
         $sales->sales_date = $request->sales_date;
         $sales->voucher_photo = 'images/voucher/no_voucherphoto.jpg';
