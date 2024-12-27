@@ -16,39 +16,39 @@
 							<li>
 								<ul class="app-icon-wrap">
 									<li>
-										<a href="#" class="connection-item">
-										<i class="pe-7s-umbrella txt-info"></i>
-										<span class="block">weather</span>
+										<a href="{{route('company.index')}}" class="connection-item">
+										<i class="pe-7s-keypad txt-info"></i>
+										<span class="block">Companies</span>
+										</a>
+									</li>
+									<li>
+										<a href="{{route('retailer.index')}}" class="connection-item">
+										<i class="pe-7s-cart txt-success"></i>
+										<span class="block">Retailers</span>
+										</a>
+									</li>
+									<li>
+										<a href="{{route('points.index')}}" class="connection-item">
+										<i class="pe-7s-helm txt-primary"></i>
+										<span class="block">Centers</span>
+										</a>
+									</li>
+									<li>
+										<a href="{{route('employee.index')}}" class="connection-item">
+										<i class="pe-7s-users txt-danger"></i>
+										<span class="block">Employees</span>
 										</a>
 									</li>
 									<li>
 										<a href="#" class="connection-item">
-										<i class="pe-7s-mail-open-file txt-success"></i>
-										<span class="block">e-mail</span>
+										<i class="pe-7s-cash txt-warning"></i>
+										<span class="block">Investments</span>
 										</a>
 									</li>
 									<li>
 										<a href="#" class="connection-item">
-										<i class="pe-7s-date txt-primary"></i>
-										<span class="block">calendar</span>
-										</a>
-									</li>
-									<li>
-										<a href="#" class="connection-item">
-										<i class="pe-7s-map txt-danger"></i>
-										<span class="block">map</span>
-										</a>
-									</li>
-									<li>
-										<a href="#" class="connection-item">
-										<i class="pe-7s-comment txt-warning"></i>
-										<span class="block">chat</span>
-										</a>
-									</li>
-									<li>
-										<a href="#" class="connection-item">
-										<i class="pe-7s-notebook"></i>
-										<span class="block">contact</span>
+										<i class="pe-7s-graph2"></i>
+										<span class="block">Reports</span>
 										</a>
 									</li>
 								</ul>

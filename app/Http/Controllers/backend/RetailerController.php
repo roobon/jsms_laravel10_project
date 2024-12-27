@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
+use App\Models\Point;
 use App\Models\Retailer;
 use Illuminate\Http\Request;
 
@@ -22,7 +24,9 @@ class RetailerController extends Controller
      */
     public function create()
     {
-        return view('backend.retailer.create');
+        $points = Point::all();
+        $employees = Employee::all();
+        return view('backend.retailer.create', compact('points', 'employees'));
     }
 
     /**
@@ -32,13 +36,17 @@ class RetailerController extends Controller
     {
         $request->validate(
             [
-                'shop_name' => 'required | max:100 | min:5',
-                'business_starts' => 'required',
-                'address' => 'min:8',
+                'shop_name' => 'required',
+                'proprieter_name' => 'required',
+                'address' => 'min:10',
                 'trade_lisence' => 'required',
                 'contact_person' => 'min:4',
                 'contact_number' => 'min:11',
                 'contact_email' => 'email',
+                'business_starts' => 'required',
+                'last_business' => 'required',
+                'point' => 'required',
+                'employee' => 'required',
                 'status' => 'required',
             ],
 
@@ -48,14 +56,16 @@ class RetailerController extends Controller
 
         $retailer->shop_name = $request->shop_name;
         $retailer->proprietor_name = $request->proprieter_name;
-        $retailer->business_starts = $request->business_starts;
         $retailer->shop_address = $request->address;
         $retailer->trade_lisence = $request->trade_lisence;
         $retailer->contact_person = $request->contact_person;
         $retailer->contact_number = $request->contact_number;
         $retailer->contact_email  = $request->contact_email;
+        $retailer->business_starts = $request->business_starts;
         $retailer->last_business = $request->last_business;
         $retailer->last_balance = $request->last_balance;
+        $retailer->point_id = $request->point;
+        $retailer->employee_id = $request->employee;
         $retailer->status = $request->status;
 
         $retailer->save();

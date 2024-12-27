@@ -10,7 +10,7 @@
 @endsection
 
 @section('title')
-	Company Entry
+	Retailer Entry
 @endsection
 
 @section('content')
@@ -70,7 +70,16 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Address*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Market Name</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="text" name="market_name" value="{{old('market_name')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Market Name">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Shop Address*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Retailer Address" rows="10">{{old('address')}}</textarea>
@@ -124,7 +133,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business Date</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business Date*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="date" name="last_business" value="{{old('last_business')}}" class="form-control" id="exampleInputuname_4">
@@ -137,6 +146,34 @@
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="text" name="last_balance" value="{{old('last_balance')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Last Balance">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Point Name*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<select name="point" class="form-control">
+																		<option value="">Select one</option>
+																		@foreach($points as $point)
+																		<option value="{{$point->id}}">{{$point->point_name}}</option>
+																		@endforeach
+																	</select>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Employee Name*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<select name="employee" class="form-control" id="retailerId">
+																		<option value="">Select one</option>
+																		@foreach($employees as $employee)
+																		<option value="{{$employee->id}}">{{$employee->name}}</option>
+																		@endforeach
+																	</select>
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>

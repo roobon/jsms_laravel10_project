@@ -69,7 +69,7 @@
 													<tr>
                                                         <th>ক্রমিক নং</th>
 														<th>সেন্টার</th>
-														<th class="colwidth">আই এমএস টার্গেট (১০০%)</th>
+														<th class="colwidth">আই এমএস টার্গেট</th>
 														<th class="colwidth">কালেকশন টার্গেট (৯৫%)</th>
 														<th>এ পর্যন্ত বিক্রি</th>
 														<th>কালেকশন</th>
@@ -86,7 +86,7 @@
 													<tr>
 														<th>ID</th>
 														<th>Center</th>
-														<th>IMS Target (100%)</th>
+														<th>IMS Target</th>
 														<th>Collection Target (95%)</th>
 														<th>Sales upto</th>
 														<th>Collection</th>
@@ -105,7 +105,7 @@
 														<td>{{$loop->iteration}}</td>
 														<td>{{$item->point_name}}</td>
 														<td>{{$item->ims_target}}</td>
-														<td>{{$item->collection_target}}</td>
+														<td>{{$item->ims_target * $item->collection_target/100}}</td>
 														<td>{{$item->sales_amount}}</td>
 														<td>{{$item->collection_amount}}</td>
 														<td>{{$item->deposit_amount}}</td>
@@ -140,6 +140,16 @@
 			$(".sorting_asc").css({"background-color": "#eed", "font-size": "130%", "width": "10px"});
 			$("td").css({"background-color": "#fff", "font-size": "130%", "width": "10px"});
 			
+			
 		});
+	</script>
+
+	<script>
+		
+	$(document).ready(function () {
+		$("tr.odd").css({'background-color':'rgba(31, 53, 9, 0.27)', 'font-size':'18px', 'color':'rgb(12, 72, 187)'});
+		$("tr.even").css({'background-color':'rgba(31, 35, 9, 0.27)', 'font-size':'18px', 'color':'rgb(12, 72, 187)'});
+	});
+
 	</script>
 @endsection

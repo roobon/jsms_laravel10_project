@@ -50,10 +50,9 @@
 													<tr>
                                                         <th>ID</th>
 														<th>Company Name</th>
-														<th>Address</th>
 														<th>Contact Person</th>
-														<th>Email</th>
 														<th>Phone</th>
+														<th>Email</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</thead>
@@ -61,10 +60,9 @@
 													<tr>
 														<th>ID</th>
 														<th>Company Name</th>
-														<th>Address</th>
 														<th>Contact Person</th>
-														<th>Email</th>
 														<th>Phone</th>
+														<th>Email</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</tfoot>
@@ -73,14 +71,11 @@
                                                     <tr>
 														<td>{{$loop->iteration}}</td>
 														<td>{{$item->company_name}}</td>
-														<td>{{$item->company_address}}</td>
 														<td>{{$item->contact_person}}</td>
 														<td>{{$item->contact_number}}</td>
 														<td>{{$item->contact_email }}</td>
 														<td style="width: 15%;" class="text-center">
-															
-														  
-														
+					
 														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('company.destroy', $item->id)}}" method="post">
 														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('company.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
 														<a href="{{route('company.edit', $item->id)}}" class="btn btn-primary btn-icon-anim btn-circle"><i class="glyphicon glyphicon-edit"></i></a>

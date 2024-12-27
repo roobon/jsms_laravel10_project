@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('shop_name', 60);
             $table->string('proprietor_name', 50);
+            $table->string('market_name')->nullable();
             $table->string('shop_address');
             $table->string('trade_lisence', 50)->nullable();
             $table->string('contact_person', 50);
@@ -23,6 +24,8 @@ return new class extends Migration
             $table->date('business_starts');
             $table->date('last_business');
             $table->decimal('last_balance', total: 10, places: 2)->default(0);
+            $table->integer('point_id');
+            $table->integer('employee_id');
             $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });

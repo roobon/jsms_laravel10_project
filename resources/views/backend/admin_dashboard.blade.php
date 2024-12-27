@@ -75,7 +75,7 @@
 	<!-- Title -->
 	<div class="row heading-bg  bg-blue">
 		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-			<h5 class="txt-light">Dashboard</h5>
+			<h4 class="txt-light">Dashboard</h4>
 		</div>
 	</div>
 	<!-- /Title -->
@@ -176,8 +176,8 @@
 		
 	</div>
 	<div class="row heading-bg  bg-blue">
-		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-			<h5 class="txt-light">Current Month figures</h5>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<h4 class="txt-light">Fact & figures: {{$curMonth}}, {{$curYear}}</h4>
 		</div>
 	</div>
 

@@ -48,24 +48,24 @@
 												<thead>
 													<tr>
                                                         <th>ID</th>
-														<th>Transfer Method</th>
-														<th>Cheque/Voucher</th>
-														<th>Payment Date</th>
-														<th>Amount</th>
 														<th>Center Name</th>
 														<th>Company Name</th>
+														<th>Payment Date</th>
+														<th>Amount</th>
+														<th>Transfer Method</th>
+														<th>Cheque/Voucher</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
 														<th>ID</th>
-														<th>Transfer Method</th>
-														<th>Cheque/Voucher</th>
-														<th>Payment Date</th>
-														<th>Amount</th>
 														<th>Center Name</th>
 														<th>Company Name</th>
+														<th>Payment Date</th>
+														<th>Amount</th>
+														<th>Transfer Method</th>
+														<th>Cheque/Voucher</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</tfoot>
@@ -73,12 +73,12 @@
 													@foreach($items as $item)
                                                     <tr>
 														<td>{{$loop->iteration}}</td>
-														<td>{{$item->transfer_method}}</td>
-														<td>{{$item->cheque_voucher}}</td>
-														<td>{{$item->payment_date}}</td>
-														<td>{{$item->payment_amount }}</td>
 														<td>{{$item->point->point_name }}</td>
 														<td>{{$item->company->company_name }}</td>
+														<td>{{$item->payment_date}}</td>
+														<td>{{$item->payment_amount }}</td>
+														<td>{{$item->transfer_method}}</td>
+														<td>{{$item->cheque_voucher}}</td>
 														<td style="width: 15%;" class="text-center">
 														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('sales.destroy', $item->id)}}" method="post">
 														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('sales.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
@@ -106,4 +106,12 @@
 
 @section('scripts')
     @parent
+	<script>
+		
+		$(document).ready(function () {
+			$("tr.odd").css({'background-color':'rgba(31, 53, 9, 0.27)', 'font-size':'18px', 'color':'rgb(12, 72, 187)'});
+			$("tr.even").css({'background-color':'rgba(31, 35, 9, 0.27)', 'font-size':'18px', 'color':'rgb(12, 72, 187)'});
+		});
+	
+	</script>
 @endsection
