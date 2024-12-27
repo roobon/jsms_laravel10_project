@@ -54,6 +54,17 @@
 								<a href="{{route('sales.create')}}">New Sale</a>
 							</li>	
 						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#dueslist"><i class="icon-link mr-10"></i>Dues<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="dueslist" class="collapse collapse-level-1">
+							<li>
+								<a href="{{route('dues.index')}}">All Dues</a>
+							</li>
+							<li>
+								<a href="{{route('dues.create')}}">New Due Realization</a>
+							</li>	
+						</ul>
 					</li>					
 					<li>
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#reptlist"><i class="icon-notebook mr-10"></i>Reports<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>

@@ -5,6 +5,7 @@ use App\Http\Controllers\backend\AjaxController;
 use App\Http\Controllers\backend\DoctorController;
 use App\Http\Controllers\backend\SpecialistController;
 use App\Http\Controllers\backend\CompanyController;
+use App\Http\Controllers\backend\DuesController;
 use App\Http\Controllers\backend\EmployeeController;
 use App\Http\Controllers\backend\InvestmentController;
 use App\Http\Controllers\backend\PaymentController;
@@ -85,6 +86,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/report/companywise', ReportController::class);
     Route::resource('/target', TargetController::class);
     Route::resource('/stock', StockController::class);
+    Route::resource('/dues', DuesController::class);
     // Route::get('/report/{id}', [ReportController::class, 'companyReport'])->name('compRR');
     // Route::get('/report/{id}', [ReportController::class, 'retailerReport']);
 });

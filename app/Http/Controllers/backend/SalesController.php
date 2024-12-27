@@ -87,6 +87,12 @@ class SalesController extends Controller
         } else {
             $sales->save();
 
+            if ($sales->due_amount > 0) {
+                $retailer = Retailer::find($request->retailer);
+                $retailer->status = 'inactive';
+                $retailer->update();
+            }
+
             // To update the point record where month and year matched from received date
             $stock = SalePaymentStock::where('point_id', $request->point)
                 ->whereMonth('start_date', $m)->whereYear('start_date', $y)->first();
@@ -96,7 +102,7 @@ class SalesController extends Controller
 
             $stock->update();
 
-            return redirect()->route('sales.index')->with('msg', "Successfully Sales Added");
+            return redirect()->route('sales.index')->with('msg', "Successfully Sales Completed");
         }
 
 
