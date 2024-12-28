@@ -142,27 +142,5 @@
 
 @section('scripts')
     @parent
-	<script>
-		$(document).ready(function () {
-			$('#retailerId').on('change', function(){
-				let id =$('#retailerId').val();
-
-				$.ajax({
-					type: "GET",
-					url: "info",
-					data: {
-						"_token": "{{ csrf_token() }}",
-						"data":"Hello World"
-					},
-					
-					success: function (response) {
-						alert('Success');
-					},
-					error: function(response){
-						alert("fail");
-					}
-				});
-			})
-		});
-	</script>
+	
 @endsection

@@ -12,21 +12,16 @@ class ReportController extends Controller
 {
     public function index()
     {
+        return view('backend.reports.index');
+    }
+
+    public function create()
+    {
         $items = DB::table('sales_payments_stocks')
             ->join('points', 'points.id', '=', 'sales_payments_stocks.point_id')
             ->get();
+        //return view('backend.reports.companyReport', compact('items'));
         return view('backend.reports.companyReportBN', compact('items'));
     }
-
-    // public function create()
-    // {
-
-    //     return view('backend.reports.centerReport');
-    // }
 }
 
-// $users = DB::table('users')
-// ->join('contacts', 'users.id', '=', 'contacts.user_id')
-// ->join('orders', 'users.id', '=', 'orders.user_id')
-// ->select('users.*', 'contacts.phone', 'orders.price')
-// ->get();

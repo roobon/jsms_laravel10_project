@@ -1,6 +1,7 @@
 @extends ('backend.layouts.app')
 
-@section('css')
+@section('styles')
+	@parent
 <!-- Favicon -->
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -17,6 +18,12 @@
 
 <!-- Custom CSS -->
 <link href="{{asset('dist/css/style.css')}}" rel="stylesheet" type="text/css">
+
+<style>
+	span.counter {
+		font-size: 33px !important;
+	}
+</style>
 
 @endsection
 

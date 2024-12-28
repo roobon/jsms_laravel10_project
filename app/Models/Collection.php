@@ -5,9 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DueRealization extends Model
+class Collection extends Model
 {
     use HasFactory;
-
-    protected $table = 'dueRealizations';
 }

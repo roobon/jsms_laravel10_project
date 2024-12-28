@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dueRealizations', function (Blueprint $table) {
+        Schema::create('collections', function (Blueprint $table) {
             $table->id();
             $table->integer('retailer_id')->unique();
             $table->decimal('current_due', total: 10, places: 2)->default(0);
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dueRealizations');
+        Schema::dropIfExists('collections');
     }
 };

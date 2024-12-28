@@ -22,12 +22,6 @@
 										</a>
 									</li>
 									<li>
-										<a href="{{route('retailer.index')}}" class="connection-item">
-										<i class="pe-7s-cart txt-success"></i>
-										<span class="block">Retailers</span>
-										</a>
-									</li>
-									<li>
 										<a href="{{route('points.index')}}" class="connection-item">
 										<i class="pe-7s-helm txt-primary"></i>
 										<span class="block">Centers</span>
@@ -37,6 +31,12 @@
 										<a href="{{route('employee.index')}}" class="connection-item">
 										<i class="pe-7s-users txt-danger"></i>
 										<span class="block">Employees</span>
+										</a>
+									</li>
+									<li>
+										<a href="{{route('retailer.index')}}" class="connection-item">
+										<i class="pe-7s-cart txt-success"></i>
+										<span class="block">Retailers</span>
 										</a>
 									</li>
 									<li>
