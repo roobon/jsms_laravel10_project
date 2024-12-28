@@ -46,6 +46,9 @@ class EmployeeController extends Controller
                 'email',
                 'max:100',
                 'unique:' . Employee::class,
+                'photo' => 'nullable|image|mimes:jpg,jpeg,png',
+                'nid' => 'nullable|file|mimes:jpg,jpeg,png,pdf',
+                'resume' => 'nullable|file|mimes:pdf',
                 'password' => 'required|min:6|confirmed',
                 'point' => 'required',
                 'status' => 'required',
@@ -68,7 +71,7 @@ class EmployeeController extends Controller
             $image->move($destinationPath, $postImage);
             $nid = $destinationPath . $postImage;
         } else {
-            $nid = 'images/employee/nid/nonid.jpg';
+            $nid = 'images/employee/nonid.jpg';
         }
 
         if ($image = $request->file('resume')) {
@@ -77,7 +80,7 @@ class EmployeeController extends Controller
             $image->move($destinationPath, $postImage);
             $resume = $destinationPath . $postImage;
         } else {
-            $resume = 'images/employee/resume/noresume.pdf';
+            $resume = 'images/employee/noresume.pdf';
         }
 
         $employee = new Employee;
@@ -114,7 +117,8 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        return view('backend.employee.edit', compact('employee'));
+        $points = Point::all();
+        return view('backend.employee.edit', compact('employee', 'points'));
     }
 
     /**
@@ -124,42 +128,73 @@ class EmployeeController extends Controller
     {
         $request->validate(
             [
-                'admin_id' => 'required',
                 'name' => 'required',
                 'designation' => 'required',
-                'address' => 'min:8',
                 'joining_date' => 'required',
-                'contact_number' => 'min:11',
+                'contact_number' => 'required | min:11',
+                'contact_email' => 'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:100',
+                'unique:' . Employee::class,
+                'photo' => 'nullable|image|mimes:jpg,jpeg,png',
+                'nid' => 'nullable|file|mimes:jpg,jpeg,png,pdf',
+                'resume' => 'nullable|file|mimes:pdf',
+                'password' => 'nullable|min:6|confirmed',
+                'point' => 'required',
                 'status' => 'required',
-                'photo' => 'image|mimes:jpeg,png,jpg|max:2048'
             ],
 
         );
 
         if ($image = $request->file('photo')) {
-            $destinationPath = 'images/employee/';
+            $destinationPath = 'images/employee/photo/';
             $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $postImage);
             $photo = $destinationPath . $postImage;
         } else {
-            $photo = $employee->photo;
+            $photo = 'images/employee/nophoto.jpg';
         }
 
-        $employee->admin_id = $request->admin_id;
+        if ($image = $request->file('nid')) {
+            $destinationPath = 'images/employee/nid/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $nid = $destinationPath . $postImage;
+        } else {
+            $nid = 'images/employee/nonid.jpg';
+        }
+
+        if ($image = $request->file('resume')) {
+            $destinationPath = 'images/employee/resume/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $resume = $destinationPath . $postImage;
+        } else {
+            $resume = 'images/employee/noresume.pdf';
+        }
+
+
         $employee->name = $request->name;
         $employee->designation = $request->designation;
         $employee->address = $request->address;
         $employee->dob = $request->dob;
         $employee->joining_date = $request->joining_date;
         $employee->contact_number  = $request->contact_number;
+        $employee->contact_email  = $request->contact_email;
+        if ($request->password != null) {
+            $employee->password  = Hash::make($request->password);
+        }
         $employee->photo = $photo;
-        $employee->nid = $request->nid;
-        $employee->resume = $request->resume;
+        $employee->nid = $nid;
+        $employee->resume = $resume;
+        $employee->point_id = $request->point;
         $employee->status = $request->status;
 
         $employee->update();
 
-        return redirect()->route('retailer.index')->with('msg', "Successfully Employee Updated");
+        return redirect()->route('employee.index')->with('msg', "Successfully Employee Updated");
     }
 
     /**

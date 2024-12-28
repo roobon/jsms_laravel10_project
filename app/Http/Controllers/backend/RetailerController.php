@@ -46,6 +46,7 @@ class RetailerController extends Controller
                 'contact_email' => 'email',
                 'business_starts' => 'required',
                 'last_business' => 'required',
+                'last_balance' => 'required',
                 'point' => 'required',
                 'employee' => 'required',
                 'status' => 'required',
@@ -81,7 +82,7 @@ class RetailerController extends Controller
 
         ]);
 
-        return redirect()->route('retailer.index')->with('msg', "Successfully Retailer Created");
+        return redirect()->route('retailer.index')->with('msg', "Retailer Created Successfully with Dues");
     }
 
     /**
@@ -119,6 +120,7 @@ class RetailerController extends Controller
                 'contact_email' => 'email',
                 'business_starts' => 'required',
                 'last_business' => 'required',
+                'last_balance' => 'required',
                 'point' => 'required',
                 'employee' => 'required',
                 'status' => 'required',
@@ -136,13 +138,25 @@ class RetailerController extends Controller
         $retailer->business_starts = $request->business_starts;
         $retailer->last_business = $request->last_business;
         $retailer->last_balance = $request->last_balance;
+        if ($request->last_balance > 0) {
+            $retailer->status = 'inactive';
+        } else {
+            $retailer->status = $request->status;
+        }
         $retailer->point_id = $request->point;
         $retailer->employee_id = $request->employee;
-        $retailer->status = $request->status;
 
         $retailer->update();
 
-        return redirect()->route('retailer.index')->with('msg', "Successfully retailer Updated");
+        //DB::table('users')
+        // ->where('id', $user->id)
+        // ->update(['active' => true]);
+
+        DB::table('retailer_dues')
+            ->where('retailer_id', $retailer->id)
+            ->update(['current_due' => $request->last_balance]);
+
+        return redirect()->route('retailer.index')->with('msg', "Successfully retailer Updated with Dues");
     }
 
     /**

@@ -115,7 +115,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Trade Lisence</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Trade Lisence*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="text" name="trade_lisence" value="{{old('trade_lisence')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Trade Lisence Number">
@@ -142,7 +142,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Balance</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Balance*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="text" name="last_balance" value="{{old('last_balance')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Last Balance">
@@ -151,13 +151,13 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Point Name*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Center Name*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<select name="point" class="form-control">
 																		<option value="">Select one</option>
 																		@foreach($points as $point)
-																		<option value="{{$point->id}}">{{$point->point_name}}</option>
+																		<option value="{{$point->id}}" {{old('point') ? 'selected=selected': ''}}>{{$point->point_name}}</option>
 																		@endforeach
 																	</select>
 																	<div class="input-group-addon"></div>
@@ -171,7 +171,7 @@
 																	<select name="employee" class="form-control" id="retailerId">
 																		<option value="">Select one</option>
 																		@foreach($employees as $employee)
-																		<option value="{{$employee->id}}">{{$employee->name}}</option>
+																		<option value="{{$employee->id}}" {{old('employee') ? 'selected=selected': ''}}>{{$employee->name}}</option>
 																		@endforeach
 																	</select>
 																	<div class="input-group-addon"></div>
@@ -179,13 +179,13 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Status</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Status*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<select name="status" id="" class="form-control">
 																		<option value="">Select one</option>
-																		<option value="active">Active</option>
-																		<option value="inactive">Inactive</option>
+																		<option value="active" {{(old('status') == 'active') ? 'selected=selected': ''}}>Active</option>
+																		<option value="inactive" {{(old('status') == 'inactive') ? 'selected=selected': ''}}>Inactive</option>
 																	</select>
 																	<div class="input-group-addon"></div>
 																</div>

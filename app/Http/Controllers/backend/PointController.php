@@ -93,7 +93,7 @@ class PointController extends Controller
         $point->opening_date = $request->opening_date;
         $point->update();
 
-        return redirect()->route('points.index')->with('msg', "Point Updated Successfully ");
+        return redirect()->route('points.index')->with('msg', "Center Updated Successfully ");
     }
 
     /**
@@ -102,6 +102,6 @@ class PointController extends Controller
     public function destroy(Point $point)
     {
         $point->delete();
-        return redirect()->route('points.index')->with('msg', 'Deleted Successfully');
+        return redirect()->route('points.index')->with('msg', 'Center Deleted Successfully');
     }
 }
