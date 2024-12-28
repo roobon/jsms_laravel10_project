@@ -10,7 +10,7 @@
 @endsection
 
 @section('title')
-	Point Entry
+	Center Entry
 @endsection
 
 @section('content')

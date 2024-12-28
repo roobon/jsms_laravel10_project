@@ -35,10 +35,10 @@ class CompanyController extends Controller
                 'company_name' => 'required | max:100 | min:5',
                 'start_date' => 'required',
                 'security_money' => 'required',
-                'address' => 'min:8',
+                'address' => 'nullable|min:8',
                 'contact_person' => 'min:4',
                 'contact_number' => 'min:11',
-                'contact_email' => 'email',
+                'contact_email' => 'nullable|email',
                 'status' => 'required',
             ],
 
@@ -60,7 +60,7 @@ class CompanyController extends Controller
 
         $company->save();
 
-        return redirect()->route('company.index')->with('msg', "Successfully Company Created");
+        return redirect()->route('company.index')->with('msg', " Company Created Successfully");
     }
 
     /**

@@ -70,7 +70,7 @@
 						</ul>
 					</li>					
 					<li>
-						<a href="{{route('report.index')}}"><i class="icon-notebook mr-10"></i>Reports<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<a href="{{route('report.index')}}"><i class="icon-notebook mr-10"></i>Reports<span class="pull-right"></span></a>
 						<!-- <ul id="reptlist" class="collapse collapse-level-1">
 							<li>
 								<a href="{{route('report.index')}}">Company wise Monthly Report</a>

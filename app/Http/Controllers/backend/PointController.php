@@ -60,9 +60,9 @@ class PointController extends Controller
     {
         $employee = DB::table('employees')->where('point_id', $point->id)->where('designation', 'Manager')->get();
         if (count($employee) > 0) {
-            return view('backend.points.show', compact('point', 'employee'));
+            return view('backend.point.show', compact('point', 'employee'));
         } else {
-            return view('backend.points.show', compact('point'));
+            return view('backend.point.show', compact('point'));
         }
     }
 

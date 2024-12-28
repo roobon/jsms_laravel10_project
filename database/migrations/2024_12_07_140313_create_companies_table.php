@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('contact_email', 50)->nullable();
             $table->string('website', 100)->nullable();
             $table->date('last_business_date')->nullable();
-            $table->decimal('last_balance', total: 10, places: 2)->default(0);
+            $table->decimal('last_balance', total: 10, places: 2)->nullable()->default(0);
             $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });
