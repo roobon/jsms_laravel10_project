@@ -102,7 +102,7 @@
 							<div class="row">				
 								<div class="col-xs-12">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="txt-success"></i></span><span class="counter">{{$totalCompany}}</span><span></span>
+										<span class="counter-cap"><i class="txt-success"></i></span><span class="counter"><a href="{{route('company.index')}}">{{$totalCompany}}</a></span><span></span>
 									</div>
 								</div>
 							</div>
@@ -115,7 +115,7 @@
 			<div class="panel panel-default card-view">
 				<div class="panel-heading">
 					<div class="pull-left">
-						<h6 class="panel-title txt-dark">Total Retailers</h6>
+						<h6 class="panel-title txt-dark">Total Centers</h6>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -125,30 +125,7 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="txt-success"></i></span><span class="counter">{{$totalRetailer}}</span><span></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-			<div class="panel panel-default card-view">
-				<div class="panel-heading">
-					<div class="pull-left">
-						<h6 class="panel-title txt-dark">Total Points</h6>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="panel-wrapper collapse in">
-					<div class="panel-body">
-						<div class="sm-graph-box">
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$totalPoint}}</span><span></span>
+										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter"><a href="{{route('points.index')}}">{{$totalPoint}}</a></span><span></span>
 									</div>
 								</div>
 							</div>
@@ -171,7 +148,7 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="counter-wrap text-right">
-										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$totalEmployee}}</span>
+										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter"><a href="{{route('employee.index')}}">{{$totalEmployee}}</a></span>
 									</div>
 								</div>
 							</div>
@@ -180,6 +157,31 @@
 				</div>
 			</div>
 		</div>
+		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+			<div class="panel panel-default card-view">
+				<div class="panel-heading">
+					<div class="pull-left">
+						<h6 class="panel-title txt-dark">Total Retailers</h6>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-wrapper collapse in">
+					<div class="panel-body">
+						<div class="sm-graph-box">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="counter-wrap text-right">
+										<span class="counter-cap"><i class="txt-success"></i></span><span class="counter"><a href="{{route('retailer.index')}}">{{$totalRetailer}}</a></span><span></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
 		
 	</div>
 	<div class="row heading-bg  bg-blue">

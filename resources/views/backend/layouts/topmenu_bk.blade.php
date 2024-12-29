@@ -7,7 +7,9 @@
 						<i class="fa fa-search top-nav-icon"></i>
 						</a>
 					</li>
-					
+					<li>
+						<a id="open_right_sidebar" href="javascript:void(0);"><i class="fa fa-cog top-nav-icon"></i></a>
+					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-th top-nav-icon"></i></a>
 						<ul class="dropdown-menu app-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -55,7 +57,75 @@
 							<li class="text-center"><a href="#">More</a></li>
 						</ul>
 					</li>
-					
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell top-nav-icon"></i><span class="top-nav-icon-badge">5</span></a>
+						<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+							<li>
+								<div class="streamline message-box message-nicescroll-bar">
+									<div class="sl-item">
+										<div class="sl-avatar avatar avatar-sm avatar-circle">
+											<img class="img-responsive img-circle" src="dist/img/user.png" alt="avatar"/>
+										</div>
+										<div class="sl-content">
+											<a href="javascript:void(0)" class="inline-block capitalize-font  pull-left">Sandy Doe</a>
+											<span class="inline-block font-12  pull-right">12/10/16</span>
+											<div class="clearfix"></div>
+											<p>Neque porro quisquam est!</p>
+										</div>
+									</div>
+									<hr/>
+									<div class="sl-item">
+										<div class="icon">
+											<i class="fa fa-spotify"></i>
+										</div>
+										<div class="sl-content">
+											<a href="javascript:void(0)" class="inline-block capitalize-font  pull-left">
+											2 voice mails</a>
+											<span class="inline-block font-12  pull-right">2pm</span>
+											<div class="clearfix"></div>
+											<p>Neque porro quisquam est</p>
+										</div>
+									</div>
+									<hr/>
+									<div class="sl-item">
+										<div class="icon">
+											<i class="fa fa-whatsapp"></i>
+										</div>
+										<div class="sl-content">
+											<a href="javascript:void(0)" class="inline-block capitalize-font  pull-left">8 voice messanger</a>
+											<span class="inline-block font-12 pull-right">1pm</span>
+											<div class="clearfix"></div>
+											<p>8 texts</p>
+										</div>
+									</div>
+									<hr/>
+									<div class="sl-item">
+										<div class="icon">
+											<i class="fa fa-envelope"></i>
+										</div>
+										<div class="sl-content">
+											<a href="javascript:void(0)" class="inline-block capitalize-font  pull-left">2 new messages</a>
+											<span class="inline-block font-12  pull-right">1pm</span>
+											<div class="clearfix"></div>
+											<p>ashjs@gmail.com</p>
+										</div>
+									</div>
+									<hr/>
+									<div class="sl-item">
+										<div class="sl-avatar avatar avatar-sm avatar-circle">
+											<img class="img-responsive img-circle" src="dist/img/user4.png" alt="avatar"/>
+										</div>
+										<div class="sl-content">
+											<a href="javascript:void(0)" class="inline-block capitalize-font  pull-left">Sandy Doe</a>
+											<span class="inline-block font-12  pull-right">1pm</span>
+											<div class="clearfix"></div>
+											<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="{{asset('images/user/user3.png')}}" alt="user_auth" class="user-auth-img img-circle"/><span class="user-online-status"></span></a>
 						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
