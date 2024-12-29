@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\Point;
 use App\Models\Retailer;
 use App\Models\Sales;
+use App\Models\Stock;
 use App\Models\Target;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -24,15 +25,17 @@ class AdminHomeController extends Controller
         $curMonth = date('F');
         $curYear = date('Y');
 
-        $targets = Target::select('*')->whereMonth('start_date', Carbon::now()->month)->sum('ims_target');
-        $sales = Sales::select('*')->whereMonth('sales_date', Carbon::now()->month)->sum('total_amount');
-        $payments = Payment::select('*')->whereMonth('payment_date', Carbon::now()->month)->sum('payment_amount');
         $totalCompany = Company::all()->count();
         $totalPoint = Point::all()->count();
         $totalRetailer = Retailer::all()->count();
         $totalEmployee = Employee::all()->count();
 
+        $targets = Target::select('*')->whereMonth('start_date', Carbon::now()->month)->sum('ims_target');
+        $payments = Payment::select('*')->whereMonth('payment_date', Carbon::now()->month)->sum('payment_amount');
+        $stocks = Stock::select('*')->whereMonth('received_date', Carbon::now()->month)->sum('product_amount');
+        $sales = Sales::select('*')->whereMonth('sales_date', Carbon::now()->month)->sum('total_amount');
+
         //return $totalCompany;
-        return view('backend.admin_dashboard', compact('totalCompany', 'totalPoint', 'totalRetailer', 'totalEmployee', 'targets', 'sales', 'payments', 'curMonth', 'curYear'));
+        return view('backend.admin_dashboard', compact('totalCompany', 'totalPoint', 'totalRetailer', 'totalEmployee', 'targets', 'sales', 'payments', 'stocks', 'curMonth', 'curYear'));
     }
 }

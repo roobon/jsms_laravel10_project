@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Retailer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
 
 class DuesController extends Controller
 {
@@ -12,7 +16,18 @@ class DuesController extends Controller
      */
     public function index()
     {
-        return view('backend.dues.index');
+        $items = DB::table('retailers')
+            ->join('retailer_dues', 'retailers.id', '=', 'retailer_dues.retailer_id')
+            ->where('current_due', '>', '0')
+            ->orderBy('current_due', 'desc')
+            ->get();
+
+        /*   DB::table('users')
+                ->join('contacts', 'users.id', '=', 'contacts.user_id')
+                ->join('orders', 'users.id', '=', 'orders.user_id')
+                ->select('users.*', 'contacts.phone', 'orders.price')
+                ->get(); */
+        return view('backend.dues.index', compact('items'));
     }
 
     /**

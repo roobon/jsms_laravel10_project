@@ -190,8 +190,7 @@
 		</div>
 	</div>
 
-	<div class="row">
-		
+	<div class="row">	
 		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 			<div class="panel panel-default card-view">
 				<div class="panel-heading">
@@ -206,30 +205,7 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="counter-wrap text-center">
-										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter">{{$targets>0 ? number_format($targets, 0) . ' Tk' :'No Targets'}}</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-			<div class="panel panel-default card-view">
-				<div class="panel-heading">
-					<div class="pull-left">
-						<h6 class="panel-title txt-dark">Total Sales</h6>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="panel-wrapper collapse in">
-					<div class="panel-body">
-						<div class="sm-graph-box">
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="counter-wrap text-center">
-										<span class="counter">{{$sales>0 ? number_format($sales, 0) . ' Tk' :'No Sales'}}</span>
+										<span class="counter-cap"><i class="txt-danger"></i></span><span class="counter"><a href="{{route('target.index')}}">{{$targets>0 ? number_format($targets, 0) . ' Tk' :'No Targets'}}</a></span>
 									</div>
 								</div>
 							</div>
@@ -252,7 +228,7 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="counter-wrap text-center">
-										<span class="counter">{{$payments>0 ? number_format($payments, 0) . ' Tk' :'No Payments'}}</span>
+										<span class="counter"><a href="{{route('payment.index')}}">{{$payments>0 ? number_format($payments, 0) . ' Tk' :'No Payments'}}</a></span>
 									</div>
 								</div>
 							</div>
@@ -275,7 +251,7 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="counter-wrap text-center">
-									<span class="counter">{{$payments>0 ? number_format($payments,0) . ' Tk' :'No Stocks'}}</span>
+									<span class="counter"><a href="{{route('stock.index')}}">{{$stocks>0 ? number_format($stocks,0) . ' Tk' :'No Stocks'}}</a></span>
 									</div>
 								</div>
 							</div>
@@ -284,6 +260,29 @@
 				</div>
 			</div>
 		</div>
+		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+			<div class="panel panel-default card-view">
+				<div class="panel-heading">
+					<div class="pull-left">
+						<h6 class="panel-title txt-dark">Total Sales</h6>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-wrapper collapse in">
+					<div class="panel-body">
+						<div class="sm-graph-box">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="counter-wrap text-center">
+										<span class="counter"><a href="{{route('sales.index')}}">{{$sales>0 ? number_format($sales, 0) . ' Tk' :'No Sales'}}</a></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
 	</div>
 	<!-- /Row -->
 	<!-- Row -->
