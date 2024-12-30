@@ -38,8 +38,8 @@
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
-						<li><a href="index.html">Dashboard</a></li>
-						<li><a href="#"><span>companies</span></a></li>
+						<li><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
+						<li><a href="{{route('company.index')}}"><span>companies</span></a></li>
 						<li class="active"><span>New Company</span></li>
 					  </ol>
 					</div>
@@ -93,7 +93,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Company Address*</label>
+															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Company Address</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Company Address" rows="10">{{old('address')}}</textarea>
@@ -138,7 +138,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business Date</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business Date*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="date" name="last_business" value="{{old('last_business')}}" class="form-control" id="exampleInputuname_4">
@@ -147,16 +147,16 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Balance</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Balance*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="text" name="last_balance" value="{{old('last_balance')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Last Balance">
+																	<input type="number" name="last_balance" value="{{old('last_balance')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Last Balance">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Status</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Status*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<select name="status" id="" class="form-control">

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->decimal('ledgerView', total: 12, places: 2)->default(0);
             $table->integer('point_id');
             $table->integer('company_id');
+            $table->integer('target_id');
             $table->timestamps();
         });
     }

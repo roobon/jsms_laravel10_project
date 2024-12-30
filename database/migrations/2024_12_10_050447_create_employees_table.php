@@ -16,13 +16,13 @@ return new class extends Migration
             $table->string('name', 50);
             $table->string('designation', 100);
             $table->string('address')->nullable();
-            $table->date('dob');
+            $table->date('dob')->nullable();
             $table->date('joining_date');
             $table->string('contact_number', 20);
-            $table->string('contact_email', 50)->unique();
+            $table->string('contact_email', 50);
             $table->string('password');
             $table->string('photo');
-            $table->string('nid', 50)->unique();
+            $table->string('nid');
             $table->string('resume');
             $table->integer('point_id');
             $table->enum('status', ['active', 'inactive']);

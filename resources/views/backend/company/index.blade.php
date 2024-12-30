@@ -20,9 +20,9 @@
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
-						<li><a href="/admin/dashboard">Dashboard</a></li>
-						<li><a href="#"><span>Companies</span></a></li>
-						<li class="active"><span>Company list</span></li>
+						<li><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
+						<li class="active"><span>Companies</span></li>
+						
 					  </ol>
 					</div>
 					<!-- /Breadcrumb -->
