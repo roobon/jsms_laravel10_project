@@ -71,7 +71,7 @@ class TargetController extends Controller
             ->get();
 
         if (count($row) > 0) {
-            return redirect()->back()->with('error', "Sorry, Target Entry Already Exist");
+            return back()->with('error', "Sorry, Target Entry Already Exist")->withInput();
         } else {
             $target->save();
             DB::table('sales_payments_stocks')->insert([
@@ -80,8 +80,10 @@ class TargetController extends Controller
                 'collection_target' =>  $request->collection_target,
                 'start_date' =>         $request->start_date,
                 'end_date' =>           $request->end_date,
+                'working_days' =>       $request->working_days,
                 'point_id' =>           $request->point,
                 'company_id' =>         $request->company,
+                'target_id' =>          $target->id
             ]);
         }
 

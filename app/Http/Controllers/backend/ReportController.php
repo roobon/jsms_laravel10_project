@@ -12,7 +12,12 @@ class ReportController extends Controller
 {
     public function index()
     {
-        return view('backend.reports.index');
+        $items = DB::table('sales_payments_stocks')
+            ->join('points', 'points.id', '=', 'sales_payments_stocks.point_id')
+            ->get();
+        //return view('backend.reports.companyReport', compact('items'));
+        return view('backend.reports.companyReportBN', compact('items'));
+        //return view('backend.reports.index');
     }
 
     public function create()
@@ -24,4 +29,3 @@ class ReportController extends Controller
         return view('backend.reports.companyReportBN', compact('items'));
     }
 }
-

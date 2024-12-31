@@ -79,7 +79,7 @@ class StockController extends Controller
             ->get();
 
         if (count($row) == 0) {
-            return redirect()->back()->with('error', "Sorry, No Target Available for entering Stocks");
+            return back()->with('error', "Sorry, No Target Available for entering Stocks")->withInput();
         } else {
             $stock->save();
 

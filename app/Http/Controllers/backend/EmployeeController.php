@@ -41,10 +41,10 @@ class EmployeeController extends Controller
                 'joining_date' => 'required',
                 'contact_number' => 'required | min:11',
                 'contact_email' => 'nullable',
-                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'nid' => 'nullable|file|mimes:jpg,jpeg,png,pdf,JPG',
+                'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
+                'nid' => 'nullable|file|mimes:jpg,jpeg,png',
                 'resume' => 'nullable|file|mimes:pdf',
-                'password' => 'required|min:6|confirmed',
+                'password' => 'nullable|min:6|confirmed',
                 'point' => 'required',
                 'status' => 'required',
             ],
@@ -62,8 +62,8 @@ class EmployeeController extends Controller
 
         if ($image2 = $request->file('nid')) {
             $destinationPath = 'images/employee/nid/';
-            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $postImage);
+            $postImage = date('YmdHis') . "." . $image2->getClientOriginalExtension();
+            $image2->move($destinationPath, $postImage);
             $nid = $destinationPath . $postImage;
         } else {
             $nid = 'images/employee/nonid.jpg';
@@ -71,8 +71,8 @@ class EmployeeController extends Controller
 
         if ($image3 = $request->file('resume')) {
             $destinationPath = 'images/employee/resume/';
-            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $postImage);
+            $postImage = date('YmdHis') . "." . $image3->getClientOriginalExtension();
+            $image3->move($destinationPath, $postImage);
             $resume = $destinationPath . $postImage;
         } else {
             $resume = 'images/employee/noresume.pdf';

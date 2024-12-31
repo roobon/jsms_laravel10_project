@@ -121,7 +121,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Password*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Password</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="password" name="password" class="form-control" id="exampleInputuname_4" placeholder="Enter Password">
@@ -130,7 +130,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Repeat Password*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Repeat Password</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="password" name="password_confirmation" class="form-control" id="exampleInputuname_4" placeholder="Enter Password Again">

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('collection_target');
             $table->date('start_date');
             $table->date('end_date');
+            $table->integer('working_days');
             $table->decimal('sales_amount', total: 12, places: 2)->default(0);
             $table->decimal('collection_amount', total: 12, places: 2)->default(0);
             $table->decimal('deposit_amount', total: 12, places: 2)->default(0);
@@ -24,7 +25,7 @@ return new class extends Migration
             $table->decimal('startMonthdue', total: 12, places: 2)->default(0);
             $table->decimal('endMonthdue', total: 12, places: 2)->default(0);
             $table->decimal('godownstock', total: 12, places: 2)->default(0);
-            $table->decimal('ledgerView', total: 12, places: 2)->default(0);
+            $table->decimal('ledgerDue', total: 12, places: 2)->default(0);
             $table->integer('point_id');
             $table->integer('company_id');
             $table->integer('target_id');

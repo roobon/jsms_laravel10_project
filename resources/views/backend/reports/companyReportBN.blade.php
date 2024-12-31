@@ -71,6 +71,7 @@
 														<th>সেন্টার</th>
 														<th class="colwidth">আই এমএস টার্গেট</th>
 														<th class="colwidth">কালেকশন টার্গেট (৯৫%)</th>
+														<th class="colwidth">প্রতিদিনের বিক্রয় টার্গেট</th>
 														<th>এ পর্যন্ত বিক্রি</th>
 														<th>কালেকশন</th>
 														<th>স্কয়ার কোডে ব্যাংকে জমা</th>
@@ -88,6 +89,7 @@
 														<th>Center</th>
 														<th>IMS Target</th>
 														<th>Collection Target (95%)</th>
+														<th>Everyday Selling Target</th>
 														<th>Sales upto</th>
 														<th>Collection</th>
 														<th>Deposit to Bank</th>
@@ -104,16 +106,17 @@
                                                     	<tr>
 														<td>{{$loop->iteration}}</td>
 														<td>{{$item->point_name}}</td>
-														<td>{{$item->ims_target}}</td>
-														<td>{{$item->ims_target * $item->collection_target/100}}</td>
-														<td>{{$item->sales_amount}}</td>
-														<td>{{$item->collection_amount}}</td>
-														<td>{{$item->deposit_amount}}</td>
-														<td>{{$item->collection_target - $item->deposit_amount}}</td>
+														<td>{{number_format($item->ims_target, 0)}}</td>
+														<td>{{number_format($item->ims_target * $item->collection_target/100, 0)}}</td>
+														<td>{{number_format($item->ims_target / $item->working_days, 0)}}</td>
+														<td>{{number_format($item->sales_amount, 0)}}</td>
+														<td>{{number_format($item->collection_amount,0)}}</td>
+														<td>{{number_format($item->deposit_amount, 0)}}</td>
+														<td>{{number_format($item->collection_target - $item->deposit_amount, 0)}}</td>
 														<td>{{$item->startMonthdue}}</td>
 														<td>{{$item->startMonthdue - $item->sales_amount }}</td>
 														<td>{{$item->godownstock}}</td>
-														<td>{{$item->ledgerView}}</td>
+														<td>{{$item->ledgerDue}}</td>
 														
 													</tr>
 													@endforeach

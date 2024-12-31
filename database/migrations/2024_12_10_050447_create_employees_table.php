@@ -19,8 +19,8 @@ return new class extends Migration
             $table->date('dob')->nullable();
             $table->date('joining_date');
             $table->string('contact_number', 20);
-            $table->string('contact_email', 50);
-            $table->string('password');
+            $table->string('contact_email', 50)->nullable();
+            $table->string('password')->nullable();
             $table->string('photo');
             $table->string('nid');
             $table->string('resume');

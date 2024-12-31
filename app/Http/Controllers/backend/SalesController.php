@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Employee;
 use App\Models\Point;
 use App\Models\Retailer;
+use App\Models\RetailerDues;
 use App\Models\SalePaymentStock;
 use App\Models\Sales;
 use Illuminate\Http\Request;
@@ -83,7 +84,7 @@ class SalesController extends Controller
             ->get();
 
         if (count($row) == 0) {
-            return redirect()->back()->with('error', "Sorry, No Target Available for entering Stocks");
+            return back()->with('error', "Sorry, No Target Available for entering Stocks")->withInput();
         } else {
             $sales->save();
 
@@ -91,6 +92,9 @@ class SalesController extends Controller
                 $retailer = Retailer::find($request->retailer);
                 $retailer->status = 'inactive';
                 $retailer->update();
+                $dues = RetailerDues::where('retailer_id', $request->retailer)->first();
+                $dues->current_due = $dues->current_due + $sales->due_amount;
+                $dues->update();
             }
 
             // To update the point record where month and year matched from received date
