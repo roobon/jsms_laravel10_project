@@ -24,8 +24,8 @@
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
-						<li><a href="index.html">Dashboard</a></li>
-						<li><a href="#"><span>Stoks</span></a></li>
+						<li><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
+						<li><a href="{{route('stock.index')}}"><span>Stoks</span></a></li>
 						<li class="active"><span>New Stock</span></li>
 					  </ol>
 					</div>
@@ -50,7 +50,7 @@
 										<div class="row">
 											<div class="col-sm-12 col-xs-12">
 												<div class="form-wrap">
-													<form class="form-horizontal" method="post" action="{{route('stock.store')}}">
+													<form class="form-horizontal" method="post" action="{{route('stock.store')}}" enctype="multipart/form-data">
 														@csrf
                                                         <div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Invoice Number*</label>

@@ -19,9 +19,9 @@
 		<!-- Breadcrumb -->
 		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 		  <ol class="breadcrumb">
-			<li><a href="index.html">Dashboard</a></li>
-			<li><a href="#"><span>retailer</span></a></li>
-			<li class="active"><span>Edit Retailer</span></li>
+			<li><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
+			<li><a href="{{route('stock.index')}}"><span>Stocks</span></a></li>
+			<li class="active"><span>Edit Stock</span></li>
 		  </ol>
 		</div>
 		<!-- /Breadcrumb -->
@@ -44,7 +44,7 @@
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
 									<div class="form-wrap">
-										<form class="form-horizontal" method="post" action="{{route('retailer.update', $retailer->id)}}">
+										<form class="form-horizontal" method="post" action="{{route('retailer.update', $retailer->id)}}" enctype="multipart/form-data">
 											@method('PUT')
 											@csrf
 											<div class="form-group">

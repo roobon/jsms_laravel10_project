@@ -87,7 +87,7 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Security Money*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="text" name="security_money" value="{{old('security_money')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Security money">
+																	<input type="number" name="security_money" value="{{old('security_money')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Security money">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>

@@ -40,14 +40,9 @@ class EmployeeController extends Controller
                 'designation' => 'required',
                 'joining_date' => 'required',
                 'contact_number' => 'required | min:11',
-                'contact_email' => 'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:100',
-                'unique:' . Employee::class,
-                'photo' => 'nullable|image|mimes:jpg,jpeg,png',
-                'nid' => 'nullable|file|mimes:jpg,jpeg,png,pdf',
+                'contact_email' => 'nullable',
+                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'nid' => 'nullable|file|mimes:jpg,jpeg,png,pdf,JPG',
                 'resume' => 'nullable|file|mimes:pdf',
                 'password' => 'required|min:6|confirmed',
                 'point' => 'required',
@@ -56,16 +51,16 @@ class EmployeeController extends Controller
 
         );
 
-        if ($image = $request->file('photo')) {
+        if ($image1 = $request->file('photo')) {
             $destinationPath = 'images/employee/photo/';
-            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $postImage);
+            $postImage = date('YmdHis') . "." . $image1->getClientOriginalExtension();
+            $image1->move($destinationPath, $postImage);
             $photo = $destinationPath . $postImage;
         } else {
             $photo = 'images/employee/nophoto.jpg';
         }
 
-        if ($image = $request->file('nid')) {
+        if ($image2 = $request->file('nid')) {
             $destinationPath = 'images/employee/nid/';
             $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $postImage);
@@ -74,7 +69,7 @@ class EmployeeController extends Controller
             $nid = 'images/employee/nonid.jpg';
         }
 
-        if ($image = $request->file('resume')) {
+        if ($image3 = $request->file('resume')) {
             $destinationPath = 'images/employee/resume/';
             $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $postImage);

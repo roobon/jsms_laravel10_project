@@ -19,8 +19,8 @@
 		<!-- Breadcrumb -->
 		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 		  <ol class="breadcrumb">
-			<li><a href="index.html">Dashboard</a></li>
-			<li><a href="#"><span>Targets</span></a></li>
+			<li><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
+			<li><a href="{{route('target.index')}}"><span>Targets</span></a></li>
 			<li class="active"><span>Edit Target</span></li>
 		  </ol>
 		</div>
