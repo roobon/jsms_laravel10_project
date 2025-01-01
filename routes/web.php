@@ -87,7 +87,9 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/target', TargetController::class);
     Route::resource('/stock', StockController::class);
     Route::resource('/dues', DuesController::class);
-    Route::resource('/report', ReportController::class);
+    Route::get('/report', [ReportController::class, 'index']);
+    Route::get('/report1', [ReportController::class, 'report1']);
+    Route::get('/report2', [ReportController::class, 'report2']);
     // Route::get('/report/{id}', [ReportController::class, 'companyReport'])->name('compRR');
     // Route::get('/report/{id}', [ReportController::class, 'retailerReport']);
 });

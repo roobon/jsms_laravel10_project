@@ -73,10 +73,10 @@
 						</ul>
 					</li>					
 					<li>
-						<a href="{{route('report.index')}}"><i class="icon-notebook mr-10"></i>Reports<span class="pull-right"></span></a>
+						<a href="{{url('admin/report/')}}"><i class="icon-notebook mr-10"></i>Reports<span class="pull-right"></span></a>
 						<!-- <ul id="reptlist" class="collapse collapse-level-1">
 							<li>
-								<a href="{{route('report.index')}}">Company wise Monthly Report</a>
+								<a href="{{url('admin/report/')}}">Company wise Monthly Report</a>
 							</li>
 							<li>
 								<a href="#">Retailer wise Monthly Report</a>
