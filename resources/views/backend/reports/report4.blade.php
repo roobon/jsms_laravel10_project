@@ -12,6 +12,7 @@
 			background-color: rgba(26, 8, 87, 0.551);
 			color: white;
 		}
+		
 	</style>
 @endsection
 
@@ -32,7 +33,7 @@
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
-						<li><a href="/admin/report"><span>Reports</span></a></li>
+						<li><a href="#"><span>Reports</span></a></li>
 						<li class="active"><span>Comopanywise</span></li>
 					  </ol>
 					</div>
@@ -55,21 +56,40 @@
 							<div class="panel-wrapper collapse in">
 								<div class="panel-body">
 									<div class="table-wrap">
-										<div class="table-responsive">
+										<div class="table-bordered">
 											<table id="example" class="table table-hover display  pb-30" >
 												<caption class="report-header">
-													<div class="report-caption">Companywise Summary Report</div>
-													<span class="report-title">Company Name: {{$company->company_name}} <br>
-														
-													Report Duration: 01-01-2025 to 31-01-2025
+													<div class="report-caption">স্কয়ার টয়লেট্রিজ</div>
+													<div>চলমান প্রতিবেদন</div>
+													<span class="report-title"><br>
+														তাং -- হতে -- তারিখ পর্যন্ত  
 													</span>
 												</caption>
 												<thead>
 													<tr>
-                                                        <th>ID</th>
+                                                        <th>ক্রমিক নং</th>
+														<th>সেন্টার</th>
+														<th class="colwidth">আই এমএস টার্গেট</th>
+														<th class="colwidth">কালেকশন টার্গেট (৯৫%)</th>
+														<th class="colwidth">প্রতিদিনের বিক্রয় টার্গেট</th>
+														<th>এ পর্যন্ত বিক্রি</th>
+														<th>কালেকশন</th>
+														<th>স্কয়ার কোডে ব্যাংকে জমা</th>
+														<th>পার্থক্য (কালেকশন টার্গেট বনাম ব্যাংকে জমা)</th>
+														<th>বাকীর পরিমাণ মাসের শুরুতে ()</th>
+														<th>বাকীর পরিমাণ মাসের শেষে ()</th>
+														<th>গোডাউন স্টক</th>
+														<th>লেজার ডিউ</th>
+														
+													</tr>
+												</thead>
+												<tfoot>
+													<tr>
+														<th>ID</th>
 														<th>Center</th>
 														<th>IMS Target</th>
-														<th>Collection Target</th>
+														<th>Collection Target (95%)</th>
+														<th>Everyday Selling Target</th>
 														<th>Sales upto</th>
 														<th>Collection</th>
 														<th>Deposit to Bank</th>
@@ -80,23 +100,6 @@
 														<th>Ledger Due</th>
 														
 													</tr>
-												</thead>
-												<tfoot>
-													<tr>
-														<th>ID</th>
-														<th>Center</th>
-														<th>IMS Target (100%)</th>
-														<th>Collection Target (95%)</th>
-														<th>Sales upto</th>
-														<th>Collection</th>
-														<th>Deposit to Bank</th>
-														<th>Depost VS Collection</th>
-														<th>Due Begning Month</th>
-														<th>Due Endof Month</th>
-														<th>Godown Stock</th>
-														<th>Ledger View</th>
-														
-													</tr>
 												</tfoot>
 												<tbody>
 													@foreach($items as $item) 
@@ -104,33 +107,14 @@
 														<td>{{$loop->iteration}}</td>
 														<td>{{$item->point_name}}</td>
 														<td>{{number_format($item->ims_target, 0)}}</td>
-														<td>
-															{{
-															
-															number_format($item->ims_target * $item->collection_target/100, 0)
-														}}
-														</td>
-														<td>{{$item->sales_amount}}</td>
-														<td>{{$item->collection_amount}}</td>
-														<td>{{$item->deposit_amount}}
-
-                                                        <div class="well">
-                                                            <ul>
-                                                            @foreach($payments as $payment)    
-                                                                <li>{{$payment->payment_amount}}</li>
-                                                            @endforeach
-                                                            </ul>
-                                                        </div>
-                                                        </td>
-                                                        
-														<td>
-															{{
-																$item->ims_target *									($item->collection_target /100) - $item->deposit_amount
-															}}
-														
-														</td>
+														<td>{{number_format($item->ims_target * $item->collection_target/100, 0)}}</td>
+														<td>{{number_format($item->ims_target / $item->working_days, 0)}}</td>
+														<td>{{number_format($item->sales_amount, 0)}}</td>
+														<td>{{number_format($item->collection_amount,0)}}</td>
+														<td>{{number_format($item->deposit_amount, 0)}}</td>
+														<td>{{number_format($item->collection_target - $item->deposit_amount, 0)}}</td>
 														<td>{{$item->startMonthdue}}</td>
-														<td>{{$item->endMonthdue}}</td>
+														<td>{{$item->startMonthdue - $item->sales_amount }}</td>
 														<td>{{$item->godownstock}}</td>
 														<td>{{$item->ledgerDue}}</td>
 														
@@ -154,7 +138,21 @@
     @parent
 	<script>
 		$(document).ready(function () {
-			$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
+			
+			$(".sorting").css({"background-color": "#ccc", "font-size": "130%", "width": "10px", "height": "100px"});
+			$(".sorting_asc").css({"background-color": "#eed", "font-size": "130%", "width": "10px"});
+			$("td").css({"background-color": "#fff", "font-size": "130%", "width": "10px"});
+			
+			
 		});
+	</script>
+
+	<script>
+		
+	$(document).ready(function () {
+		$("tr.odd").css({'background-color':'rgba(31, 53, 9, 0.27)', 'font-size':'18px', 'color':'rgb(12, 72, 187)'});
+		$("tr.even").css({'background-color':'rgba(31, 35, 9, 0.27)', 'font-size':'18px', 'color':'rgb(12, 72, 187)'});
+	});
+
 	</script>
 @endsection

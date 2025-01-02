@@ -32,7 +32,7 @@
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
-						<li><a href="#"><span>Reports</span></a></li>
+						<li><a href="/admin/report"><span>Reports</span></a></li>
 						<li class="active"><span>Comopanywise</span></li>
 					  </ol>
 					</div>
@@ -58,9 +58,10 @@
 										<div class="table-responsive">
 											<table id="example" class="table table-hover display  pb-30" >
 												<caption class="report-header">
-													<div class="report-caption">Companywise Monthly Report</div>
-													<span class="report-title">Company Name: SQUARE <br>
-														Duration: 1-12-2024 to 31-12-2024
+													<div class="report-caption">Companywise Summary Report</div>
+													<span class="report-title">Company Name: {{$company->company_name}} <br>
+														
+													Report Duration: 01-01-2025 to 31-01-2025
 													</span>
 												</caption>
 												<thead>
@@ -76,7 +77,7 @@
 														<th>Due Begning Month</th>
 														<th>Due Endof Month</th>
 														<th>Godown Stock</th>
-														<th>Ledger View</th>
+														<th>Ledger Due</th>
 														
 													</tr>
 												</thead>
@@ -102,16 +103,26 @@
                                                     	<tr>
 														<td>{{$loop->iteration}}</td>
 														<td>{{$item->point_name}}</td>
-														<td>{{$item->ims_target}}</td>
-														<td>{{$item->collection_target}}</td>
+														<td>{{number_format($item->ims_target, 0)}}</td>
+														<td>
+															{{
+															
+															number_format($item->ims_target * $item->collection_target/100, 0)
+														}}
+														</td>
 														<td>{{$item->sales_amount}}</td>
 														<td>{{$item->collection_amount}}</td>
 														<td>{{$item->deposit_amount}}</td>
-														<td>{{$item->collection_target - $item->deposit_amount}}</td>
+														<td>
+															{{
+																$item->ims_target *									($item->collection_target /100) - $item->deposit_amount
+															}}
+														
+														</td>
 														<td>{{$item->startMonthdue}}</td>
 														<td>{{$item->endMonthdue}}</td>
 														<td>{{$item->godownstock}}</td>
-														<td>{{$item->ledgerView}}</td>
+														<td>{{$item->ledgerDue}}</td>
 														
 													</tr>
 													@endforeach
@@ -131,4 +142,9 @@
 
 @section('scripts')
     @parent
+	<script>
+		$(document).ready(function () {
+			$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
+		});
+	</script>
 @endsection
