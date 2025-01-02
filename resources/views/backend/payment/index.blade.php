@@ -107,11 +107,8 @@
 @section('scripts')
     @parent
 	<script>
-		
 		$(document).ready(function () {
-			$("tr.odd").css({'background-color':'rgba(31, 53, 9, 0.27)', 'font-size':'18px', 'color':'rgb(12, 72, 187)'});
-			$("tr.even").css({'background-color':'rgba(31, 35, 9, 0.27)', 'font-size':'18px', 'color':'rgb(12, 72, 187)'});
+			$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
 		});
-	
 	</script>
 @endsection

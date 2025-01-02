@@ -56,7 +56,7 @@
 								<div class="panel-body">
 									<div class="table-wrap">
 										<div class="table-responsive">
-											<table id="example" class="table table-hover display  pb-30" >
+											<table id="example" class="table table-bordered display  pb-30" >
 												<caption class="report-header">
 													<div class="report-caption">Companywise Summary Report</div>
 													<span class="report-title">Company Name: {{$company->company_name}} <br>
@@ -70,8 +70,10 @@
 														<th>Center</th>
 														<th>IMS Target</th>
 														<th>Collection Target</th>
-														<th>Sales upto</th>
-														<th>Collection</th>
+														<th>Daily IMS Target</th>
+														<th class="green">Sales As per Target</th>
+														<th class="green">Sales upto</th>
+														<th class="green">Collection upto</th>
 														<th>Deposit to Bank</th>
 														<th>Depost VS Collection</th>
 														<th>Due Begning Month</th>
@@ -87,8 +89,10 @@
 														<th>Center</th>
 														<th>IMS Target (100%)</th>
 														<th>Collection Target (95%)</th>
-														<th>Sales upto</th>
-														<th>Collection</th>
+														<th>Daily IMS Target</th>
+														<th class="green">Sales As per Target</th>
+														<th class="green">Sales upto</th>
+														<th class="green">Collection upto</th>
 														<th>Deposit to Bank</th>
 														<th>Depost VS Collection</th>
 														<th>Due Begning Month</th>
@@ -105,25 +109,24 @@
 														<td>{{$item->point_name}}</td>
 														<td>{{number_format($item->ims_target, 0)}}</td>
 														<td>
-															{{
-															
-															number_format($item->ims_target * $item->collection_target/100, 0)
+															{{number_format($item->ims_target * $item->collection_target/100, 0)
 														}}
 														</td>
-														<td>{{$item->sales_amount}}</td>
-														<td>{{$item->collection_amount}}</td>
+														<td>{{number_format($item->ims_target/$item->working_days, 0)}}</td>
+														<td class="green">{{$item->sales_amount}}</td>
+														<td class="green">{{$item->sales_amount}}</td>
+														<td class="green">{{$item->collection_amount}}</td>
 														<td>{{$item->deposit_amount}}</td>
 														<td>
 															{{
-																$item->ims_target *									($item->collection_target /100) - $item->deposit_amount
+																$item->ims_target *	($item->collection_target /100) - $item->deposit_amount
 															}}
-														
 														</td>
 														<td>{{$item->startMonthdue}}</td>
 														<td>{{
 															$item->sales_amount - $item->collection_amount 
-															
-															}}</td>
+															}}
+														</td>
 														<td>{{$item->godownstock}}</td>
 														<td>{{$item->ledgerDue}}</td>
 														
@@ -148,6 +151,7 @@
 	<script>
 		$(document).ready(function () {
 			$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
+			$("td.green, th.green").css({'background-color':'#4bed4d', 'font-size':'14px', 'color':'blue'});
 		});
 	</script>
 @endsection

@@ -16,7 +16,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $items = Employee::orderBy('id', 'desc')->get();
+        $items = Employee::orderBy('id', 'desc')->with('point')->get();
         return view('backend.employee.index', compact('items'));
     }
 
@@ -127,14 +127,9 @@ class EmployeeController extends Controller
                 'designation' => 'required',
                 'joining_date' => 'required',
                 'contact_number' => 'required | min:11',
-                'contact_email' => 'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:100',
-                'unique:' . Employee::class,
-                'photo' => 'nullable|image|mimes:jpg,jpeg,png',
-                'nid' => 'nullable|file|mimes:jpg,jpeg,png,pdf',
+                'contact_email' => 'nullable',
+                'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
+                'nid' => 'nullable|file|mimes:jpg,jpeg,png',
                 'resume' => 'nullable|file|mimes:pdf',
                 'password' => 'nullable|min:6|confirmed',
                 'point' => 'required',

@@ -22,33 +22,36 @@ class ReportController extends Controller
 
     public function report1(Request $request)
     {
-       $company = Company::find($request->company);
-       $month = $request->month;
+        $company = Company::find($request->company);
+        $month = $request->month;
+        $year = $request->year;
         $items = DB::table('sales_payments_stocks')
             ->join('points', 'points.id', '=', 'sales_payments_stocks.point_id')
             ->where('company_id', $company->id)
             ->whereMonth('start_date', $month)
+            ->whereYear('start_date', $year)
             ->get();
-        
+
         return view('backend.reports.report1', compact('items', 'company'));
     }
 
     public function report2(Request $request)
     {
-       $company = Company::find($request->company);
-       $month = $request->month;
-       $year = "2025";
-       $items = DB::table('sales_payments_stocks')
+        $company = Company::find($request->company);
+        $month = $request->month;
+        $year = $request->year;
+        $items = DB::table('sales_payments_stocks')
             ->join('points', 'points.id', '=', 'sales_payments_stocks.point_id')
             ->where('company_id', $company->id)
             ->whereMonth('start_date', $month)
+            ->whereYear('start_date', $year)
             ->get();
 
-        $payments = DB::table('payments')            
+        $payments = DB::table('payments')
             ->whereMonth('payment_date', $month)
             ->whereYear('payment_date', $year)
             ->get();
-        
+
         return view('backend.reports.report2', compact('items', 'company', 'payments'));
     }
 

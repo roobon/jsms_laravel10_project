@@ -52,6 +52,7 @@
 														<th>Target Month</th>
 														<th>IMS Target</th>
 														<th>Collection Target</th>
+														<th>Daily Sales Target</th>
 														<th style="width: 10%;" class="text-center">Action</th>
 													</tr>
 												</thead>
@@ -63,6 +64,7 @@
 														<th>Target Month</th>
 														<th>IMS Target</th>
 														<th>Collection Target</th>
+														<th>Daily Sales Target</th>
 														<th style="width: 10%;" class="text-center">Action</th>
 													</tr>
 												</tfoot>
@@ -76,6 +78,7 @@
 														<td>{{$carbon::parse($item->start_date)->format('M-Y')}}</td>
 														<td>Tk {{number_format($item->ims_target, 2)}}</td>
 														<td>Tk {{number_format($item->ims_target * $item->collection_target /100, 2)}} ({{$item->collection_target}}%)</td>
+														<td>Tk {{number_format($item->ims_target/$item->working_days, 2)}}</td>
 														<td style="width: 15%;" class="text-center">
 														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('target.destroy', $item->id)}}" method="post">
 														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('target.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	

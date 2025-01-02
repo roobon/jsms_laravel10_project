@@ -97,4 +97,9 @@
 
 @section('scripts')
     @parent
+	<script>
+		$(document).ready(function () {
+			$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
+		});
+	</script>
 @endsection

@@ -50,8 +50,8 @@
                                                         <th>ID</th>
 														<th>Employee Name</th>
 														<th>Designation</th>
-														<th>Email</th>
 														<th>Phone</th>
+														<th>Center</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</thead>
@@ -60,8 +60,8 @@
 														<th>ID</th>
 														<th>Employee Name</th>
 														<th>Designation</th>
-														<th>Email</th>
 														<th>Phone</th>
+														<th>Center</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</tfoot>
@@ -71,8 +71,8 @@
 														<td>{{$loop->iteration}}</td>
 														<td>{{$item->name}}</td>
 														<td>{{$item->designation}}</td>
-														<td>{{$item->contact_email }}</td>
 														<td>{{$item->contact_number}}</td>
+														<td>{{$item->point->point_name }}</td>
 														<td style="width: 15%;" class="text-center">
 														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('employee.destroy', $item->id)}}" method="post">
 														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('employee.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
@@ -102,4 +102,9 @@
 
 @section('scripts')
     @parent
+	<script>
+		$(document).ready(function () {
+			$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
+		});
+	</script>
 @endsection
