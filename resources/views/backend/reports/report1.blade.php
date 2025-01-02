@@ -120,7 +120,10 @@
 														
 														</td>
 														<td>{{$item->startMonthdue}}</td>
-														<td>{{$item->endMonthdue}}</td>
+														<td>{{
+															$item->sales_amount - $item->collection_amount 
+															
+															}}</td>
 														<td>{{$item->godownstock}}</td>
 														<td>{{$item->ledgerDue}}</td>
 														
