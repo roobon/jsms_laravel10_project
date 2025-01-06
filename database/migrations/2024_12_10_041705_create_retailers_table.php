@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('contact_number', 20);
             $table->string('contact_email', 50)->nullable();
             $table->date('business_starts');
-            $table->date('last_business');
-            $table->decimal('last_balance', total: 10, places: 2)->default(0);
             $table->integer('point_id');
             $table->integer('employee_id');
             $table->enum('status', ['active', 'inactive']);
