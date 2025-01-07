@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('company_id');
             $table->integer('employee_id');
             $table->string('payment_note', 100)->nullable();
-            $table->string('cheque_voucher_photo');
+            $table->string('cheque_voucher_photo')->nullable();
             $table->timestamps();
         });
     }

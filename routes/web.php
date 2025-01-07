@@ -17,6 +17,7 @@ use App\Http\Controllers\backend\TargetController;
 use App\Http\Controllers\frontend\AppointmentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\backend\StockController;
+use App\Http\Controllers\SmsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,10 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('frontend.about');
 });
+
+Route::get('/sms', [SmsController::class, 'sms_send']);
+
+
 Route::get('/appointment', [AppointmentController::class, 'create'])->name('appointment.create');
 Route::post('/appointment', [AppointmentController::class, 'store'])->name('appointment.store');
 // Admin Dashboard
@@ -90,6 +95,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::get('/report', [ReportController::class, 'index']);
     Route::get('/report1', [ReportController::class, 'report1'])->name('report1');
     Route::get('/report2', [ReportController::class, 'report2'])->name('report2');
+
     // Route::get('/report/{id}', [ReportController::class, 'companyReport'])->name('compRR');
     // Route::get('/report/{id}', [ReportController::class, 'retailerReport']);
 });

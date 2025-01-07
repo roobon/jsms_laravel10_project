@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('point_id');
             $table->integer('company_id');
             $table->integer('employee_id');
+            $table->string('launching_photo')->nullable();
             $table->timestamps();
         });
     }
