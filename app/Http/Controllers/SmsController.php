@@ -9,9 +9,9 @@ class SmsController extends Controller
     function sms_send()
     {
         $url = "http://bulksmsbd.net/api/smsapi";
-        $api_key = "KKw51qW5MqPXXDSeCvqQ";
-        $senderid = "8809617623739";
-        $number = "8801552586720,8801552353713";
+        $api_key = "";
+        $senderid = "";
+        $number = "";
         $message = "test sms check";
 
         $data = [
