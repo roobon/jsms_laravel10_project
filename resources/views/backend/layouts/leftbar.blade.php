@@ -5,6 +5,17 @@
 						
 					</li>
 					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#targlist"><i class="icon-fire mr-10"></i>Business<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="targlist" class="collapse collapse-level-1">
+							<li>
+								<a href="{{route('target.index')}}">Business List</a>
+							</li>
+							<li>
+								<a href="{{route('target.create')}}">New Business Launching</a>
+							</li>	
+						</ul>
+					</li>
+					<li>
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#targlist"><i class="icon-eyeglass mr-10"></i>Monthly Targets<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="targlist" class="collapse collapse-level-1">
 							<li>
@@ -69,9 +80,10 @@
 							</li>
 							<li>
 								<a href="{{route('dues.create')}}">New Collection</a>
-							</li>	
+							</li>
+							
 						</ul>
-					</li>					
+					</li>				
 					<li>
 						<a href="{{url('admin/report/')}}"><i class="icon-notebook mr-10"></i>Reports<span class="pull-right"></span></a>
 						<!-- <ul id="reptlist" class="collapse collapse-level-1">
