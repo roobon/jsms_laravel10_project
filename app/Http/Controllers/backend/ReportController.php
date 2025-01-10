@@ -47,10 +47,10 @@ class ReportController extends Controller
             ->whereYear('start_date', $year)
             ->get();
 
-        $payments = DB::table('payments')
-            ->whereMonth('payment_date', $month)
-            ->whereYear('payment_date', $year)
-            ->get();
+        // $payments = DB::table('payments')
+        //     ->whereMonth('payment_date', $month)
+        //     ->whereYear('payment_date', $year)
+        //     ->get();
 
         return view('backend.reports.report2', compact('items', 'company', 'payments'));
     }
