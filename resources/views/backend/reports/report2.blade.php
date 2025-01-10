@@ -54,88 +54,63 @@
 							</div>
 							<div class="panel-wrapper collapse in">
 								<div class="panel-body">
-									<div class="table-wrap">
+									<p class="text-muted">Create style tables by wrapping any table with class <code>table  table-striped table-bordered</code> in <code>color-bg-table</code> class.</p>
+									
+									<div class="table-wrap mt-40">
 										<div class="table-responsive">
-											<table id="example" class="table table-hover display  pb-30" >
-												<caption class="report-header">
-													<div class="report-caption">Companywise Summary Report</div>
-													<span class="report-title">Company Name: {{$company->company_name}} <br>
-														
-													Report Duration: 01-01-2025 to 31-01-2025
-													</span>
-												</caption>
+											<table class="table table-striped table-bordered mb-0">
 												<thead>
-													<tr>
-                                                        <th>ID</th>
-														<th>Center</th>
-														<th>IMS Target</th>
-														<th>Collection Target</th>
-														<th>Sales upto</th>
-														<th>Collection</th>
-														<th>Deposit to Bank</th>
-														<th>Depost VS Collection</th>
-														<th>Due Begning Month</th>
-														<th>Due Endof Month</th>
-														<th>Godown Stock</th>
-														<th>Ledger Due</th>
-														
-													</tr>
+												  <tr>
+													<th>#</th>
+													<th>Total Security Money (Tk)</th>
+													<th>Last Name</th>
+													<th>Username</th>
+													<th>Role</th>
+												  </tr>
 												</thead>
-												<tfoot>
-													<tr>
-														<th>ID</th>
-														<th>Center</th>
-														<th>IMS Target (100%)</th>
-														<th>Collection Target (95%)</th>
-														<th>Sales upto</th>
-														<th>Collection</th>
-														<th>Deposit to Bank</th>
-														<th>Depost VS Collection</th>
-														<th>Due Begning Month</th>
-														<th>Due Endof Month</th>
-														<th>Godown Stock</th>
-														<th>Ledger View</th>
-														
-													</tr>
-												</tfoot>
 												<tbody>
-													@foreach($items as $item) 
-                                                    	<tr>
-														<td>{{$loop->iteration}}</td>
-														<td>{{$item->point_name}}</td>
-														<td>{{number_format($item->ims_target, 0)}}</td>
-														<td>
-															{{
-															
-															number_format($item->ims_target * $item->collection_target/100, 0)
-														}}
-														</td>
-														<td>{{$item->sales_amount}}</td>
-														<td>{{$item->collection_amount}}</td>
-														<td>{{$item->deposit_amount}}
-
-                                                        <div class="well">
-                                                            <ul>
-                                                            @foreach($payments as $payment)    
-                                                                <li>{{$payment->payment_amount}}</li>
-                                                            @endforeach
-                                                            </ul>
-                                                        </div>
-                                                        </td>
-                                                        
-														<td>
-															{{
-																$item->ims_target *									($item->collection_target /100) - $item->deposit_amount
-															}}
-														
-														</td>
-														<td>{{$item->startMonthdue}}</td>
-														<td>{{$item->endMonthdue}}</td>
-														<td>{{$item->godownstock}}</td>
-														<td>{{$item->ledgerDue}}</td>
-														
-													</tr>
-													@endforeach
+												  <tr>
+													<td>1</td>
+													<td>Jens</td>
+													<td>Brincker</td>
+													<td>Brincker123</td>
+													<td><span class="label label-danger">admin</span> </td>
+												  </tr>
+												  <tr>
+													<td>2</td>
+													<td>Mark</td>
+													<td>Hay</td>
+													<td>Hay123</td>
+													<td><span class="label label-info">member</span> </td>
+												  </tr>
+												  <tr>
+													<td>3</td>
+													<td>Anthony</td>
+													<td>Davie</td>
+													<td>Davie123</td>
+													<td><span class="label label-warning">developer</span> </td>
+												  </tr>
+												  <tr>
+													<td>4</td>
+													<td>David</td>
+													<td>Perry</td>
+													<td>Perry123</td>
+													<td><span class="label label-success">supporter</span> </td>
+												  </tr>
+												  <tr>
+													<td>5</td>
+													<td>Anthony</td>
+													<td>Davie</td>
+													<td>Davie123</td>
+													<td><span class="label label-info">member</span> </td>
+												  </tr>
+												  <tr>
+													<td>6</td>
+													<td>Alan</td>
+													<td>Gilchrist</td>
+													<td>Gilchrist123</td>
+													<td><span class="label label-success">supporter</span> </td>
+												  </tr>
 												</tbody>
 											</table>
 										</div>
@@ -153,8 +128,8 @@
 @section('scripts')
     @parent
 	<script>
-		$(document).ready(function () {
-			$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
-		});
+		//$(document).ready(function () {
+		//	$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
+		//});
 	</script>
 @endsection

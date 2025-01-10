@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\BusinessLaunch;
 use App\Models\Company;
 use App\Models\Point;
 use App\Models\Target;
@@ -30,7 +31,8 @@ class TargetController extends Controller
     {
         $points = Point::orderBy('id')->get();
         $companies = Company::orderBy('id')->get();
-        return view('backend.target.create', compact('points', 'companies'));
+        $businesses = BusinessLaunch::orderBy('id')->get();
+        return view('backend.target.create', compact('points', 'companies', 'businesses'));
     }
 
     /**
@@ -46,7 +48,8 @@ class TargetController extends Controller
                 'collection_target' => 'required',
                 'working_days' => 'required',
                 'point' => 'required',
-                'company' => 'required'
+                'company' => 'required',
+                'business' => 'required'
 
             ],
 
@@ -61,6 +64,7 @@ class TargetController extends Controller
         $target->working_days = $request->working_days;
         $target->point_id = $request->point;
         $target->company_id = $request->company;
+        $target->business_id = $request->business;
 
 
         $row = DB::table('targets')
@@ -74,17 +78,41 @@ class TargetController extends Controller
             return back()->with('error', "Sorry, Target Entry Already Exist")->withInput();
         } else {
             $target->save();
-            DB::table('sales_payments_stocks')->insert([
+            $business = BusinessLaunch::find($request->business);
+            DB::table('opening_closing')->insert([
 
-                'ims_target' =>         $request->ims_target,
-                'collection_target' =>  $request->collection_target,
-                'start_date' =>         $request->start_date,
-                'end_date' =>           $request->end_date,
-                'working_days' =>       $request->working_days,
-                'point_id' =>           $request->point,
-                'company_id' =>         $request->company,
-                'target_id' =>          $target->id
+                'security_money' =>  $business->security_money,
+                'investment_amount' =>  0,
+                'bank_deposit_amount' =>  0,
+                'product_received_amount' => 0,
+                'slab_received_amount' =>   0,
+                'insentive_received_amount' => 0,
+                'sales_amount' =>  0,
+                'collection_amount' => 0,
+                'due_amount' => 0,
+                'due_realize_amount' => 0,
+                'total_due_amount' => 0,
+                'ho_deposit_amount' => 0,
+                'month' => 'January',
+                'year' => 2025,
+                'point_id' => $request->point,
+                'company_id' => $request->company,
+                'business_id' => $request->business,
+                'period' => 'opening',
+                'status' => 'ended',
+
             ]);
+            // DB::table('opening_clossing')->insert([
+
+            //     'ims_target' =>         $request->ims_target,
+            //     'collection_target' =>  $request->collection_target,
+            //     'start_date' =>         $request->start_date,
+            //     'end_date' =>           $request->end_date,
+            //     'working_days' =>       $request->working_days,
+            //     'point_id' =>           $request->point,
+            //     'company_id' =>         $request->company,
+            //     'target_id' =>          $target->id
+            // ]);
         }
 
         return redirect()->route('target.index')->with('msg', "Successfully Target Created");

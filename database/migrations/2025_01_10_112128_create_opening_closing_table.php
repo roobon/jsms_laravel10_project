@@ -29,6 +29,7 @@ return new class extends Migration
             $table->year('year');
             $table->integer('point_id');
             $table->integer('company_id');
+            $table->integer('business_id');
             $table->enum('period', ['opening', 'closing']);
             $table->enum('status', ['running', 'ended']);
             $table->timestamps();

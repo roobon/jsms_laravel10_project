@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('business_launch', function (Blueprint $table) {
             $table->id();
+            $table->string('business_name');
             $table->date('launch_date');
             $table->decimal('security_money', total: 12, places: 2)->default(0);
             $table->integer('point_id');

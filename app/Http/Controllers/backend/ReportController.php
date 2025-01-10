@@ -40,11 +40,11 @@ class ReportController extends Controller
         $company = Company::find($request->company);
         $month = $request->month;
         $year = $request->year;
-        $items = DB::table('sales_payments_stocks')
-            ->join('points', 'points.id', '=', 'sales_payments_stocks.point_id')
+        $items = DB::table('opening_closing')
+            ->join('points', 'points.id', '=', 'opening_closing.point_id')
             ->where('company_id', $company->id)
-            ->whereMonth('start_date', $month)
-            ->whereYear('start_date', $year)
+            ->where('month', $month)
+            ->where('year', $year)
             ->get();
 
         // $payments = DB::table('payments')
@@ -52,7 +52,7 @@ class ReportController extends Controller
         //     ->whereYear('payment_date', $year)
         //     ->get();
 
-        return view('backend.reports.report2', compact('items', 'company', 'payments'));
+        return view('backend.reports.report2', compact('items'));
     }
 
     public function report3(Request $request)

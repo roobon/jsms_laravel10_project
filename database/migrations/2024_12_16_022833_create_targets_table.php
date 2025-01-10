@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('working_days'); // to get daily target
             $table->integer('point_id');
             $table->integer('company_id');
+            $table->integer('business_id');
             $table->timestamps();
         });
     }

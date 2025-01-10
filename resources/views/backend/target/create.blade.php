@@ -55,6 +55,20 @@
 												<div class="form-wrap">
 													<form class="form-horizontal" method="post" action="{{route('target.store')}}">
 														@csrf
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Name*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<select name="business" class="form-control">
+																		<option value="">Select one</option>
+																		@foreach($businesses as $business)
+																		<option value="{{$business->id}}">{{$business->business_name}}</option>
+																		@endforeach
+																	</select>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
                                                         <div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Target for*</label>
 															<div class="col-sm-9">
