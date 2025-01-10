@@ -14,6 +14,11 @@ class Employee extends Model
         return $this->belongsTo(Point::class, 'point_id');
     }
 
+    public function business()
+    {
+        return $this->hasMany(BusinessLaunch::class);
+    }
+
     public function sales()
     {
         return $this->hasMany(Sales::class);

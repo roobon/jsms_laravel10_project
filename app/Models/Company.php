@@ -9,6 +9,11 @@ class Company extends Model
 {
     use HasFactory;
 
+    public function business()
+    {
+        return $this->hasMany(BusinessLaunch::class);
+    }
+
     public function target()
     {
         return $this->hasMany(Target::class);

@@ -3,16 +3,24 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\BusinessLaunch;
 use Illuminate\Http\Request;
 
-class BusinessLaunchingController extends Controller
+class BusinessLaunchController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $items = BusinessLaunch::orderBy('id', 'desc')->get();
+        return view('backend.business.index', compact('items'));
+    }
+
+    public function active()
+    {
+        $items = BusinessLaunch::orderBy('id', 'desc')->where('status', 'active')->get();
+        return view('backend.business.index', compact('items'));
     }
 
     /**

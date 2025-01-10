@@ -16,6 +16,11 @@ class Point extends Model
         return $this->hasMany(Employee::class);
     }
 
+    public function business()
+    {
+        return $this->hasMany(BusinessLaunch::class);
+    }
+
     public function sales()
     {
         return $this->hasMany(Sales::class);
