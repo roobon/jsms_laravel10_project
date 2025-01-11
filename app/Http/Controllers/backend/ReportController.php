@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Company;
 use App\Models\Investment;
 use App\Models\Payment;
-
-
-
+use App\Models\Stock;
 
 class ReportController extends Controller
 {
@@ -44,9 +42,15 @@ class ReportController extends Controller
         $month = $request->month;
         $year = $request->year;
         $investments = Investment::where('business_id', $request->business)->get();
+
         $payments = Payment::where('business_id', $request->business)
             ->whereMonth('payment_date', $month)
             ->whereYear('payment_date', $year)->get();
+
+        $stocks = Stock::where('business_id', $request->business)
+            ->whereMonth('received_date', $month)
+            ->whereYear('received_date', $year)->get();
+
 
         $items = DB::table('opening_closing')
             ->join('points', 'points.id', '=', 'opening_closing.point_id')
@@ -60,7 +64,7 @@ class ReportController extends Controller
         //     ->whereYear('payment_date', $year)
         //     ->get();
 
-        return view('backend.reports.report2', compact('items', 'investments', 'payments'));
+        return view('backend.reports.report2', compact('items', 'investments', 'payments', 'stocks'));
     }
 
 

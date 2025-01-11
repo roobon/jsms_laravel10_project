@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\BusinessLaunch;
+use App\Models\Business;
 use App\Models\Company;
 use App\Models\Point;
 use App\Models\Target;
@@ -31,7 +31,7 @@ class TargetController extends Controller
     {
         $points = Point::orderBy('id')->get();
         $companies = Company::orderBy('id')->get();
-        $businesses = BusinessLaunch::orderBy('id')->get();
+        $businesses = Business::orderBy('id')->get();
         return view('backend.target.create', compact('points', 'companies', 'businesses'));
     }
 
@@ -78,7 +78,7 @@ class TargetController extends Controller
             return back()->with('error', "Sorry, Target Entry Already Exist")->withInput();
         } else {
             $target->save();
-            $business = BusinessLaunch::find($request->business);
+            $business = Business::find($request->business);
             DB::table('opening_closing')->insert([
 
                 'security_money' =>  $business->security_money,
@@ -93,7 +93,7 @@ class TargetController extends Controller
                 'due_realize_amount' => 0,
                 'total_due_amount' => 0,
                 'ho_deposit_amount' => 0,
-                'month' => 'January',
+                'month' => 1,
                 'year' => 2025,
                 'point_id' => $request->point,
                 'company_id' => $request->company,

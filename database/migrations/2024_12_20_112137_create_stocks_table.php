@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('product_amount', total: 10, places: 2);
             $table->integer('company_id');
             $table->integer('point_id');
+            $table->integer('business_id');
             $table->date('received_date');
             $table->string('invoice_photo');
             $table->integer('employee_id'); // Received by

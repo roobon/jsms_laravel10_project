@@ -58,7 +58,7 @@
 									
 									<div class="table-wrap mt-40">
 										<div class="table-responsive">
-											<table class="table table-striped table-bordered mb-0">
+											<table class="table table-striped table-bordered">
 												<thead>
 												  <tr>
 													<th rowspan="2">Date</th>
@@ -91,8 +91,8 @@
 												<tbody>
 												  @if($items)
 												  @foreach($items as $item)
-												  <tr>
-													<td>1</td>
+												  <tr class="top-row">
+													<td></td>
 													<td>{{number_format($item->security_money, 2)}}</td>
 													<td>Up to last Month</td>  {{--Investment Start --}}
 													<td>{{number_format($item->investment_amount, 2)}}</td> {{--Investment End --}}
@@ -123,7 +123,7 @@
 													<td></td>
 													<td></td>
 													@if(count($investments)>0 && count($items)>0)
-													<td colspan="2">
+													<td colspan="2" class="align-text-top">
 														<table class="table table-bordered mb-0">
 															@foreach($investments as $investment)
 															<tr><td>{{$investment->investment_date}}</td><td>{{$investment->investment_amount}}</td></tr>
@@ -136,7 +136,7 @@
 													<td></td>
 													@endif
 													@if(count($payments)>0 && count($items)>0)
-													<td colspan="2">
+													<td colspan="2" class="align-top">
 														<table class="table table-bordered mb-0" style="padding: 0; margin:0">
 															@foreach($payments as $payment)
 															<tr><td>{{$payment->payment_date}}</td><td>{{$payment->payment_amount}}</td></tr>
@@ -148,9 +148,23 @@
 													<td></td>
 													<td></td>
 													@endif
+													@if(count($stocks)>0 && count($items)>0)
+													<td colspan="3">
+														<table class="table table-bordered mb-0" style="padding: 0; margin:0">
+															@foreach($stocks as $stock)
+															<tr>
+																<td>{{$stock->received_date}}</td>
+																<td>{{$stock->invoice_number}}</td>
+																<td>{{$stock->product_amount}}</td>
+															</tr>
+															@endforeach
+														</table>
+													</td>
+													@else 
 													<td></td>
 													<td></td>
 													<td></td>
+													@endif
 													<td></td>
 													<td></td>
 													<td></td>
@@ -180,8 +194,12 @@
 @section('scripts')
     @parent
 	<script>
-		//$(document).ready(function () {
+		$(document).ready(function () {
+			$("table td").css({'vertical-align':'top'});
+			$("td").css({'padding':'12px'});
+			//$("thead").css({'background-color':'rgba(153, 177, 191, 0.55)', 'color':'white'});
+			$(".top-row").css({'background-color':'rgba(130, 55, 172, 0.55)', 'color':'white'});
 		//	$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
-		//});
+		});
 	</script>
 @endsection
