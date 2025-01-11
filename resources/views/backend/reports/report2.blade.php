@@ -16,7 +16,7 @@
 @endsection
 
 @section('title')
-	Company wise Monthly Report
+	Business wise Monthly Report
 @endsection
 
 @section('content')
@@ -26,7 +26,7 @@
 				<div class="row heading-bg bg-blue">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
-					<h5 class="txt-light">Companywise Monthly Report</h5>
+					<h5 class="txt-light">Business wise Monthly Report</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
@@ -54,62 +54,114 @@
 							</div>
 							<div class="panel-wrapper collapse in">
 								<div class="panel-body">
-									<p class="text-muted">Create style tables by wrapping any table with class <code>table  table-striped table-bordered</code> in <code>color-bg-table</code> class.</p>
+									<p class="text-muted">Jahanara Traders</p>
 									
 									<div class="table-wrap mt-40">
 										<div class="table-responsive">
 											<table class="table table-striped table-bordered mb-0">
 												<thead>
 												  <tr>
-													<th>#</th>
-													<th>Total Security Money (Tk)</th>
-													<th>Last Name</th>
-													<th>Username</th>
-													<th>Role</th>
+													<th rowspan="2">Date</th>
+													<th rowspan="2" class="text-center">Total Security Money (Tk.)</th>
+													<th colspan="2" class="text-center">Investment</th>
+													<th colspan="2" class="text-center">Bank Deposit to SQUARE</th>
+													<th colspan="6" class="text-center">Product Received from SQUARE</th>
+													<th rowspan="2" class="text-center">Insentive Received (Tk.)</th>
+													<th rowspan="2" class="text-center">Delivery Date</th>
+													<th rowspan="2" class="text-center">Total Sale (Tk.)</th>
+													<th rowspan="2" class="text-center">Deposit to Office (Tk.)</th>
+													<th rowspan="2" class="text-center">Due (Tk.)</th>
+													<th rowspan="2" class="text-center">Due Realization (Tk.)</th>
+													<th rowspan="2" class="text-center">Total Due (Tk.)</th>
+													<th rowspan="2" class="text-center">Deposit to HO (Tk.)</th>
+												  </tr>
+												  <tr>
+													<th>Date</th>
+													<th>Amount in Tk.</th>
+													<th>Date</th>
+													<th>Amount in Tk.</th>
+													<th>Date</th>
+													<th>Invoice No.</th>
+													<th>Amount in Tk.</th>
+													<th>Slab (Tk.)</th>
+													<th>VAT Adjustment</th>
+													<th>Market Promotion (Tk.)</th>
 												  </tr>
 												</thead>
 												<tbody>
+												  @if($items)
+												  @foreach($items as $item)
 												  <tr>
 													<td>1</td>
-													<td>Jens</td>
-													<td>Brincker</td>
-													<td>Brincker123</td>
-													<td><span class="label label-danger">admin</span> </td>
+													<td>{{number_format($item->security_money, 2)}}</td>
+													<td>Up to last Month</td>  {{--Investment Start --}}
+													<td>{{number_format($item->investment_amount, 2)}}</td> {{--Investment End --}}
+													<td>Up to last Month</td>
+													<th>{{number_format($item->bank_deposit_amount, 2)}}</th>
+													<td>Up to last Month</td>
+													<th>N/A</th>
+													<th>{{number_format($item->product_received_amount, 2)}}</th>
+													<th>Will add</th>
+													<th>Will add</th>
+													<th>Will add</th>
+													<th>{{number_format($item->product_received_amount, 2)}}</th>
+													<td>Up to last Month</td>
+													<th>{{number_format($item->sales_amount, 2)}}</th>
+													<th>{{number_format($item->collection_amount, 2)}}</th>
+													<th>{{number_format($item->due_amount, 2)}}</th>
+													<th>{{number_format($item->due_realize_amount, 2)}}</th>
+													<th>{{number_format($item->total_due_amount, 2)}}</th>
+													<th>{{number_format($item->ho_deposit_amount, 2)}}</th>
 												  </tr>
+												  @endforeach
+												  @else
 												  <tr>
-													<td>2</td>
-													<td>Mark</td>
-													<td>Hay</td>
-													<td>Hay123</td>
-													<td><span class="label label-info">member</span> </td>
+													<th>No Data Found</th>
 												  </tr>
+												  @endif
 												  <tr>
-													<td>3</td>
-													<td>Anthony</td>
-													<td>Davie</td>
-													<td>Davie123</td>
-													<td><span class="label label-warning">developer</span> </td>
-												  </tr>
-												  <tr>
-													<td>4</td>
-													<td>David</td>
-													<td>Perry</td>
-													<td>Perry123</td>
-													<td><span class="label label-success">supporter</span> </td>
-												  </tr>
-												  <tr>
-													<td>5</td>
-													<td>Anthony</td>
-													<td>Davie</td>
-													<td>Davie123</td>
-													<td><span class="label label-info">member</span> </td>
-												  </tr>
-												  <tr>
-													<td>6</td>
-													<td>Alan</td>
-													<td>Gilchrist</td>
-													<td>Gilchrist123</td>
-													<td><span class="label label-success">supporter</span> </td>
+													<td></td>
+													<td></td>
+													@if(count($investments)>0 && count($items)>0)
+													<td colspan="2">
+														<table class="table table-bordered mb-0">
+															@foreach($investments as $investment)
+															<tr><td>{{$investment->investment_date}}</td><td>{{$investment->investment_amount}}</td></tr>
+															@endforeach
+														</table>
+													</td>
+
+													@else 
+													<td></td>
+													<td></td>
+													@endif
+													@if(count($payments)>0 && count($items)>0)
+													<td colspan="2">
+														<table class="table table-bordered mb-0" style="padding: 0; margin:0">
+															@foreach($payments as $payment)
+															<tr><td>{{$payment->payment_date}}</td><td>{{$payment->payment_amount}}</td></tr>
+															@endforeach
+														</table>
+													</td>
+
+													@else 
+													<td></td>
+													<td></td>
+													@endif
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
 												  </tr>
 												</tbody>
 											</table>

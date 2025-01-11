@@ -140,30 +140,30 @@
 										<div class="form-wrap">
 											<form class="form-inline" method="get" action="{{route('report2')}}">
 											   <div class="form-group mr-15">
-													<label class="control-label mr-10" for="email_inline">Company:</label>
-													<select name="company">
-																<option value="all">All Company</option>
-																@foreach($companies as $company)
-																<option value="{{$company->id}}">{{$company->company_name}}</option>
+													<label class="control-label mr-10" for="email_inline">Business:</label>
+													<select name="business">
+																<option value="all">All Business</option>
+																@foreach($businesses as $business)
+																<option value="{{$business->id}}">{{$business->business_name}}</option>
 																@endforeach
 															</select>
 											    </div>
 											    <div class="form-group mr-15">
 													<label class="control-label mr-10" for="pwd_inline">Month:</label>
 													<select name="month" id="">
-																<option value="">Select Month</option>
-																<option>January</option>
-																<option>February</option>
-																<option>March</option>
-																<option>April</option>
-																<option>May</option>
-																<option>June</option>
-																<option>July</option>
-																<option>August</option>
-																<option>September</option>
-																<option>October</option>
-																<option>November</option>
-																<option>December</option>
+														<option value="">Select Month</option>
+														<option value="1">January</option>
+														<option value="2">February</option>
+														<option value="3">March</option>
+														<option value="4">April</option>
+														<option value="5">May</option>
+														<option value="6">June</option>
+														<option value="7">July</option>
+														<option value="8">August</option>
+														<option value="9">September</option>
+														<option value="10">October</option>
+														<option value="11">November</option>
+														<option value="12">December</option>
 															</select>
 											    </div>
 												<div class="form-group mr-15">

@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('investments', function (Blueprint $table) {
+        Schema::create('businesses', function (Blueprint $table) {
             $table->id();
-            $table->decimal('investment_amount', total: 12, places: 2)->default(0);
-            $table->date('investment_date');
+            $table->string('business_name');
+            $table->date('launch_date');
+            $table->decimal('security_money', total: 12, places: 2)->default(0);
             $table->integer('point_id');
             $table->integer('company_id');
-            $table->integer('business_id');
             $table->integer('employee_id');
-            $table->string('investment_photo')->nullable();
+            $table->string('launch_photo')->nullable();
+            $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('investments');
+        Schema::dropIfExists('businesses');
     }
 };

@@ -11,7 +11,7 @@ class Company extends Model
 
     public function business()
     {
-        return $this->hasMany(BusinessLaunch::class);
+        return $this->hasMany(Business::class);
     }
 
     public function target()

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Company;
+use App\Models\Investment;
 use App\Models\Payment;
 
 
@@ -16,7 +18,8 @@ class ReportController extends Controller
     public function index()
     {
         $companies = DB::table('companies')->get();
-        return view('backend.reports.index', compact('companies'));
+        $businesses = DB::table('businesses')->get();
+        return view('backend.reports.index', compact('companies', 'businesses'));
     }
 
 
@@ -37,12 +40,17 @@ class ReportController extends Controller
 
     public function report2(Request $request)
     {
-        $company = Company::find($request->company);
+        $business = Business::find($request->business);
         $month = $request->month;
         $year = $request->year;
+        $investments = Investment::where('business_id', $request->business)->get();
+        $payments = Payment::where('business_id', $request->business)
+            ->whereMonth('payment_date', $month)
+            ->whereYear('payment_date', $year)->get();
+
         $items = DB::table('opening_closing')
             ->join('points', 'points.id', '=', 'opening_closing.point_id')
-            ->where('company_id', $company->id)
+            ->where('business_id', $business->id)
             ->where('month', $month)
             ->where('year', $year)
             ->get();
@@ -52,8 +60,11 @@ class ReportController extends Controller
         //     ->whereYear('payment_date', $year)
         //     ->get();
 
-        return view('backend.reports.report2', compact('items'));
+        return view('backend.reports.report2', compact('items', 'investments', 'payments'));
     }
+
+
+
 
     public function report3(Request $request)
     {

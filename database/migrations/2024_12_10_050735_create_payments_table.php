@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('point_id');
             $table->integer('company_id');
             $table->integer('employee_id');
+            $table->integer('business_id');
             $table->string('payment_note', 100)->nullable();
             $table->string('cheque_voucher_photo')->nullable();
             $table->timestamps();

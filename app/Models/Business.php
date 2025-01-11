@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BusinessLaunch extends Model
+class Business extends Model
 {
     use HasFactory;
-    protected $table = 'business_launch';
+    protected $table = 'businesses';
     protected $fillable = [
         'launch_date',
         'security_money',

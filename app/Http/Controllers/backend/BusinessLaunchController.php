@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\BusinessLaunch;
+use App\Models\Business;
 use Illuminate\Http\Request;
 
 class BusinessLaunchController extends Controller
@@ -13,13 +13,13 @@ class BusinessLaunchController extends Controller
      */
     public function index()
     {
-        $items = BusinessLaunch::orderBy('id', 'desc')->get();
+        $items = Business::orderBy('id', 'desc')->get();
         return view('backend.business.index', compact('items'));
     }
 
     public function active()
     {
-        $items = BusinessLaunch::orderBy('id', 'desc')->where('status', 'active')->get();
+        $items = Business::orderBy('id', 'desc')->where('status', 'active')->get();
         return view('backend.business.index', compact('items'));
     }
 
