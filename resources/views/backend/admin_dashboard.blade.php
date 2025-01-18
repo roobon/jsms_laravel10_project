@@ -73,7 +73,7 @@
 
 @endsection
 @section('title')
-	Jahanara SMS: Admin Dashboard
+	Jahanara Traders SMS: Admin Dashboard
 @endsection
 
 @section('content')
