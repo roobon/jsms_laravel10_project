@@ -57,24 +57,6 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Starts*</label>
-												<div class="col-sm-9">
-													<div class="input-group">
-														<input type="date" name="start_date" value="{{$company->business_starts ?? old('start_date') }}" class="form-control" id="exampleInputuname_4">
-														<div class="input-group-addon"></div>
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">Security Money*</label>
-												<div class="col-sm-9">
-													<div class="input-group">
-														<input type="text" name="security_money" value="{{$company->security_money ?? old('security_money') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter Security money">
-														<div class="input-group-addon"></div>
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
 												<label for="exampleInputEmail_4" class="col-sm-3 control-label">Address*</label>
 												<div class="col-sm-9">
 													<div class="input-group">
@@ -120,22 +102,15 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business</label>
+												<label for="exampleInputuname_4" class="col-sm-3 control-label">Company Photo</label>
 												<div class="col-sm-9">
 													<div class="input-group">
-														<input type="date" name="last_business" value="{{$company->last_business_date ?? old('last_business') }}" class="form-control" id="exampleInputuname_4">
+														<input type="file" name="photo" value="{{old('photo')}}" class="form-control" id="exampleInputuname_4">
 														<div class="input-group-addon"></div>
 													</div>
+													<img src="{{$company->photo? asset($company->photo):''}}" alt="" width="300">
 												</div>
-											</div>
-											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Balance</label>
-												<div class="col-sm-9">
-													<div class="input-group">
-														<input type="text" name="last_balance" value="{{$company->last_balance ?? old('last_balance') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter Last Balance">
-														<div class="input-group-addon"></div>
-													</div>
-												</div>
+												
 											</div>
 											<div class="form-group">
 												<label for="exampleInputuname_4" class="col-sm-3 control-label">Status</label>

@@ -33,32 +33,35 @@ class CompanyController extends Controller
         $request->validate(
             [
                 'company_name' => 'required | max:100 | min:5',
-                'start_date' => 'required',
-                'security_money' => 'required',
                 'address' => 'nullable|min:8',
                 'contact_person' => 'required|min:6',
                 'contact_number' => 'required|min:11',
                 'contact_email' => 'nullable|email',
                 'website' => 'nullable|url',
-                'last_business' => 'required',
-                'last_balance' => 'required',
+                'photo' => 'nullable|mimes:jpg,bmp,png|max:2048',
                 'status' => 'required',
             ],
 
         );
 
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'images/company/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $photo = $destinationPath . $postImage;
+        } else {
+            $photo = NULL;
+        }
+
         $company = new Company;
 
         $company->company_name = $request->company_name;
-        $company->business_starts = $request->start_date;
-        $company->security_money = $request->security_money;
         $company->company_address = $request->address;
         $company->contact_person = $request->contact_person;
         $company->contact_number = $request->contact_number;
         $company->contact_email  = $request->contact_email;
         $company->website = $request->website;
-        $company->last_business_date = $request->last_business;
-        $company->last_balance = $request->last_balance;
+        $company->photo = $photo;
         $company->status = $request->status;
 
         $company->save();
@@ -90,30 +93,33 @@ class CompanyController extends Controller
         $request->validate(
             [
                 'company_name' => 'required | max:100 | min:5',
-                'start_date' => 'required',
-                'security_money' => 'required',
                 'address' => 'nullable|min:8',
                 'contact_person' => 'required|min:6',
                 'contact_number' => 'required|min:11',
                 'contact_email' => 'nullable|email',
                 'website' => 'nullable|url',
-                'last_business' => 'required',
-                'last_balance' => 'required',
+                'photo' => 'nullable|mimes:jpg,bmp,png|max:2048',
                 'status' => 'required',
             ],
 
         );
 
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'images/company/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $photo = $destinationPath . $postImage;
+        } else {
+            $photo = $company->photo;
+        }
+
         $company->company_name = $request->company_name;
-        $company->business_starts = $request->start_date;
-        $company->security_money = $request->security_money;
         $company->company_address = $request->address;
         $company->contact_person = $request->contact_person;
         $company->contact_number = $request->contact_number;
         $company->contact_email  = $request->contact_email;
         $company->website = $request->website;
-        $company->last_business_date = $request->last_business;
-        $company->last_balance = $request->last_balance;
+        $company->photo = $photo;
         $company->status = $request->status;
 
         $company->update();

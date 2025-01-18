@@ -63,7 +63,7 @@
 										<div class="row">
 											<div class="col-sm-12 col-xs-12">
 												<div class="form-wrap">
-													<form class="form-horizontal" method="post" action="{{route('company.store')}}">
+													<form class="form-horizontal" method="post" action="{{route('company.store')}}" enctype="multipart/form-data">
 														@csrf
                                                         <div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Company Name*</label>
@@ -74,24 +74,8 @@
 																</div>
 															</div>
 														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Starts*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="date" name="start_date" value="{{old('start_date')}}" class="form-control" id="exampleInputuname_4">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Security Money*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="number" name="security_money" value="{{old('security_money')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Security money">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
+														
+														
 														<div class="form-group">
 															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Company Address</label>
 															<div class="col-sm-9">
@@ -138,23 +122,15 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business Date*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Company Photo</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="date" name="last_business" value="{{old('last_business')}}" class="form-control" id="exampleInputuname_4">
+																	<input type="file" name="photo" value="{{old('photo')}}" class="form-control" id="exampleInputuname_4">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
 														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Balance*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="number" name="last_balance" value="{{old('last_balance')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Last Balance">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
+													
 														<div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Status*</label>
 															<div class="col-sm-9">
