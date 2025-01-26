@@ -50,18 +50,21 @@
 												</div>
 												
 												<h4 class="mb-20">Business Info</h4>
-												<p class="mb-50">Point Establishment Date: {{$point->opening_date}} <br>											
+												<p class="mb-50">Center Establishment Date: {{$point->opening_date}} <br>											
 												</p>
 			
 												<h4 class="mb-20">Contact Info</h4>
+												@if(isset($employee[0]))
 												<p class="mb-50">Contact Person: {{$employee[0]->name ?? ''}} <br>
 													Designation: {{$employee[0]->designation ?? ''}} <br>
 												Mobile Number: {{$employee[0]->contact_number ?? ''}}
 												<br>
 												Email Address: {{$employee[0]->address ?? ''}}
 												</p>
-												
-												
+												@else
+												<p  class="mb-50">Manager not yet set for this center</p>
+												@endif
+												<br>
 												
 												<div class="btn-group mr-10">
 													<a href="{{route('points.index')}}" class="btn btn-success btn-anim"><i class="fa  fa-angle-double-left"></i><span class="btn-text">Back to points list</span></a>
