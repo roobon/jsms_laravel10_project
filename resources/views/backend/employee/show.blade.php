@@ -49,20 +49,24 @@
 												<div class="product-price head-font mb-30">{{$employee->address}} 
 												</div>
 												
-												<h4 class="mb-20">Business Info</h4>
-												<p class="mb-50">Business Starting Date: {{$employee->business_starts}} <br>
-												Last Business Date: {{$employee->last_business}} <br>	
-												Last Business Balance: {{$employee->last_balance}}	
+												<h4 class="mb-20">Employee Info</h4>
+												<p class="mb-50">
+												Designation: {{$employee->designation}} <br>
+												Joining Date: {{$employee->joining_date}} <br>	
+												Center Name: {{$employee->point->point_name}}  <br>	
+												Company Responsibility: {{$employee->company->company_name}}
 												
 												</p>
 			
-												<h4 class="mb-20">Contact Info</h4>
-												<p class="mb-50">Contact Person: {{$employee->contact_person}} <br>
+												<h4 class="mb-20">Personal Info</h4>
+												<p class="mb-50">
 												Mobile Number: {{$employee->contact_number}}
 												<br>
-												Email Address: {{$employee->contact_email}}
-												</p>
-												
+												Email Address: {{$employee->contact_email}} <br>
+												Date of Birth: {{$employee->dob}} <br>
+												NID: <br> <img src="{{asset($employee->nid)}}" width="500" alt="Natinal Identity"> <br>
+												<a href="{{asset($employee->resume)}}">Resume</a> 
+												</p>										
 												
 												
 												<div class="btn-group mr-10">

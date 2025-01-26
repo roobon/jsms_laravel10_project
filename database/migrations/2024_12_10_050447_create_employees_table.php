@@ -21,10 +21,11 @@ return new class extends Migration
             $table->string('contact_number', 20);
             $table->string('contact_email', 50)->nullable();
             $table->string('password')->nullable();
-            $table->string('photo');
-            $table->string('nid');
-            $table->string('resume');
+            $table->string('photo')->nullable();
+            $table->string('nid')->nullable();
+            $table->string('resume')->nullable();
             $table->integer('point_id');
+            $table->integer('company_id');
             $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });

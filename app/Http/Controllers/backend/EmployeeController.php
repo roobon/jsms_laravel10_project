@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Employee;
 use App\Models\Point;
 use Illuminate\Http\Request;
@@ -26,7 +27,8 @@ class EmployeeController extends Controller
     public function create()
     {
         $points = Point::all();
-        return view('backend.employee.create', compact('points'));
+        $companies = Company::all();
+        return view('backend.employee.create', compact('points', 'companies'));
     }
 
     /**
@@ -41,8 +43,8 @@ class EmployeeController extends Controller
                 'joining_date' => 'required',
                 'contact_number' => 'required | min:11',
                 'contact_email' => 'nullable',
-                'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
-                'nid' => 'nullable|file|mimes:jpg,jpeg,png',
+                'photo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
+                'nid' => 'nullable|mimes:jpg,jpeg,png|max:2048',
                 'resume' => 'nullable|file|mimes:pdf',
                 'password' => 'nullable|min:6|confirmed',
                 'point' => 'required',
@@ -57,7 +59,7 @@ class EmployeeController extends Controller
             $image1->move($destinationPath, $postImage);
             $photo = $destinationPath . $postImage;
         } else {
-            $photo = 'images/employee/nophoto.jpg';
+            $photo = NULL;
         }
 
         if ($image2 = $request->file('nid')) {
@@ -66,7 +68,7 @@ class EmployeeController extends Controller
             $image2->move($destinationPath, $postImage);
             $nid = $destinationPath . $postImage;
         } else {
-            $nid = 'images/employee/nonid.jpg';
+            $nid = NULL;
         }
 
         if ($image3 = $request->file('resume')) {
@@ -75,7 +77,7 @@ class EmployeeController extends Controller
             $image3->move($destinationPath, $postImage);
             $resume = $destinationPath . $postImage;
         } else {
-            $resume = 'images/employee/noresume.pdf';
+            $resume = NULL;
         }
 
         $employee = new Employee;
@@ -92,6 +94,7 @@ class EmployeeController extends Controller
         $employee->nid = $nid;
         $employee->resume = $resume;
         $employee->point_id = $request->point;
+        $employee->company_id = $request->company;
         $employee->status = $request->status;
 
         $employee->save();

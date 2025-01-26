@@ -14,6 +14,11 @@ class Company extends Model
         return $this->hasMany(Business::class);
     }
 
+    public function employee()
+    {
+        return $this->hasMany(Employee::class);
+    }
+
     public function target()
     {
         return $this->hasMany(Target::class);
