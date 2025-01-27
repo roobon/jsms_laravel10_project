@@ -140,7 +140,9 @@
 													<div class="input-group">
 														<input type="file" name="photo"  class="form-control" id="exampleInputuname_4">
 														<div class="input-group-addon"></div>
+														
 													</div>
+													<img src="{{asset($employee->photo)}}" width="200" alt="">
 												</div>
 											</div>
 											<div class="form-group">
@@ -150,6 +152,7 @@
 														<input type="file" name="nid" class="form-control" id="exampleInputuname_4">
 														<div class="input-group-addon"></div>
 													</div>
+													<img src="{{asset($employee->nid)}}" width="200" alt="">
 												</div>
 											</div>
 											<div class="form-group">
@@ -159,6 +162,7 @@
 														<input type="file" name="resume"  class="form-control" id="exampleInputuname_4">
 														<div class="input-group-addon"></div>
 													</div>
+													{{$employee->resume}}
 												</div>
 											</div>
 											<div class="form-group">
@@ -169,6 +173,20 @@
 															<option value="">Select one</option>
 															@foreach($points as $point)
 															<option value="{{$point->id}}" {{($point->id == $employee->point_id) ? 'selected=selected': ''}}>{{$point->point_name}}</option>
+															@endforeach
+														</select>
+														<div class="input-group-addon"></div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="exampleInputuname_4" class="col-sm-3 control-label">Company Responsibility*</label>
+												<div class="col-sm-9">
+													<div class="input-group">
+														<select name="company" class="form-control">
+															<option value="">Select one</option>
+															@foreach($companies as $company)
+															<option value="{{$company->id}}" {{($company->id == $employee->company_id) ? 'selected=selected': ''}}>{{$company->company_name}}</option>
 															@endforeach
 														</select>
 														<div class="input-group-addon"></div>

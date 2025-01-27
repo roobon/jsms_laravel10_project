@@ -89,7 +89,9 @@ class EmployeeController extends Controller
         $employee->joining_date = $request->joining_date;
         $employee->contact_number  = $request->contact_number;
         $employee->contact_email  = $request->contact_email;
-        $employee->password  = Hash::make($request->password);
+        if ($request->password != null) {
+            $employee->password  = Hash::make($request->password);
+        }
         $employee->photo = $photo;
         $employee->nid = $nid;
         $employee->resume = $resume;
@@ -116,7 +118,8 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         $points = Point::all();
-        return view('backend.employee.edit', compact('employee', 'points'));
+        $companies = Company::all();
+        return view('backend.employee.edit', compact('employee', 'points', 'companies'));
     }
 
     /**
@@ -131,8 +134,8 @@ class EmployeeController extends Controller
                 'joining_date' => 'required',
                 'contact_number' => 'required | min:11',
                 'contact_email' => 'nullable',
-                'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
-                'nid' => 'nullable|file|mimes:jpg,jpeg,png',
+                'photo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
+                'nid' => 'nullable|mimes:jpg,jpeg,png|max:2048',
                 'resume' => 'nullable|file|mimes:pdf',
                 'password' => 'nullable|min:6|confirmed',
                 'point' => 'required',
@@ -141,31 +144,31 @@ class EmployeeController extends Controller
 
         );
 
-        if ($image = $request->file('photo')) {
+        if ($image1 = $request->file('photo')) {
             $destinationPath = 'images/employee/photo/';
-            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $postImage);
+            $postImage = date('YmdHis') . "." . $image1->getClientOriginalExtension();
+            $image1->move($destinationPath, $postImage);
             $photo = $destinationPath . $postImage;
         } else {
-            $photo = 'images/employee/nophoto.jpg';
+            $photo = $employee->photo;
         }
 
-        if ($image = $request->file('nid')) {
+        if ($image2 = $request->file('nid')) {
             $destinationPath = 'images/employee/nid/';
-            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $postImage);
+            $postImage = date('YmdHis') . "." . $image2->getClientOriginalExtension();
+            $image2->move($destinationPath, $postImage);
             $nid = $destinationPath . $postImage;
         } else {
-            $nid = 'images/employee/nonid.jpg';
+            $nid = $employee->nid;
         }
 
-        if ($image = $request->file('resume')) {
+        if ($image3 = $request->file('resume')) {
             $destinationPath = 'images/employee/resume/';
-            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $postImage);
+            $postImage = date('YmdHis') . "." . $image3->getClientOriginalExtension();
+            $image3->move($destinationPath, $postImage);
             $resume = $destinationPath . $postImage;
         } else {
-            $resume = 'images/employee/noresume.pdf';
+            $resume = $employee->resume;
         }
 
 
@@ -183,6 +186,7 @@ class EmployeeController extends Controller
         $employee->nid = $nid;
         $employee->resume = $resume;
         $employee->point_id = $request->point;
+        $employee->company_id = $request->company;
         $employee->status = $request->status;
 
         $employee->update();
