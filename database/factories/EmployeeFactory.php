@@ -35,6 +35,7 @@ class EmployeeFactory extends Factory
             'nid' => Str::random(10),
             'resume' => $this->faker->sentence,
             'point_id' => random_int(1, 4),
+            'company_id' => random_int(1, 4),
             'status' => 'active',
         ];
     }
