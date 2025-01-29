@@ -23,7 +23,8 @@ return new class extends Migration
             $table->string('contact_email', 50)->nullable();
             $table->date('business_starts');
             $table->integer('point_id');
-            $table->integer('employee_id');
+            $table->integer('manager_id'); //Manager
+            $table->integer('delman_id'); //Delivery Man
             $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });

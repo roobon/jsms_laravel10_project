@@ -88,6 +88,15 @@
 															</div>
 														</div>
 														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Trade Lisence*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="text" name="trade_lisence" value="{{old('trade_lisence')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Trade Lisence Number">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Contact Person*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
@@ -114,15 +123,7 @@
 																</div>
 															</div>
 														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Trade Lisence*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="trade_lisence" value="{{old('trade_lisence')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Trade Lisence Number">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
+														
 														<div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Starts*</label>
 															<div class="col-sm-9">
@@ -132,24 +133,7 @@
 																</div>
 															</div>
 														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business Date*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="date" name="last_business" value="{{old('last_business')}}" class="form-control" id="exampleInputuname_4">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Balance*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="last_balance" value="{{old('last_balance')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Last Balance">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
+														
 														<div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Center Name*</label>
 															<div class="col-sm-9">
@@ -165,7 +149,21 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Employee Name*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Manager*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<select name="employee" class="form-control" id="retailerId">
+																		<option value="">Select one</option>
+																		@foreach($employees as $employee)
+																		<option value="{{$employee->id}}" {{old('employee') ? 'selected=selected': ''}}>{{$employee->name}}</option>
+																		@endforeach
+																	</select>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Delivery Man*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<select name="employee" class="form-control" id="retailerId">

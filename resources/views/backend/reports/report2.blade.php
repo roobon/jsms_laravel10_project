@@ -119,7 +119,7 @@
 													<th>No Data Found</th>
 												  </tr>
 												  @endif
-												  <tr>
+												  <tr class="datas">
 													<td></td>
 													<td></td>
 													@if(count($investments)>0 && count($items)>0)
@@ -197,8 +197,10 @@
 		$(document).ready(function () {
 			$("table td").css({'vertical-align':'top'});
 			$("td").css({'padding':'12px'});
+			$(".datas td").css({'padding':'0', 'color':'000'});
+			
 			//$("thead").css({'background-color':'rgba(153, 177, 191, 0.55)', 'color':'white'});
-			$(".top-row").css({'background-color':'rgba(130, 55, 172, 0.55)', 'color':'white'});
+			$(".top-row").css({'background-color':'rgba(150, 75, 140, 0.55)', 'color':'white'});
 		//	$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
 		});
 	</script>
