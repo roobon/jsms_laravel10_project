@@ -23,14 +23,16 @@ class RetailerFactory extends Factory
         return [
             'shop_name' => $this->faker->company,
             'proprietor_name' => $this->faker->name,
+            'market_name' => $this->faker->name . " Market",
             'shop_address' => $this->faker->address,
             'trade_lisence' =>  Str::random(10),
             'contact_person' => $this->faker->name,
             'contact_number' =>  random_int(170000000000, 179900000000),
             'contact_email' => fake()->unique()->safeEmail(),
             'business_starts' => $this->faker->dateTimeBetween('-1 year', 'now'),
-            'last_business' => $this->faker->dateTimeBetween('-1 year', 'now'),
-            'last_balance' => random_int(50000, 100000),
+            'point_id' => random_int(1, 4),
+            'manager_id' => random_int(1, 4),
+            'delman_id' => random_int(5, 8),
             'status' => 'active',
         ];
     }

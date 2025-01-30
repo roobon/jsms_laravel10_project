@@ -24,7 +24,11 @@ class EmployeeFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'designation' => $this->faker->word(),
+            'designation' => $this->faker->randomElement([
+                'Manager',
+                'Delivery Man',
+                'Van Driver'
+            ]),
             'address' => $this->faker->address,
             'dob' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'joining_date' => $this->faker->dateTimeBetween('-1 year', 'now'),

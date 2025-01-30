@@ -26,8 +26,9 @@ class RetailerController extends Controller
     public function create()
     {
         $points = Point::all();
-        $employees = Employee::all();
-        return view('backend.retailer.create', compact('points', 'employees'));
+        $managers = Employee::where('designation', 'Manager')->get();
+        $delmans = Employee::where('designation', 'Delivery Man')->get();
+        return view('backend.retailer.create', compact('points', 'managers', 'delmans'));
     }
 
     /**
@@ -54,25 +55,31 @@ class RetailerController extends Controller
 
         );
 
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'images/retailer/photo/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $photo = $destinationPath . $postImage;
+        } else {
+            $photo = NULL;
+        }
+
         $retailer = new Retailer;
 
         $retailer->shop_name = $request->shop_name;
         $retailer->proprietor_name = $request->proprieter_name;
+        $retailer->market_name = $request->market_name;
         $retailer->shop_address = $request->address;
         $retailer->trade_lisence = $request->trade_lisence;
         $retailer->contact_person = $request->contact_person;
         $retailer->contact_number = $request->contact_number;
         $retailer->contact_email  = $request->contact_email;
         $retailer->business_starts = $request->business_starts;
-        $retailer->last_business = $request->last_business;
-        $retailer->last_balance = $request->last_balance;
-        if ($request->last_balance > 0) {
-            $retailer->status = 'inactive';
-        } else {
-            $retailer->status = $request->status;
-        }
+        $retailer->status = $request->status;
         $retailer->point_id = $request->point;
-        $retailer->employee_id = $request->employee;
+        $retailer->manager_id = $request->manager;
+        $retailer->delman_id = $request->delman;
+        $retailer->photo = $photo;
 
         $retailer->save();
 

@@ -152,10 +152,10 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Manager*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<select name="employee" class="form-control" id="retailerId">
+																	<select name="manager" class="form-control" id="retailerId">
 																		<option value="">Select one</option>
-																		@foreach($employees as $employee)
-																		<option value="{{$employee->id}}" {{old('employee') ? 'selected=selected': ''}}>{{$employee->name}}</option>
+																		@foreach($managers as $manager)
+																		<option value="{{$manager->id}}" {{old('manager') ? 'selected=selected': ''}}>{{$manager->name}}</option>
 																		@endforeach
 																	</select>
 																	<div class="input-group-addon"></div>
@@ -166,10 +166,10 @@
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Delivery Man*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<select name="employee" class="form-control" id="retailerId">
+																	<select name="delman" class="form-control" id="retailerId">
 																		<option value="">Select one</option>
-																		@foreach($employees as $employee)
-																		<option value="{{$employee->id}}" {{old('employee') ? 'selected=selected': ''}}>{{$employee->name}}</option>
+																		@foreach($delmans as $delm)
+																		<option value="{{$delm->id}}" {{old('delman') ? 'selected=selected': ''}}>{{$delm->name}}</option>
 																		@endforeach
 																	</select>
 																	<div class="input-group-addon"></div>
