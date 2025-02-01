@@ -24,7 +24,7 @@
 @endsection
 
 @section('title')
-	Company Entry
+	Business Entry
 @endsection
 
 @section('content')
@@ -33,14 +33,14 @@
 				<!-- Title -->
 				<div class="row heading-bg bg-blue">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-					  <h5 class="txt-light">Company Entry Form</h5>
+					  <h5 class="txt-light">Business Entry Form</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
-						<li><a href="{{route('company.index')}}"><span>companies</span></a></li>
-						<li class="active"><span>New Company</span></li>
+						<li><a href="{{route('business.index')}}"><span>businesses</span></a></li>
+						<li class="active"><span>New Business</span></li>
 					  </ol>
 					</div>
 					<!-- /Breadcrumb -->
@@ -53,7 +53,7 @@
 							<div class="panel panel-default card-view">
 								<div class="panel-heading">
 									<div class="text-center">
-										<h6 class="panel-title txt-dark form-title">New Company Details</h6>
+										<h6 class="panel-title txt-dark form-title">New Business Details</h6>
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -63,22 +63,22 @@
 										<div class="row">
 											<div class="col-sm-12 col-xs-12">
 												<div class="form-wrap">
-													<form class="form-horizontal" method="post" action="{{route('company.store')}}">
+													<form class="form-horizontal" method="post" action="{{route('business.store')}}" enctype="multipart/form-data">
 														@csrf
                                                         <div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Company Name*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Name*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="text" name="company_name" value="{{old('company_name')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Comopany Name">
+																	<input type="text" name="business_name" value="{{old('business_name')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Business Name">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Starts*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Launch Date*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="date" name="start_date" value="{{old('start_date')}}" class="form-control" id="exampleInputuname_4">
+																	<input type="date" name="launch_date" value="{{old('launch_date')}}" class="form-control" id="exampleInputuname_4">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
@@ -93,64 +93,38 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Company Address</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Center Name*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<textarea type="text" name="address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Company Address" rows="10">{{old('address')}}</textarea>
+																	<select name="point" class="form-control">
+																		<option value="">Select one</option>
+																		@foreach($points as $point)
+																		<option value="{{$point->id}}">{{$point->point_name}}</option>
+																		@endforeach
+																	</select>
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Contact Person*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Company Name*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="text" name="contact_person" value="{{old('contact_person')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Contact person">
+																	<select name="company" class="form-control">
+																		<option value="">Select one</option>
+																		@foreach($companies as $company)
+																		<option value="{{$company->id}}">{{$company->company_name}}</option>
+																		@endforeach
+																	</select>
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Contact Number*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Photo</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<input type="text" name="contact_number" value="{{old('contact_number')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Contact Number">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Email</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="contact_email" value="{{old('contact_email')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Email address">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Company Website</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="text" name="website" value="{{old('website')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Web address">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business Date*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="date" name="last_business" value="{{old('last_business')}}" class="form-control" id="exampleInputuname_4">
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Balance*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<input type="number" name="last_balance" value="{{old('last_balance')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Last Balance">
+																	<input type="file" name="photo" value="{{old('photo')}}" class="form-control" id="exampleInputuname_4">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>

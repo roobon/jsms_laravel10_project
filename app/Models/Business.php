@@ -14,7 +14,6 @@ class Business extends Model
         'security_money',
         'point_id',
         'company_id',
-        'employee_id',
         'status'
     ];
 

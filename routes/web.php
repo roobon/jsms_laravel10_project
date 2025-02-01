@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\backend\AdminHomeController;
 use App\Http\Controllers\backend\AjaxController;
-use App\Http\Controllers\backend\BusinessLaunchController;
+use App\Http\Controllers\backend\BusinessController;
 use App\Http\Controllers\backend\DoctorController;
 use App\Http\Controllers\backend\SpecialistController;
 use App\Http\Controllers\backend\CompanyController;
@@ -83,8 +83,8 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/sales', SalesController::class);
     Route::resource('/received', RetailerController::class);
     Route::resource('/payment', PaymentController::class);
-    Route::resource('/business/launch', BusinessLaunchController::class);
-    Route::get('/business/active', [BusinessLaunchController::class, 'active'])->name('business.active');
+    Route::resource('/business', BusinessController::class);
+    Route::get('/business/active', [BusinessController::class, 'active'])->name('business.active');
     Route::resource('/investment', InvestmentController::class);
     Route::resource('/insentive', RetailerController::class);
     Route::resource('/slab', RetailerController::class);

@@ -7,14 +7,14 @@
 					<li>
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#busilist"><i class="icon-fire mr-10"></i>Business<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="busilist" class="collapse collapse-level-1">
-							<li>
+							{{-- <li>
 								<a href="{{route('business.active')}}">Business List (Active)</a>
+							</li> --}}
+							<li>
+								<a href="{{route('business.index')}}">Business List (All)</a>
 							</li>
 							<li>
-								<a href="{{route('launch.index')}}">Business List (All)</a>
-							</li>
-							<li>
-								<a href="{{route('launch.create')}}">New Business Launch</a>
+								<a href="{{route('business.create')}}">New Business</a>
 							</li>	
 						</ul>
 					</li>

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->decimal('security_money', total: 12, places: 2)->default(0);
             $table->integer('point_id');
             $table->integer('company_id');
-            $table->integer('employee_id');
             $table->string('launch_photo')->nullable();
             $table->enum('status', ['active', 'inactive']);
             $table->timestamps();

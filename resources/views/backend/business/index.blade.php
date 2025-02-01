@@ -15,13 +15,13 @@
 				<div class="row heading-bg bg-blue">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
-					<h5 class="txt-light">Active Business List</h5>
+					<h5 class="txt-light">{{$list}}</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
-						<li class="active"><span>Companies</span></li>
+						<li class="active"><span>Business</span></li>
 						
 					  </ol>
 					</div>
@@ -38,7 +38,7 @@
 									@include('backend.layouts.success')
 									{{-- <h6 class="panel-title txt-dark">Company List</h6> --}}
 								</div>
-								<div class="pull-right"><a href="{{route('company.create')}}" class="btn btn-success">New Company</a></div>
+								<div class="pull-right"><a href="{{route('business.create')}}" class="btn btn-success">New Business</a></div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="panel-wrapper collapse in">
@@ -76,9 +76,9 @@
 														<td>Taka {{number_format($item->security_money, 0) }}</td>
 														<td style="width: 15%;" class="text-center">
 					
-														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('company.destroy', $item->id)}}" method="post">
-														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('company.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
-														<a href="{{route('company.edit', $item->id)}}" class="btn btn-primary btn-icon-anim btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
+														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('business.destroy', $item->id)}}" method="post">
+														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('business.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
+														<a href="{{route('business.edit', $item->id)}}" class="btn btn-primary btn-icon-anim btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
 														@csrf
 														@method('DELETE')
 														<button class="btn btn-danger btn-icon-anim btn-circle"  type="submit" name="submit"><i class="glyphicon glyphicon-trash"></i></button>
