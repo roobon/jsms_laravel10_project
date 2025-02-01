@@ -99,7 +99,7 @@
 									
 									<div class="col-md-12">
 										<div class="item-big">
-											<img class="img-responsive" id="item-display" src="{{asset($employee->photo)}}" alt="product"/>
+											<img class="img-responsive" id="item-display" src="{{$employee->photo ? asset($employee->photo):asset('images/employee/nophoto.jpg')}}" alt="product"/>
 										</div>
 									</div>
 								</div>

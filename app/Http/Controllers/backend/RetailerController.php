@@ -39,17 +39,16 @@ class RetailerController extends Controller
         $request->validate(
             [
                 'shop_name' => 'required',
-                'proprieter_name' => 'required',
+                'proprietor_name' => 'required',
                 'address' => 'min:10',
                 'trade_lisence' => 'required',
                 'contact_person' => 'min:4',
                 'contact_number' => 'min:11',
                 'contact_email' => 'nullable|email',
                 'business_starts' => 'required',
-                'last_business' => 'required',
-                'last_balance' => 'required',
                 'point' => 'required',
-                'employee' => 'required',
+                'manager' => 'required',
+                'delman' => 'required',
                 'status' => 'required',
             ],
 
@@ -67,7 +66,7 @@ class RetailerController extends Controller
         $retailer = new Retailer;
 
         $retailer->shop_name = $request->shop_name;
-        $retailer->proprietor_name = $request->proprieter_name;
+        $retailer->proprietor_name = $request->proprietor_name;
         $retailer->market_name = $request->market_name;
         $retailer->shop_address = $request->address;
         $retailer->trade_lisence = $request->trade_lisence;
@@ -83,11 +82,11 @@ class RetailerController extends Controller
 
         $retailer->save();
 
-        DB::table('retailer_dues')->insert([
-            'retailer_id' =>         $retailer->id,
-            'current_due' =>  $request->last_balance,
+        // DB::table('retailer_dues')->insert([
+        //     'retailer_id' =>         $retailer->id,
+        //     'current_due' =>  $request->last_balance,
 
-        ]);
+        // ]);
 
         return redirect()->route('retailer.index')->with('msg', "Retailer Created Successfully with Dues");
     }
@@ -107,8 +106,9 @@ class RetailerController extends Controller
     public function edit(Retailer $retailer)
     {
         $points = Point::all();
-        $employees = Employee::all();
-        return view('backend.retailer.edit', compact('retailer', 'points', 'employees'));
+        $managers = Employee::where('designation', 'Manager')->get();
+        $delmans = Employee::where('designation', 'Delivery Man')->get();
+        return view('backend.retailer.edit', compact('retailer', 'points', 'managers', 'delmans'));
     }
 
     /**
@@ -126,32 +126,37 @@ class RetailerController extends Controller
                 'contact_number' => 'min:11',
                 'contact_email' => 'nullable|email',
                 'business_starts' => 'required',
-                'last_business' => 'required',
-                'last_balance' => 'required',
                 'point' => 'required',
-                'employee' => 'required',
+                'manager' => 'required',
+                'delman' => 'required',
                 'status' => 'required',
             ],
 
         );
 
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'images/retailer/photo/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $photo = $destinationPath . $postImage;
+        } else {
+            $photo = $retailer->photo;
+        }
+
         $retailer->shop_name = $request->shop_name;
         $retailer->proprietor_name = $request->proprietor_name;
+        $retailer->market_name = $request->market_name;
         $retailer->shop_address = $request->address;
         $retailer->trade_lisence = $request->trade_lisence;
         $retailer->contact_person = $request->contact_person;
         $retailer->contact_number = $request->contact_number;
         $retailer->contact_email  = $request->contact_email;
         $retailer->business_starts = $request->business_starts;
-        $retailer->last_business = $request->last_business;
-        $retailer->last_balance = $request->last_balance;
-        if ($request->last_balance > 0) {
-            $retailer->status = 'inactive';
-        } else {
-            $retailer->status = $request->status;
-        }
+        $retailer->status = $request->status;
         $retailer->point_id = $request->point;
-        $retailer->employee_id = $request->employee;
+        $retailer->manager_id = $request->manager;
+        $retailer->delman_id = $request->delman;
+        $retailer->photo = $photo;
 
         $retailer->update();
 
@@ -159,9 +164,9 @@ class RetailerController extends Controller
         // ->where('id', $user->id)
         // ->update(['active' => true]);
 
-        DB::table('retailer_dues')
-            ->where('retailer_id', $retailer->id)
-            ->update(['current_due' => $request->last_balance]);
+        // DB::table('retailer_dues')
+        //     ->where('retailer_id', $retailer->id)
+        //     ->update(['current_due' => $request->last_balance]);
 
         return redirect()->route('retailer.index')->with('msg', "Successfully retailer Updated with Dues");
     }
