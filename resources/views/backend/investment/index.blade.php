@@ -21,8 +21,8 @@
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="index.html">Dashboard</a></li>
-						<li><a href="#"><span>Points</span></a></li>
-						<li class="active"><span>Point list</span></li>
+						<li><a href="#"><span>Investments</span></a></li>
+						<li class="active"><span>Investment list</span></li>
 					  </ol>
 					</div>
 					<!-- /Breadcrumb -->
@@ -38,7 +38,7 @@
 									@include('backend.layouts.success')
 									{{-- <h6 class="panel-title txt-dark">Point List</h6> --}}
 								</div>
-								<div class="pull-right"><a href="{{route('investment.create')}}" class="btn btn-success">New Point</a></div>
+								<div class="pull-right"><a href="{{route('investment.create')}}" class="btn btn-success">New Investment</a></div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="panel-wrapper collapse in">
@@ -49,34 +49,28 @@
 												<thead>
 													<tr>
                                                         <th>ID</th>
-														<th>Item Name</th>
-														<th>Item Details</th>
-														<th>Price</th>
-														<th>Establishment Date</th>
-														<th>Point Name</th>
+														<th>Investment Amount</th>
+														<th>Date</th>
+														<th>Business Name</th>
 														<th style="width: 10%;" class="text-center">Action</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
 														<th>ID</th>
-														<th>Item Name</th>
-														<th>Item Details</th>
-														<th>Price</th>
-														<th>Establishment Date</th>
-														<th>Point Name</th>													
-														<th style="width: 15%;" class="text-center">Action</th>
+														<th>Investment Amount</th>
+														<th>Date</th>
+														<th>Business Name</th>
+														<th style="width: 10%;" class="text-center">Action</th>
 													</tr>
 												</tfoot>
 												<tbody>
 													@foreach($items as $item)
                                                     <tr>
 														<td>{{$loop->iteration}}</td>
-														<td>{{$item->item_name}}</td>
-														<td>{{$item->item_details}}</td>
-														<td>{{$item->item_price}}</td>
+														<td>{{$item->investment_amount}}</td>
 														<td>{{$item->investment_date}}</td>
-														<td>{{$item->point_id}}</td>
+														<td>{{$item->business->business_name}}</td>
 														<td style="width: 15%;" class="text-center">
 														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('investment.destroy', $item->id)}}" method="post">
 														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('investment.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	

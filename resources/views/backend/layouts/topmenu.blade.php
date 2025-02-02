@@ -37,22 +37,17 @@
 										<span class="block">Retailers</span>
 										</a>
 									</li>
-									<li>
-										<a href="#" class="connection-item">
-										<i class="pe-7s-cash txt-warning"></i>
-										<span class="block">Investments</span>
-										</a>
-									</li>
-									<li>
-										<a href="#" class="connection-item">
-										<i class="pe-7s-graph2"></i>
-										<span class="block">Reports</span>
-										</a>
-									</li>
+									
+								
 								</ul>
 							</li>
 							<li class="divider"></li>
-							<li class="text-center"><a href="#">More</a></li>
+							<li>
+								<a href="{{url('admin/report')}}" class="connection-item">
+								<i class="pe-7s-graph2"></i>
+								<span class="block">Reports</span>
+								</a>
+							</li>
 						</ul>
 					</li>
 					

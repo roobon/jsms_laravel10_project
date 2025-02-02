@@ -15,10 +15,7 @@ return new class extends Migration
             $table->id();
             $table->decimal('investment_amount', total: 12, places: 2)->default(0);
             $table->date('investment_date');
-            $table->integer('point_id');
-            $table->integer('company_id');
             $table->integer('business_id');
-            $table->integer('employee_id');
             $table->string('investment_photo')->nullable();
             $table->timestamps();
         });

@@ -49,8 +49,7 @@
 												<thead>
 													<tr>
                                                         <th>ID</th>
-														<th>Business with</th>
-														<th>Center</th>
+														<th>Business Name</th>
 														<th>Launch Date</th>
 														<th>Security Money</th>
 														<th style="width: 15%;" class="text-center">Action</th>
@@ -59,8 +58,7 @@
 												<tfoot>
 													<tr>
 														<th>ID</th>
-														<th>Business with</th>
-														<th>Center</th>
+														<th>Business Name</th>
 														<th>Launch Date</th>
 														<th>Security Money</th>
 														<th style="width: 15%;" class="text-center">Action</th>
@@ -70,8 +68,7 @@
 													@foreach($items as $item)
                                                     <tr>
 														<td>{{$loop->iteration}}</td>
-														<td>{{$item->company->company_name}}</td>
-														<td>{{$item->point->point_name}}</td>
+														<td>{{$item->business_name}}</td>
 														<td>{{$item->launch_date}}</td>
 														<td>Taka {{number_format($item->security_money, 0) }}</td>
 														<td style="width: 15%;" class="text-center">

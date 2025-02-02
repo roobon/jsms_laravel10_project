@@ -19,6 +19,17 @@
 						</ul>
 					</li>
 					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#investlist"><i class="icon-plane mr-10"></i>Investments<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="investlist" class="collapse collapse-level-1">
+							<li>
+								<a href="{{route('investment.index')}}">Investment List</a>
+							</li>
+							<li>
+								<a href="{{route('investment.create')}}">New Investment</a>
+							</li>	
+						</ul>
+					</li>
+					<li>
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#targlist"><i class="icon-eyeglass mr-10"></i>Monthly Targets<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="targlist" class="collapse collapse-level-1">
 							<li>

@@ -29,4 +29,9 @@ class Business extends Model
     {
         return $this->belongsTo(Employee::class, 'employee_id');
     }
+
+    public function investment()
+    {
+        return $this->hasMany(Investment::class);
+    }
 }
