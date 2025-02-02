@@ -18,8 +18,6 @@ return new class extends Migration
             $table->decimal('ims_target', total: 12, places: 2)->default(0);
             $table->integer('collection_target'); //percent
             $table->integer('working_days'); // to get daily target
-            $table->integer('point_id');
-            $table->integer('company_id');
             $table->integer('business_id');
             $table->timestamps();
         });

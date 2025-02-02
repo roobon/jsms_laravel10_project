@@ -47,8 +47,6 @@ class TargetController extends Controller
                 'ims_target' => 'required',
                 'collection_target' => 'required',
                 'working_days' => 'required',
-                'point' => 'required',
-                'company' => 'required',
                 'business' => 'required'
 
             ],
@@ -62,16 +60,13 @@ class TargetController extends Controller
         $target->ims_target = $request->ims_target;
         $target->collection_target = $request->collection_target;
         $target->working_days = $request->working_days;
-        $target->point_id = $request->point;
-        $target->company_id = $request->company;
         $target->business_id = $request->business;
 
 
         $row = DB::table('targets')
             ->where('start_date', '=', $request->start_date)
             ->where('end_date', '=', $request->end_date)
-            ->where('point_id', '=', $request->point)
-            ->where('company_id', '=', $request->company)
+            ->where('business_id', '=', $request->business)
             ->get();
 
         if (count($row) > 0) {
@@ -95,8 +90,6 @@ class TargetController extends Controller
                 'ho_deposit_amount' => 0,
                 'month' => 1,
                 'year' => 2025,
-                'point_id' => $request->point,
-                'company_id' => $request->company,
                 'business_id' => $request->business,
                 'period' => 'opening',
                 'status' => 'ended',

@@ -16,8 +16,8 @@ class Target extends Model
         return $this->belongsTo(Point::class, 'point_id');
     }
 
-    public function company()
+    public function business()
     {
-        return $this->belongsTo(Company::class, 'company_id');
+        return $this->belongsTo(Business::class, 'business_id');
     }
 }

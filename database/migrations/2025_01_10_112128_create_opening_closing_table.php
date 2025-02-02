@@ -27,8 +27,6 @@ return new class extends Migration
             $table->decimal('ho_deposit_amount', total: 12, places: 2)->default(0);
             $table->integer('month');
             $table->year('year');
-            $table->integer('point_id');
-            $table->integer('company_id');
             $table->integer('business_id');
             $table->enum('period', ['opening', 'closing']);
             $table->enum('status', ['running', 'ended']);

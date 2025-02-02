@@ -47,8 +47,7 @@
 												<thead>
 													<tr>
                                                         <th>ID</th>
-														<th>Center</th>
-														<th>Company Name</th>
+														<th>Business Name</th>
 														<th>Target Month</th>
 														<th>IMS Target</th>
 														<th>Collection Target</th>
@@ -59,8 +58,7 @@
 												<tfoot>
 													<tr>
 														<th>ID</th>
-														<th>Center</th>
-														<th>Company Name</th>
+														<th>Business Name</th>
 														<th>Target Month</th>
 														<th>IMS Target</th>
 														<th>Collection Target</th>
@@ -73,8 +71,7 @@
 													
                                                     <tr>
 														<td>{{$loop->iteration}}</td>
-														<td>{{$item->point->point_name}}</td>
-														<td>{{$item->company->company_name}}</td>
+														<td>{{$item->business->business_name}}</td>
 														<td>{{$carbon::parse($item->start_date)->format('M-Y')}}</td>
 														<td>Tk {{number_format($item->ims_target, 2)}}</td>
 														<td>Tk {{number_format($item->ims_target * $item->collection_target /100, 2)}} ({{$item->collection_target}}%)</td>
