@@ -54,7 +54,8 @@
 							</div>
 							<div class="panel-wrapper collapse in">
 								<div class="panel-body">
-									<p class="text-muted">Jahanara Traders</p>
+									<h3 class="text-muted text-center">Jahanara Traders</h3>
+									<p class="text-muted text-center">{{$business->business_name}} Business</p>
 									
 									<div class="table-wrap mt-40">
 										<div class="table-responsive">
@@ -87,39 +88,31 @@
 													<th>VAT Adjustment</th>
 													<th>Market Promotion (Tk.)</th>
 												  </tr>
+												  <tr>
+													<th></th>
+													<th>{{$items[0]->security_money}}</th>
+													<th>Up to last Month</th>
+													<th>{{$items[0]->investment_amount}}</th>
+													<th>Up to last Month</th>
+													<th>{{$items[0]->bank_deposit_amount}}</th>
+													<th>Up to last Month</th>
+													<th>N/A</th>
+													<th>{{$items[0]->product_received_amount}}</th>
+													<th>Will add</th>
+													<th>Will add</th>
+													<th>Will add</th>
+													<th>{{$items[0]->insentive_received_amount}}</th>
+													<th>Up to last Month</th>
+													<th>{{$items[0]->sales_amount}}</th>
+													<th>{{$items[0]->collection_amount}}</th>
+													<th>{{$items[0]->due_amount}}</th>
+													<th>{{$items[0]->due_realize_amount}}</th>
+													<th>{{$items[0]->total_due_amount}}</th>
+													<th>{{$items[0]->ho_deposit_amount}}</th>
+												  </tr>
 												</thead>
 												<tbody>
-												  @if($items)
-												  @foreach($items as $item)
-												  <tr class="top-row">
-													<td></td>
-													<td>{{number_format($item->security_money, 2)}}</td>
-													<td>Up to last Month</td>  {{--Investment Start --}}
-													<td>{{number_format($item->investment_amount, 2)}}</td> {{--Investment End --}}
-													<td>Up to last Month</td>
-													<th>{{number_format($item->bank_deposit_amount, 2)}}</th>
-													<td>Up to last Month</td>
-													<th>N/A</th>
-													<th>{{number_format($item->product_received_amount, 2)}}</th>
-													<th>Will add</th>
-													<th>Will add</th>
-													<th>Will add</th>
-													<th>{{number_format($item->product_received_amount, 2)}}</th>
-													<td>Up to last Month</td>
-													<th>{{number_format($item->sales_amount, 2)}}</th>
-													<th>{{number_format($item->collection_amount, 2)}}</th>
-													<th>{{number_format($item->due_amount, 2)}}</th>
-													<th>{{number_format($item->due_realize_amount, 2)}}</th>
-													<th>{{number_format($item->total_due_amount, 2)}}</th>
-													<th>{{number_format($item->ho_deposit_amount, 2)}}</th>
-												  </tr>
-												  @endforeach
-												  @else
-												  <tr>
-													<th>No Data Found</th>
-												  </tr>
-												  @endif
-												  <tr class="datas">
+												<tr class="datas">
 													<td></td>
 													<td></td>
 													@if(count($investments)>0 && count($items)>0)
@@ -177,7 +170,41 @@
 													<td></td>
 													<td></td>
 												  </tr>
+												 
+												  
 												</tbody>
+												<tfoot>
+												@if($items)
+												  @foreach($items as $item)
+												  <tr class="top-row">
+													<td></td>
+													<td>{{number_format($item->security_money, 2)}}</td>
+													<td>Up to last Month</td>  {{--Investment Start --}}
+													<td>{{number_format($item->investment_amount, 2)}}</td> {{--Investment End --}}
+													<td>Up to last Month</td>
+													<th>{{number_format($item->bank_deposit_amount, 2)}}</th>
+													<td>Up to last Month</td>
+													<th>N/A</th>
+													<th>{{number_format($item->product_received_amount, 2)}}</th>
+													<th>Will add</th>
+													<th>Will add</th>
+													<th>Will add</th>
+													<th>{{number_format($item->product_received_amount, 2)}}</th>
+													<td>Up to last Month</td>
+													<th>{{number_format($item->sales_amount, 2)}}</th>
+													<th>{{number_format($item->collection_amount, 2)}}</th>
+													<th>{{number_format($item->due_amount, 2)}}</th>
+													<th>{{number_format($item->due_realize_amount, 2)}}</th>
+													<th>{{number_format($item->total_due_amount, 2)}}</th>
+													<th>{{number_format($item->ho_deposit_amount, 2)}}</th>
+												  </tr>
+												  @endforeach
+												  @else
+												  <tr>
+													<th>No Data Found</th>
+												  </tr>
+												  @endif
+												</tfoot>
 											</table>
 										</div>
 									</div>
@@ -198,9 +225,9 @@
 			$("table td").css({'vertical-align':'top'});
 			$("td").css({'padding':'12px'});
 			$(".datas td").css({'padding':'0', 'color':'000'});
-			
-			//$("thead").css({'background-color':'rgba(153, 177, 191, 0.55)', 'color':'white'});
-			$(".top-row").css({'background-color':'rgba(150, 75, 140, 0.55)', 'color':'white'});
+			$("tbody>tr").css({'background-color':'rgba(107, 154, 182, 0.55)', 'color':'rgb(252, 252, 252)'});
+			$("thead>tr").css({'background-color':'rgba(69, 146, 191, 0.55)', 'color':'rgb(252, 252, 252)'});
+			$("tfoot>tr").css({'background-color':'rgba(127, 106, 124, 0.55)', 'color':'white'});
 		//	$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
 		});
 	</script>

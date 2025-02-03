@@ -95,17 +95,26 @@ class TargetController extends Controller
                 'status' => 'ended',
 
             ]);
-            // DB::table('opening_clossing')->insert([
+            DB::table('opening_clossing')->insert([
 
-            //     'ims_target' =>         $request->ims_target,
-            //     'collection_target' =>  $request->collection_target,
-            //     'start_date' =>         $request->start_date,
-            //     'end_date' =>           $request->end_date,
-            //     'working_days' =>       $request->working_days,
-            //     'point_id' =>           $request->point,
-            //     'company_id' =>         $request->company,
-            //     'target_id' =>          $target->id
-            // ]);
+                'security_money' =>  $business->security_money,
+                'investment_amount' =>  0,
+                'bank_deposit_amount' =>  0,
+                'product_received_amount' => 0,
+                'slab_received_amount' =>   0,
+                'insentive_received_amount' => 0,
+                'sales_amount' =>  0,
+                'collection_amount' => 0,
+                'due_amount' => 0,
+                'due_realize_amount' => 0,
+                'total_due_amount' => 0,
+                'ho_deposit_amount' => 0,
+                'month' => 1,
+                'year' => 2025,
+                'business_id' => $request->business,
+                'period' => 'closing',
+                'status' => 'running',
+            ]);
         }
 
         return redirect()->route('target.index')->with('msg', "Successfully Target Created");

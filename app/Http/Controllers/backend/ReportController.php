@@ -53,7 +53,6 @@ class ReportController extends Controller
 
 
         $items = DB::table('opening_closing')
-            ->join('points', 'points.id', '=', 'opening_closing.point_id')
             ->where('business_id', $business->id)
             ->where('month', $month)
             ->where('year', $year)
@@ -64,7 +63,7 @@ class ReportController extends Controller
         //     ->whereYear('payment_date', $year)
         //     ->get();
 
-        return view('backend.reports.report2', compact('items', 'investments', 'payments', 'stocks'));
+        return view('backend.reports.report2', compact('items', 'investments', 'payments', 'stocks', 'business'));
     }
 
 
