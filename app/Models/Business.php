@@ -34,4 +34,14 @@ class Business extends Model
     {
         return $this->hasMany(Investment::class);
     }
+
+    public function target()
+    {
+        return $this->hasMany(Target::class);
+    }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

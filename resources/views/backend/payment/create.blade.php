@@ -92,14 +92,15 @@
 																</div>
 															</div>
 														</div>
+														
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Point Name*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Payment from Business*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<select name="point" class="form-control">
+																	<select name="business" class="form-control" id="retailerId">
 																		<option value="">Select one</option>
-																		@foreach($points as $point)
-																		<option value="{{$point->id}}">{{$point->point_name}}</option>
+																		@foreach($businesses as $business)
+																		<option value="{{$business->id}}">{{$business->business_name}}</option>
 																		@endforeach
 																	</select>
 																	<div class="input-group-addon"></div>
@@ -107,21 +108,7 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Company Name*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<select name="company" class="form-control" id="retailerId">
-																		<option value="">Select one</option>
-																		@foreach($companies as $company)
-																		<option value="{{$company->id}}">{{$company->company_name}}</option>
-																		@endforeach
-																	</select>
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Employee Name*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Payment by*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<select name="employee" class="form-control" id="retailerId">
@@ -130,6 +117,15 @@
 																		<option value="{{$employee->id}}">{{$employee->name}}</option>
 																		@endforeach
 																	</select>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Payment Voucher Photo</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="file" name="photo" value="{{old('photo')}}" class="form-control" id="exampleInputuname_4">
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>

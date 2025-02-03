@@ -49,8 +49,7 @@
                                                         <th>ID</th>
 														<th>Invoice</th>
 														<th>Stock Amount</th>
-														<th>Company</th>
-														<th>Center</th>
+														<th>Business Name</th>
 														<th>Received Date</th>
 														<th>Received By</th>
 														<th style="width: 15%;" class="text-center">Action</th>
@@ -61,8 +60,7 @@
 														<th>ID</th>
 														<th>Invoice</th>
 														<th>Stock Amount</th>
-														<th>Company</th>
-														<th>Center</th>
+														<th>Business Name</th>
 														<th>Received Date</th>
 														<th>Received By</th>
 														<th style="width: 15%;" class="text-center">Action</th>
@@ -74,8 +72,7 @@
 														<td>{{$loop->iteration}}</td>
 														<td>{{$item->invoice_number}}</td>
 														<td>{{$item->product_amount}}</td>
-														<td>{{$item->company->company_name}}</td>
-														<td>{{$item->point->point_name}}</td>
+														<td>{{$item->business->business_name}}</td>
 														<td>{{$item->received_date }}</td>
 														<td>{{$item->employee->name}}</td>
 														<td style="width: 15%;" class="text-center">

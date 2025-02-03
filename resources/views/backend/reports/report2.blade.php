@@ -56,7 +56,7 @@
 								<div class="panel-body">
 									<h3 class="text-muted text-center">Jahanara Traders</h3>
 									<p class="text-muted text-center">{{$business->business_name}} Business</p>
-									
+									<p class="text-muted text-center">Report frrom {{$business->target[0]->start_date}} to {{$business->target[0]->end_date}}</p>
 									<div class="table-wrap mt-40">
 										<div class="table-responsive">
 											<table class="table table-striped table-bordered">
@@ -77,16 +77,16 @@
 													<th rowspan="2" class="text-center">Deposit to HO (Tk.)</th>
 												  </tr>
 												  <tr>
-													<th>Date</th>
-													<th>Amount in Tk.</th>
-													<th>Date</th>
-													<th>Amount in Tk.</th>
-													<th>Date</th>
-													<th>Invoice No.</th>
-													<th>Amount in Tk.</th>
-													<th>Slab (Tk.)</th>
-													<th>VAT Adjustment</th>
-													<th>Market Promotion (Tk.)</th>
+													<th class="text-center">Date</th>
+													<th class="text-center">Amount in Tk.</th>
+													<th class="text-center">Date</th>
+													<th class="text-center">Amount in Tk.</th>
+													<th class="text-center">Date</th>
+													<th class="text-center">Invoice No.</th>
+													<th class="text-center">Amount in Tk.</th>
+													<th class="text-center">Slab (Tk.)</th>
+													<th class="text-center">VAT Adjustment</th>
+													<th class="text-center">Market Promotion (Tk.)</th>
 												  </tr>
 												  <tr>
 													<th></th>
@@ -113,10 +113,10 @@
 												</thead>
 												<tbody>
 												<tr class="datas">
-													<td></td>
-													<td></td>
+													<td class="text-center"></td>
+													<td class="text-center"></td>
 													@if(count($investments)>0 && count($items)>0)
-													<td colspan="2" class="align-text-top">
+													<td colspan="2" class="align-text-top text-center">
 														<table class="table table-bordered mb-0">
 															@foreach($investments as $investment)
 															<tr><td>{{$investment->investment_date}}</td><td>{{$investment->investment_amount}}</td></tr>
@@ -125,11 +125,11 @@
 													</td>
 
 													@else 
-													<td></td>
-													<td></td>
+													<td class="text-center"></td>
+													<td class="text-center"></td>
 													@endif
 													@if(count($payments)>0 && count($items)>0)
-													<td colspan="2" class="align-top">
+													<td colspan="2" class="align-top text-center">
 														<table class="table table-bordered mb-0" style="padding: 0; margin:0">
 															@foreach($payments as $payment)
 															<tr><td>{{$payment->payment_date}}</td><td>{{$payment->payment_amount}}</td></tr>
@@ -138,8 +138,8 @@
 													</td>
 
 													@else 
-													<td></td>
-													<td></td>
+													<td class="text-center"></td>
+													<td class="text-center"></td>
 													@endif
 													@if(count($stocks)>0 && count($items)>0)
 													<td colspan="3">

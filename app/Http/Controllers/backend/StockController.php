@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Business;
 use App\Models\Company;
 use App\Models\Employee;
 use App\Models\Point;
@@ -30,10 +31,9 @@ class StockController extends Controller
      */
     public function create()
     {
-        $points = Point::all();
-        $companies = Company::all();
+        $businesses = Business::all();
         $employees = Employee::all();
-        return view('backend.stocks.create', compact('points', 'companies', 'employees'));
+        return view('backend.stocks.create', compact('businesses', 'employees'));
     }
 
     /**
@@ -45,23 +45,30 @@ class StockController extends Controller
             [
                 'invoice' => 'required',
                 'product_amount' => 'required',
-                'company' => 'required',
-                'point' => 'required',
+                'business' => 'required',
                 'received_date' => 'required',
                 'employee' => 'required'
             ],
 
         );
 
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'images/stock/photo/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $photo = $destinationPath . $postImage;
+        } else {
+            $photo = NULL;
+        }
+
         $stock = new Stock;
 
         $stock->invoice_number = $request->invoice;
         $stock->product_amount = $request->product_amount;
-        $stock->company_id = $request->company;
-        $stock->point_id = $request->point;
+        $stock->business_id = $request->business;
         $stock->received_date = $request->received_date;
-        $stock->invoice_photo = 'images/stock/nophoto.jpg';
         $stock->employee_id  = $request->employee;
+        $stock->invoice_photo = $photo;
 
 
         // Get Year and Month from Received date
@@ -74,8 +81,7 @@ class StockController extends Controller
         $row = DB::table('targets')
             ->whereYear('start_date', $y)
             ->whereMonth('start_date', $m)
-            ->where('point_id', '=', $request->point)
-            ->where('company_id', '=', $request->company)
+            ->where('business_id', '=', $request->business)
             ->get();
 
         if (count($row) == 0) {
@@ -84,11 +90,11 @@ class StockController extends Controller
             $stock->save();
 
             // To update the point record where month and year matched from received date
-            $stock = SalePaymentStock::where('point_id', $request->point)
-                ->whereMonth('start_date', $m)->whereYear('start_date', $y)->first();
-            $stock->godownstock = $stock->godownstock + $request->product_amount;
+            // $stock = SalePaymentStock::where('point_id', $request->point)
+            //     ->whereMonth('start_date', $m)->whereYear('start_date', $y)->first();
+            // $stock->godownstock = $stock->godownstock + $request->product_amount;
 
-            $stock->update();
+            // $stock->update();
 
             return redirect()->route('stock.index')->with('msg', "Successfully Stock Added");
         }

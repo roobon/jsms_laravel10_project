@@ -21,8 +21,8 @@ class Stock extends Model
         return $this->belongsTo(Employee::class, 'employee_id');
     }
 
-    public function company()
+    public function business()
     {
-        return $this->belongsTo(Company::class, 'company_id');
+        return $this->belongsTo(Business::class, 'business_id');
     }
 }

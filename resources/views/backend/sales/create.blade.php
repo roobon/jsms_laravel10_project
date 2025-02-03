@@ -53,24 +53,22 @@
 													<form class="form-horizontal" method="post" action="{{route('sales.store')}}" enctype="multipart/form-data">
 														@csrf
                                                         <div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Retailer Name*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Delivery Man*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<select name="retailer" class="form-control" id="retailerId">
+																	<select name="delman" class="form-control" id="retailerId">
 																		<option value="">Select one</option>
-																		@foreach($retailers as $retailer)
-																		<option value="{{$retailer->id}}">{{$retailer->shop_name}}</option>
+																		@foreach($delmans as $delm)
+																		<option value="{{$delm->id}}" {{old('delman') ? 'selected=selected': ''}}>{{$delm->name}}</option>
 																		@endforeach
 																	</select>
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
 														</div>
-														<div id="retailerData" class="form-group">
-															
-														</div>
+														
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Vourcher Number*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Memo Number*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
 																	<input type="text" name="voucher" value="{{old('voucher')}}" class="form-control" id="exampleInputuname_4" placeholder="Enter Voucher Number">
@@ -97,28 +95,13 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Employee Name*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Manager*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<select name="employee" class="form-control" id="retailerId">
+																	<select name="manager" class="form-control" id="retailerId">
 																		<option value="">Select one</option>
-																		@foreach($employees as $employee)
-																		<option value="{{$employee->id}}">{{$employee->name}}</option>
-																		@endforeach
-																	</select>
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														
-														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Point Name*</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<select name="point" class="form-control">
-																		<option value="">Select one</option>
-																		@foreach($points as $point)
-																		<option value="{{$point->id}}">{{$point->point_name}}</option>
+																		@foreach($managers as $manager)
+																		<option value="{{$manager->id}}" {{old('manager') ? 'selected=selected': ''}}>{{$manager->name}}</option>
 																		@endforeach
 																	</select>
 																	<div class="input-group-addon"></div>
@@ -126,25 +109,15 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Company Name*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Name*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<select name="company" class="form-control">
+																	<select name="business" class="form-control">
 																		<option value="">Select one</option>
-																		@foreach($companies as $company)
-																		<option value="{{$company->id}}">{{$company->company_name}}</option>
+																		@foreach($businesses as $business)
+																		<option value="{{$business->id}}">{{$business->business_name}}</option>
 																		@endforeach
 																	</select>
-																	<div class="input-group-addon"></div>
-																</div>
-															</div>
-														</div>
-														
-														<div class="form-group">
-															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Note</label>
-															<div class="col-sm-9">
-																<div class="input-group">
-																	<textarea type="text" name="note" class="form-control" id="exampleInputEmail_4" placeholder="Enter any message" rows="10">{{old('note')}}</textarea>
 																	<div class="input-group-addon"></div>
 																</div>
 															</div>
@@ -158,6 +131,16 @@
 																</div>
 															</div>
 														</div>
+														<div class="form-group">
+															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Note</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<textarea type="text" name="note" class="form-control" id="exampleInputEmail_4" placeholder="Enter any message" rows="10">{{old('note')}}</textarea>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														
 														<div class="form-group mb-0">
 															<div class="col-sm-offset-3 col-sm-9">
 																<button type="submit" id="btnSub" class="btn btn-info ">SUBMIT</button>
@@ -180,64 +163,64 @@
 @section('scripts')
     @parent
 	<script>
-		$(document).ready(function () {
-			$('#retailerId').on('change', function(){
-				let id =$('#retailerId').val();
-				let receivedData ='';
-				$.ajax({
-					type: "GET",
-					url: "/info",
-					data: {
-						"_token":"{{ csrf_token() }}",
-						id:id	
-					},
-					success: function (response) {
-						//alert(response.retailer);
-						console.log(response.retailer);
-						receivedData = response.retailer;
-						$('#retailerData').html(detailInfo());
-						if(receivedData.status == 'inactive') {
-							$('#btnSub').attr('disabled','disabled');
-						} else {
-							$('#btnSub').removeAttr("disabled");
-						}
-					},
-					error: function (response){
-						alert("Failed to run");
-					}
-				});
+		// $(document).ready(function () {
+		// 	$('#retailerId').on('change', function(){
+		// 		let id =$('#retailerId').val();
+		// 		let receivedData ='';
+		// 		$.ajax({
+		// 			type: "GET",
+		// 			url: "/info",
+		// 			data: {
+		// 				"_token":"{{ csrf_token() }}",
+		// 				id:id	
+		// 			},
+		// 			success: function (response) {
+		// 				//alert(response.retailer);
+		// 				console.log(response.retailer);
+		// 				receivedData = response.retailer;
+		// 				$('#retailerData').html(detailInfo());
+		// 				if(receivedData.status == 'inactive') {
+		// 					$('#btnSub').attr('disabled','disabled');
+		// 				} else {
+		// 					$('#btnSub').removeAttr("disabled");
+		// 				}
+		// 			},
+		// 			error: function (response){
+		// 				alert("Failed to run");
+		// 			}
+		// 		});
 
-				function detailInfo(){
-					let content= '';
-					content += '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="panel panel-info card-view"><div class="panel-heading">';
+		// 		function detailInfo(){
+		// 			let content= '';
+		// 			content += '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="panel panel-info card-view"><div class="panel-heading">';
 
-					content += '<h6 class="panel-title txt-dark">Retailer Information</h6></div>';
-					content += '<div  class="panel-wrapper collapse in"><div  class="panel-body">';
-					content += '<div class="table-wrap mt-40">';
-					content +=	'<div class="table-responsive">'
-					content +=	'<table class="table table-striped table-bordered mb-0">'
-					content +=	'<thead><tr><td colspan="2"><h4>' + receivedData.shop_name +  '</h4></td>';	
-					content +=	'</tr></thead><tbody>';
-					content +=	'<tr><td> Proprietor Name</td><td>' + receivedData.shop_name +  '</td></tr>';
-					content +=	'<tr><td> Market Name</td><td>' + receivedData.market_name +  '</td></tr>';
-					content +=	'<tr><td> Shop Address</td><td>' + receivedData.shop_address +  '</td></tr>';
-					content +=	'<tr><td> Current Due</td><td>' + receivedData.current_due +  '</td></tr>';
-					content +=	'<tr><td> Responsible Employee</td><td>' + receivedData.name +  '</td></tr>';
-					content +=	'<tr><td> Center</td><td>' + receivedData.shop_name +  '</td></tr>';
-					content +=	'<tr><td> Status</td><td><h5>' + receivedData.status + '</h5></td></tr>';
-					content +=  '</tbody></table></div></div>';
-					content += '</div></div></div></div>';
+		// 			content += '<h6 class="panel-title txt-dark">Retailer Information</h6></div>';
+		// 			content += '<div  class="panel-wrapper collapse in"><div  class="panel-body">';
+		// 			content += '<div class="table-wrap mt-40">';
+		// 			content +=	'<div class="table-responsive">'
+		// 			content +=	'<table class="table table-striped table-bordered mb-0">'
+		// 			content +=	'<thead><tr><td colspan="2"><h4>' + receivedData.shop_name +  '</h4></td>';	
+		// 			content +=	'</tr></thead><tbody>';
+		// 			content +=	'<tr><td> Proprietor Name</td><td>' + receivedData.shop_name +  '</td></tr>';
+		// 			content +=	'<tr><td> Market Name</td><td>' + receivedData.market_name +  '</td></tr>';
+		// 			content +=	'<tr><td> Shop Address</td><td>' + receivedData.shop_address +  '</td></tr>';
+		// 			content +=	'<tr><td> Current Due</td><td>' + receivedData.current_due +  '</td></tr>';
+		// 			content +=	'<tr><td> Responsible Employee</td><td>' + receivedData.name +  '</td></tr>';
+		// 			content +=	'<tr><td> Center</td><td>' + receivedData.shop_name +  '</td></tr>';
+		// 			content +=	'<tr><td> Status</td><td><h5>' + receivedData.status + '</h5></td></tr>';
+		// 			content +=  '</tbody></table></div></div>';
+		// 			content += '</div></div></div></div>';
 						
-								return content;
-				}
-				/*
+		// 						return content;
+		// 		}
+		// 		/*
 									
 																	
 																			
 																		
 
-				*/
-			})
-		});
+		// 		*/
+		// 	})
+		// });
 	</script>
 @endsection

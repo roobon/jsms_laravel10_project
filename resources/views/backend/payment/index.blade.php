@@ -48,8 +48,7 @@
 												<thead>
 													<tr>
                                                         <th>ID</th>
-														<th>Center Name</th>
-														<th>Company Name</th>
+														<th>Business Name</th>
 														<th>Payment Date</th>
 														<th>Amount</th>
 														<th>Transfer Method</th>
@@ -60,8 +59,7 @@
 												<tfoot>
 													<tr>
 														<th>ID</th>
-														<th>Center Name</th>
-														<th>Company Name</th>
+														<th>Business Name</th>
 														<th>Payment Date</th>
 														<th>Amount</th>
 														<th>Transfer Method</th>
@@ -73,8 +71,7 @@
 													@foreach($items as $item)
                                                     <tr>
 														<td>{{$loop->iteration}}</td>
-														<td>{{$item->point->point_name }}</td>
-														<td>{{$item->company->company_name }}</td>
+														<td>{{$item->business->business_name }}</td>
 														<td>{{$item->payment_date}}</td>
 														<td>{{$item->payment_amount }}</td>
 														<td>{{$item->transfer_method}}</td>

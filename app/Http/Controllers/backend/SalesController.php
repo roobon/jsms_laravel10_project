@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Business;
 use App\Models\Company;
 use App\Models\Employee;
 use App\Models\Point;
@@ -30,11 +31,10 @@ class SalesController extends Controller
      */
     public function create()
     {
-        $points = Point::all();
-        $retailers = Retailer::all();
-        $employees = Employee::all();
-        $companies = Company::all();
-        return view('backend.sales.create', compact('points', 'retailers', 'employees', 'companies'));
+        $managers = Employee::where('designation', 'Manager')->get();
+        $delmans = Employee::where('designation', 'Delivery Man')->get();
+        $businesses = Business::all();
+        return view('backend.sales.create', compact('delmans', 'managers', 'businesses'));
     }
 
     /**
@@ -44,16 +44,25 @@ class SalesController extends Controller
     {
         $request->validate(
             [
-                'retailer' => 'required',
+                'delman' => 'required',
                 'voucher' => 'required',
                 'total_amount' => 'required',
                 'collection_amount' => 'required',
-                'employee' => 'required',
-                'point' => 'required',
+                'manager' => 'required',
+                'business' => 'required',
                 'sales_date' => 'required',
             ],
 
         );
+
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'images/sales/photo/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $photo = $destinationPath . $postImage;
+        } else {
+            $photo = NULL;
+        }
 
         $sales = new Sales();
 
@@ -62,11 +71,10 @@ class SalesController extends Controller
         $sales->total_amount = $request->total_amount;
         $sales->collection_amount = $request->collection_amount;
         $sales->due_amount = $sales->total_amount - $sales->collection_amount;
-        $sales->point_id = $request->point;
-        $sales->company_id = $request->company;
-        $sales->employee_id = $request->employee;
+        $sales->business_id = $request->business;
+        $sales->employee_id = $request->manager;
         $sales->sales_date = $request->sales_date;
-        $sales->voucher_photo = 'images/voucher/no_voucherphoto.jpg';
+        $sales->voucher_photo = $photo;
 
 
         // Get Year and Month from Received date

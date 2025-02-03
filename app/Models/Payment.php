@@ -25,4 +25,9 @@ class Payment extends Model
     {
         return $this->belongsTo(Company::class, 'company_id');
     }
+
+    public function business()
+    {
+        return $this->belongsTo(Business::class, 'business_id');
+    }
 }
