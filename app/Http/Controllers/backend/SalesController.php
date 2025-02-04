@@ -66,13 +66,13 @@ class SalesController extends Controller
 
         $sales = new Sales();
 
-        $sales->retailer_id = $request->retailer;
+        $sales->delman_id = $request->delman;
         $sales->invoice_number = $request->voucher;
         $sales->total_amount = $request->total_amount;
         $sales->collection_amount = $request->collection_amount;
         $sales->due_amount = $sales->total_amount - $sales->collection_amount;
         $sales->business_id = $request->business;
-        $sales->employee_id = $request->manager;
+        $sales->manager_id = $request->manager;
         $sales->sales_date = $request->sales_date;
         $sales->voucher_photo = $photo;
 
@@ -87,8 +87,7 @@ class SalesController extends Controller
         $row = DB::table('targets')
             ->whereYear('start_date', $y)
             ->whereMonth('start_date', $m)
-            ->where('point_id', '=', $request->point)
-            //->where('company_id', '=', $request->company)
+            ->where('business_id', '=', $request->business)
             ->get();
 
         if (count($row) == 0) {
@@ -96,23 +95,16 @@ class SalesController extends Controller
         } else {
             $sales->save();
 
-            if ($sales->due_amount > 0) {
-                $retailer = Retailer::find($request->retailer);
-                $retailer->status = 'inactive';
-                $retailer->update();
-                $dues = RetailerDues::where('retailer_id', $request->retailer)->first();
-                $dues->current_due = $dues->current_due + $sales->due_amount;
-                $dues->update();
-            }
 
-            // To update the point record where month and year matched from received date
-            $stock = SalePaymentStock::where('point_id', $request->point)
-                ->whereMonth('start_date', $m)->whereYear('start_date', $y)->first();
 
-            $stock->sales_amount = $stock->sales_amount + $request->total_amount;
-            $stock->collection_amount = $stock->collection_amount + $request->collection_amount;
+            // // To update the point record where month and year matched from received date
+            // $stock = SalePaymentStock::where('point_id', $request->point)
+            //     ->whereMonth('start_date', $m)->whereYear('start_date', $y)->first();
 
-            $stock->update();
+            // $stock->sales_amount = $stock->sales_amount + $request->total_amount;
+            // $stock->collection_amount = $stock->collection_amount + $request->collection_amount;
+
+            // $stock->update();
 
             return redirect()->route('sales.index')->with('msg', "Successfully Sales Completed");
         }

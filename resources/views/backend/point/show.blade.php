@@ -37,7 +37,7 @@
 									<div class="row">
 										<div class="col-md-5">
 											<div class="item-big">
-												<img class="img-responsive" id="item-display" src="{{asset('images/point/store_nophoto.jpg')}}" alt="product"/>
+												<img class="img-responsive" id="item-display" src="{{asset('images/point/nophoto.jpg')}}" alt="product"/>
 											</div>
 										</div>
 											

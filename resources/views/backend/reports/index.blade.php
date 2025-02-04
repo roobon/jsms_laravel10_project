@@ -49,14 +49,14 @@
 												<thead>
 													<tr>
                                                         <th>ID</th>
-														<th style="width:20%">Report Name</th>
+														<th style="width:15%">Report Name</th>
 														<th  class="text-center">Action</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
 														<th>ID</th>
-														<th style="width:20%">Report Name</th>
+														<th style="width:15%">Report Name</th>
 														<th class="text-center" style="width:80%">Action</th>
 													</tr>
 												</tfoot>
@@ -64,11 +64,11 @@
 													
                                                     <tr>
 														<td>1</td>
-														<td style="width:20%">Company wise Summary Report</td>
+														<td style="width:15%">Business wise Summary Report</td>
 														<td  class="text-right" style="width:80%">
 														
 														<div class="row">
-						<div class="col-sm-12">
+						<div class="col-sm-8">
 							<div class="panel panel-default card-view">
 								
 								<div class="panel-wrapper collapse in">
@@ -128,11 +128,11 @@
 													</tr>
 													<tr>
 														<td>2</td>
-														<td style="width:20%">Company wise Detailed Report</td>
+														<td style="width:15%">Business wise Detailed Report</td>
 														<td  class="text-right" style="width:80%">
 														
 														<div class="row">
-						<div class="col-sm-12">
+						<div class="col-sm-9">
 							<div class="panel panel-default card-view">
 								
 								<div class="panel-wrapper collapse in">

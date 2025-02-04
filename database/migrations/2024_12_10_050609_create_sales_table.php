@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('sales_date');
             $table->integer('business_id');
             $table->integer('manager_id');
-            $table->string('voucher_photo');
+            $table->string('voucher_photo')->nullable();
             $table->timestamps();
         });
     }

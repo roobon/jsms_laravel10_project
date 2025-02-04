@@ -17,9 +17,9 @@ class Business extends Model
         'status'
     ];
 
-    public function point()
+    public function sales()
     {
-        return $this->belongsTo(Point::class, 'point_id');
+        return $this->hasMany(Sales::class);
     }
     public function company()
     {

@@ -42,7 +42,7 @@
 						<div class="row">
 							<div class="col-md-5">
 								<div class="item-big">
-									<img class="img-responsive" id="item-display" src="{{asset('images/business/nophoto.jpg')}}" alt="product"/>
+									<img class="img-responsive" id="item-display" src="{{$business->photo ? asset($business->photo):asset('images/nophoto.jpg')}}" alt="product"/>
 								</div>
 							</div>
 								

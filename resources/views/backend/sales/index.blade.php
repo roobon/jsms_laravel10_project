@@ -52,21 +52,19 @@
 														<th>Sales</th>
 														<th>Collecton</th>
 														<th>Due</th>
-														<th>Point/Center</th>
-														<th>Company</th>
+														<th>Business</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
 														<th>ID</th>
-														<th>Retailer Name</th>
+														<th>Delivery Man</th>
 														<th>Invoice</th>
 														<th>Sales</th>
 														<th>Collecton</th>
 														<th>Due</th>
-														<th>Point/Center</th>
-														<th>Company</th>
+														<th>Business</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</tfoot>
@@ -74,13 +72,12 @@
 													@foreach($items as $item)
                                                     <tr>
 														<td>{{$loop->iteration}}</td>
-														<td>{{$item->retailer->shop_name}}</td>
+														<td>{{$item->delman->name}}</td>
 														<td>{{$item->invoice_number}}</td>
 														<td>{{$item->total_amount}}</td>
 														<td>{{$item->collection_amount }}</td>
 														<td>{{$item->due_amount }}</td>
-														<td>{{$item->point->point_name}}</td>
-														<td>{{$item->point->point_name}}</td>
+														<td>{{$item->business->business_name}}</td>
 														<td style="width: 15%;" class="text-center">
 														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('sales.destroy', $item->id)}}" method="post">
 														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('sales.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	

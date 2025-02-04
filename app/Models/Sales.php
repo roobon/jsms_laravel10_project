@@ -24,4 +24,21 @@ class Sales extends Model
     {
         return $this->belongsTo(Employee::class, 'employee_id');
     }
+
+
+    public function manager()
+    {
+        return $this->belongsTo(Employee::class, 'manager_id');
+    }
+
+    public function business()
+    {
+        return $this->belongsTo(Business::class, 'business_id');
+    }
+
+
+    public function delman()
+    {
+        return $this->belongsTo(Employee::class, 'delman_id');
+    }
 }

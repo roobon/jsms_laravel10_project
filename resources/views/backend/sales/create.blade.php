@@ -132,6 +132,15 @@
 															</div>
 														</div>
 														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Sales Voucher Photo</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<input type="file" name="photo" value="{{old('photo')}}" class="form-control" id="exampleInputuname_4">
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
 															<label for="exampleInputEmail_4" class="col-sm-3 control-label">Note</label>
 															<div class="col-sm-9">
 																<div class="input-group">

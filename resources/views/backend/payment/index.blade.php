@@ -77,9 +77,9 @@
 														<td>{{$item->transfer_method}}</td>
 														<td>{{$item->cheque_voucher}}</td>
 														<td style="width: 15%;" class="text-center">
-														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('sales.destroy', $item->id)}}" method="post">
-														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('sales.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
-														<a href="{{route('sales.edit', $item->id)}}" class="btn btn-primary btn-icon-anim btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
+														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('payment.destroy', $item->id)}}" method="post">
+														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('payment.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
+														<a href="{{route('payment.edit', $item->id)}}" class="btn btn-primary btn-icon-anim btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
 														@csrf
 														@method('DELETE')
 														<button class="btn btn-danger btn-icon-anim btn-circle"  type="submit" name="submit"><i class="glyphicon glyphicon-trash"></i></button>

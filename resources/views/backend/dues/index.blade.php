@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-	Retailer List with Due
+	Dues with Retailer List
 @endsection
 
 @section('content')
@@ -15,14 +15,14 @@
 				<div class="row heading-bg bg-green">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
-					<h5 class="txt-light">Retailer List with Due Amount</h5>
+					<h5 class="txt-light">Due Amount with Retailer List</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="index.html">Dashboard</a></li>
 						<li><a href="#"><span>Retailers</span></a></li>
-						<li class="active"><span>Retailer list</span></li>
+						<li class="active"><span>Due list</span></li>
 					  </ol>
 					</div>
 					<!-- /Breadcrumb -->
@@ -38,7 +38,7 @@
 									@include('backend.layouts.success')
 									{{-- <h6 class="panel-title txt-dark">Retailer List</h6> --}}
 								</div>
-								<div class="pull-right"><a href="{{route('retailer.create')}}" class="btn btn-success">New Retailer</a></div>
+								<div class="pull-right"><a href="{{route('retailer.create')}}" class="btn btn-success">New Due</a></div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="panel-wrapper collapse in">
