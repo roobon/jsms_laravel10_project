@@ -44,7 +44,7 @@
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
 									<div class="form-wrap">
-										<form class="form-horizontal" method="post" action="{{route('company.update', $company->id)}}">
+										<form class="form-horizontal" method="post" action="{{route('company.update', $company->id)}}" enctype="multipart/form-data">
 											@method('PUT')
 											@csrf
 											<div class="form-group">
