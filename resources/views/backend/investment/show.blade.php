@@ -37,7 +37,7 @@
 									<div class="row">
 										<div class="col-md-5">
 											<div class="item-big">
-												<img class="img-responsive" id="item-display" src="{{asset('images/point/store_nophoto.jpg')}}" alt="product"/>
+												<img class="img-responsive" id="item-display" src="{{$investment->photo ? asset($investment->photo):asset('images/nophoto.jpg') }}" alt="product"/>
 											</div>
 										</div>
 											
@@ -45,12 +45,12 @@
 											<div class="product-detail-wrap">
 												
 												
-												<h3 class="mb-20">{{$point->point_name}}</h3>
-												<div class="product-price head-font mb-30">Address: {{$point->point_address}} 
+												<h3 class="mb-20">{{$investment->investment_name}}</h3>
+												<div class="product-price head-font mb-30">Address: {{$investment->investment_address}} 
 												</div>
 												
 												<h4 class="mb-20">Business Info</h4>
-												<p class="mb-50">Point Establishment Date: {{$point->opening_date}} <br>											
+												<p class="mb-50">investment Establishment Date: {{$investment->opening_date}} <br>											
 												</p>
 			
 												<h4 class="mb-20">Contact Info</h4>
@@ -64,7 +64,7 @@
 												
 												
 												<div class="btn-group mr-10">
-													<a href="{{route('points.index')}}" class="btn btn-success btn-anim"><i class="fa  fa-angle-double-left"></i><span class="btn-text">Back to points list</span></a>
+													<a href="{{route('investment.index')}}" class="btn btn-success btn-anim"><i class="fa  fa-angle-double-left"></i><span class="btn-text">Back to investments list</span></a>
 												</div>
 												
 											</div>

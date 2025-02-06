@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-	Point Edit
+	investment Edit
 @endsection
 
 @section('content')
@@ -14,14 +14,14 @@
 	<!-- Title -->
 	<div class="row heading-bg bg-green">
 		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-		  <h5 class="txt-light">point Edit Form</h5>
+		  <h5 class="txt-light">investment Edit Form</h5>
 		</div>
 		<!-- Breadcrumb -->
 		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 		  <ol class="breadcrumb">
 			<li><a href="index.html">Dashboard</a></li>
-			<li><a href="#"><span>point</span></a></li>
-			<li class="active"><span>Edit point</span></li>
+			<li><a href="#"><span>investment</span></a></li>
+			<li class="active"><span>Edit investment</span></li>
 		  </ol>
 		</div>
 		<!-- /Breadcrumb -->
@@ -34,7 +34,7 @@
 				<div class="panel panel-default card-view">
 					<div class="panel-heading">
 						<div class="pull-left">
-							<h6 class="panel-title txt-dark">Edit Point Details</h6>
+							<h6 class="panel-title txt-dark">Edit investment Details</h6>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -44,93 +44,49 @@
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
 									<div class="form-wrap">
-										<form class="form-horizontal" method="post" action="{{route('points.update', $point->id)}}">
+										<form class="form-horizontal" method="post" action="{{route('investment.update', $investment->id)}}">
 											@method('PUT')
 											@csrf
 											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">point Name*</label>
+												<label for="exampleInputuname_4" class="col-sm-3 control-label">Investment Amount*</label>
 												<div class="col-sm-9">
 													<div class="input-group">
-														<input type="text" name="point_name" value="{{$point->point_name ?? old('point_name') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter point Name">
+														<input type="text" name="amount" value="{{$investment->investment_amount ?? old('amount') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter investment Amount">
 														<div class="input-group-addon"></div>
 													</div>
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Starts*</label>
+												<label for="exampleInputuname_4" class="col-sm-3 control-label">Investment Date*</label>
 												<div class="col-sm-9">
 													<div class="input-group">
-														<input type="date" name="business_starts" value="{{$point->business_starts ?? old('business_starts') }}" class="form-control" id="exampleInputuname_4">
-														<div class="input-group-addon"></div>
-													</div>
-												</div>
-											</div>
-							
-											<div class="form-group">
-												<label for="exampleInputEmail_4" class="col-sm-3 control-label">Address*</label>
-												<div class="col-sm-9">
-													<div class="input-group">
-														<textarea type="text" name="point_address" class="form-control" id="exampleInputEmail_4" placeholder="Enter Shop Address" rows="10">{{$point->point_address ?? old('point_address') }}</textarea>
+														<input type="date" name="date" value="{{$investment->investment_date ?? old('date') }}" class="form-control" id="exampleInputuname_4">
 														<div class="input-group-addon"></div>
 													</div>
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">Contact Person*</label>
+												<label for="exampleInputuname_4" class="col-sm-3 control-label">Business Name*</label>
 												<div class="col-sm-9">
 													<div class="input-group">
-														<input type="text" name="contact_person" value="{{$point->contact_person ?? old('contact_person') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter Contact person">
-														<div class="input-group-addon"></div>
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">Contact Number*</label>
-												<div class="col-sm-9">
-													<div class="input-group">
-														<input type="text" name="contact_number" value="{{$point->contact_number ?? old('contact_number') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter Contact Number">
-														<div class="input-group-addon"></div>
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">Email</label>
-												<div class="col-sm-9">
-													<div class="input-group">
-														<input type="text" name="contact_email" value="{{$point->contact_email ?? old('contact_email') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter Email address">
-														<div class="input-group-addon"></div>
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Business</label>
-												<div class="col-sm-9">
-													<div class="input-group">
-														<input type="date" name="last_business" value="{{$point->last_business_date ?? old('last_business') }}" class="form-control" id="exampleInputuname_4">
-														<div class="input-group-addon"></div>
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">Last Balance</label>
-												<div class="col-sm-9">
-													<div class="input-group">
-														<input type="text" name="last_balance" value="{{$point->last_balance ?? old('last_balance') }}" class="form-control" id="exampleInputuname_4" placeholder="Enter Last Balance">
-														<div class="input-group-addon"></div>
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="exampleInputuname_4" class="col-sm-3 control-label">Status</label>
-												<div class="col-sm-9">
-													<div class="input-group">
-														<select name="status" id="" class="form-control">
+														<select name="business" class="form-control">
 															<option value="">Select one</option>
-															<option value="active" {{($point->status == 'active') ? 'selected=selected': ''}}>Active</option>
-															<option value="inactive" {{($point->status == 'inactive') ? 'selected=selected': ''}}>Inactive</option>
+															@foreach($businesses as $business)
+															<option value="{{$business->id}}" {{($investment->business_id == $business->id) ? 'selected=selected': ''}}>{{$business->business_name}}</option>
+															@endforeach
 														</select>
 														<div class="input-group-addon"></div>
 													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="exampleInputuname_4" class="col-sm-3 control-label">Photo</label>
+												<div class="col-sm-9">
+													<div class="input-group">
+														<input type="file" name="photo" value="{{old('photo')}}" class="form-control" id="exampleInputuname_4">
+														<div class="input-group-addon"></div>
+													</div>
+													<img src="{{asset($investment->investment_photo)}}" width="300" alt="">
 												</div>
 											</div>
 											<div class="form-group mb-0">

@@ -38,8 +38,7 @@ class InvestmentController extends Controller
                 'date' => 'required',
                 'business' => 'required',
                 'photo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
-            ],
-
+            ]
         );
 
         if ($image = $request->file('photo')) {
@@ -77,7 +76,8 @@ class InvestmentController extends Controller
      */
     public function edit(Investment $investment)
     {
-        return view('backend.investment.edit', compact('investment'));
+        $businesses = Business::all();
+        return view('backend.investment.edit', compact('investment', 'businesses'));
     }
 
     /**
@@ -85,7 +85,31 @@ class InvestmentController extends Controller
      */
     public function update(Request $request, Investment $investment)
     {
-        //
+        $request->validate(
+            [
+                'amount' => 'required',
+                'date' => 'required',
+                'business' => 'required',
+                'photo' => 'nullable|mimes:jpg,jpeg,png|max:2048'
+            ]
+        );
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'images/investment/photo/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $photo = $destinationPath . $postImage;
+        } else {
+            $photo = $investment->investment_photo;
+        }
+
+        $investment->investment_amount = $request->amount;
+        $investment->investment_date = $request->date;
+        $investment->business_id = $request->business;
+        $investment->investment_photo = $photo;
+
+        $investment->update();
+
+        return redirect()->route('investment.index')->with('msg', "Successfully updated investment");
     }
 
     /**
