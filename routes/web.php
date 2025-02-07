@@ -95,6 +95,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/target', TargetController::class);
     Route::resource('/stock', StockController::class);
     Route::resource('/dues', DuesController::class);
+    Route::resource('/deposit', DepositController::class);
     Route::get('/report', [ReportController::class, 'index']);
     Route::get('/report1', [ReportController::class, 'report1'])->name('report1');
     Route::get('/report2', [ReportController::class, 'report2'])->name('report2');

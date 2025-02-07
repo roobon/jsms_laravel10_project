@@ -97,6 +97,18 @@
 							</li>
 							
 						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#depolist"><i class="icon-link mr-10"></i>Deposit to HO<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="depolist" class="collapse collapse-level-1">
+							<li>
+								<a href="{{route('dues.index')}}">All Deposits</a>
+							</li>
+							<li>
+								<a href="{{route('dues.create')}}">New Deposit</a>
+							</li>
+							
+						</ul>
 					</li>				
 					<li>
 						<a href="{{url('admin/report/')}}"><i class="icon-notebook mr-10"></i>Reports<span class="pull-right"></span></a>
