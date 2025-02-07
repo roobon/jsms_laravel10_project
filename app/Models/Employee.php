@@ -24,6 +24,11 @@ class Employee extends Model
         return $this->hasMany(Business::class);
     }
 
+    public function deposit()
+    {
+        return $this->belongsTo(Deposit::class, 'deposit_id');
+    }
+
     public function sales()
     {
         return $this->hasMany(Sales::class);

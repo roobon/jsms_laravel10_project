@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-	Stock List
+	Deposit List
 @endsection
 
 @section('content')
@@ -15,13 +15,13 @@
 				<div class="row heading-bg bg-green">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 					 
-					<h5 class="txt-light">Stocks List</h5>
+					<h5 class="txt-light">deposit List</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
-						<li><span>Stocks</span></li>
+						<li><span>Deposits</span></li>
 					  </ol>
 					</div>
 					<!-- /Breadcrumb -->
@@ -36,7 +36,7 @@
 								<div>
 									@include('backend.layouts.success')
 								</div>
-								<div class="pull-right"><a href="{{route('stock.create')}}" class="btn btn-success">New Stock</a></div>
+								<div class="pull-right"><a href="{{route('deposit.create')}}" class="btn btn-success">New Deposit</a></div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="panel-wrapper collapse in">
@@ -47,22 +47,20 @@
 												<thead>
 													<tr>
                                                         <th>ID</th>
-														<th>Invoice</th>
-														<th>Stock Amount</th>
-														<th>Business Name</th>
-														<th>Received Date</th>
-														<th>Received By</th>
+														<th>Check/Voucher Number</th>
+														<th>Deposit Amount</th>
+														<th>Deposit Date</th>
+														<th>Deposit From</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
 														<th>ID</th>
-														<th>Invoice</th>
-														<th>Stock Amount</th>
-														<th>Business Name</th>
-														<th>Received Date</th>
-														<th>Received By</th>
+														<th>Check/Voucher Number</th>
+														<th>Deposit Amount</th>
+														<th>Deposit Date</th>
+														<th>Deposit From</th>
 														<th style="width: 15%;" class="text-center">Action</th>
 													</tr>
 												</tfoot>
@@ -70,15 +68,14 @@
 													@foreach($items as $item)
                                                     <tr>
 														<td>{{$loop->iteration}}</td>
-														<td>{{$item->invoice_number}}</td>
-														<td>{{$item->product_amount}}</td>
+														<td>{{$item->check_voucher_num}}</td>
+														<td>{{$item->deposit_amount}}</td>
+														<td>{{$item->deposit_date }}</td>
 														<td>{{$item->business->business_name}}</td>
-														<td>{{$item->received_date }}</td>
-														<td>{{$item->employee->name}}</td>
 														<td style="width: 15%;" class="text-center">
-														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('stock.destroy', $item->id)}}" method="post">
-														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('stock.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
-														<a href="{{route('stock.edit', $item->id)}}" class="btn btn-primary btn-icon-anim btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
+														<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('deposit.destroy', $item->id)}}" method="post">
+														<a class="btn btn-default btn-icon-anim btn-circle" href="{{route('deposit.show', $item->id)}}"><i class="glyphicon glyphicon-search"></i></a>	
+														<a href="{{route('deposit.edit', $item->id)}}" class="btn btn-primary btn-icon-anim btn-circle"><i class="glyphicon glyphicon-edit"></i></a>
 														@csrf
 														@method('DELETE')
 														<button class="btn btn-danger btn-icon-anim btn-circle"  type="submit" name="submit"><i class="glyphicon glyphicon-trash"></i></button>

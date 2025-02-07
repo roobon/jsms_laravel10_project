@@ -102,10 +102,10 @@
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#depolist"><i class="icon-link mr-10"></i>Deposit to HO<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="depolist" class="collapse collapse-level-1">
 							<li>
-								<a href="{{route('dues.index')}}">All Deposits</a>
+								<a href="{{route('deposit.index')}}">All Deposits</a>
 							</li>
 							<li>
-								<a href="{{route('dues.create')}}">New Deposit</a>
+								<a href="{{route('deposit.create')}}">New Deposit</a>
 							</li>
 							
 						</ul>

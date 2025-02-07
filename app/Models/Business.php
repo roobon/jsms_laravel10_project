@@ -21,6 +21,12 @@ class Business extends Model
     {
         return $this->hasMany(Sales::class);
     }
+
+    public function deposit()
+    {
+        return $this->hasMany(Deposit::class);
+    }
+
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');

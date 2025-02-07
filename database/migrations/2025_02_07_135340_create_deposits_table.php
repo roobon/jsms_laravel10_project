@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('deposits', function (Blueprint $table) {
             $table->id();
-            $table->string('check_voucher');
-            $table->string('deposit_amount');
+            $table->string('check_voucher_num');
+            $table->decimal('deposit_amount', total: 12, places: 2)->default(0);
+            $table->date('deposit_date');
+            $table->string('deposit_photo')->nullable();
+            $table->integer('business_id');
+            $table->integer('employee_id');
             $table->timestamps();
         });
     }

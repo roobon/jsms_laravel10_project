@@ -6,6 +6,7 @@ use App\Http\Controllers\backend\BusinessController;
 use App\Http\Controllers\backend\DoctorController;
 use App\Http\Controllers\backend\SpecialistController;
 use App\Http\Controllers\backend\CompanyController;
+use App\Http\Controllers\backend\DepositController;
 use App\Http\Controllers\backend\DuesController;
 use App\Http\Controllers\backend\EmployeeController;
 use App\Http\Controllers\backend\InvestmentController;
