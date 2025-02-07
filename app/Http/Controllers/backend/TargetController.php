@@ -95,7 +95,7 @@ class TargetController extends Controller
                 'status' => 'ended',
 
             ]);
-            DB::table('opening_clossing')->insert([
+            DB::table('opening_closing')->insert([
 
                 'security_money' =>  $business->security_money,
                 'investment_amount' =>  0,

@@ -62,7 +62,7 @@
 																	<select name="business" class="form-control">
 																		<option value="">Select one</option>
 																		@foreach($businesses as $business)
-																		<option value="{{$business->id}}">{{$business->business_name}}</option>
+																		<option value="{{$business->id}}" {{old('business') ? 'selected=selected': ''}}>{{$business->business_name}}</option>
 																		@endforeach
 																	</select>
 																	<div class="input-group-addon"></div>

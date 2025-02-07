@@ -44,7 +44,7 @@
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
 									<div class="form-wrap">
-										<form class="form-horizontal" method="post" action="{{route('investment.update', $investment->id)}}">
+										<form class="form-horizontal" method="post" action="{{route('investment.update', $investment->id)}}" enctype="multipart/form-data">
 											@method('PUT')
 											@csrf
 											<div class="form-group">
@@ -83,7 +83,7 @@
 												<label for="exampleInputuname_4" class="col-sm-3 control-label">Photo</label>
 												<div class="col-sm-9">
 													<div class="input-group">
-														<input type="file" name="photo" value="{{old('photo')}}" class="form-control" id="exampleInputuname_4">
+														<input type="file" name="photo" class="form-control" id="exampleInputuname_4">
 														<div class="input-group-addon"></div>
 													</div>
 													<img src="{{asset($investment->investment_photo)}}" width="300" alt="">

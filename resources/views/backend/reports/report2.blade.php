@@ -56,7 +56,7 @@
 								<div class="panel-body">
 									<h3 class="text-muted text-center">Jahanara Traders</h3>
 									<p class="text-muted text-center">{{$business->business_name}} Business</p>
-									<p class="text-muted text-center">Report frrom {{$business->target[0]->start_date}} to {{$business->target[0]->end_date}}</p>
+									<p class="text-muted text-center">Report from {{$target->start_date}} to {{$target->end_date}}</p>
 									<div class="table-wrap mt-40">
 										<div class="table-responsive">
 											<table class="table table-striped table-bordered">
@@ -89,33 +89,33 @@
 													<th class="text-center">Market Promotion (Tk.)</th>
 												  </tr>
 												  <tr>
-													<th></th>
-													<th>{{$items[0]->security_money}}</th>
+													<th>Opening</th>
+													<th>{{($opening->security_money) ? $opening->security_money: ''}}</th>
 													<th>Up to last Month</th>
-													<th>{{$items[0]->investment_amount}}</th>
+													<th>{{$opening->investment_amount}}</th>
 													<th>Up to last Month</th>
-													<th>{{$items[0]->bank_deposit_amount}}</th>
+													<th>{{$opening->bank_deposit_amount}}</th>
 													<th>Up to last Month</th>
 													<th>N/A</th>
-													<th>{{$items[0]->product_received_amount}}</th>
+													<th>{{$opening->product_received_amount}}</th>
 													<th>Will add</th>
 													<th>Will add</th>
 													<th>Will add</th>
-													<th>{{$items[0]->insentive_received_amount}}</th>
+													<th>{{$opening->insentive_received_amount}}</th>
 													<th>Up to last Month</th>
-													<th>{{$items[0]->sales_amount}}</th>
-													<th>{{$items[0]->collection_amount}}</th>
-													<th>{{$items[0]->due_amount}}</th>
-													<th>{{$items[0]->due_realize_amount}}</th>
-													<th>{{$items[0]->total_due_amount}}</th>
-													<th>{{$items[0]->ho_deposit_amount}}</th>
+													<th>{{$opening->sales_amount}}</th>
+													<th>{{$opening->collection_amount}}</th>
+													<th>{{$opening->due_amount}}</th>
+													<th>{{$opening->due_realize_amount}}</th>
+													<th>{{$opening->total_due_amount}}</th>
+													<th>{{$opening->ho_deposit_amount}}</th>
 												  </tr>
 												</thead>
 												<tbody>
 												<tr class="datas">
 													<td class="text-center"></td>
 													<td class="text-center"></td>
-													@if(count($investments)>0 && count($items)>0)
+										
 													<td colspan="2" class="align-text-top text-center">
 														<table class="table table-bordered mb-0">
 															@foreach($investments as $investment)
@@ -123,12 +123,8 @@
 															@endforeach
 														</table>
 													</td>
-
-													@else 
-													<td class="text-center"></td>
-													<td class="text-center"></td>
-													@endif
-													@if(count($payments)>0 && count($items)>0)
+													
+													
 													<td colspan="2" class="align-top text-center">
 														<table class="table table-bordered mb-0" style="padding: 0; margin:0">
 															@foreach($payments as $payment)
@@ -137,13 +133,10 @@
 														</table>
 													</td>
 
-													@else 
-													<td class="text-center"></td>
-													<td class="text-center"></td>
-													@endif
-													@if(count($stocks)>0 && count($items)>0)
+													
+													{{-- Stocks --}}
 													<td colspan="3">
-														<table class="table table-bordered mb-0" style="padding: 0; margin:0">
+														<table class="table table-bordered" style="padding: 0; margin:0">
 															@foreach($stocks as $stock)
 															<tr>
 																<td>{{$stock->received_date}}</td>
@@ -153,57 +146,81 @@
 															@endforeach
 														</table>
 													</td>
-													@else 
-													<td></td>
-													<td></td>
-													<td></td>
-													@endif
+													{{-- Stocks --}}
 													<td></td>
 													<td></td>
 													<td></td>
 													<td></td>
+													
+													{{-- Sales --}}
+													<td colspan="4">
+														<table class="table table-bordered" style="padding: 0; margin:0">
+															@foreach($sales as $sale)
+															<tr>
+																<td>{{$sale->sales_date}}</td>
+																<td>{{$sale->total_amount}}</td>
+																<td>{{$sale->collection_amount}}</td>
+																<td>{{$sale->due_amount}}</td>
+															</tr>
+															@endforeach
+														</table>
+													</td>
+													{{-- Sales --}}
+
+													
 													<td></td>
 													<td></td>
 													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												  </tr>
-												 
-												  
+												  </tr> 
 												</tbody>
 												<tfoot>
-												@if($items)
-												  @foreach($items as $item)
-												  <tr class="top-row">
+												  <tr class="current_month">
+														<td>Current</td>
+														<td></td>
+														<td></td>  
+														<td>{{number_format($totalInvestment, 2)}}</td>
+														<td></td>
+														<th>{{number_format($totalPayments, 2)}}</th>
+														<td></td>
+														<th></th>
+														<th>{{number_format($stockamount, 2)}}</th>
+														<th></th>
+														<th></th>
+														<th></th>
+														<th></th>
+														<td></td>
+														<th>{{number_format($totalsales, 2)}}</th>
+														<th>{{number_format($collections, 2)}}</th>
+														<th>{{number_format($dues, 2)}}</th>
+														<th></th>
+														<th></th>
+														<th></th>
+													  </tr>	
+												 
+												  <tr class="cumulative_data">
+													<td>Cumulative</td>
+													<td>{{number_format($closing->security_money, 2)}}</td>
+													<td></td>  {{--Investment Start --}}
+													<td>{{number_format($closing->investment_amount, 2)}}</td> {{--Investment End --}}
 													<td></td>
-													<td>{{number_format($item->security_money, 2)}}</td>
-													<td>Up to last Month</td>  {{--Investment Start --}}
-													<td>{{number_format($item->investment_amount, 2)}}</td> {{--Investment End --}}
-													<td>Up to last Month</td>
-													<th>{{number_format($item->bank_deposit_amount, 2)}}</th>
-													<td>Up to last Month</td>
-													<th>N/A</th>
-													<th>{{number_format($item->product_received_amount, 2)}}</th>
-													<th>Will add</th>
-													<th>Will add</th>
-													<th>Will add</th>
-													<th>{{number_format($item->product_received_amount, 2)}}</th>
-													<td>Up to last Month</td>
-													<th>{{number_format($item->sales_amount, 2)}}</th>
-													<th>{{number_format($item->collection_amount, 2)}}</th>
-													<th>{{number_format($item->due_amount, 2)}}</th>
-													<th>{{number_format($item->due_realize_amount, 2)}}</th>
-													<th>{{number_format($item->total_due_amount, 2)}}</th>
-													<th>{{number_format($item->ho_deposit_amount, 2)}}</th>
+													<th>{{number_format($closing->bank_deposit_amount, 2)}}</th>
+													<td></td>
+													<th></th>
+													<th>{{number_format($closing->product_received_amount, 2)}}</th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th>{{number_format($closing->product_received_amount, 2)}}</th>
+													<td></td>
+													<th>{{number_format($closing->sales_amount, 2)}}</th>
+													<th>{{number_format($closing->collection_amount, 2)}}</th>
+													<th>{{number_format($closing->due_amount, 2)}}</th>
+													<th>{{number_format($closing->due_realize_amount, 2)}}</th>
+													<th>{{number_format($closing->total_due_amount, 2)}}</th>
+													<th>{{number_format($closing->ho_deposit_amount, 2)}}</th>
 												  </tr>
-												  @endforeach
-												  @else
-												  <tr>
-													<th>No Data Found</th>
-												  </tr>
-												  @endif
+												  
+												  
 												</tfoot>
 											</table>
 										</div>

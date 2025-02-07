@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('invoice_number', 50);
             $table->decimal('product_amount', total: 10, places: 2);
             $table->date('received_date');
-            $table->string('invoice_photo');
+            $table->string('invoice_photo')->nullable();
             $table->integer('business_id');
             $table->integer('employee_id'); // Received by
             $table->timestamps();
