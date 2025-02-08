@@ -92,7 +92,20 @@
 																</div>
 															</div>
 														</div>
-														
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Payment to Company*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<select name="company" class="form-control">
+																		<option value="">Select one</option>
+																		@foreach($companies as $company)
+																		<option value="{{$company->id}}">{{$company->company_name}}</option>
+																		@endforeach
+																	</select>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
 														<div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Payment from Business*</label>
 															<div class="col-sm-9">

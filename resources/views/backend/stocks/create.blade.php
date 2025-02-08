@@ -95,6 +95,35 @@
 															</div>
 														</div>
 														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Product Type*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<select name="product_type" id="" class="form-control">
+																		<option value="">Select one</option>
+																		<option value="regular" {{(old('product_type') == 'regular') ? 'selected=selected': ''}}>Regular</option>
+																		<option value="slab" {{(old('product_type') == 'slab') ? 'selected=selected': ''}}>Slab</option>
+																		<option value="vatadjust" {{(old('product_type') == 'vatadjust') ? 'selected=selected': ''}}>VAT Ajdustment</option>
+																		<option value="mktpromo" {{(old('product_type') == 'mktpromo') ? 'selected=selected': ''}}>Marketing Promotion</option>
+																	</select>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Received From Company*</label>
+															<div class="col-sm-9">
+																<div class="input-group">
+																	<select name="company" class="form-control">
+																		<option value="">Select one</option>
+																		@foreach($companies as $company)
+																		<option value="{{$company->id}}">{{$company->company_name}}</option>
+																		@endforeach
+																	</select>
+																	<div class="input-group-addon"></div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
 															<label for="exampleInputuname_4" class="col-sm-3 control-label">Received By*</label>
 															<div class="col-sm-9">
 																<div class="input-group">

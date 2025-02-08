@@ -66,7 +66,41 @@ class ReportController extends Controller
             ->whereMonth('received_date', $month)
             ->whereYear('received_date', $year)
             ->get();
-        $stockamount = $stocks->sum('product_amount');
+
+        $regular = Stock::where('business_id', $request->business)
+            ->whereMonth('received_date', $month)
+            ->whereYear('received_date', $year)
+            ->where('product_type', 'regular')
+            ->get();
+
+        $resularamount = $regular->sum('product_amount');
+
+
+
+
+        // Slab Stock
+        $slbstocks = Stock::where('business_id', $request->business)
+            ->whereMonth('received_date', $month)
+            ->whereYear('received_date', $year)
+            ->where('product_type', 'slab')
+            ->get();
+        $slbstockamount = $slbstocks->sum('product_amount');
+
+        // VAT Adjustment
+        $vatadjust = Stock::where('business_id', $request->business)
+            ->whereMonth('received_date', $month)
+            ->whereYear('received_date', $year)
+            ->where('product_type', 'vatadjust')
+            ->get();
+        $vatadjustamount = $vatadjust->sum('product_amount');
+
+        // Marketing Promotion Amount
+        $mktpromo = Stock::where('business_id', $request->business)
+            ->whereMonth('received_date', $month)
+            ->whereYear('received_date', $year)
+            ->where('product_type', 'mktpromo')
+            ->get();
+        $mktpromoamount = $mktpromo->sum('product_amount');
 
         $sales = Sales::where('business_id', $request->business)
             ->whereMonth('sales_date', $month)
@@ -109,9 +143,13 @@ class ReportController extends Controller
         $data['totalsales'] =  $totalSales;
         $data['collections'] =  $collections;
         $data['dues'] =  $dues;
-        $data['stockamount'] =  $stockamount;
+        $data['resularamount'] =  $resularamount;
         $data['deposits'] =  $deposits;
         $data['totaldeposits'] =  $totaldeposits;
+        $data['slbstocks'] =  $slbstocks;
+        $data['slbstockamount'] =  $slbstockamount;
+        $data['vatadjustamount'] =  $vatadjustamount;
+        $data['mktpromoamount'] =  $mktpromoamount;
 
         return view('backend.reports.report2', $data);
     }

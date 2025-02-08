@@ -30,10 +30,10 @@ class PaymentController extends Controller
      */
     public function create()
     {
-
+        $companies = Company::all();
         $businesses = Business::all();
         $employees = Employee::all();
-        return view('backend.payment.create', compact('businesses', 'employees'));
+        return view('backend.payment.create', compact('companies', 'businesses', 'employees'));
     }
 
     /**
@@ -46,6 +46,7 @@ class PaymentController extends Controller
                 'transfer_method' => 'required',
                 'voucher' => 'required',
                 'payment_amount' => 'required',
+                'company' => 'required',
                 'business' => 'required',
                 'employee' => 'required',
                 'payment_date' => 'required',
@@ -68,6 +69,7 @@ class PaymentController extends Controller
         $payment->transfer_method = $request->transfer_method;
         $payment->cheque_voucher = $request->voucher;
         $payment->payment_amount = $request->payment_amount;
+        $payment->company_id = $request->company;
         $payment->business_id = $request->business;
         $payment->employee_id = $request->employee;
         $payment->payment_date = $request->payment_date;

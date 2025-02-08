@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('invoice_number', 50);
             $table->decimal('product_amount', total: 10, places: 2);
             $table->date('received_date');
+            $table->enum('product_type', ['regular', 'slab', 'vatadjust', 'mktpromo']);
             $table->string('invoice_photo')->nullable();
-            $table->integer('business_id');
+            $table->integer('business_id'); // for which business
+            $table->integer('company_id'); // Received From
             $table->integer('employee_id'); // Received by
             $table->timestamps();
         });

@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('cheque_voucher', 60);
             $table->date('payment_date');
             $table->decimal('payment_amount', total: 12, places: 2);
-            $table->integer('employee_id');
-            $table->integer('business_id');
+            $table->integer('company_id'); // payment to
+            $table->integer('business_id'); // payment from
+            $table->integer('employee_id'); // payment by
             $table->string('payment_note', 100)->nullable();
             $table->string('cheque_voucher_photo')->nullable();
             $table->timestamps();

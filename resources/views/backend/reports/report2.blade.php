@@ -65,8 +65,8 @@
 													<th rowspan="2">Date</th>
 													<th rowspan="2" class="text-center">Total Security Money (Tk.)</th>
 													<th colspan="2" class="text-center">Investment</th>
-													<th colspan="2" class="text-center">Bank Deposit to SQUARE</th>
-													<th colspan="6" class="text-center">Product Received from SQUARE</th>
+													<th colspan="2" class="text-center">Bank Deposit</th>
+													<th colspan="6" class="text-center">Product Received</th>
 													<th rowspan="2" class="text-center">Insentive Received (Tk.)</th>
 													<th rowspan="2" class="text-center">Delivery Date</th>
 													<th rowspan="2" class="text-center">Total Sale (Tk.)</th>
@@ -94,11 +94,11 @@
 													<th>Up to last Month</th>
 													<th>{{$opening->investment_amount}}</th>
 													<th>Up to last Month</th>
-													<th>{{$opening->bank_deposit_amount}}</th>
-													<th>Up to last Month</th>
+													<th style="width:125px">{{$opening->bank_deposit_amount}}</th>
+													<th style="width:94px">Up to last Month </th>
 													<th>N/A</th>
-													<th>{{$opening->product_received_amount}}</th>
-													<th>Will add</th>
+													<th style="width:110px">{{$opening->product_received_amount}}</th>
+													<th style="width:110px">Will add</th>
 													<th>Will add</th>
 													<th>Will add</th>
 													<th>{{$opening->insentive_received_amount}}</th>
@@ -116,6 +116,7 @@
 													<td class="text-center"></td>
 													<td class="text-center"></td>
 										
+													{{-- Investment --}}
 													<td colspan="2" class="align-text-top text-center">
 														<table class="table table-bordered mb-0">
 															@foreach($investments as $investment)
@@ -124,7 +125,7 @@
 														</table>
 													</td>
 													
-													
+													{{-- Bank Deposit --}}
 													<td colspan="2" class="align-top text-center">
 														<table class="table table-bordered mb-0" style="padding: 0; margin:0">
 															@foreach($payments as $payment)
@@ -132,24 +133,52 @@
 															@endforeach
 														</table>
 													</td>
-
-													
 													{{-- Stocks --}}
-													<td colspan="3">
-														<table class="table table-bordered" style="padding: 0; margin:0">
+													<td colspan="6">
+														<table class="table table-bordered" style="padding: 0; margin:0; width:100%">
 															@foreach($stocks as $stock)
 															<tr>
-																<td>{{$stock->received_date}}</td>
-																<td>{{$stock->invoice_number}}</td>
-																<td>{{$stock->product_amount}}</td>
+																<td style="max-width:47px">{{$stock->received_date}}</td>
+																@if ($stock->product_type == 'regular')
+																<td style="max-width:85px">
+																	REG-{{$stock->invoice_number}}	
+																</td>
+																<td style="max-width:10%" class="text-center">{{$stock->product_amount}}</td>
+																<td style="max-width:15%"  class="text-center">------</td>
+																<td class="text-center">------</td>
+																<td style="max-width:30%"  class="text-center">------</td>
+																@elseif($stock->product_type == 'slab')	
+																<td style="width:85px">
+																	SLB-{{$stock->invoice_number}}
+																</td>
+																<td style="max-width:15%"  class="text-center">------</td>
+																<td style="max-width:15%" class="text-center">{{$stock->product_amount}}</td>
+																<td class="text-center">------</td>
+																<td style="max-width:30%" class="text-center">---</td>	
+																@elseif($stock->product_type == 'vatadjust')	
+																<td style="width:85px">
+																	VAT-{{$stock->invoice_number}}
+																</td>
+																<td style="max-width:15%"  class="text-center">------</td>
+																<td style="max-width:15%" class="text-center">------</td>
+																<td class="text-center">{{$stock->product_amount}}</td>
+																<td style="max-width:30%" class="text-center">------</td>	
+																@elseif($stock->product_type == 'mktpromo')	
+																<td style="width:85px">
+																	MKT-{{$stock->invoice_number}}
+																</td>
+																<td style="max-width:15%"  class="text-center">------</td>
+																<td style="max-width:15%" class="text-center">------</td>
+																<td class="text-center">------</td>
+																<td style="max-width:30%" class="text-center">{{$stock->product_amount}}</td>	
+																@endif
 															</tr>
 															@endforeach
 														</table>
 													</td>
-													{{-- Stocks --}}
-													<td></td>
-													<td></td>
-													<td></td>
+												
+																										
+													
 													<td></td>
 													
 													{{-- Sales --}}
@@ -192,10 +221,10 @@
 														<th>{{number_format($totalPayments, 2)}}</th>
 														<td></td>
 														<th></th>
-														<th>{{number_format($stockamount, 2)}}</th>
-														<th></th>
-														<th></th>
-														<th></th>
+														<th>{{number_format($resularamount, 2)}}</th>
+														<th>{{number_format($slbstockamount, 2)}}</th>
+														<th>{{number_format($vatadjustamount, 2)}}</th>
+														<th>{{number_format($mktpromoamount, 2)}}</th>
 														<th></th>
 														<td></td>
 														<th>{{number_format($totalsales, 2)}}</th>

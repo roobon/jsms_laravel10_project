@@ -31,9 +31,10 @@ class StockController extends Controller
      */
     public function create()
     {
+        $companies = Company::all();
         $businesses = Business::all();
         $employees = Employee::all();
-        return view('backend.stocks.create', compact('businesses', 'employees'));
+        return view('backend.stocks.create', compact('companies', 'businesses', 'employees'));
     }
 
     /**
@@ -47,9 +48,9 @@ class StockController extends Controller
                 'product_amount' => 'required',
                 'business' => 'required',
                 'received_date' => 'required',
+                'company' => 'required',
                 'employee' => 'required'
-            ],
-
+            ]
         );
 
         if ($image = $request->file('photo')) {
@@ -67,6 +68,8 @@ class StockController extends Controller
         $stock->product_amount = $request->product_amount;
         $stock->business_id = $request->business;
         $stock->received_date = $request->received_date;
+        $stock->product_type  = $request->product_type;
+        $stock->company_id  = $request->company;
         $stock->employee_id  = $request->employee;
         $stock->invoice_photo = $photo;
 
@@ -113,7 +116,10 @@ class StockController extends Controller
      */
     public function edit(Stock $stock)
     {
-        //
+        $companies = Company::all();
+        $businesses = Business::all();
+        $employees = Employee::all();
+        return view('backend.stocks.edit', compact('companies', 'businesses', 'employees', 'stock'));
     }
 
     /**
@@ -121,7 +127,35 @@ class StockController extends Controller
      */
     public function update(Request $request, Stock $stock)
     {
-        //
+        $request->validate(
+            [
+                'invoice' => 'required',
+                'product_amount' => 'required',
+                'business' => 'required',
+                'received_date' => 'required',
+                'company' => 'required',
+                'employee' => 'required'
+            ]
+        );
+
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'images/stock/photo/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $photo = $destinationPath . $postImage;
+        } else {
+            $photo = $stock->invoice_photo;
+        }
+
+        $stock->invoice_number = $request->invoice;
+        $stock->product_amount = $request->product_amount;
+        $stock->business_id = $request->business;
+        $stock->received_date = $request->received_date;
+        $stock->company_id  = $request->company;
+        $stock->employee_id  = $request->employee;
+        $stock->invoice_photo = $photo;
+        $stock->save();
+        return redirect()->route('stock.index')->with('msg', "Successfully Stock Updated");
     }
 
     /**
@@ -129,6 +163,7 @@ class StockController extends Controller
      */
     public function destroy(Stock $stock)
     {
-        //
+        $stock->delete();
+        return redirect()->route('stock.index')->with('msg', "Deleted Successfully");
     }
 }
