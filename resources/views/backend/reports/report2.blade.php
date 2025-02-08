@@ -170,7 +170,16 @@
 													
 													<td></td>
 													<td></td>
-													<td></td>
+													<td>
+														<table class="table table-bordered" style="padding: 0; margin:0">
+															@foreach($deposits as $deposit)
+															<tr>
+																<td>{{$deposit->deposit_date}}</td>
+																<td>{{$deposit->deposit_amount}}</td>
+															</tr>
+															@endforeach
+														</table>
+													</td>
 												  </tr> 
 												</tbody>
 												<tfoot>
@@ -194,7 +203,7 @@
 														<th>{{number_format($dues, 2)}}</th>
 														<th></th>
 														<th></th>
-														<th></th>
+														<th>{{number_format($totaldeposits, 2)}}</th>
 													  </tr>	
 												 
 												  <tr class="cumulative_data">

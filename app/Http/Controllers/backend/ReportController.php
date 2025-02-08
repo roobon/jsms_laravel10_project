@@ -7,6 +7,7 @@ use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Company;
+use App\Models\Deposit;
 use App\Models\Investment;
 use App\Models\Payment;
 use App\Models\Sales;
@@ -43,13 +44,11 @@ class ReportController extends Controller
         $month = $request->month;
         $year = $request->year;
         $business = Business::find($request->business)->first();
+
         $target = Target::where('business_id', $request->business)
             ->whereMonth('start_date', $month)
             ->whereYear('start_date', $year)
             ->first();
-        // ->whereMonth('investment_date', $month)
-        // ->whereYear('investment_date', $year)
-        // ->first();
 
         $investments = Investment::where('business_id', $request->business)
             ->whereMonth('investment_date', $month)
@@ -76,6 +75,12 @@ class ReportController extends Controller
         $totalSales = $sales->sum('total_amount');
         $collections = $sales->sum('collection_amount');
         $dues = $sales->sum('due_amount');
+
+        $deposits = Deposit::where('business_id', $request->business)
+            ->whereMonth('deposit_date', $month)
+            ->whereYear('deposit_date', $year)
+            ->get();
+        $totaldeposits = $deposits->sum('deposit_amount');
 
         $opening = DB::table('opening_closing')
             ->where('business_id', $request->business)
@@ -105,8 +110,9 @@ class ReportController extends Controller
         $data['collections'] =  $collections;
         $data['dues'] =  $dues;
         $data['stockamount'] =  $stockamount;
+        $data['deposits'] =  $deposits;
+        $data['totaldeposits'] =  $totaldeposits;
 
-        //return view('backend.reports.report2', compact('opening', 'closing',  'investments', 'totalInvestment', 'payments', 'totalPayments', 'stocks', 'business'));
         return view('backend.reports.report2', $data);
     }
 

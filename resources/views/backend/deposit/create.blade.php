@@ -95,10 +95,10 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="exampleInputuname_4" class="col-sm-3 control-label">Deposit By*</label>
+															<label for="exampleInputuname_4" class="col-sm-3 control-label">Deposit By Manager*</label>
 															<div class="col-sm-9">
 																<div class="input-group">
-																	<select name="employee" class="form-control" id="retailerId">
+																	<select name="manager" class="form-control" id="retailerId">
 																		<option value="">Select one</option>
 																		@foreach($managers as $manager)
 																		<option value="{{$manager->id}}">{{$manager->name}}</option>

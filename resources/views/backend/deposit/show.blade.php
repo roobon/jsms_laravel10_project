@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-	Sales Details
+	Deposit Details
 @endsection
 
 @section('content')
@@ -37,36 +37,36 @@
 									<div class="row">
 										<div class="col-md-5">
 											<div class="item-big">
-												<img class="img-responsive" id="item-display" src="{{asset('images/sales/novoucher.jpg')}}" alt="voucher"/>
+												<img class="img-responsive" id="item-display" src="{{asset('images/deposit/novoucher.jpg')}}" alt="voucher"/>
 											</div>
 										</div>
 											
 										<div class="col-md-7">
 											<div class="product-detail-wrap">
-												{{-- @php dd($sales) @endphp --}}
+												{{-- @php dd($deposit) @endphp --}}
 												
-												<h3 class="mb-20">{{$sales->name}}</h3>
-												<div class="product-price head-font mb-30">{{$sales->invoice_number}} 
+												<h3 class="mb-20">{{$deposit->name}}</h3>
+												<div class="product-price head-font mb-30">{{$deposit->invoice_number}} 
 												</div>
 												
 												<h4 class="mb-20">Retailer Info</h4>
-												<p class="mb-50">Business Starting Date: {{$sales->shop_name}} <br>
-												Last Business Date: {{$sales->last_business}} <br>	
-												Last Business Balance: {{$sales->last_balance}}	
+												<p class="mb-50">Business Starting Date: {{$deposit->shop_name}} <br>
+												Last Business Date: {{$deposit->last_business}} <br>	
+												Last Business Balance: {{$deposit->last_balance}}	
 												
 												</p>
 			
 												<h4 class="mb-20">Point Info</h4>
-												<p class="mb-50">Contact Person: {{$sales->contact_person}} <br>
-												Mobile Number: {{$sales->contact_number}}
+												<p class="mb-50">Contact Person: {{$deposit->contact_person}} <br>
+												Mobile Number: {{$deposit->contact_number}}
 												<br>
-												Email Address: {{$sales->contact_email}}
+												Email Address: {{$deposit->contact_email}}
 												</p>
 												
 												
 												
 												<div class="btn-group mr-10">
-													<a href="{{route('sales.index')}}" class="btn btn-success btn-anim"><i class="fa  fa-angle-double-left"></i><span class="btn-text">Back to Sales list</span></a>
+													<a href="{{route('deposit.index')}}" class="btn btn-success btn-anim"><i class="fa  fa-angle-double-left"></i><span class="btn-text">Back to deposit list</span></a>
 												</div>
 												
 											</div>

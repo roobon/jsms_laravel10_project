@@ -38,21 +38,27 @@ class DepositController extends Controller
     {
         $request->validate(
             [
-                'point_name' => 'required',
-                'point_address' => 'required',
-                'opening_date' => 'required'
+                'voucher' => 'required',
+                'deposit_amount' => 'required',
+                'business' => 'required',
+                'deposit_date' => 'required',
+                'manager' => 'required',
+                'photo' => 'nullable'
             ],
 
         );
 
         $point = new Deposit;
 
-        $point->point_name = $request->point_name;
-        $point->point_address = $request->point_address;
-        $point->opening_date = $request->opening_date;
+        $point->check_voucher_num = $request->voucher;
+        $point->deposit_amount = $request->deposit_amount;
+        $point->deposit_date = $request->deposit_date;
+        $point->deposit_photo = $request->photo;
+        $point->business_id = $request->business;
+        $point->employee_id = $request->manager;
         $point->save();
 
-        return redirect()->route('points.index')->with('msg', "Center Created Successfully ");
+        return redirect()->route('deposit.index')->with('msg', "Deposit Created Successfully ");
     }
 
     /**
@@ -60,12 +66,13 @@ class DepositController extends Controller
      */
     public function show(Deposit $deposit)
     {
-        $employee = DB::table('employees')->where('deposit_id', $deposit->id)->get();
-        if (count($employee) > 0) {
-            return view('backend.deposit.show', compact('deposit', 'employee'));
-        } else {
-            return view('backend.deposit.show', compact('deposit'));
-        }
+        // $employee = DB::table('employees')->where('deposit_id', $deposit->id)->get();
+        // if (count($employee) > 0) {
+        //     return view('backend.deposit.show', compact('deposit', 'employee'));
+        // } else {
+        //     return view('backend.deposit.show', compact('deposit'));
+        // }
+        return view('backend.deposit.show', compact('deposit'));
     }
 
     /**
