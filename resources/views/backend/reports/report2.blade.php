@@ -127,11 +127,22 @@
 													
 													{{-- Bank Deposit --}}
 													<td colspan="2" class="align-top text-center">
-														<table class="table table-bordered mb-0" style="padding: 0; margin:0">
-															@foreach($payments as $payment)
-															<tr><td>{{$payment->payment_date}}</td><td>{{$payment->payment_amount}}</td></tr>
+														@if(count($squaredatas)>0)
+														<table class="table table-bordered mb-0" style="padding: 0; margin:0"> 
+															<caption class="text-center">SQUARE</caption>
+															@foreach($squaredatas as $data)
+															<tr><td>{{$data->payment_date}}</td><td>{{$data->payment_amount}}</td></tr>
 															@endforeach
-														</table>
+														</table> 
+														@endif
+														@if(count($kamaldatas)>0)
+														<table class="table table-bordered mb-0" style="padding: 0; margin:0"> 
+															<caption class="text-center">KAMAL GEN</caption>
+															@foreach($kamaldatas as $data)
+															<tr><td>{{$data->payment_date}}</td><td>{{$data->payment_amount}}</td></tr>
+															@endforeach
+														</table> 
+														@endif
 													</td>
 													{{-- Stocks --}}
 													<td colspan="6">
@@ -141,7 +152,7 @@
 																<td style="max-width:47px">{{$stock->received_date}}</td>
 																@if ($stock->product_type == 'regular')
 																<td style="max-width:85px">
-																	REG-{{$stock->invoice_number}}	
+																	{{$stock->invoice_number}}	
 																</td>
 																<td style="max-width:10%" class="text-center">{{$stock->product_amount}}</td>
 																<td style="max-width:15%"  class="text-center">------</td>
@@ -149,7 +160,7 @@
 																<td style="max-width:30%"  class="text-center">------</td>
 																@elseif($stock->product_type == 'slab')	
 																<td style="width:85px">
-																	SLB-{{$stock->invoice_number}}
+																	{{$stock->invoice_number}}
 																</td>
 																<td style="max-width:15%"  class="text-center">------</td>
 																<td style="max-width:15%" class="text-center">{{$stock->product_amount}}</td>
@@ -157,7 +168,7 @@
 																<td style="max-width:30%" class="text-center">---</td>	
 																@elseif($stock->product_type == 'vatadjust')	
 																<td style="width:85px">
-																	VAT-{{$stock->invoice_number}}
+																	{{$stock->invoice_number}}
 																</td>
 																<td style="max-width:15%"  class="text-center">------</td>
 																<td style="max-width:15%" class="text-center">------</td>
@@ -165,7 +176,7 @@
 																<td style="max-width:30%" class="text-center">------</td>	
 																@elseif($stock->product_type == 'mktpromo')	
 																<td style="width:85px">
-																	MKT-{{$stock->invoice_number}}
+																	{{$stock->invoice_number}}
 																</td>
 																<td style="max-width:15%"  class="text-center">------</td>
 																<td style="max-width:15%" class="text-center">------</td>
@@ -218,21 +229,24 @@
 														<td></td>  
 														<td>{{number_format($totalInvestment, 2)}}</td>
 														<td></td>
-														<th>{{number_format($totalPayments, 2)}}</th>
+														<td>
+															KAMAL: {{number_format($kamalpayments, 2)}} <br>
+															SQUARE: {{number_format($squarepayments, 2)}}
+														</td>
 														<td></td>
-														<th></th>
-														<th>{{number_format($resularamount, 2)}}</th>
-														<th>{{number_format($slbstockamount, 2)}}</th>
-														<th>{{number_format($vatadjustamount, 2)}}</th>
-														<th>{{number_format($mktpromoamount, 2)}}</th>
-														<th></th>
 														<td></td>
-														<th>{{number_format($totalsales, 2)}}</th>
-														<th>{{number_format($collections, 2)}}</th>
-														<th>{{number_format($dues, 2)}}</th>
-														<th></th>
-														<th></th>
-														<th>{{number_format($totaldeposits, 2)}}</th>
+														<td>{{number_format($resularamount, 2)}}</td>
+														<td>{{number_format($slbstockamount, 2)}}</td>
+														<td>{{number_format($vatadjustamount, 2)}}</td>
+														<td>{{number_format($mktpromoamount, 2)}}</td>
+														<td></td>
+														<td></td>
+														<td>{{number_format($totalsales, 2)}}</td>
+														<td>{{number_format($collections, 2)}}</td>
+														<td>{{number_format($dues, 2)}}</td>
+														<td></td>
+														<td></td>
+														<td>{{number_format($totaldeposits, 2)}}</td>
 													  </tr>	
 												 
 												  <tr class="cumulative_data">

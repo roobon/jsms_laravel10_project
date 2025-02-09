@@ -56,11 +56,21 @@ class ReportController extends Controller
             ->get();
         $totalInvestment = $investments->sum('investment_amount');
 
-        $payments = Payment::where('business_id', $request->business)
+        $squaredatas = Payment::select("payment_date", "payment_amount")
+            ->where('business_id', $request->business)
             ->whereMonth('payment_date', $month)
             ->whereYear('payment_date', $year)
+            ->where("company_id", 1)
             ->get();
-        $totalPayments = $payments->sum('payment_amount');
+        $squarepayments = $squaredatas->sum('payment_amount');
+        // Kamal General Store
+        $kamaldatas = Payment::select("payment_date", "payment_amount")
+            ->where('business_id', $request->business)
+            ->whereMonth('payment_date', $month)
+            ->whereYear('payment_date', $year)
+            ->where("company_id", 2)
+            ->get();
+        $kamalpayments = $kamaldatas->sum('payment_amount');
 
         $stocks = Stock::where('business_id', $request->business)
             ->whereMonth('received_date', $month)
@@ -74,9 +84,6 @@ class ReportController extends Controller
             ->get();
 
         $resularamount = $regular->sum('product_amount');
-
-
-
 
         // Slab Stock
         $slbstocks = Stock::where('business_id', $request->business)
@@ -133,11 +140,13 @@ class ReportController extends Controller
         $data['opening'] = $opening;
         $data['closing'] = $closing;
         $data['investments'] =  $investments;
-        $data['payments'] =  $payments;
+        $data['squaredatas'] =  $squaredatas;
         $data['business'] = $business;
         $data['stocks'] = $stocks;
         $data['totalInvestment'] =  $totalInvestment;
-        $data['totalPayments'] =  $totalPayments;
+        $data['squarepayments'] =  $squarepayments;
+        $data['kamaldatas'] =  $kamaldatas;
+        $data['kamalpayments'] =  $kamalpayments;
         $data['target'] =  $target;
         $data['sales'] =  $sales;
         $data['totalsales'] =  $totalSales;
