@@ -90,7 +90,7 @@
 												  </tr>
 												  <tr>
 													<th>Opening</th>
-													<th>{{($opening->security_money) ? $opening->security_money: ''}}</th>
+													<th>{{($opening->security_money) ? number_format($opening->security_money, 2): ''}}</th>
 													<th>Up to last Month</th>
 													<th>{{$opening->investment_amount}}</th>
 													<th>Up to last Month</th>
@@ -98,10 +98,10 @@
 													<th style="width:94px">Up to last Month </th>
 													<th>N/A</th>
 													<th style="width:110px">{{$opening->product_received_amount}}</th>
-													<th style="width:110px">Will add</th>
-													<th>Will add</th>
-													<th>Will add</th>
+													<th style="width:110px">{{$opening->slab_received_amount}}</th>
 													<th>{{$opening->insentive_received_amount}}</th>
+													<th>{{$opening->sales_amount }}</th>
+													<th>{{$opening->collection_amount }}</th>
 													<th>Up to last Month</th>
 													<th>{{$opening->sales_amount}}</th>
 													<th>{{$opening->collection_amount}}</th>
