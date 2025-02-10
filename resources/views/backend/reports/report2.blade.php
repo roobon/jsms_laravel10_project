@@ -144,12 +144,13 @@
 														</table> 
 														@endif
 													</td>
-													{{-- Stocks --}}
+													{{-- Product Received --}}
 													<td colspan="6">
 														<table class="table table-bordered" style="padding: 0; margin:0; width:100%">
+															<caption class="text-center">SQUARE</caption>
 															@foreach($stocks as $stock)
 															<tr>
-																<td style="max-width:47px">{{$stock->received_date}}</td>
+																<td style="max-width:38px">{{$stock->received_date}}</td>
 																@if ($stock->product_type == 'regular')
 																<td style="max-width:85px">
 																	{{$stock->invoice_number}}	

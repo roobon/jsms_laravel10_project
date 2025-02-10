@@ -41,13 +41,13 @@
 						</ul>
 					</li>
 					<li>
-						<a href="javascript:void(0);" data-toggle="collapse" data-target="#paymelist"><i class="icon-credit-card mr-10"></i>Payments<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#paymelist"><i class="icon-credit-card mr-10"></i>Bank Deposits<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="paymelist" class="collapse collapse-level-1">
 							<li>
-								<a href="{{route('payment.index')}}">All Payments</a>
+								<a href="{{route('payment.index')}}">All Deposits</a>
 							</li>
 							<li>
-								<a href="{{route('payment.create')}}">New Payment</a>
+								<a href="{{route('payment.create')}}">New Deposit</a>
 							</li>	
 						</ul>
 					</li>

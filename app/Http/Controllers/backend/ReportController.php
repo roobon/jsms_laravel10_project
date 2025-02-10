@@ -72,9 +72,11 @@ class ReportController extends Controller
             ->get();
         $kamalpayments = $kamaldatas->sum('payment_amount');
 
+        // SQUARE stocks
         $stocks = Stock::where('business_id', $request->business)
             ->whereMonth('received_date', $month)
             ->whereYear('received_date', $year)
+            ->where('company_id', 1)
             ->get();
 
         $regular = Stock::where('business_id', $request->business)
