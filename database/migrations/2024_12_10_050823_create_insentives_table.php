@@ -17,7 +17,6 @@ return new class extends Migration
             $table->date('received_date');
             $table->integer('business_id'); // for which business
             $table->integer('company_id'); // Received From
-            
             $table->timestamps();
         });
     }
