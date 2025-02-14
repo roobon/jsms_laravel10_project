@@ -127,7 +127,7 @@
                     <ul class="app-icon-wrap">
 
                         <li>
-                            <a href="{{ route('company.index') }}" class="connection-item">
+                            <a href="{{ url('admin/report') }}" class="connection-item">
                                 <i class="pe-7s-graph2 txt-info"></i>
                                 <span class="block">Reports</span>
                             </a>

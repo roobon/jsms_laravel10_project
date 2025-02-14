@@ -10,6 +10,7 @@ use App\Models\Company;
 use App\Models\Deposit;
 use App\Models\Investment;
 use App\Models\Payment;
+use App\Models\RetailerDues;
 use App\Models\Sales;
 use App\Models\Stock;
 use App\Models\Target;
@@ -125,6 +126,12 @@ class ReportController extends Controller
             ->get();
         $totaldeposits = $deposits->sum('deposit_amount');
 
+        $Retailerdues = RetailerDues::where('business_id', $request->business)
+        ->whereMonth('sales_date', $month)
+        ->whereYear('sales_date', $year)
+        ->get();
+        $totalRetailerDues = $Retailerdues->sum('due_amount');
+
         $opening = DB::table('opening_closing')
             ->where('business_id', $request->business)
             ->where('month', $month)
@@ -161,6 +168,8 @@ class ReportController extends Controller
         $data['slbstockamount'] =  $slbstockamount;
         $data['vatadjustamount'] =  $vatadjustamount;
         $data['mktpromoamount'] =  $mktpromoamount;
+        $data['Retailerdues'] =  $Retailerdues;
+        $data['totalRetailerDues'] =  $totalRetailerDues;
 
         return view('backend.reports.report2', $data);
     }

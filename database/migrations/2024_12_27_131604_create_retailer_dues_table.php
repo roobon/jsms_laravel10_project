@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('sales_date');
             $table->decimal('due_amount', total: 10, places: 2)->default(0);
             $table->string('photo')->nullable();
+            $table->integer('business_id');
             $table->timestamps();
         });
     }

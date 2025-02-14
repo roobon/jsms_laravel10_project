@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Insentive extends Model
 {
     use HasFactory;
+    protected $table = 'insentives';
+
+    public function business(){
+        return $this->belongsTo(Business::class, 'business_id');
+    }
 }

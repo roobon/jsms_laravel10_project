@@ -52,10 +52,11 @@ class InsentiveController extends Controller
 
         $insentive = new Insentive;
 
-        $insentive->investment_amount = $request->amount;
-        $insentive->investment_date = $request->date;
+        $insentive->insentive_amount = $request->amount;
+        $insentive->received_date = $request->date;
         $insentive->business_id = $request->business;
-        $insentive->investment_photo = $photo;
+        //$insentive->company_id = $request->company;
+        
 
 
         $insentive->save();

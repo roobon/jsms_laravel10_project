@@ -51,10 +51,9 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Shop Name</th>
-                                                <th>Current Due</th>
-                                                <th>Phone</th>
-                                                <th>Market Name</th>
-                                                <th>Address</th>
+                                                <th>Sales Memo</th>
+                                                <th>Sales Date</th>
+                                                <th>Due Amount</th>
                                                 <th style="width: 15%;" class="text-center">Action</th>
                                             </tr>
                                         </thead>
@@ -62,10 +61,9 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Shop Name</th>
-                                                <th>Current Due</th>
-                                                <th>Phone</th>
-                                                <th>Market Name</th>
-                                                <th>Address</th>
+                                                <th>Sales Memo</th>
+                                                <th>Sales Date</th>
+                                                <th>Due Amount</th>
                                                 <th style="width: 15%;" class="text-center">Action</th>
                                             </tr>
                                         </tfoot>
@@ -73,22 +71,20 @@
                                             @foreach ($items as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->shop_name }}</td>
-                                                    <td class="text-danger bg-warning">{{ $item->current_due }}</td>
-                                                    <td>{{ $item->contact_number }}</td>
-                                                    <td>{{ $item->market_name }}</td>
-                                                    <td>{{ $item->shop_address }}</td>
+                                                    <td>{{ $item->retailer->shop_name }}</td>
+                                                    <td>{{ $item->sales_memo }}</td>
+                                                    <td>{{ $item->sales_date }}</td>
+                                                    <td>{{ $item->due_amount }}</td>
                                                     <td style="width: 15%;" class="text-center">
 
 
 
                                                         <form onSubmit="return confirm('Are you sure to Delete')"
-                                                            action="{{ route('retailer.destroy', $item->id) }}"
-                                                            method="post">
+                                                            action="{{ route('dues.destroy', $item->id) }}" method="post">
                                                             <a class="btn btn-default btn-icon-anim btn-circle"
                                                                 href="{{ route('retailer.show', $item->id) }}"><i
                                                                     class="glyphicon glyphicon-search"></i></a>
-                                                            <a href="{{ route('retailer.edit', $item->id) }}"
+                                                            <a href="{{ route('dues.edit', $item->id) }}"
                                                                 class="btn btn-primary btn-icon-anim btn-circle"><i
                                                                     class="glyphicon glyphicon-edit"></i></a>
                                                             @csrf

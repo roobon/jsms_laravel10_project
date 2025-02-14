@@ -70,7 +70,7 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->insentive_amount }}</td>
-                                                    <td>{{ $item->insentive_date }}</td>
+                                                    <td>{{ $item->received_date }}</td>
                                                     <td>{{ $item->business->business_name }}</td>
                                                     <td style="width: 15%;" class="text-center">
                                                         <form onSubmit="return confirm('Are you sure to Delete')"

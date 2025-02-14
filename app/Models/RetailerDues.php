@@ -9,4 +9,9 @@ class RetailerDues extends Model
 {
     use HasFactory;
     protected $table = 'retailer_dues';
+
+    public function retailer()
+    {
+        return $this->belongsTo(Retailer::class);
+    }
 }

@@ -41,6 +41,11 @@ class Business extends Model
         return $this->hasMany(Investment::class);
     }
 
+    public function insentive()
+    {
+        return $this->hasMany(Insentive::class);
+    }
+
     public function target()
     {
         return $this->hasMany(Target::class);

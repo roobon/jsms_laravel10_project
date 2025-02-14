@@ -237,7 +237,16 @@
 
 
                                                 <td></td>
-                                                <td></td>
+                                                <td>
+                                                    <table class="table table-bordered" style="padding: 0; margin:0">
+                                                        {{-- @foreach ($Retailerdues as $Retailerdue)
+                                                            <tr>
+                                                                <td>{{ $Retailerdue->sales_date }}</td>
+                                                                <td>{{ $Retailerdue->due_amount }}</td>
+                                                            </tr>
+                                                        @endforeach --}}
+                                                    </table>
+                                                </td>
                                                 <td>
                                                     <table class="table table-bordered" style="padding: 0; margin:0">
                                                         @foreach ($deposits as $deposit)
@@ -273,7 +282,7 @@
                                                 <td>{{ number_format($collections, 2) }}</td>
                                                 <td>{{ number_format($dues, 2) }}</td>
                                                 <td></td>
-                                                <td></td>
+                                                <td>{{ number_format($totalRetailerDues, 2) }}</td>
                                                 <td>{{ number_format($totaldeposits, 2) }}</td>
                                             </tr>
 
