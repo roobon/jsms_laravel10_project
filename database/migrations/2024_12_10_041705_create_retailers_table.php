@@ -26,7 +26,8 @@ return new class extends Migration
             $table->integer('manager_id'); //Manager
             $table->integer('delman_id'); //Delivery Man
             $table->string('photo')->nullable();
-            $table->enum('status', ['active', 'inactive']);
+            $table->decimal('current_due', total: 10, places: 2)->default(0);
+            $table->enum('performance', ['excellent', 'good', 'poor']);
             $table->timestamps();
         });
     }

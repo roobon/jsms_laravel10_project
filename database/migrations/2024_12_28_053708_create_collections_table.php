@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->integer('retailer_id')->unique();
-            $table->decimal('current_due', total: 10, places: 2)->default(0);
+            $table->integer('retailer_id');
+            $table->string('sales_memo', 60);
+            $table->decimal('collection_amount', total: 10, places: 2)->default(0);
+            $table->date('collection_date');
+            $table->decimal('rest_amount', total: 10, places: 2)->default(0);
             $table->timestamps();
         });
     }

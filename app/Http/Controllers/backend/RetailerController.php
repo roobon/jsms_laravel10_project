@@ -49,7 +49,7 @@ class RetailerController extends Controller
                 'point' => 'required',
                 'manager' => 'required',
                 'delman' => 'required',
-                'status' => 'required',
+                'performance' => 'required'
             ],
 
         );
@@ -74,7 +74,7 @@ class RetailerController extends Controller
         $retailer->contact_number = $request->contact_number;
         $retailer->contact_email  = $request->contact_email;
         $retailer->business_starts = $request->business_starts;
-        $retailer->status = $request->status;
+        $retailer->performance = $request->performance;
         $retailer->point_id = $request->point;
         $retailer->manager_id = $request->manager;
         $retailer->delman_id = $request->delman;
@@ -88,7 +88,7 @@ class RetailerController extends Controller
 
         // ]);
 
-        return redirect()->route('retailer.index')->with('msg', "Retailer Created Successfully with Dues");
+        return redirect()->route('retailer.index')->with('msg', "Retailer Created Successfully");
     }
 
     /**
@@ -129,7 +129,7 @@ class RetailerController extends Controller
                 'point' => 'required',
                 'manager' => 'required',
                 'delman' => 'required',
-                'status' => 'required',
+                'performance' => 'required'
             ],
 
         );
@@ -152,7 +152,7 @@ class RetailerController extends Controller
         $retailer->contact_number = $request->contact_number;
         $retailer->contact_email  = $request->contact_email;
         $retailer->business_starts = $request->business_starts;
-        $retailer->status = $request->status;
+        $retailer->performance = $request->performance;
         $retailer->point_id = $request->point;
         $retailer->manager_id = $request->manager;
         $retailer->delman_id = $request->delman;
@@ -168,7 +168,7 @@ class RetailerController extends Controller
         //     ->where('retailer_id', $retailer->id)
         //     ->update(['current_due' => $request->last_balance]);
 
-        return redirect()->route('retailer.index')->with('msg', "Successfully retailer Updated with Dues");
+        return redirect()->route('retailer.index')->with('msg', "Successfully Retailer Updated");
     }
 
     /**

@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('retailer_dues', function (Blueprint $table) {
             $table->id();
-            $table->integer('retailer_id')->unique();
-            $table->decimal('current_due', total: 10, places: 2)->default(0);
+            $table->integer('retailer_id');
+            $table->string('sales_memo', 60);
+            $table->date('sales_date');
+            $table->decimal('due_amount', total: 10, places: 2)->default(0);
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }
