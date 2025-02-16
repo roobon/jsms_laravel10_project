@@ -14,14 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         //\App\Models\User::factory(10)->create();
-
-        //\App\Models\Specialist::factory(50)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         \App\Models\Admin::create([
             'name' => 'Ziaul Habib',
             'email' => 'roobon@gmail.com',
@@ -45,11 +37,9 @@ class DatabaseSeeder extends Seeder
         // );
 
         $this->call([CompanySeeder::class]);
-        //$this->call([CompanySeeder::class]);
-        \App\Models\Retailer::factory(10)->create();
-        \App\Models\Point::factory(4)->create();
-        \App\Models\Employee::factory(10)->create();
-        //\App\Models\Sales::factory(10)->create();
-        //\App\Models\Payment::factory(10)->create();
+        \App\Models\Retailer::factory(5)->create();
+        \App\Models\Point::factory(3)->create();
+        \App\Models\Employee::factory(5)->create();
+        
     }
 }

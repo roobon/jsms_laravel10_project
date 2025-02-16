@@ -35,10 +35,10 @@ class EmployeeFactory extends Factory
             'contact_number' =>  random_int(170000000000, 179900000000),
             'contact_email' => fake()->unique()->safeEmail(),
             'password' => Hash::make('admin123'),
-            'photo' => 'images/employee/noempphoto.jpg',
+            'photo' => 'images/nophoto.jpg',
             'nid' => Str::random(10),
             'resume' => $this->faker->sentence,
-            'point_id' => random_int(1, 4),
+            'point_id' => random_int(1, 3),
             'company_id' => random_int(1, 4),
             'status' => 'active',
         ];

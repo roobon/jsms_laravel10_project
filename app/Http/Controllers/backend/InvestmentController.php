@@ -5,7 +5,10 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Business;
 use App\Models\Investment;
+use App\Models\OpeningClosing;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InvestmentController extends Controller
 {
@@ -59,6 +62,21 @@ class InvestmentController extends Controller
 
 
         $investment->save();
+
+        $date = Carbon::createFromFormat('Y-n-d', $request->date);
+        $month = $date->format('n');
+        $year = $date->format('Y');
+        
+        $openClose = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $month)
+            ->where('year', $year)
+            ->where('business_id', $request->business)
+            ->where('period', 'closing')
+            ->first();
+
+        $openClose->investment_amount = $openClose->investment_amount + $request->amount;
+
+        $openClose->update();       
 
         return redirect()->route('investment.index')->with('msg', "Successfully investment Created");
     }

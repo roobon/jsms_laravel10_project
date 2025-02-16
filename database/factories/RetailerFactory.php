@@ -33,7 +33,7 @@ class RetailerFactory extends Factory
             'point_id' => random_int(1, 4),
             'manager_id' => random_int(1, 4),
             'delman_id' => random_int(5, 8),
-            'status' => 'active',
+            'performance' => 'excellent',
         ];
     }
 }

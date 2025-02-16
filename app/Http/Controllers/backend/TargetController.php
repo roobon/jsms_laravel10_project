@@ -74,6 +74,11 @@ class TargetController extends Controller
         } else {
             $target->save();
             $business = Business::find($request->business);
+            
+            $date = Carbon::createFromFormat('Y-n-d', $request->start_date);
+            $month = $date->format('n');
+            $year = $date->format('Y');
+
             DB::table('opening_closing')->insert([
 
                 'security_money' =>  $business->security_money,
@@ -88,8 +93,8 @@ class TargetController extends Controller
                 'due_realize_amount' => 0,
                 'total_due_amount' => 0,
                 'ho_deposit_amount' => 0,
-                'month' => 1,
-                'year' => 2025,
+                'month' => $month,
+                'year' => $year,
                 'business_id' => $request->business,
                 'period' => 'opening',
                 'status' => 'ended',
@@ -109,8 +114,8 @@ class TargetController extends Controller
                 'due_realize_amount' => 0,
                 'total_due_amount' => 0,
                 'ho_deposit_amount' => 0,
-                'month' => 1,
-                'year' => 2025,
+                'month' => $month,
+                'year' => $year,
                 'business_id' => $request->business,
                 'period' => 'closing',
                 'status' => 'running',

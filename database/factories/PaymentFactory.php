@@ -29,7 +29,7 @@ class PaymentFactory extends Factory
             'company_id' => random_int(1, 4),
             'employee_id' => random_int(1, 20),
             'payment_note' =>  Str::random(20),
-            'cheque_voucher_photo' => 'images/sales/no_chequehoto.jpg',
+            'cheque_voucher_photo' => 'images/nohoto.jpg',
         ];
     }
 }
