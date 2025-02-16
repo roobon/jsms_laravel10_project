@@ -63,6 +63,7 @@ class InvestmentController extends Controller
 
         $investment->save();
 
+        // Investment update to Closing Investment
         $date = Carbon::createFromFormat('Y-n-d', $request->date);
         $month = $date->format('n');
         $year = $date->format('Y');
@@ -76,7 +77,8 @@ class InvestmentController extends Controller
 
         $openClose->investment_amount = $openClose->investment_amount + $request->amount;
 
-        $openClose->update();       
+        $openClose->update(); 
+        // Investment update   
 
         return redirect()->route('investment.index')->with('msg', "Successfully investment Created");
     }

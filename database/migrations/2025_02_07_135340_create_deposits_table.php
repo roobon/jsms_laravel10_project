@@ -17,8 +17,9 @@ return new class extends Migration
             $table->decimal('deposit_amount', total: 12, places: 2)->default(0);
             $table->date('deposit_date');
             $table->string('deposit_photo')->nullable();
-            $table->integer('business_id');
-            $table->integer('employee_id');
+            $table->integer('business_id'); // From business
+            $table->integer('company_id'); // For which company
+            $table->integer('employee_id'); // by employee
             $table->timestamps();
         });
     }

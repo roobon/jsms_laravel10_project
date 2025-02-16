@@ -25,4 +25,9 @@ class Stock extends Model
     {
         return $this->belongsTo(Business::class, 'business_id');
     }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
 }

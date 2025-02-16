@@ -92,7 +92,8 @@
                                             </tr>
                                             <tr>
                                                 <th>Opening</th>
-                                                <th>{{ $opening->security_money ? number_format($opening->security_money, 2) : '' }}
+                                                <th>
+                                                    {{ $opening->security_money ? number_format($opening->security_money, 2) : '' }}
                                                 </th>
                                                 <th>Up to last Month</th>
                                                 <th>{{ $opening->investment_amount }}</th>
@@ -131,89 +132,150 @@
                                                     </table>
                                                 </td>
 
-                                                {{-- Bank Deposit --}}
+                                                {{-- Bank Deposit Starts --}}
                                                 <td colspan="2" class="align-top text-center">
-                                                    @if (count($squaredatas) > 0)
-                                                        <table class="table table-bordered mb-0"
-                                                            style="padding: 0; margin:0">
-                                                            <caption class="text-center">SQUARE</caption>
-                                                            @foreach ($squaredatas as $data)
+                                                    @if (count($deposittoCompanies) > 0)
+                                                        @foreach ($deposittoCompanies as $depCompany)
+                                                            <table class="table table-bordered mb-0"
+                                                                style="padding: 0; margin:0">
+                                                                <caption class="text-center bg-dark">
+                                                                    {{ $depCompany->company->company_name }}
+                                                                </caption>
+                                                                @php
+                                                                    $deposits = App\Models\Deposit::where(
+                                                                        'business_id',
+                                                                        $businessInfo['id'],
+                                                                    )
+                                                                        ->whereMonth(
+                                                                            'deposit_date',
+                                                                            $businessInfo['month'],
+                                                                        )
+                                                                        ->whereYear(
+                                                                            'deposit_date',
+                                                                            $businessInfo['year'],
+                                                                        )
+                                                                        ->where('company_id', $depCompany->company_id)
+                                                                        ->get();
+                                                                @endphp
+                                                                @foreach ($deposits as $data)
+                                                                    <tr>
+                                                                        <td>{{ $data->deposit_date }}</td>
+                                                                        <td>{{ number_format($data->deposit_amount, 2) }}
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
                                                                 <tr>
-                                                                    <td>{{ $data->payment_date }}</td>
-                                                                    <td>{{ $data->payment_amount }}</td>
+                                                                    <td>Total</td>
+                                                                    <td class="bg-success text-danger">
+                                                                        {{ number_format($deposits->sum('deposit_amount'), 2) }}
+                                                                    </td>
                                                                 </tr>
-                                                            @endforeach
-                                                        </table>
-                                                    @endif
-                                                    @if (count($kamaldatas) > 0)
-                                                        <table class="table table-bordered mb-0"
-                                                            style="padding: 0; margin:0">
-                                                            <caption class="text-center">KAMAL GEN</caption>
-                                                            @foreach ($kamaldatas as $data)
-                                                                <tr>
-                                                                    <td>{{ $data->payment_date }}</td>
-                                                                    <td>{{ $data->payment_amount }}</td>
-                                                                </tr>
-                                                            @endforeach
-                                                        </table>
+                                                            </table>
+                                                        @endforeach
+                                                        @php
+                                                            $totaldeposits = $deposits->sum('deposit_amount');
+                                                        @endphp
                                                     @endif
                                                 </td>
+                                                {{-- Bank Deposit End --}}
                                                 {{-- Product Received --}}
                                                 <td colspan="6">
-                                                    <table class="table table-bordered"
-                                                        style="padding: 0; margin:0; width:100%">
-                                                        <caption class="text-center">SQUARE</caption>
-                                                        @foreach ($stocks as $stock)
-                                                            <tr>
-                                                                <td style="max-width:46px">{{ $stock->received_date }}</td>
-                                                                @if ($stock->product_type == 'regular')
-                                                                    <td class="text-center" style="max-width:85px">
-                                                                        {{ $stock->invoice_number }}
-                                                                    </td>
-                                                                    <td style="max-width:10%" class="text-center">
-                                                                        {{ $stock->product_amount }}</td>
-                                                                    <td style="max-width:15%" class="text-center">------
-                                                                    </td>
-                                                                    <td class="text-center">------</td>
-                                                                    <td style="max-width:30%" class="text-center">------
-                                                                    </td>
-                                                                @elseif($stock->product_type == 'slab')
-                                                                    <td class="text-center" style="width:85px">
-                                                                        {{ $stock->invoice_number }}
-                                                                    </td>
-                                                                    <td style="max-width:15%" class="text-center">------
-                                                                    </td>
-                                                                    <td style="max-width:15%" class="text-center">
-                                                                        {{ $stock->product_amount }}</td>
-                                                                    <td class="text-center">------</td>
-                                                                    <td style="max-width:30%" class="text-center">---</td>
-                                                                @elseif($stock->product_type == 'vatadjust')
-                                                                    <td class="text-center" style="width:85px">
-                                                                        {{ $stock->invoice_number }}
-                                                                    </td>
-                                                                    <td style="max-width:15%" class="text-center">------
-                                                                    </td>
-                                                                    <td style="max-width:15%" class="text-center">------
-                                                                    </td>
-                                                                    <td class="text-center">{{ $stock->product_amount }}
-                                                                    </td>
-                                                                    <td style="max-width:30%" class="text-center">------
-                                                                    </td>
-                                                                @elseif($stock->product_type == 'mktpromo')
-                                                                    <td class="text-center" style="width:85px">
-                                                                        {{ $stock->invoice_number }}
-                                                                    </td>
-                                                                    <td style="max-width:15%" class="text-center">------
-                                                                    </td>
-                                                                    <td style="max-width:15%" class="text-center">------
-                                                                    </td>
-                                                                    <td class="text-center">------</td>
-                                                                    <td style="max-width:30%" class="text-center">
-                                                                        {{ $stock->product_amount }}</td>
-                                                                @endif
-                                                            </tr>
+                                                    @if (count($productReceivedCompanies) > 0)
+                                                        @foreach ($productReceivedCompanies as $productRecCompany)
+                                                            <table class="table table-bordered"
+                                                                style="padding: 0; margin:0; width:100%">
+                                                                <caption class="text-center text-white bg-dark">
+                                                                    {{ $productRecCompany->company->company_name }}
+                                                                </caption>
+                                                                @php
+                                                                    $stocks = App\Models\Stock::where(
+                                                                        'business_id',
+                                                                        $businessInfo['id'],
+                                                                    )
+                                                                        ->whereMonth(
+                                                                            'received_date',
+                                                                            $businessInfo['month'],
+                                                                        )
+                                                                        ->whereYear(
+                                                                            'received_date',
+                                                                            $businessInfo['year'],
+                                                                        )
+                                                                        ->where(
+                                                                            'company_id',
+                                                                            $productRecCompany->company_id,
+                                                                        )
+                                                                        ->get();
+
+                                                                @endphp
+
+
+                                                                @foreach ($stocks as $stock)
+                                                                    <tr>
+                                                                        <td style="max-width:46px">
+                                                                            {{ $stock->received_date }}
+                                                                        </td>
+                                                                        @if ($stock->product_type == 'regular')
+                                                                            <td class="text-center" style="max-width:85px">
+                                                                                {{ $stock->invoice_number }}
+                                                                            </td>
+                                                                            <td style="max-width:10%" class="text-center">
+                                                                                {{ number_format($stock->product_amount, 2) }}
+                                                                            </td>
+                                                                            <td style="max-width:15%" class="text-center">
+                                                                                ------
+                                                                            </td>
+                                                                            <td class="text-center">------</td>
+                                                                            <td style="max-width:30%" class="text-center">
+                                                                                ------
+                                                                            </td>
+                                                                        @elseif($stock->product_type == 'slab')
+                                                                            <td class="text-center" style="width:85px">
+                                                                                {{ $stock->invoice_number }}
+                                                                            </td>
+                                                                            <td style="max-width:15%" class="text-center">
+                                                                                ------
+                                                                            </td>
+                                                                            <td style="max-width:15%" class="text-center">
+                                                                                {{ $stock->product_amount }}</td>
+                                                                            <td class="text-center">------</td>
+                                                                            <td style="max-width:30%" class="text-center">
+                                                                                ---
+                                                                            </td>
+                                                                        @elseif($stock->product_type == 'vatadjust')
+                                                                            <td class="text-center" style="width:85px">
+                                                                                {{ $stock->invoice_number }}
+                                                                            </td>
+                                                                            <td style="max-width:15%" class="text-center">
+                                                                                ------
+                                                                            </td>
+                                                                            <td style="max-width:15%" class="text-center">
+                                                                                ------
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                {{ $stock->product_amount }}
+                                                                            </td>
+                                                                            <td style="max-width:30%" class="text-center">
+                                                                                ------
+                                                                            </td>
+                                                                        @elseif($stock->product_type == 'mktpromo')
+                                                                            <td class="text-center" style="width:85px">
+                                                                                {{ $stock->invoice_number }}
+                                                                            </td>
+                                                                            <td style="max-width:15%" class="text-center">
+                                                                                ------
+                                                                            </td>
+                                                                            <td style="max-width:15%" class="text-center">
+                                                                                ------
+                                                                            </td>
+                                                                            <td class="text-center">------</td>
+                                                                            <td style="max-width:30%" class="text-center">
+                                                                                {{ $stock->product_amount }}</td>
+                                                                        @endif
+                                                                    </tr>
+                                                                @endforeach
+                                                            </table>
                                                         @endforeach
-                                                    </table>
+                                                    @endif
                                                 </td>
 
 
@@ -264,18 +326,22 @@
                                                 <td>Current</td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>{{ number_format($totalInvestment, 2) }}</td>
+                                                <td class="bg-info text-muted">
+                                                    {{ number_format($totalInvestment, 2) }}</td>
                                                 <td></td>
-                                                <td>
-                                                    KAMAL: {{ number_format($kamalpayments, 2) }} <br>
-                                                    SQUARE: {{ number_format($squarepayments, 2) }}
+                                                <td class="bg-info text-muted">
+                                                    {{ number_format($totalCompanydeposits, 2) }}
                                                 </td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>{{ number_format($resularamount, 2) }}</td>
-                                                <td>{{ number_format($slbstockamount, 2) }}</td>
-                                                <td>{{ number_format($vatadjustamount, 2) }}</td>
-                                                <td>{{ number_format($mktpromoamount, 2) }}</td>
+                                                <td class="bg-info text-muted">{{ number_format($resularamount, 2) }}
+                                                </td>
+                                                <td class="bg-info text-muted">{{ number_format($slbstockamount, 2) }}
+                                                </td>
+                                                <td class="bg-info text-muted">
+                                                    {{ number_format($vatadjustamount, 2) }}</td>
+                                                <td class="bg-info text-muted">{{ number_format($mktpromoamount, 2) }}
+                                                </td>
                                                 <td></td>
                                                 <td></td>
                                                 <td>{{ number_format($totalsales, 2) }}</td>
@@ -288,12 +354,16 @@
 
                                             <tr class="cumulative_data">
                                                 <td>Cumulative</td>
-                                                <td>{{ number_format($closing->security_money, 2) }}</td>
+                                                <td class="bg-success text-danger">
+                                                    {{ number_format($closing->security_money, 2) }}
+                                                </td>
                                                 <td></td> {{-- Investment Start --}}
-                                                <td>{{ number_format($closing->investment_amount, 2) }}</td>
+                                                <td class="bg-success text-danger">
+                                                    {{ number_format($closing->investment_amount, 2) }}</td>
                                                 {{-- Investment End --}}
                                                 <td></td>
-                                                <th>{{ number_format($closing->bank_deposit_amount, 2) }}</th>
+                                                <td class="bg-success text-danger">
+                                                    {{ number_format($closing->bank_deposit_amount, 2) }}</td>
                                                 <td></td>
                                                 <th></th>
                                                 <th>{{ number_format($closing->product_received_amount, 2) }}</th>
@@ -348,9 +418,12 @@
                 'color': 'rgb(252, 252, 252)'
             });
             $("tfoot>tr").css({
-                'background-color': 'rgba(127, 106, 124, 0.55)',
+                'background-color': 'rgba(208, 90, 3, 0.55)',
                 'color': 'white'
             });
+            $(".current_month").css({
+                'background-color': 'rgba(36, 7, 32, 0.55)'
+            })
             //	$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
         });
     </script>

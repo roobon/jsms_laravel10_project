@@ -51,67 +51,17 @@ class ReportController extends Controller
             ->whereYear('start_date', $year)
             ->first();
 
+        // Investments Data
         $investments = Investment::where('business_id', $request->business)
             ->whereMonth('investment_date', $month)
             ->whereYear('investment_date', $year)
             ->get();
         $totalInvestment = $investments->sum('investment_amount');
 
-        $squaredatas = Payment::select("payment_date", "payment_amount")
-            ->where('business_id', $request->business)
-            ->whereMonth('payment_date', $month)
-            ->whereYear('payment_date', $year)
-            ->where("company_id", 1)
-            ->get();
-        $squarepayments = $squaredatas->sum('payment_amount');
-        // Kamal General Store
-        $kamaldatas = Payment::select("payment_date", "payment_amount")
-            ->where('business_id', $request->business)
-            ->whereMonth('payment_date', $month)
-            ->whereYear('payment_date', $year)
-            ->where("company_id", 2)
-            ->get();
-        $kamalpayments = $kamaldatas->sum('payment_amount');
+        
 
-        // SQUARE stocks
-        $stocks = Stock::where('business_id', $request->business)
-            ->whereMonth('received_date', $month)
-            ->whereYear('received_date', $year)
-            ->where('company_id', 1)
-            ->get();
-
-        $regular = Stock::where('business_id', $request->business)
-            ->whereMonth('received_date', $month)
-            ->whereYear('received_date', $year)
-            ->where('product_type', 'regular')
-            ->get();
-
-        $resularamount = $regular->sum('product_amount');
-
-        // Slab Stock
-        $slbstocks = Stock::where('business_id', $request->business)
-            ->whereMonth('received_date', $month)
-            ->whereYear('received_date', $year)
-            ->where('product_type', 'slab')
-            ->get();
-        $slbstockamount = $slbstocks->sum('product_amount');
-
-        // VAT Adjustment
-        $vatadjust = Stock::where('business_id', $request->business)
-            ->whereMonth('received_date', $month)
-            ->whereYear('received_date', $year)
-            ->where('product_type', 'vatadjust')
-            ->get();
-        $vatadjustamount = $vatadjust->sum('product_amount');
-
-        // Marketing Promotion Amount
-        $mktpromo = Stock::where('business_id', $request->business)
-            ->whereMonth('received_date', $month)
-            ->whereYear('received_date', $year)
-            ->where('product_type', 'mktpromo')
-            ->get();
-        $mktpromoamount = $mktpromo->sum('product_amount');
-
+       
+        // Sales Data
         $sales = Sales::where('business_id', $request->business)
             ->whereMonth('sales_date', $month)
             ->whereYear('sales_date', $year)
@@ -120,11 +70,74 @@ class ReportController extends Controller
         $collections = $sales->sum('collection_amount');
         $dues = $sales->sum('due_amount');
 
-        $deposits = Deposit::where('business_id', $request->business)
+        // Companies where deposits
+        $deposittoCompanies = Deposit::where('business_id', $request->business)
             ->whereMonth('deposit_date', $month)
             ->whereYear('deposit_date', $year)
+            ->groupBy('company_id')
             ->get();
-        $totaldeposits = $deposits->sum('deposit_amount');
+        
+        // Without group by for total records
+        $deposCompanies = Deposit::where('business_id', $request->business)
+        ->whereMonth('deposit_date', $month)
+        ->whereYear('deposit_date', $year)
+        ->get();
+        $totalCompanydeposits = $deposCompanies->sum('deposit_amount');
+
+        // For passing data to blade page for subquery
+        $businessInfo = ['id' => $request->business, 
+                    'month' => $month, 
+                    'year' => $year ];
+
+        // Product Received
+
+        // Companies where from product received
+        $productReceivedCompanies = Stock::where('business_id', $request->business)
+            ->whereMonth('received_date', $month)
+            ->whereYear('received_date', $year)
+            ->groupBy('company_id')
+            ->get();
+
+         // SQUARE stocks
+        //  $stocks = Stock::where('business_id', $request->business)
+        //  ->whereMonth('received_date', $month)
+        //  ->whereYear('received_date', $year)
+        //  ->where('company_id', 1)
+        //  ->get();
+
+        $regular = Stock::where('business_id', $request->business)
+         ->whereMonth('received_date', $month)
+         ->whereYear('received_date', $year)
+         ->where('product_type', 'regular')
+         ->get();
+
+     $resularamount = $regular->sum('product_amount');
+
+     // Slab Stock
+     $slbstocks = Stock::where('business_id', $request->business)
+         ->whereMonth('received_date', $month)
+         ->whereYear('received_date', $year)
+         ->where('product_type', 'slab')
+         ->get();
+     $slbstockamount = $slbstocks->sum('product_amount');
+
+     // VAT Adjustment
+     $vatadjust = Stock::where('business_id', $request->business)
+         ->whereMonth('received_date', $month)
+         ->whereYear('received_date', $year)
+         ->where('product_type', 'vatadjust')
+         ->get();
+     $vatadjustamount = $vatadjust->sum('product_amount');
+
+     // Marketing Promotion Amount
+     $mktpromo = Stock::where('business_id', $request->business)
+         ->whereMonth('received_date', $month)
+         ->whereYear('received_date', $year)
+         ->where('product_type', 'mktpromo')
+         ->get();
+     $mktpromoamount = $mktpromo->sum('product_amount');
+
+
 
         $Retailerdues = RetailerDues::where('business_id', $request->business)
         ->whereMonth('sales_date', $month)
@@ -149,27 +162,34 @@ class ReportController extends Controller
         $data['opening'] = $opening;
         $data['closing'] = $closing;
         $data['investments'] =  $investments;
-        $data['squaredatas'] =  $squaredatas;
+        // $data['squaredatas'] =  $squaredatas;
         $data['business'] = $business;
-        $data['stocks'] = $stocks;
+        // $data['stocks'] = $stocks;
         $data['totalInvestment'] =  $totalInvestment;
-        $data['squarepayments'] =  $squarepayments;
-        $data['kamaldatas'] =  $kamaldatas;
-        $data['kamalpayments'] =  $kamalpayments;
+        // $data['squarepayments'] =  $squarepayments;
+        // $data['kamaldatas'] =  $kamaldatas;
+        // $data['kamalpayments'] =  $kamalpayments;
         $data['target'] =  $target;
         $data['sales'] =  $sales;
         $data['totalsales'] =  $totalSales;
         $data['collections'] =  $collections;
         $data['dues'] =  $dues;
         $data['resularamount'] =  $resularamount;
-        $data['deposits'] =  $deposits;
-        $data['totaldeposits'] =  $totaldeposits;
+       // $data['deposits'] =  $deposits;
+        //$data['totaldeposits'] =  $totaldeposits;
         $data['slbstocks'] =  $slbstocks;
         $data['slbstockamount'] =  $slbstockamount;
         $data['vatadjustamount'] =  $vatadjustamount;
         $data['mktpromoamount'] =  $mktpromoamount;
         $data['Retailerdues'] =  $Retailerdues;
         $data['totalRetailerDues'] =  $totalRetailerDues;
+        // Deposit to Company
+        $data['deposittoCompanies'] =  $deposittoCompanies;
+        $data['businessInfo'] =  $businessInfo;
+        $data['totalCompanydeposits'] =  $totalCompanydeposits;
+
+        // Product Received
+        $data['productReceivedCompanies'] =  $productReceivedCompanies;
 
         return view('backend.reports.report2', $data);
     }

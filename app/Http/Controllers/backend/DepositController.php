@@ -5,7 +5,10 @@ namespace App\Http\Controllers\backend;
 use App\Models\Deposit;
 use App\Http\Controllers\Controller;
 use App\Models\Business;
+use App\Models\Company;
 use App\Models\Employee;
+use App\Models\OpeningClosing;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,8 +30,9 @@ class DepositController extends Controller
     public function create()
     {
         $businesses = Business::all();
+        $companies = Company::all();
         $managers = Employee::where('designation', 'Manager')->get();
-        return view('backend.deposit.create', compact('businesses', 'managers'));
+        return view('backend.deposit.create', compact('businesses', 'managers', 'companies'));
     }
 
     /**
@@ -43,6 +47,7 @@ class DepositController extends Controller
                 'business' => 'required',
                 'deposit_date' => 'required',
                 'manager' => 'required',
+                'company' => 'required',
                 'photo' => 'nullable'
             ],
 
@@ -55,8 +60,27 @@ class DepositController extends Controller
         $point->deposit_date = $request->deposit_date;
         $point->deposit_photo = $request->photo;
         $point->business_id = $request->business;
+        $point->company_id = $request->company;
         $point->employee_id = $request->manager;
         $point->save();
+
+        
+        // Closing Deposit update 
+        $date = Carbon::createFromFormat('Y-n-d', $request->deposit_date);
+        $month = $date->format('n');
+        $year = $date->format('Y');
+        
+        $openClose = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $month)
+            ->where('year', $year)
+            ->where('business_id', $request->business)
+            ->where('period', 'closing')
+            ->first();
+
+        $openClose->bank_deposit_amount = $openClose->bank_deposit_amount + $request->deposit_amount;
+
+        $openClose->update(); 
+        // Closing Deposit update 
 
         return redirect()->route('deposit.index')->with('msg', "Deposit Created Successfully ");
     }
