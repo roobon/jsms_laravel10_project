@@ -17,11 +17,18 @@ class AjaxController extends Controller
     public function retailerInfo(Request $request): JsonResponse
     {
         $id = $request->id;
-        $data = DB::table('retailers')
-            ->join('retailer_dues', 'retailers.id', '=', 'retailer_dues.retailer_id')
-            ->join('employees', 'retailers.employee_id', '=', 'employees.id')
-            ->select('retailers.*', 'retailer_dues.current_due', 'employees.name')
-            ->where('retailers.id', $id)->first();
+        $data = Retailer::where('retailers.id', $id)->get();
+        
+        // DB::table('retailers')
+        //     ->select('retailers.*', 'current_due')
+        //     ->where('retailers.id', $id)->first();
+
+
+            // $data = DB::table('retailers')
+            // ->join('retailer_dues', 'retailers.id', '=', 'retailer_dues.retailer_id')
+            // ->join('employees', 'retailers.employee_id', '=', 'employees.id')
+            // ->select('retailers.*', 'retailer_dues.current_due', 'employees.name')
+            // ->where('retailers.id', $id)->first();
 
 
         //find($id);

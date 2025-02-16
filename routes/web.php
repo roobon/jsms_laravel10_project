@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\AdminHomeController;
 use App\Http\Controllers\backend\AjaxController;
 use App\Http\Controllers\backend\BusinessController;
+use App\Http\Controllers\backend\CollectionController;
 use App\Http\Controllers\backend\DoctorController;
 use App\Http\Controllers\backend\SpecialistController;
 use App\Http\Controllers\backend\CompanyController;
@@ -89,6 +90,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::get('/business/active', [BusinessController::class, 'active'])->name('business.active');
     Route::resource('/investment', InvestmentController::class);
     Route::resource('/insentive', InsentiveController::class);
+    Route::resource('/collection', CollectionController::class);
     // Route::resource('/slab', RetailerController::class);
     // Route::resource('/display_center', RetailerController::class);
     // Route::resource('/expired', RetailerController::class);

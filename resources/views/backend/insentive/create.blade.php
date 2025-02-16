@@ -53,19 +53,19 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">
-                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Investment
+                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Insentive
                                                     Amount*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
                                                         <input type="text" name="amount" value="{{ old('amount') }}"
                                                             class="form-control" id="exampleInputuname_4"
-                                                            placeholder="Enter Investment Amount">
+                                                            placeholder="Enter Insentive Amount">
                                                         <div class="input-group-addon"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Investment
+                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Received
                                                     Date*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">

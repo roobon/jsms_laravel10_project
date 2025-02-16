@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('collection_amount', total: 10, places: 2)->default(0);
             $table->date('collection_date');
             $table->decimal('rest_amount', total: 10, places: 2)->default(0);
+            $table->integer('business_id');
             $table->timestamps();
         });
     }

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
-    <a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block mr-20 pull-left" href="javascript:void(0);"><i
+    <a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block mr-20 pull-left" href="javascript:void();"><i
             class="fa fa-bars"></i></a>
     <a href="{{ url('/admin/dashboard') }}"><img class="brand-img pull-left" src="{{ asset('dist/img/JT_logo1.png') }}"
             alt="JSMS" /></a>
@@ -109,7 +109,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('points.index') }}" class="connection-item">
+                            <a href="{{ route('collection.index') }}" class="connection-item">
                                 <i class="pe-7s-graph1 txt-primary"></i>
                                 <span class="block">Collections</span>
                             </a>
