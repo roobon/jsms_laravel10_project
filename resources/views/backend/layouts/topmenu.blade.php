@@ -75,7 +75,7 @@
                                     </a>
                                 </li>
                         <li>
-                            <a href="{{ route('deposit.index') }}" class="connection-item">
+                            <a href="{{ route('payment.index') }}" class="connection-item">
                                 <i class="pe-7s-cash txt-info"></i>
                                 <span class="block">Deposits</span>
                             </a>

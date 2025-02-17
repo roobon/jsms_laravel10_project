@@ -93,26 +93,26 @@
                                             <tr>
                                                 <th>Opening</th>
                                                 <th>
-                                                    {{ $opening->security_money ? number_format($opening->security_money, 2) : '' }}
+                                                    {{ isset($opening->security_money) ? number_format($opening->security_money, 2) : '' }}
                                                 </th>
                                                 <th>Up to last Month</th>
-                                                <th>{{ $opening->investment_amount }}</th>
+                                                <th>{{ isset($opening->investment_amount) ? number_format($opening->investment_amount, 2): '' }}</th>
                                                 <th>Up to last Month</th>
-                                                <th style="width:125px">{{ $opening->bank_deposit_amount }}</th>
+                                                <th style="width:125px">{{ isset($opening->bank_deposit_amount)? number_format($opening->bank_deposit_amount, 2): '' }}</th>
                                                 <th style="width:94px">Up to last Month </th>
                                                 <th>N/A</th>
-                                                <th style="width:110px">{{ $opening->product_received_amount }}</th>
-                                                <th style="width:110px">{{ $opening->slab_received_amount }}</th>
-                                                <th>{{ $opening->insentive_received_amount }}</th>
-                                                <th>{{ $opening->sales_amount }}</th>
-                                                <th>{{ $opening->collection_amount }}</th>
+                                                <th style="width:110px">{{ isset($opening->product_received_amount)? number_format($opening->product_received_amount, 2): '' }}</th>
+                                                <th style="width:110px">{{ isset($opening->slab_received_amount) ? number_format($opening->slab_received_amount, 2): '' }}</th>
+                                                <th>{{ isset($opening->insentive_received_amount)? number_format($opening->insentive_received_amount, 2):'' }}</th>
+                                                <th>{{isset($opening->sales_amount)? number_format($opening->sales_amount, 2):''  }}</th>
+                                                <th>{{ isset($opening->insentive_received_amount)? number_format($opening->insentive_received_amount, 2): '' }}</th>
                                                 <th>Up to last Month</th>
-                                                <th>{{ $opening->sales_amount }}</th>
-                                                <th>{{ $opening->collection_amount }}</th>
-                                                <th>{{ $opening->due_amount }}</th>
-                                                <th>{{ $opening->due_realize_amount }}</th>
-                                                <th>{{ $opening->total_due_amount }}</th>
-                                                <th>{{ $opening->ho_deposit_amount }}</th>
+                                                <th>{{ isset($opening->sales_amount)? number_format($opening->sales_amount, 2):'' }}</th>
+                                                <th>{{ isset($opening->collection_amount)? number_format($opening->collection_amount, 2):'' }}</th>
+                                                <th>{{ isset($opening->due_amount)? number_format($opening->due_amount, 2): '' }}</th>
+                                                <th>{{ isset($opening->due_realize_amount)? number_format($opening->due_realize_amount, 2): '' }}</th>
+                                                <th>{{ isset($opening->total_due_amount)? number_format($opening->total_due_amount, 2): '' }}</th>
+                                                <th>{{ isset($opening->ho_deposit_amount)? number_format($opening->ho_deposit_amount, 2): '' }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -134,46 +134,46 @@
 
                                                 {{-- Bank Deposit Starts --}}
                                                 <td colspan="2" class="align-top text-center">
-                                                    @if (count($deposittoCompanies) > 0)
-                                                        @foreach ($deposittoCompanies as $depCompany)
+                                                    @if (count($paidtoCompanies) > 0)
+                                                        @foreach ($paidtoCompanies as $payCompany)
                                                             <table class="table table-bordered mb-0"
                                                                 style="padding: 0; margin:0">
                                                                 <caption class="text-center bg-dark">
-                                                                    {{ $depCompany->company->company_name }}
+                                                                    {{ $payCompany->company->company_name }}
                                                                 </caption>
                                                                 @php
-                                                                    $deposits = App\Models\Deposit::where(
+                                                                    $payments = App\Models\Payment::where(
                                                                         'business_id',
                                                                         $businessInfo['id'],
                                                                     )
                                                                         ->whereMonth(
-                                                                            'deposit_date',
+                                                                            'payment_date',
                                                                             $businessInfo['month'],
                                                                         )
                                                                         ->whereYear(
-                                                                            'deposit_date',
+                                                                            'payment_date',
                                                                             $businessInfo['year'],
                                                                         )
-                                                                        ->where('company_id', $depCompany->company_id)
+                                                                        ->where('company_id', $payCompany->company_id)
                                                                         ->get();
                                                                 @endphp
-                                                                @foreach ($deposits as $data)
+                                                                @foreach ($payments as $data)
                                                                     <tr>
-                                                                        <td>{{ $data->deposit_date }}</td>
-                                                                        <td>{{ number_format($data->deposit_amount, 2) }}
+                                                                        <td>{{ $data->payment_date }}</td>
+                                                                        <td>{{ number_format($data->payment_amount, 2) }}
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
                                                                 <tr>
                                                                     <td>Total</td>
                                                                     <td class="bg-success text-danger">
-                                                                        {{ number_format($deposits->sum('deposit_amount'), 2) }}
+                                                                        {{ number_format($payments->sum('payment_amount'), 2) }}
                                                                     </td>
                                                                 </tr>
                                                             </table>
                                                         @endforeach
                                                         @php
-                                                            $totaldeposits = $deposits->sum('deposit_amount');
+                                                            $totalpayments = $payments->sum('payment_amount');
                                                         @endphp
                                                     @endif
                                                 </td>
@@ -211,7 +211,7 @@
 
                                                                 @foreach ($stocks as $stock)
                                                                     <tr>
-                                                                        <td style="max-width:46px">
+                                                                        <td style="max-width:58px">
                                                                             {{ $stock->received_date }}
                                                                         </td>
                                                                         @if ($stock->product_type == 'regular')
@@ -280,7 +280,7 @@
 
 
 
-                                                <td></td>
+                                                <td>{{isset($insentiveAmounts->insentive_amount) ? number_format($insentiveAmounts->insentive_amount, 2): ''}}</td>
 
                                                 {{-- Sales --}}
                                                 <td colspan="4">
@@ -298,7 +298,7 @@
                                                 {{-- Sales --}}
 
 
-                                                <td></td>
+                                                <td>aaaa</td>
                                                 <td>
                                                     <table class="table table-bordered" style="padding: 0; margin:0">
                                                         {{-- @foreach ($Retailerdues as $Retailerdue)
@@ -329,10 +329,12 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td class="bg-info text-muted">
+                                                    <!-- Total Investment -->
                                                     {{ number_format($totalInvestment, 2) }}</td>
                                                 <td></td>
                                                 <td class="bg-info text-muted">
-                                                    {{ number_format($totalCompanydeposits, 2) }}
+                                                    <!-- Total compan -->
+                                                    {{ number_format($totalCompanyPaids, 2) }}
                                                 </td>
                                                 <td></td>
                                                 <td></td>
@@ -344,7 +346,8 @@
                                                     {{ number_format($vatadjustamount, 2) }}</td>
                                                 <td class="bg-info text-muted">{{ number_format($mktpromoamount, 2) }}
                                                 </td>
-                                                <td></td>
+                                                <td class="bg-info text-muted">{{ number_format($totalInsentiveAmount, 2) }}
+                                                </td>
                                                 <td></td>
                                                 <td>{{ number_format($totalsales, 2) }}</td>
                                                 <td>{{ number_format($collections, 2) }}</td>
@@ -357,29 +360,35 @@
                                             <tr class="cumulative_data">
                                                 <td>Cumulative</td>
                                                 <td class="bg-success text-danger">
-                                                    {{ number_format($closing->security_money, 2) }}
+                                                    {{ isset($closing->security_money)? number_format($closing->security_money, 2):'' }}
                                                 </td>
                                                 <td></td> {{-- Investment Start --}}
                                                 <td class="bg-success text-danger">
-                                                    {{ number_format($closing->investment_amount, 2) }}</td>
+                                                    {{isset($closing->investment_amount) ?  number_format($closing->investment_amount, 2):'' }}</td>
                                                 {{-- Investment End --}}
                                                 <td></td>
                                                 <td class="bg-success text-danger">
-                                                    {{ number_format($closing->bank_deposit_amount, 2) }}</td>
+                                                    {{ isset($closing->bank_deposit_amount) ? number_format($closing->bank_deposit_amount, 2):'' }}</td>
                                                 <td></td>
                                                 <th></th>
-                                                <th>{{ number_format($closing->product_received_amount, 2) }}</th>
+                                                <th>
+                                                    <!-- Product Received Amount -->
+                                                    {{ isset($closing->product_received_amount)? number_format($closing->product_received_amount, 2):'' }}
+                                                </th>
+                                                <th>
+                                                    <!-- Slab Received Amount -->
+                                                    {{ isset($closing->slab_received_amount) ? number_format($closing->slab_received_amount, 2):''  }}
+                                                </th>
                                                 <th></th>
                                                 <th></th>
-                                                <th></th>
-                                                <th>{{ number_format($closing->product_received_amount, 2) }}</th>
+                                                <th>{{ isset($closing->product_received_amount) ? number_format($closing->product_received_amount, 2): '' }}</th>
                                                 <td></td>
-                                                <th>{{ number_format($closing->sales_amount, 2) }}</th>
-                                                <th>{{ number_format($closing->collection_amount, 2) }}</th>
-                                                <th>{{ number_format($closing->due_amount, 2) }}</th>
-                                                <th>{{ number_format($closing->due_realize_amount, 2) }}</th>
-                                                <th>{{ number_format($closing->total_due_amount, 2) }}</th>
-                                                <th>{{ number_format($closing->ho_deposit_amount, 2) }}</th>
+                                                <th>{{ isset($closing->sales_amount)? number_format($closing->sales_amount, 2): '' }}</th>
+                                                <th>{{ isset($closing->collection_amount) ? number_format($closing->collection_amount, 2): '' }}</th>
+                                                <th>{{ isset($closing->due_amount) ? number_format($closing->due_amount, 2): '' }}</th>
+                                                <th>{{ isset($closing->due_realize_amount)? number_format($closing->due_realize_amount, 2): '' }}</th>
+                                                <th>{{ isset($closing->total_due_amount) ? number_format($closing->total_due_amount, 2): '' }}</th>
+                                                <th>{{ isset($closing->ho_deposit_amount) ? number_format($closing->ho_deposit_amount, 2) :'' }}</th>
                                             </tr>
 
 

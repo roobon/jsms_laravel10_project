@@ -5,7 +5,9 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Business;
 use App\Models\Insentive;
+use App\Models\Company;
 use Illuminate\Http\Request;
+
 
 class InsentiveController extends Controller
 {
@@ -24,7 +26,8 @@ class InsentiveController extends Controller
     public function create()
     {
         $businesses = Business::all();
-        return view('backend.insentive.create', compact('businesses'));
+        $companies =  Company::all();
+        return view('backend.insentive.create', compact('businesses', 'companies'));
     }
 
     /**
@@ -37,6 +40,7 @@ class InsentiveController extends Controller
                 'amount' => 'required',
                 'date' => 'required',
                 'business' => 'required',
+                'company' => 'required',
                 'photo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             ]
         );
@@ -55,7 +59,7 @@ class InsentiveController extends Controller
         $insentive->insentive_amount = $request->amount;
         $insentive->received_date = $request->date;
         $insentive->business_id = $request->business;
-        //$insentive->company_id = $request->company;
+        $insentive->company_id = $request->company;
         
 
 

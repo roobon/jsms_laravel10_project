@@ -18,6 +18,8 @@ return new class extends Migration
             $table->decimal('bank_deposit_amount', total: 12, places: 2)->default(0);
             $table->decimal('product_received_amount', total: 12, places: 2)->default(0);
             $table->decimal('slab_received_amount', total: 12, places: 2)->default(0);
+            $table->decimal('vat_adjustment_received_amount', total: 12, places: 2)->default(0);
+            $table->decimal('promotion_received_amount', total: 12, places: 2)->default(0);
             $table->decimal('insentive_received_amount', total: 12, places: 2)->default(0);
             $table->decimal('sales_amount', total: 12, places: 2)->default(0);
             $table->decimal('collection_amount', total: 12, places: 2)->default(0);

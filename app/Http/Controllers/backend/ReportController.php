@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Company;
 use App\Models\Deposit;
 use App\Models\Investment;
+use App\Models\Insentive;
 use App\Models\Payment;
 use App\Models\RetailerDues;
 use App\Models\Sales;
@@ -59,36 +60,29 @@ class ReportController extends Controller
         $totalInvestment = $investments->sum('investment_amount');
 
         
-
-       
-        // Sales Data
-        $sales = Sales::where('business_id', $request->business)
-            ->whereMonth('sales_date', $month)
-            ->whereYear('sales_date', $year)
-            ->get();
-        $totalSales = $sales->sum('total_amount');
-        $collections = $sales->sum('collection_amount');
-        $dues = $sales->sum('due_amount');
-
-        // Companies where deposits
-        $deposittoCompanies = Deposit::where('business_id', $request->business)
-            ->whereMonth('deposit_date', $month)
-            ->whereYear('deposit_date', $year)
+        // Companies where Payments done
+        $paidtoCompanies = Payment::where('business_id', $request->business)
+            ->whereMonth('payment_date', $month)
+            ->whereYear('payment_date', $year)
             ->groupBy('company_id')
             ->get();
         
         // Without group by for total records
-        $deposCompanies = Deposit::where('business_id', $request->business)
+        $paidCompanies = Deposit::where('business_id', $request->business)
         ->whereMonth('deposit_date', $month)
         ->whereYear('deposit_date', $year)
         ->get();
-        $totalCompanydeposits = $deposCompanies->sum('deposit_amount');
+        $totalCompanyPaids = $paidCompanies->sum('deposit_amount');
 
         // For passing data to blade page for subquery
         $businessInfo = ['id' => $request->business, 
                     'month' => $month, 
                     'year' => $year ];
 
+       
+     
+
+        
         // Product Received
 
         // Companies where from product received
@@ -137,13 +131,37 @@ class ReportController extends Controller
          ->get();
      $mktpromoamount = $mktpromo->sum('product_amount');
 
+    // Insentive Received 
+    $insentiveAmounts = Insentive::where('business_id', $request->business)
+      ->whereMonth('received_date', $month)
+      ->whereYear('received_date', $year)
+      //->groupBy('company_id')
+      ->first();
+    $totalInsentiveAmount = $insentiveAmounts->sum('insentive_amount'); 
 
 
-        $Retailerdues = RetailerDues::where('business_id', $request->business)
-        ->whereMonth('sales_date', $month)
-        ->whereYear('sales_date', $year)
-        ->get();
-        $totalRetailerDues = $Retailerdues->sum('due_amount');
+
+
+    // Sales Data
+      $sales = Sales::where('business_id', $request->business)
+             ->whereMonth('sales_date', $month)
+            ->whereYear('sales_date', $year)
+             ->get();
+             $totalSales = $sales->sum('total_amount');
+             $collections = $sales->sum('collection_amount');
+             $dues = $sales->sum('due_amount');  
+
+    $Retailerdues = RetailerDues::where('business_id', $request->business)
+       ->whereMonth('sales_date', $month)
+       ->whereYear('sales_date', $year)
+       ->get();
+       $totalRetailerDues = $Retailerdues->sum('due_amount');
+
+
+  
+
+
+
 
         $opening = DB::table('opening_closing')
             ->where('business_id', $request->business)
@@ -183,14 +201,16 @@ class ReportController extends Controller
         $data['mktpromoamount'] =  $mktpromoamount;
         $data['Retailerdues'] =  $Retailerdues;
         $data['totalRetailerDues'] =  $totalRetailerDues;
-        // Deposit to Company
-        $data['deposittoCompanies'] =  $deposittoCompanies;
+        // Paid to Company
+        $data['paidtoCompanies'] =  $paidtoCompanies;
         $data['businessInfo'] =  $businessInfo;
-        $data['totalCompanydeposits'] =  $totalCompanydeposits;
+        $data['totalCompanyPaids'] =  $totalCompanyPaids;
 
         // Product Received
         $data['productReceivedCompanies'] =  $productReceivedCompanies;
-
+        // Insentive Amounts
+        $data['insentiveAmounts'] =  $insentiveAmounts;
+        $data['totalInsentiveAmount'] =  $totalInsentiveAmount;
         return view('backend.reports.report2', $data);
     }
 
