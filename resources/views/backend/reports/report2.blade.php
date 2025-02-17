@@ -311,12 +311,14 @@
                                                 </td>
                                                 <td>
                                                     <table class="table table-bordered" style="padding: 0; margin:0">
+                                                        @if(isset($deposits))
                                                         @foreach ($deposits as $deposit)
                                                             <tr>
                                                                 <td>{{ $deposit->deposit_date }}</td>
                                                                 <td>{{ $deposit->deposit_amount }}</td>
                                                             </tr>
                                                         @endforeach
+                                                        @endif
                                                     </table>
                                                 </td>
                                             </tr>
@@ -349,7 +351,7 @@
                                                 <td>{{ number_format($dues, 2) }}</td>
                                                 <td></td>
                                                 <td>{{ number_format($totalRetailerDues, 2) }}</td>
-                                                <td>{{ number_format($totaldeposits, 2) }}</td>
+                                                <td>{{ isset($totaldeposits) ? number_format($totaldeposits, 2):'' }}</td>
                                             </tr>
 
                                             <tr class="cumulative_data">

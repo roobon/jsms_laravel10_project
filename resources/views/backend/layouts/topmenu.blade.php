@@ -47,12 +47,7 @@
                                         <span class="block">Businesses</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="{{ route('investment.index') }}" class="connection-item">
-                                        <i class="pe-7s-helm txt-primary"></i>
-                                        <span class="block">Investments</span>
-                                    </a>
-                                </li>
+                                
                             </ul>
                         </li>
                     </ul>
@@ -73,6 +68,12 @@
                 <li class="divider"></li>
                 <li class="text-center">
                     <ul class="app-icon-wrap">
+                        <li>
+                                    <a href="{{ route('investment.index') }}" class="connection-item">
+                                        <i class="pe-7s-helm txt-primary"></i>
+                                        <span class="block">Investments</span>
+                                    </a>
+                                </li>
                         <li>
                             <a href="{{ route('deposit.index') }}" class="connection-item">
                                 <i class="pe-7s-cash txt-info"></i>
