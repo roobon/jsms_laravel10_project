@@ -79,6 +79,61 @@ class TargetController extends Controller
             $month = $date->format('n');
             $year = $date->format('Y');
 
+            $targetrow = DB::table('targets')
+                ->whereMonth('start_date' , $month-1)
+                ->whereYear('start_date', $year)
+                ->where('business_id', $request->business)
+                ->first();
+
+                return $targetrow;
+           if(count($targetrow)>0 ){
+                DB::table('opening_closing')->insert([
+
+                    'security_money' =>  $business->security_money,
+                    'investment_amount' =>  0,
+                    'bank_deposit_amount' =>  0,
+                    'product_received_amount' => 0,
+                    'slab_received_amount' =>   0,
+                    'vat_adjustment_received_amount' =>   0,
+                    'promotion_received_amount' =>   0,
+                    'insentive_received_amount' => 0,
+                    'sales_amount' =>  0,
+                    'collection_amount' => 0,
+                    'due_amount' => 0,
+                    'due_realize_amount' => 0,
+                    'total_due_amount' => 0,
+                    'ho_deposit_amount' => 0,
+                    'month' => $month,
+                    'year' => $year,
+                    'business_id' => $request->business,
+                    'period' => 'opening',
+                    'status' => 'ended',
+
+                ]);
+                DB::table('opening_closing')->insert([
+
+                'security_money' =>  $business->security_money,
+                    'investment_amount' =>  0,
+                    'bank_deposit_amount' =>  0,
+                    'product_received_amount' => 0,
+                    'slab_received_amount' =>   0,
+                    'vat_adjustment_received_amount' =>   0,
+                    'promotion_received_amount' =>   0,
+                    'insentive_received_amount' => 0,
+                    'sales_amount' =>  0,
+                    'collection_amount' => 0,
+                    'due_amount' => 0,
+                    'due_realize_amount' => 0,
+                    'total_due_amount' => 0,
+                    'ho_deposit_amount' => 0,
+                    'month' => $month,
+                    'year' => $year,
+                    'business_id' => $request->business,
+                    'period' => 'closing',
+                    'status' => 'running',
+                ]);
+            } else {
+           
             DB::table('opening_closing')->insert([
 
                 'security_money' =>  $business->security_money,
@@ -86,6 +141,8 @@ class TargetController extends Controller
                 'bank_deposit_amount' =>  0,
                 'product_received_amount' => 0,
                 'slab_received_amount' =>   0,
+                'vat_adjustment_received_amount' =>   0,
+                'promotion_received_amount' =>   0,
                 'insentive_received_amount' => 0,
                 'sales_amount' =>  0,
                 'collection_amount' => 0,
@@ -102,11 +159,13 @@ class TargetController extends Controller
             ]);
             DB::table('opening_closing')->insert([
 
-                'security_money' =>  $business->security_money,
+               'security_money' =>  $business->security_money,
                 'investment_amount' =>  0,
                 'bank_deposit_amount' =>  0,
                 'product_received_amount' => 0,
                 'slab_received_amount' =>   0,
+                'vat_adjustment_received_amount' =>   0,
+                'promotion_received_amount' =>   0,
                 'insentive_received_amount' => 0,
                 'sales_amount' =>  0,
                 'collection_amount' => 0,
@@ -120,6 +179,7 @@ class TargetController extends Controller
                 'period' => 'closing',
                 'status' => 'running',
             ]);
+            }
         }
 
         return redirect()->route('target.index')->with('msg', "Successfully Target Created");
