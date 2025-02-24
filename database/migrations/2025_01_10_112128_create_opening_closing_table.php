@@ -27,6 +27,7 @@ return new class extends Migration
             $table->decimal('due_realize_amount', total: 12, places: 2)->default(0);
             $table->decimal('total_due_amount', total: 12, places: 2)->default(0);
             $table->decimal('ho_deposit_amount', total: 12, places: 2)->default(0);
+            $table->date('report_date');
             $table->integer('month');
             $table->year('year');
             $table->integer('business_id');

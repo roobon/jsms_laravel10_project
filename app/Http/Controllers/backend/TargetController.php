@@ -79,56 +79,79 @@ class TargetController extends Controller
             $month = $date->format('n');
             $year = $date->format('Y');
 
-            $targetrow = DB::table('targets')
-                ->whereMonth('start_date' , $month-1)
-                ->whereYear('start_date', $year)
+            /*
+              $items = Item::select('*')
+
+                                ->whereBetween('created_at', 
+
+                                    [Carbon::now()->subMonth()->startOfMonth(), Carbon::now()->subMonth()->endOfMonth()]
+
+                                )
+
+                                ->get()
+
+                                ->toArray();
+            */
+            $date = Carbon::createFromFormat('Y-m-d', $request->start_date)->subMonth();
+
+  
+
+            $prevStartDate = $date->format('Y-m-d');
+    
+      
+
+            $closingRow = DB::table('opening_closing')->select('*')
+                ->where('report_date', $prevStartDate)
                 ->where('business_id', $request->business)
+                ->where('period', 'closing')
                 ->first();
 
-                return $targetrow;
-           if(count($targetrow)>0 ){
+                // return dd($closingRow);
+           if($closingRow!=null ){
                 DB::table('opening_closing')->insert([
 
-                    'security_money' =>  $business->security_money,
-                    'investment_amount' =>  0,
-                    'bank_deposit_amount' =>  0,
-                    'product_received_amount' => 0,
-                    'slab_received_amount' =>   0,
-                    'vat_adjustment_received_amount' =>   0,
-                    'promotion_received_amount' =>   0,
-                    'insentive_received_amount' => 0,
-                    'sales_amount' =>  0,
-                    'collection_amount' => 0,
-                    'due_amount' => 0,
-                    'due_realize_amount' => 0,
-                    'total_due_amount' => 0,
-                    'ho_deposit_amount' => 0,
+                    'security_money' =>  $closingRow->security_money,
+                    'investment_amount' =>  $closingRow->investment_amount,
+                    'bank_deposit_amount' =>  $closingRow->bank_deposit_amount,
+                    'product_received_amount' => $closingRow->product_received_amount,
+                    'slab_received_amount' =>   $closingRow->slab_received_amount,
+                    'vat_adjustment_received_amount' =>   $closingRow->vat_adjustment_received_amount,
+                    'promotion_received_amount' =>   $closingRow->promotion_received_amount,
+                    'insentive_received_amount' => $closingRow->insentive_received_amount,
+                    'sales_amount' =>  $closingRow->sales_amount,
+                    'collection_amount' => $closingRow->collection_amount,
+                    'due_amount' => $closingRow->due_amount,
+                    'due_realize_amount' => $closingRow->due_realize_amount,
+                    'total_due_amount' => $closingRow->total_due_amount,
+                    'ho_deposit_amount' => $closingRow->ho_deposit_amount,
+                    'report_date' => $request->start_date,
                     'month' => $month,
                     'year' => $year,
-                    'business_id' => $request->business,
+                    'business_id' => $closingRow->business_id,
                     'period' => 'opening',
                     'status' => 'ended',
 
                 ]);
                 DB::table('opening_closing')->insert([
 
-                'security_money' =>  $business->security_money,
-                    'investment_amount' =>  0,
-                    'bank_deposit_amount' =>  0,
-                    'product_received_amount' => 0,
-                    'slab_received_amount' =>   0,
-                    'vat_adjustment_received_amount' =>   0,
-                    'promotion_received_amount' =>   0,
-                    'insentive_received_amount' => 0,
-                    'sales_amount' =>  0,
-                    'collection_amount' => 0,
-                    'due_amount' => 0,
-                    'due_realize_amount' => 0,
-                    'total_due_amount' => 0,
-                    'ho_deposit_amount' => 0,
+                    'security_money' =>  $closingRow->security_money,
+                    'investment_amount' =>  $closingRow->investment_amount,
+                    'bank_deposit_amount' =>  $closingRow->bank_deposit_amount,
+                    'product_received_amount' => $closingRow->product_received_amount,
+                    'slab_received_amount' =>   $closingRow->slab_received_amount,
+                    'vat_adjustment_received_amount' =>   $closingRow->vat_adjustment_received_amount,
+                    'promotion_received_amount' =>   $closingRow->promotion_received_amount,
+                    'insentive_received_amount' => $closingRow->insentive_received_amount,
+                    'sales_amount' =>  $closingRow->sales_amount,
+                    'collection_amount' => $closingRow->collection_amount,
+                    'due_amount' => $closingRow->due_amount,
+                    'due_realize_amount' => $closingRow->due_realize_amount,
+                    'total_due_amount' => $closingRow->total_due_amount,
+                    'ho_deposit_amount' => $closingRow->ho_deposit_amount,
+                    'report_date' => $request->start_date,
                     'month' => $month,
                     'year' => $year,
-                    'business_id' => $request->business,
+                    'business_id' => $closingRow->business_id,
                     'period' => 'closing',
                     'status' => 'running',
                 ]);
@@ -150,6 +173,7 @@ class TargetController extends Controller
                 'due_realize_amount' => 0,
                 'total_due_amount' => 0,
                 'ho_deposit_amount' => 0,
+                'report_date' => $request->start_date,
                 'month' => $month,
                 'year' => $year,
                 'business_id' => $request->business,
@@ -173,6 +197,7 @@ class TargetController extends Controller
                 'due_realize_amount' => 0,
                 'total_due_amount' => 0,
                 'ho_deposit_amount' => 0,
+                'report_date' => $request->start_date,
                 'month' => $month,
                 'year' => $year,
                 'business_id' => $request->business,
