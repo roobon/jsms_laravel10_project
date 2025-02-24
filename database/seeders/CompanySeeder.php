@@ -41,6 +41,30 @@ class CompanySeeder extends Seeder
                 'website' => 'https://www.' . Str::random(5) . '.com',
                 'status' => 'active',
             ]
-        );    
+        );
+        DB::table('companies')->insert(
+            [
+                'company_name' => "KAMAL GENERAL STORE",
+                'company_address' => $faker->address,
+                'contact_person' => $faker->name,
+                'contact_number' => random_int(170000000000, 179900000000),
+                'contact_email' => fake()->unique()->safeEmail(),
+                'website' => 'https://www.' . Str::random(5) . '.com',
+                'status' => 'active',
+            ]
+        );
+        
+        DB::table('companies')->insert(
+            [
+                'company_name' => "FAMOUS ENTERPRISE",
+                'company_address' => $faker->address,
+                'contact_person' => $faker->name,
+                'contact_number' => random_int(170000000000, 179900000000),
+                'contact_email' => fake()->unique()->safeEmail(),
+                'website' => 'https://www.' . Str::random(5) . '.com',
+                'status' => 'active',
+            ]
+        ); 
+        
     }
 }
