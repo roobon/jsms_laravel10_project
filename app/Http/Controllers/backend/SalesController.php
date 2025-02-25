@@ -9,6 +9,7 @@ use App\Models\Employee;
 use App\Models\Point;
 use App\Models\Retailer;
 use App\Models\RetailerDues;
+use App\Models\OpeningClosing;
 use App\Models\SalePaymentStock;
 use App\Models\Sales;
 use Illuminate\Http\Request;
@@ -70,6 +71,7 @@ class SalesController extends Controller
         $sales->invoice_number = $request->voucher;
         $sales->total_amount = $request->total_amount;
         $sales->collection_amount = $request->collection_amount;
+        $currentDue = $sales->total_amount - $sales->collection_amount;
         $sales->due_amount = $sales->total_amount - $sales->collection_amount;
         $sales->business_id = $request->business;
         $sales->manager_id = $request->manager;
@@ -95,16 +97,21 @@ class SalesController extends Controller
         } else {
             $sales->save();
 
+            $openClose = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $m)
+            ->where('year', $y)
+            ->where('business_id', $request->business)
+            ->where('period', 'closing')
+            ->first();
 
+        $openClose->sales_amount = $openClose->sales_amount + $request->total_amount;
+        $openClose->collection_amount = $openClose->collection_amount + $request->collection_amount;
+        $openClose->due_amount = $openClose->due_amount + $currentDue;
+        
+        $openClose->update(); 
+        // Investment update to Closing Investment End
 
-            // // To update the point record where month and year matched from received date
-            // $stock = SalePaymentStock::where('point_id', $request->point)
-            //     ->whereMonth('start_date', $m)->whereYear('start_date', $y)->first();
-
-            // $stock->sales_amount = $stock->sales_amount + $request->total_amount;
-            // $stock->collection_amount = $stock->collection_amount + $request->collection_amount;
-
-            // $stock->update();
+         
 
             return redirect()->route('sales.index')->with('msg', "Successfully Sales Completed");
         }

@@ -60,25 +60,37 @@ class InvestmentController extends Controller
         $investment->business_id = $request->business;
         $investment->investment_photo = $photo;
 
+         // Get Year and Month from Investment date
+         $timestamp = strtotime($request->date);
+         $m = date('m', $timestamp);
+         $y = date('Y', $timestamp);
+        
+        // Check Target
+         $row = DB::table('targets')
+         ->whereYear('start_date', $y)
+         ->whereMonth('start_date', $m)
+         ->where('business_id', '=', $request->business)
+         ->get();
 
+         //return dd($row);
+     if (count($row) == 0) {
+         return back()->with('error', "Sorry, No Target Entry Available for entering Investment")->withInput();
+     } else {
+        
         $investment->save();
-
-        // Investment update to Closing Investment
-        $date = Carbon::createFromFormat('Y-n-d', $request->date);
-        $month = $date->format('n');
-        $year = $date->format('Y');
+     }
         
         $openClose = OpeningClosing::where('business_id', $request->business)
-            ->where('month', $month)
-            ->where('year', $year)
+            ->where('month', $m)
+            ->where('year', $y)
             ->where('business_id', $request->business)
             ->where('period', 'closing')
             ->first();
 
         $openClose->investment_amount = $openClose->investment_amount + $request->amount;
-
+        
         $openClose->update(); 
-        // Investment update   
+        // Investment update to Closing Investment End
 
         return redirect()->route('investment.index')->with('msg', "Successfully investment Created");
     }

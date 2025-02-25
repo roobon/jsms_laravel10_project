@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Employee;
 use App\Models\Point;
 use App\Models\SalePaymentStock;
+use App\Models\OpeningClosing;
 use App\Models\Stock;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -92,12 +93,47 @@ class StockController extends Controller
         } else {
             $stock->save();
 
-            // To update the point record where month and year matched from received date
-            // $stock = SalePaymentStock::where('point_id', $request->point)
-            //     ->whereMonth('start_date', $m)->whereYear('start_date', $y)->first();
-            // $stock->godownstock = $stock->godownstock + $request->product_amount;
+           if($request->product_type=='regular'){
+            $openClose = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $m)
+            ->where('year', $y)
+            ->where('business_id', $request->business)
+            ->where('period', 'closing')
+            ->first();
 
-            // $stock->update();
+            $openClose->product_received_amount   = $openClose->product_received_amount   + $request->product_amount;
+            $openClose->update(); 
+           } elseif($request->product_type=='slab'){
+            $openClose = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $m)
+            ->where('year', $y)
+            ->where('business_id', $request->business)
+            ->where('period', 'closing')
+            ->first();
+
+            $openClose->slab_received_amount   = $openClose->slab_received_amount   + $request->product_amount;
+            $openClose->update(); 
+           } elseif($request->product_type=='vatadjust'){
+            $openClose = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $m)
+            ->where('year', $y)
+            ->where('business_id', $request->business)
+            ->where('period', 'closing')
+            ->first();
+
+            $openClose->vat_adjustment_received_amount   = $openClose->vat_adjustment_received_amount   + $request->product_amount;
+            $openClose->update(); 
+           } elseif($request->product_type=='mktpromo'){
+            $openClose = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $m)
+            ->where('year', $y)
+            ->where('business_id', $request->business)
+            ->where('period', 'closing')
+            ->first();
+
+            $openClose->promotion_received_amount   = $openClose->promotion_received_amount   + $request->product_amount;
+            $openClose->update(); 
+           }
 
             return redirect()->route('stock.index')->with('msg', "Successfully Stock Added");
         }

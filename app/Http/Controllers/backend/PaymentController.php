@@ -9,6 +9,7 @@ use App\Models\Employee;
 use App\Models\Payment;
 use App\Models\Point;
 use App\Models\Retailer;
+use App\Models\OpeningClosing;
 use App\Models\SalePaymentStock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -95,13 +96,17 @@ class PaymentController extends Controller
         } else {
             $payment->save();
 
-            // To update the point record where month and year matched from received date
-            // $stock = SalePaymentStock::where('point_id', $request->point)
-            //     ->whereMonth('start_date', $m)->whereYear('start_date', $y)->first();
-            // $stock->deposit_amount  = $stock->deposit_amount + $request->payment_amount;
+            $openClose = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $m)
+            ->where('year', $y)
+            ->where('business_id', $request->business)
+            ->where('period', 'closing')
+            ->first();
 
-            // $stock->update();
-
+        $openClose->bank_deposit_amount  = $openClose->bank_deposit_amount  + $request->payment_amount;
+        
+        $openClose->update(); 
+        // Investment update to Closing Investment End
             return redirect()->route('payment.index')->with('msg', "Successfully Payment Added");
         }
     }

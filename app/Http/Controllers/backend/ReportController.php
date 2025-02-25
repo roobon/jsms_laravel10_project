@@ -43,10 +43,13 @@ class ReportController extends Controller
 
     public function report2(Request $request)
     {
+        // Month and Year
         $month = $request->month;
         $year = $request->year;
+        // Find Business
         $business = Business::find($request->business)->first();
 
+        // Find Target
         $target = Target::where('business_id', $request->business)
             ->whereMonth('start_date', $month)
             ->whereYear('start_date', $year)
@@ -60,7 +63,7 @@ class ReportController extends Controller
         $totalInvestment = $investments->sum('investment_amount');
 
         
-        // Companies where Payments done
+        // Payments done to the Company
         $paidtoCompanies = Payment::where('business_id', $request->business)
             ->whereMonth('payment_date', $month)
             ->whereYear('payment_date', $year)
@@ -68,21 +71,21 @@ class ReportController extends Controller
             ->get();
         
         // Without group by for total records
-        $paidCompanies = Deposit::where('business_id', $request->business)
-        ->whereMonth('deposit_date', $month)
-        ->whereYear('deposit_date', $year)
+        $paidCompanies = Payment::where('business_id', $request->business)
+        ->whereMonth('payment_date', $month)
+        ->whereYear('payment_date', $year)
         ->get();
-        $totalCompanyPaids = $paidCompanies->sum('deposit_amount');
+        $totalCompanyPaids = $paidCompanies->sum('payment_amount');
 
         // For passing data to blade page for subquery
         $businessInfo = ['id' => $request->business, 
                     'month' => $month, 
                     'year' => $year ];
 
-       
+
      
 
-        
+
         // Product Received
 
         // Companies where from product received
@@ -158,7 +161,12 @@ class ReportController extends Controller
        $totalRetailerDues = $Retailerdues->sum('due_amount');
 
 
-  
+    // Deposits to Head Offcie
+    $AlldepositsHO = Deposit::where('business_id', $request->business)
+    ->whereMonth('payment_date', $month)
+    ->whereYear('payment_date', $year)
+    ->get();
+    $totalDepositHO = $AlldepositsHO->sum('deposit_amount');
 
 
 
@@ -193,8 +201,10 @@ class ReportController extends Controller
         $data['collections'] =  $collections;
         $data['dues'] =  $dues;
         $data['resularamount'] =  $resularamount;
-       // $data['deposits'] =  $deposits;
-        //$data['totaldeposits'] =  $totaldeposits;
+        // Deposit to Head Office
+        $data['AlldepositsHO'] =  $AlldepositsHO;
+        $data['totalDepositHO'] =  $totalDepositHO;
+        
         $data['slbstocks'] =  $slbstocks;
         $data['slbstockamount'] =  $slbstockamount;
         $data['vatadjustamount'] =  $vatadjustamount;

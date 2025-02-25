@@ -270,8 +270,11 @@
                                                                             <td class="text-center">------</td>
                                                                             <td style="max-width:30%" class="text-center">
                                                                                 {{ $stock->product_amount }}</td>
+                                                                               
+
                                                                         @endif
                                                                     </tr>
+                                                                   
                                                                 @endforeach
                                                             </table>
                                                         @endforeach
@@ -311,8 +314,8 @@
                                                 </td>
                                                 <td>
                                                     <table class="table table-bordered" style="padding: 0; margin:0">
-                                                        @if(isset($deposits))
-                                                        @foreach ($deposits as $deposit)
+                                                        @if(isset($AlldepositsHO))
+                                                        @foreach ($AlldepositsHO as $deposit)
                                                             <tr>
                                                                 <td>{{ $deposit->deposit_date }}</td>
                                                                 <td>{{ $deposit->deposit_amount }}</td>
@@ -354,7 +357,7 @@
                                                 <td>{{ number_format($dues, 2) }}</td>
                                                 <td></td>
                                                 <td>{{ number_format($totalRetailerDues, 2) }}</td>
-                                                <td>{{ isset($totaldeposits) ? number_format($totaldeposits, 2):'' }}</td>
+                                                <td>{{ isset($totalDepositHO) ? number_format($totalDepositHO, 2):'' }}</td>
                                             </tr>
 
                                             <tr class="cumulative_data">
@@ -371,24 +374,36 @@
                                                     {{ isset($closing->bank_deposit_amount) ? number_format($closing->bank_deposit_amount, 2):'' }}</td>
                                                 <td></td>
                                                 <th></th>
-                                                <th>
+                                                <td class="bg-success text-danger">
                                                     <!-- Product Received Amount -->
                                                     {{ isset($closing->product_received_amount)? number_format($closing->product_received_amount, 2):'' }}
-                                                </th>
-                                                <th>
+                                                </td>
+                                                <td class="bg-success text-danger">
                                                     <!-- Slab Received Amount -->
                                                     {{ isset($closing->slab_received_amount) ? number_format($closing->slab_received_amount, 2):''  }}
-                                                </th>
-                                                <th></th>
-                                                <th></th>
-                                                <th>{{ isset($closing->product_received_amount) ? number_format($closing->product_received_amount, 2): '' }}</th>
+                                                </td>
+                                                <td class="bg-success text-danger">
+                                                    <!-- VAT Adjustment Amount -->
+                                                    {{ isset($closing->vat_adjustment_received_amount) ? number_format($closing->vat_adjustment_received_amount, 2):''  }}
+                                                </td>
+                                                <td class="bg-success text-danger">
+                                                    <!-- Marketing Promotion Amount -->
+                                                    {{ isset($closing->promotion_received_amount) ? number_format($closing->promotion_received_amount, 2):''  }}
+                                                </td>
+                                                <td class="bg-success text-danger">
+                                                    <!-- Incentive Amount -->
+                                                    {{ isset($closing->insentive_received_amount) ? number_format($closing->insentive_received_amount, 2):''  }}
+                                                </td>
                                                 <td></td>
-                                                <th>{{ isset($closing->sales_amount)? number_format($closing->sales_amount, 2): '' }}</th>
-                                                <th>{{ isset($closing->collection_amount) ? number_format($closing->collection_amount, 2): '' }}</th>
-                                                <th>{{ isset($closing->due_amount) ? number_format($closing->due_amount, 2): '' }}</th>
-                                                <th>{{ isset($closing->due_realize_amount)? number_format($closing->due_realize_amount, 2): '' }}</th>
-                                                <th>{{ isset($closing->total_due_amount) ? number_format($closing->total_due_amount, 2): '' }}</th>
-                                                <th>{{ isset($closing->ho_deposit_amount) ? number_format($closing->ho_deposit_amount, 2) :'' }}</th>
+                                                <td class="bg-success text-danger">
+                                                    <!-- Sales Amount -->
+                                                    {{ isset($closing->sales_amount)? number_format($closing->sales_amount, 2): '' }}
+                                                </td>
+                                                <td class="bg-success text-danger">{{ isset($closing->collection_amount) ? number_format($closing->collection_amount, 2): '' }}</td>
+                                                <td class="bg-success text-danger">{{ isset($closing->due_amount) ? number_format($closing->due_amount, 2): '' }}</td>
+                                                <td class="bg-success text-danger">{{ isset($closing->due_realize_amount)? number_format($closing->due_realize_amount, 2): '' }}</td>
+                                                <td class="bg-success text-danger">{{ isset($closing->total_due_amount) ? number_format($closing->total_due_amount, 2): '' }}</td>
+                                                <td class="bg-success text-danger">{{ isset($closing->ho_deposit_amount) ? number_format($closing->ho_deposit_amount, 2) :'' }}</td>
                                             </tr>
 
 

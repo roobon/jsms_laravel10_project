@@ -5,8 +5,10 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Business;
 use App\Models\Insentive;
+use App\Models\OpeningClosing;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class InsentiveController extends Controller
@@ -61,10 +63,39 @@ class InsentiveController extends Controller
         $insentive->business_id = $request->business;
         $insentive->company_id = $request->company;
         
+         // Get Year and Month from Investment date
+         $timestamp = strtotime($request->date);
+         $m = date('m', $timestamp);
+         $y = date('Y', $timestamp);
+        
+        // Check Target
+         $row = DB::table('targets')
+         ->whereYear('start_date', $y)
+         ->whereMonth('start_date', $m)
+         ->where('business_id', '=', $request->business)
+         ->get();
 
-
+         //return dd($row);
+     if (count($row) == 0) {
+         return back()->with('error', "Sorry, No Target Entry Available for entering Insentive")->withInput();
+     } else {
+        
         $insentive->save();
+     }
 
+
+     $openClose = OpeningClosing::where('business_id', $request->business)
+     ->where('month', $m)
+     ->where('year', $y)
+     ->where('business_id', $request->business)
+     ->where('period', 'closing')
+     ->first();
+
+    $openClose->insentive_received_amount = $openClose->insentive_received_amount + $request->amount;
+ 
+    $openClose->update(); 
+    // Insentive update to Closing Insentive End
+       
         return redirect()->route('insentive.index')->with('msg', "Successfully insentive Created");
     }
 
