@@ -163,8 +163,8 @@ class ReportController extends Controller
 
     // Deposits to Head Offcie
     $AlldepositsHO = Deposit::where('business_id', $request->business)
-    ->whereMonth('payment_date', $month)
-    ->whereYear('payment_date', $year)
+    ->whereMonth('deposit_date', $month)
+    ->whereYear('deposit_date', $year)
     ->get();
     $totalDepositHO = $AlldepositsHO->sum('deposit_amount');
 
