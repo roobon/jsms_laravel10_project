@@ -138,7 +138,7 @@ class ReportController extends Controller
     $insentiveAmounts = Insentive::where('business_id', $request->business)
       ->whereMonth('received_date', $month)
       ->whereYear('received_date', $year)
-      //->groupBy('company_id')
+      ->groupBy('company_id')
       ->get();
     $totalInsentiveAmount = $insentiveAmounts->sum('insentive_amount'); 
 
