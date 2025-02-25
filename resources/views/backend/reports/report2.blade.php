@@ -91,31 +91,35 @@
                                                 <th class="text-center">Market Promotion (Tk.)</th>
                                             </tr>
                                             <tr>
-                                                <th>Opening</th>
-                                                <th>
-                                                    {{ isset($opening->security_money) ? number_format($opening->security_money, 2) : '' }}
-                                                </th>
-                                                <th>Up to last Month</th>
-                                                <th>{{ isset($opening->investment_amount) ? number_format($opening->investment_amount, 2) : '' }}
-                                                </th>
-                                                <th>Up to last Month</th>
-                                                <th style="width:125px">
-                                                    {{ isset($opening->bank_deposit_amount) ? number_format($opening->bank_deposit_amount, 2) : '' }}
-                                                </th>
-                                                <th style="width:94px">Up to last Month </th>
-                                                <th>N/A</th>
-                                                <th style="width:110px">
-                                                    {{ isset($opening->product_received_amount) ? number_format($opening->product_received_amount, 2) : '' }}
-                                                </th>
-                                                <th style="width:110px">
-                                                    {{ isset($opening->slab_received_amount) ? number_format($opening->slab_received_amount, 2) : '' }}
-                                                </th>
-                                                <th>{{ isset($opening->insentive_received_amount) ? number_format($opening->insentive_received_amount, 2) : '' }}
-                                                </th>
-                                                <th>{{ isset($opening->sales_amount) ? number_format($opening->sales_amount, 2) : '' }}
-                                                </th>
-                                                <th>{{ isset($opening->insentive_received_amount) ? number_format($opening->insentive_received_amount, 2) : '' }}
-                                                </th>
+                                                <td>Opening</td>
+                                                <td class="bg-primary">
+                                                    <strong>{{ isset($opening->security_money) ? number_format($opening->security_money, 2) : '' }}</strong>
+                                                </td>
+                                                <td>Up to last Month</td>
+                                                <td class="bg-primary">
+                                                    <strong>{{ isset($opening->investment_amount) ? number_format($opening->investment_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td>Up to last Month</td>
+                                                <td style="width:125px" class="bg-primary">
+                                                    <strong>{{ isset($opening->bank_deposit_amount) ? number_format($opening->bank_deposit_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td style="width:94px">Up to last Month </td>
+                                                <td>N/A</td>
+                                                <td style="width:110px" class="bg-primary">
+                                                    <strong>{{ isset($opening->product_received_amount) ? number_format($opening->product_received_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td style="width:110px">
+                                                    <strong>{{ isset($opening->slab_received_amount) ? number_format($opening->slab_received_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td class="bg-primary">
+                                                    <strong>{{ isset($opening->vat_adjustment_received_amount) ? number_format($opening->vat_adjustment_received_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>{{ isset($opening->promotion_received_amount) ? number_format($opening->promotion_received_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td class="bg-primary">
+                                                    <strong>{{ isset($opening->insentive_received_amount) ? number_format($opening->insentive_received_amount, 2) : '' }}</strong>
+                                                </td>
                                                 <th>Up to last Month</th>
                                                 <th>{{ isset($opening->sales_amount) ? number_format($opening->sales_amount, 2) : '' }}
                                                 </th>
