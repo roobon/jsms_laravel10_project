@@ -27,6 +27,12 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin123'),
             'status' => 'active'
         ]);
+        \App\Models\Admin::create([
+            'name' => 'Manager',
+            'email' => 'manager@jthfbd.com',
+            'password' => Hash::make('manager123'),
+            'status' => 'active'
+        ]);
 
         // For Point/Center
         \App\Models\Point::create([
