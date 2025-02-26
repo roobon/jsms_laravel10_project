@@ -30,9 +30,8 @@ class DepositController extends Controller
     public function create()
     {
         $businesses = Business::all();
-        $companies = Company::all();
         $managers = Employee::where('designation', 'Manager')->get();
-        return view('backend.deposit.create', compact('businesses', 'managers', 'companies'));
+        return view('backend.deposit.create', compact('businesses', 'managers'));
     }
 
     /**
@@ -47,7 +46,6 @@ class DepositController extends Controller
                 'business' => 'required',
                 'deposit_date' => 'required',
                 'manager' => 'required',
-                'company' => 'required',
                 'photo' => 'nullable'
             ],
 
@@ -60,7 +58,6 @@ class DepositController extends Controller
         $point->deposit_date = $request->deposit_date;
         $point->deposit_photo = $request->photo;
         $point->business_id = $request->business;
-        $point->company_id = $request->company;
         $point->employee_id = $request->manager;
         $point->save();
 
@@ -77,7 +74,7 @@ class DepositController extends Controller
             ->where('period', 'closing')
             ->first();
 
-        $openClose->bank_deposit_amount = $openClose->bank_deposit_amount + $request->deposit_amount;
+        $openClose->ho_deposit_amount = $openClose->ho_deposit_amount + $request->deposit_amount;
 
         $openClose->update(); 
         // Closing Deposit update 

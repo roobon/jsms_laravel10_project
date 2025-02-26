@@ -74,12 +74,12 @@
                                                     <td>{{ $item->business->business_name }}</td>
                                                     <td style="width: 15%;" class="text-center">
                                                         <form onSubmit="return confirm('Are you sure to Delete')"
-                                                            action="{{ route('investment.destroy', $item->id) }}"
+                                                            action="{{ route('insentive.destroy', $item->id) }}"
                                                             method="post">
                                                             <a class="btn btn-default btn-icon-anim btn-circle"
-                                                                href="{{ route('investment.show', $item->id) }}"><i
+                                                                href="{{ route('insentive.show', $item->id) }}"><i
                                                                     class="glyphicon glyphicon-search"></i></a>
-                                                            <a href="{{ route('investment.edit', $item->id) }}"
+                                                            <a href="{{ route('insentive.edit', $item->id) }}"
                                                                 class="btn btn-primary btn-icon-anim btn-circle"><i
                                                                     class="glyphicon glyphicon-edit"></i></a>
                                                             @csrf

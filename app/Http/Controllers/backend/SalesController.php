@@ -167,10 +167,9 @@ class SalesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Sales $sales, $id)
+    public function destroy(Sales $sales)
     {
-        $sale = Sales::find($id);
-        //dd($sale->delete());
+       $sales->delete();
         return redirect()->route('sales.index')->with('msg', 'Deleted Successfully');
     }
 

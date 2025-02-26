@@ -120,19 +120,25 @@
                                                 <td class="bg-primary">
                                                     <strong>{{ isset($opening->insentive_received_amount) ? number_format($opening->insentive_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <th>Up to last Month</th>
-                                                <th>{{ isset($opening->sales_amount) ? number_format($opening->sales_amount, 2) : '' }}
-                                                </th>
-                                                <th>{{ isset($opening->collection_amount) ? number_format($opening->collection_amount, 2) : '' }}
-                                                </th>
-                                                <th>{{ isset($opening->due_amount) ? number_format($opening->due_amount, 2) : '' }}
-                                                </th>
-                                                <th>{{ isset($opening->due_realize_amount) ? number_format($opening->due_realize_amount, 2) : '' }}
-                                                </th>
-                                                <th>{{ isset($opening->total_due_amount) ? number_format($opening->total_due_amount, 2) : '' }}
-                                                </th>
-                                                <th>{{ isset($opening->ho_deposit_amount) ? number_format($opening->ho_deposit_amount, 2) : '' }}
-                                                </th>
+                                                <td>Up to last Month</td>
+                                                <td class="bg-primary">
+                                                    <strong>{{ isset($opening->sales_amount) ? number_format($opening->sales_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>{{ isset($opening->collection_amount) ? number_format($opening->collection_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td class="bg-primary">
+                                                    <strong>{{ isset($opening->due_amount) ? number_format($opening->due_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>{{ isset($opening->due_realize_amount) ? number_format($opening->due_realize_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td class="bg-primary">
+                                                    <strong>{{ isset($opening->total_due_amount) ? number_format($opening->total_due_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>{{ isset($opening->ho_deposit_amount) ? number_format($opening->ho_deposit_amount, 2) : '' }}</strong>
+                                                </td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -357,9 +363,9 @@
                                                         @foreach ($sales as $sale)
                                                             <tr>
                                                                 <td>{{ $sale->sales_date }}</td>
-                                                                <td>{{ $sale->total_amount }}</td>
-                                                                <td>{{ $sale->collection_amount }}</td>
-                                                                <td>{{ $sale->due_amount }}</td>
+                                                                <td>{{ number_format($sale->total_amount, 2) }}</td>
+                                                                <td>{{ number_format($sale->collection_amount, 2) }}</td>
+                                                                <td>{{ number_format($sale->due_amount, 2) }}</td>
                                                             </tr>
                                                         @endforeach
                                                     </table>
@@ -384,7 +390,7 @@
                                                             @foreach ($AlldepositsHO as $deposit)
                                                                 <tr>
                                                                     <td>{{ $deposit->deposit_date }}</td>
-                                                                    <td>{{ $deposit->deposit_amount }}</td>
+                                                                    <td>{{ number_format($deposit->deposit_amount, 2) }}</td>
                                                                 </tr>
                                                             @endforeach
                                                         @endif
@@ -468,22 +474,22 @@
                                                 <td></td>
                                                 <td class="bg-success text-danger">
                                                     <!-- Sales Amount -->
-                                                    {{ isset($closing->sales_amount) ? number_format($closing->sales_amount, 2) : '' }}
+                                                    <strong>{{ isset($closing->sales_amount) ? number_format($closing->sales_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="bg-success text-danger">
-                                                    {{ isset($closing->collection_amount) ? number_format($closing->collection_amount, 2) : '' }}
+                                                    <strong>{{ isset($closing->collection_amount) ? number_format($closing->collection_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="bg-success text-danger">
-                                                    {{ isset($closing->due_amount) ? number_format($closing->due_amount, 2) : '' }}
+                                                    <strong>{{ isset($closing->due_amount) ? number_format($closing->due_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="bg-success text-danger">
-                                                    {{ isset($closing->due_realize_amount) ? number_format($closing->due_realize_amount, 2) : '' }}
+                                                    <strong>{{ isset($closing->due_realize_amount) ? number_format($closing->due_realize_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="bg-success text-danger">
-                                                    {{ isset($closing->total_due_amount) ? number_format($closing->total_due_amount, 2) : '' }}
+                                                    <strong>{{ isset($closing->total_due_amount) ? number_format($closing->total_due_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="bg-success text-danger">
-                                                    {{ isset($closing->ho_deposit_amount) ? number_format($closing->ho_deposit_amount, 2) : '' }}
+                                                    <strong>{{ isset($closing->ho_deposit_amount) ? number_format($closing->ho_deposit_amount, 2) : '' }}</strong>
                                                 </td>
                                             </tr>
 
