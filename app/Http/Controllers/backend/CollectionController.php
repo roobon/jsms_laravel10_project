@@ -40,7 +40,6 @@ class CollectionController extends Controller
                 'sales_memo' => 'required',
                 'collection_amount' => 'required',
                 'collection_date' => 'required',
-                'rest_amount' => 'required',
                 'business' => 'required',
                 'photo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             ]
@@ -61,13 +60,21 @@ class CollectionController extends Controller
         $collection->sales_memo = $request->sales_memo;
         $collection->collection_amount = $request->collection_amount;
         $collection->collection_date = $request->collection_date;
-        $collection->rest_amount = $request->rest_amount;
+ 
         $collection->business_id = $request->business;
         
-        $collection->save();
+       
+
         $retailer = Retailer::find($request->retailer);
         $retailer->current_due = $retailer->current_due -  $request->collection_amount;
+        $collection->rest_amount = $retailer->current_due;
+
+        $collection->save();
+        
         $retailer->update();
+
+
+
 
         return redirect()->route('collection.index')->with('msg', "Successfully collection Added");
     }
