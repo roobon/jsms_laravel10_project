@@ -113,14 +113,14 @@
 
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Trade
-                                                    Lisence</label>
+                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Retailer
+                                                    Code*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
                                                         <input type="text" name="trade_lisence"
                                                             value="{{ $retailer->trade_lisence ?? old('trade_lisence') }}"
                                                             class="form-control" id="exampleInputuname_4"
-                                                            placeholder="Enter Trade Lisence Number">
+                                                            placeholder="Enter Retailer Code">
                                                         <div class="input-group-addon"></div>
                                                     </div>
                                                 </div>

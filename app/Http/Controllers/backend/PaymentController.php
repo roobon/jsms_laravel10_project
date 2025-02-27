@@ -33,7 +33,7 @@ class PaymentController extends Controller
     {
         $companies = Company::all();
         $businesses = Business::all();
-        $employees = Employee::all();
+        $employees = Employee::all()->where('designation', 'Manager');
         return view('backend.payment.create', compact('companies', 'businesses', 'employees'));
     }
 
