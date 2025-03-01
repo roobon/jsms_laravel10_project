@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->string('invoice_number', 50);
+            $table->date('invoice_date');
             $table->decimal('product_amount', total: 10, places: 2);
             $table->date('received_date');
             $table->enum('product_type', ['regular', 'slab', 'vatadjust', 'mktpromo']);

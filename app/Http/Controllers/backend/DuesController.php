@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Business;
+use App\Models\Employee;
 use App\Models\Retailer;
 use App\Models\RetailerDues;
 use Illuminate\Http\Request;
@@ -30,7 +31,8 @@ class DuesController extends Controller
     {
         $retailers = Retailer::all();
         $businesses = Business::all();
-        return view('backend.dues.create', compact('retailers', 'businesses'));
+        $delmans = Employee::where('designation', 'Delivery Man')->get();
+        return view('backend.dues.create', compact('retailers', 'businesses', 'delmans'));
     }
 
     /**
@@ -41,10 +43,12 @@ class DuesController extends Controller
         $request->validate(
             [
                 'retailer' => 'required',
-                'sales_memo' => 'required',
+                'invoice_no' => 'required',
                 'sales_date' => 'required',
-                'due_amount' => 'required',
+                'sales_amount' => 'required',
+                'collection_amount' => 'required',
                 'business' => 'required',
+                'delman' => 'required',
                 'photo' => 'nullable'
             ],
         );
@@ -60,14 +64,18 @@ class DuesController extends Controller
         $dues = new RetailerDues();
 
         $dues->retailer_id = $request->retailer;
-        $dues->sales_memo = $request->sales_memo;
+        $dues->invoice_no = $request->invoice_no;
         $dues->sales_date = $request->sales_date;
-        $dues->due_amount = $request->due_amount;
+        $dues->sales_amount = $request->sales_amount;
+        $dues->collection_amount = $request->collection_amount;
+        $due = $request->sales_amount - $request->collection_amount;
+        $dues->due_amount = $due;
         $dues->business_id = $request->business;
+        $dues->employee_id = $request->delman;
         $dues->photo = $photo;
         $dues->save();
         $retailer = Retailer::find($request->retailer);
-        $retailer->current_due = $retailer->current_due + $request->due_amount;
+        $retailer->current_due = $retailer->current_due + $due;
         if($retailer->current_due>19999) {
             $retailer->performance = "poor";
         } elseif($retailer->current_due>9999){

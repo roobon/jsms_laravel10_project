@@ -14,11 +14,14 @@ return new class extends Migration
         Schema::create('retailer_dues', function (Blueprint $table) {
             $table->id();
             $table->integer('retailer_id');
-            $table->string('sales_memo', 60);
+            $table->string('invoice_no', 60);
             $table->date('sales_date');
+            $table->decimal('sales_amount', total: 10, places: 2)->default(0);
+            $table->decimal('collection_amount', total: 10, places: 2)->default(0);
             $table->decimal('due_amount', total: 10, places: 2)->default(0);
             $table->string('photo')->nullable();
             $table->integer('business_id');
+            $table->integer('employee_id'); // Delivery Man
             $table->timestamps();
         });
     }

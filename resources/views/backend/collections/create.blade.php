@@ -95,12 +95,12 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputuname_4" class="col-sm-3 control-label">Sales
-                                                    Memo*</label>
+                                                    Invoice*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
-                                                        <input type="text" name="sales_memo"
-                                                            value="{{ old('sales_memo') }}" class="form-control"
-                                                            id="exampleInputuname_4" placeholder="Enter Sales Memo">
+                                                        <input type="text" name="invoice_no"
+                                                            value="{{ old('invoice_no') }}" class="form-control"
+                                                            id="exampleInputuname_4" placeholder="Enter Sales Invoice">
                                                         <div class="input-group-addon"></div>
                                                     </div>
                                                 </div>
@@ -130,7 +130,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group">
                                                 <label for="exampleInputuname_4"
                                                     class="col-sm-3 control-label">Photo</label>
@@ -196,9 +196,11 @@
                         //alert(response.retailer);
                         //console.log(response.retailer);
                         receivedData = response.retailer;
+                        duesData = response.mydues;
                         $('#retailerData').html(detailInfo());
 
                         console.log(receivedData[0]);
+                        console.log(duesData[0]);
                         // if (receivedData.status == 'inactive') {
                         //     $('#btnSub').attr('disabled', 'disabled');
                         // } else {
@@ -212,6 +214,19 @@
 
                 function detailInfo() {
                     let content = '';
+                    let duerow =
+                        '<table class="table table-striped"><tr><th>Invoice</th><th>Date</th><th>Sales</th><th>Collectoin</th><th>Due</th></tr>';
+                    let i = 0;
+                    while (i < duesData.length) {
+                        duerow += '<tr><td>' + duesData[0].invoice_no + '</td>';
+                        duerow += '<td>' + duesData[0].sales_date + '</td>';
+                        duerow += '<td>' + duesData[0].sales_amount + '</td>';
+                        duerow += '<td>' + duesData[0].collection_amount + '</td>';
+                        duerow += '<td>' + duesData[0].due_amount + '</td></tr>';
+                        i++;
+
+                    }
+
                     content +=
                         '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="panel panel-info card-view"><div class="panel-heading">';
 
@@ -236,6 +251,15 @@
                         '</h5></td></tr>';
                     content += '</tbody></table></div></div>';
                     content += '</div></div></div></div>';
+
+                    content += duerow + '</table>'
+
+                    // Another Table Start
+
+
+                    // Table End
+
+
 
                     return content;
                 }

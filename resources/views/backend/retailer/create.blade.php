@@ -199,7 +199,9 @@
                                                             @foreach ($managers as $manager)
                                                                 <option value="{{ $manager->id }}"
                                                                     {{ old('manager') ? 'selected=selected' : '' }}>
-                                                                    {{ $manager->name }}</option>
+                                                                    {{ $manager->name }}
+                                                                    {{ $manager->point->point_name ? ', ' . $manager->point->point_name : '' }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                         <div class="input-group-addon"></div>
@@ -216,7 +218,9 @@
                                                             @foreach ($delmans as $delm)
                                                                 <option value="{{ $delm->id }}"
                                                                     {{ old('delman') ? 'selected=selected' : '' }}>
-                                                                    {{ $delm->name }}</option>
+                                                                    {{ $delm->name }}
+                                                                    ({{ $delm->point->point_name ? $delm->point->point_name : '' }})
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                         <div class="input-group-addon"></div>

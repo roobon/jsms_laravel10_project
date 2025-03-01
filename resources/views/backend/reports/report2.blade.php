@@ -373,15 +373,29 @@
                                                 {{-- Sales --}}
 
 
-                                                <td>aaaa</td>
-                                                <td>
+                                                <td colspan="2">
+                                                    @php
+                                                        //print_r($CollectionDues);
+                                                    @endphp
                                                     <table class="table table-bordered" style="padding: 0; margin:0">
-                                                        {{-- @foreach ($Retailerdues as $Retailerdue)
-                                                            <tr>
-                                                                <td>{{ $Retailerdue->sales_date }}</td>
-                                                                <td>{{ $Retailerdue->due_amount }}</td>
+                                                        @if (isset($CollectionDues))
+                                                            <tr class="text-center text-white bg-dark">
+                                                                <th>Retailer Code</th>
+                                                                <th>Invoice</th>
+                                                                <th>Collection</th>
+                                                                <th>Due</th>
                                                             </tr>
-                                                        @endforeach --}}
+                                                            @foreach ($CollectionDues as $row)
+                                                                <tr>
+                                                                    <td>{{ $row->trade_lisence }}</td>
+                                                                    <td>{{ $row->invoice_no }}</td>
+                                                                    <td>{{ number_format($row->total, 2) }}
+                                                                    </td>
+                                                                    <td>{{ number_format($row->current_due, 2) }}
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @endif
                                                     </table>
                                                 </td>
                                                 <td>
@@ -390,7 +404,8 @@
                                                             @foreach ($AlldepositsHO as $deposit)
                                                                 <tr>
                                                                     <td>{{ $deposit->deposit_date }}</td>
-                                                                    <td>{{ number_format($deposit->deposit_amount, 2) }}</td>
+                                                                    <td>{{ number_format($deposit->deposit_amount, 2) }}
+                                                                    </td>
                                                                 </tr>
                                                             @endforeach
                                                         @endif
@@ -429,8 +444,12 @@
                                                 <td class="bg-primary text-muted">{{ number_format($totalsales, 2) }}</td>
                                                 <td class="bg-info text-muted">{{ number_format($collections, 2) }}</td>
                                                 <td class="bg-primary text-muted">{{ number_format($dues, 2) }}</td>
-                                                <td></td>
-                                                <td>{{ number_format($totalRetailerDues, 2) }}</td>
+                                                <td class="bg-info text-muted">
+                                                    {{ number_format($totalRetailerCollection, 2) }}
+                                                </td>
+                                                <td class="bg-primary text-muted">
+                                                    {{ number_format($totalRetailerDues, 2) }}
+                                                </td>
                                                 <td>{{ isset($totalDepositHO) ? number_format($totalDepositHO, 2) : '' }}
                                                 </td>
                                             </tr>

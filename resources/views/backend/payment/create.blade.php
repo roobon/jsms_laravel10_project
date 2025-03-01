@@ -144,7 +144,8 @@
                                                             <option value="">Select one</option>
                                                             @foreach ($employees as $employee)
                                                                 <option value="{{ $employee->id }}">
-                                                                    {{ $employee->name }} ({{ $employee->designation }})
+                                                                    {{ $employee->name }}{{ ', ' . $employee->designation }}
+                                                                    {{ $employee->point->point_name ? ', ' . $employee->point->point_name : '' }}
                                                                 </option>
                                                             @endforeach
                                                         </select>

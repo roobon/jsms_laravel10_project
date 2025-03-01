@@ -14,4 +14,9 @@ class Retailer extends Model
     {
         return $this->hasMany(Sales::class);
     }
+
+    public function dues()
+    {
+        return $this->hasMany(RetailerDues::class);
+    }
 }

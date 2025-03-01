@@ -37,7 +37,7 @@ class CollectionController extends Controller
         $request->validate(
             [
                 'retailer' => 'required',
-                'sales_memo' => 'required',
+                'invoice_no' => 'required',
                 'collection_amount' => 'required',
                 'collection_date' => 'required',
                 'business' => 'required',
@@ -57,9 +57,9 @@ class CollectionController extends Controller
         $collection = new Collection;
 
         $collection->retailer_id = $request->retailer;    
-        $collection->sales_memo = $request->sales_memo;
+        $collection->invoice_no = $request->invoice_no;
         $collection->collection_amount = $request->collection_amount;
-        $collection->collection_date = $request->collection_date;
+        $collection->invoice_date = $request->collection_date;
  
         $collection->business_id = $request->business;
         

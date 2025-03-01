@@ -65,7 +65,7 @@
 
                                             <tr>
                                                 <td>1</td>
-                                                <td style="width:15%">Business wise Summary Report</td>
+                                                <td style="width:15%">Company wise Summary Report</td>
                                                 <td class="text-right" style="width:90%">
 
                                                     <div class="row">
@@ -83,10 +83,10 @@
                                                                                         <option value="">Select
                                                                                             Business
                                                                                         </option>
-                                                                                        @foreach ($businesses as $business)
+                                                                                        @foreach ($companies as $company)
                                                                                             <option
-                                                                                                value="{{ $business->id }}">
-                                                                                                {{ $business->business_name }}
+                                                                                                value="{{ $company->id }}">
+                                                                                                {{ $company->company_name }}
                                                                                             </option>
                                                                                         @endforeach
                                                                                     </select>

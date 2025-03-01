@@ -15,7 +15,7 @@
         <div class="row heading-bg bg-green">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 
-                <h5 class="txt-light">Due Amount with Retailer</h5>
+                <h5 class="txt-light">Due Amount with Retailer Information</h5>
             </div>
             <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
@@ -51,8 +51,10 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Shop Name</th>
-                                                <th>Sales Memo</th>
+                                                <th>Invoice No</th>
                                                 <th>Sales Date</th>
+                                                <th>Sales Amount</th>
+                                                <th>Collection Amount</th>
                                                 <th>Due Amount</th>
                                                 <th style="width: 15%;" class="text-center">Action</th>
                                             </tr>
@@ -61,8 +63,10 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Shop Name</th>
-                                                <th>Sales Memo</th>
+                                                <th>Invoice No</th>
                                                 <th>Sales Date</th>
+                                                <th>Sales Amount</th>
+                                                <th>Collection Amount</th>
                                                 <th>Due Amount</th>
                                                 <th style="width: 15%;" class="text-center">Action</th>
                                             </tr>
@@ -72,8 +76,10 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->retailer->shop_name }}</td>
-                                                    <td>{{ $item->sales_memo }}</td>
+                                                    <td>{{ $item->invoice_no }}</td>
                                                     <td>{{ $item->sales_date }}</td>
+                                                    <td>{{ $item->sales_amount }}</td>
+                                                    <td>{{ $item->collection_amount }}</td>
                                                     <td>{{ $item->due_amount }}</td>
                                                     <td style="width: 15%;" class="text-center">
 
