@@ -377,13 +377,13 @@
                                                     @php
                                                         //print_r($CollectionDues);
                                                     @endphp
-                                                    <table class="table table-bordered" style="padding: 0; margin:0">
-                                                        @if (isset($CollectionDues))
-                                                            <tr class="text-center text-white bg-dark">
-                                                                <th>Retailer Code</th>
-                                                                <th>Invoice</th>
-                                                                <th>Collection</th>
-                                                                <th>Due</th>
+                                                    @if (count($CollectionDues) > 0)
+                                                        <table class="table table-bordered" style="padding: 0; margin:0">
+                                                            <tr class="text-center bg-dark">
+                                                                <th class="text-muted">Retailer Code</th>
+                                                                <th class="text-muted">Invoice</th>
+                                                                <th class="text-muted">Collection</th>
+                                                                <th class="text-muted">Due</th>
                                                             </tr>
                                                             @foreach ($CollectionDues as $row)
                                                                 <tr>
@@ -395,8 +395,8 @@
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
-                                                        @endif
-                                                    </table>
+                                                        </table>
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     <table class="table table-bordered" style="padding: 0; margin:0">
@@ -418,97 +418,103 @@
                                                 <td>Current</td>
                                                 <td></td>
                                                 <td></td>
-                                                <td class="bg-primary text-muted">
+                                                <td class="bg-primary text-muted text-right">
                                                     <!-- Total Investment -->
                                                     {{ number_format($totalInvestment, 2) }}
                                                 </td>
                                                 <td></td>
-                                                <td class="bg-primary text-muted">
+                                                <td class="bg-primary text-muted text-right">
                                                     <!-- Total compan -->
                                                     {{ number_format($totalCompanyPaids, 2) }}
                                                 </td>
                                                 <td></td>
                                                 <td></td>
-                                                <td class="bg-primary text-muted">{{ number_format($resularamount, 2) }}
+                                                <td class="bg-primary text-muted text-right">
+                                                    {{ number_format($resularamount, 2) }}
                                                 </td>
-                                                <td class="bg-info text-muted">{{ number_format($slbstockamount, 2) }}
+                                                <td class="bg-info text-muted text-right">
+                                                    {{ number_format($slbstockamount, 2) }}
                                                 </td>
-                                                <td class="bg-primary text-muted">
+                                                <td class="bg-primary text-muted text-right">
                                                     {{ number_format($vatadjustamount, 2) }}</td>
-                                                <td class="bg-info text-muted">{{ number_format($mktpromoamount, 2) }}
+                                                <td class="bg-info text-muted text-right">
+                                                    {{ number_format($mktpromoamount, 2) }}
                                                 </td>
-                                                <td class="bg-primary text-muted">
+                                                <td class="bg-primary text-muted text-right">
                                                     {{ number_format($totalInsentiveAmount, 2) }}
                                                 </td>
                                                 <td></td>
-                                                <td class="bg-primary text-muted">{{ number_format($totalsales, 2) }}</td>
-                                                <td class="bg-info text-muted">{{ number_format($collections, 2) }}</td>
-                                                <td class="bg-primary text-muted">{{ number_format($dues, 2) }}</td>
-                                                <td class="bg-info text-muted">
+                                                <td class="bg-primary text-muted text-right">
+                                                    {{ number_format($totalsales, 2) }}</td>
+                                                <td class="bg-info text-muted text-right">
+                                                    {{ number_format($collections, 2) }}</td>
+                                                <td class="bg-primary text-muted text-right">{{ number_format($dues, 2) }}
+                                                </td>
+                                                <td class="bg-info text-muted text-right">
                                                     {{ number_format($totalRetailerCollection, 2) }}
                                                 </td>
-                                                <td class="bg-primary text-muted">
+                                                <td class="bg-primary text-muted text-right">
                                                     {{ number_format($totalRetailerDues, 2) }}
                                                 </td>
-                                                <td class="bg-info text-muted">
+                                                <td class="bg-info text-muted text-right">
                                                     {{ isset($totalDepositHO) ? number_format($totalDepositHO, 2) : '' }}
                                                 </td>
                                             </tr>
 
                                             <tr class="cumulative_data">
                                                 <td>Cumulative</td>
-                                                <td class="bg-info text-danger">
+                                                <td class="bg-info text-danger text-right">
                                                     <strong>{{ isset($closing->security_money) ? number_format($closing->security_money, 2) : '' }}</strong>
                                                 </td>
                                                 <td></td> {{-- Investment Start --}}
-                                                <td class="bg-info text-danger">
+                                                <td class="bg-info text-danger text-right">
                                                     <strong>{{ isset($closing->investment_amount) ? number_format($closing->investment_amount, 2) : '' }}</strong>
                                                 </td>
                                                 {{-- Investment End --}}
                                                 <td></td>
-                                                <td class="bg-info text-danger">
+                                                <td class="bg-info text-danger text-right">
                                                     <strong>{{ isset($closing->bank_deposit_amount) ? number_format($closing->bank_deposit_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td></td>
                                                 <th></th>
-                                                <td class="bg-info text-danger">
+                                                <td class="bg-info text-danger text-right">
                                                     <!-- Product Received Amount -->
                                                     <strong>{{ isset($closing->product_received_amount) ? number_format($closing->product_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-warning text-danger">
+                                                <td class="bg-warning text-danger text-right">
                                                     <!-- Slab Received Amount -->
                                                     <strong>{{ isset($closing->slab_received_amount) ? number_format($closing->slab_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-info text-danger">
+                                                <td class="bg-info text-danger text-right">
                                                     <!-- VAT Adjustment Amount -->
                                                     <strong>{{ isset($closing->vat_adjustment_received_amount) ? number_format($closing->vat_adjustment_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-warning text-danger">
+                                                <td class="bg-warning text-danger text-right">
                                                     <!-- Marketing Promotion Amount -->
                                                     <strong>{{ isset($closing->promotion_received_amount) ? number_format($closing->promotion_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-info text-danger">
+                                                <td class="bg-info text-danger text-right">
                                                     <!-- Incentive Amount -->
                                                     <strong>{{ isset($closing->insentive_received_amount) ? number_format($closing->insentive_received_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td></td>
-                                                <td class="bg-info text-danger">
+                                                <td class="bg-info text-danger text-right">
                                                     <!-- Sales Amount -->
                                                     <strong>{{ isset($closing->sales_amount) ? number_format($closing->sales_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-success text-danger">
+                                                <td class="bg-warning text-danger text-right">
                                                     <strong>{{ isset($closing->collection_amount) ? number_format($closing->collection_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-info text-danger">
+                                                <td class="bg-info text-danger text-right">
                                                     <strong>{{ isset($closing->due_amount) ? number_format($closing->due_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-success text-danger">
+                                                <td class="bg-warning text-danger text-right">
                                                     <strong>{{ isset($closing->due_realize_amount) ? number_format($closing->due_realize_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-info text-danger">
+                                                <td class="bg-info text-danger text-right">
                                                     <strong>{{ isset($closing->total_due_amount) ? number_format($closing->total_due_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-success text-danger">
+                                                <td class="bg-warning text-danger text-right">
                                                     <strong>{{ isset($closing->ho_deposit_amount) ? number_format($closing->ho_deposit_amount, 2) : '' }}</strong>
                                                 </td>
                                             </tr>
@@ -551,7 +557,7 @@
                 'color': 'rgb(252, 252, 252)'
             });
             $("tfoot>tr").css({
-                'background-color': 'rgb(47, 113, 73)',
+                'background-color': 'rgb(123, 44, 44)',
                 'color': 'white'
             });
             $(".current_month").css({
