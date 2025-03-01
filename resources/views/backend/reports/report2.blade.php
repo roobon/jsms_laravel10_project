@@ -242,61 +242,61 @@
                                                                             {{ $stock->received_date }}
                                                                         </td>
                                                                         @if ($stock->product_type == 'regular')
-                                                                            <td class="text-center" style="max-width:85px">
+                                                                            <td class="text-right" style="max-width:85px">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
-                                                                            <td style="max-width:10%" class="text-center">
+                                                                            <td style="max-width:10%" class="text-right">
                                                                                 {{ number_format($stock->product_amount, 2) }}
                                                                             </td>
-                                                                            <td style="max-width:15%" class="text-center">
+                                                                            <td style="max-width:15%" class="text-right">
                                                                                 ------
                                                                             </td>
-                                                                            <td class="text-center">------</td>
-                                                                            <td style="max-width:30%" class="text-center">
+                                                                            <td class="text-right">------</td>
+                                                                            <td style="max-width:30%" class="text-right">
                                                                                 ------
                                                                             </td>
                                                                         @elseif($stock->product_type == 'slab')
-                                                                            <td class="text-center" style="width:85px">
+                                                                            <td class="text-right" style="width:85px">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
-                                                                            <td style="max-width:15%" class="text-center">
+                                                                            <td style="max-width:15%" class="text-right">
                                                                                 ------
                                                                             </td>
-                                                                            <td style="max-width:15%" class="text-center">
+                                                                            <td style="max-width:15%" class="text-right">
                                                                                 {{ number_format($stock->product_amount, 2) }}
                                                                             </td>
-                                                                            <td class="text-center">------</td>
-                                                                            <td style="max-width:30%" class="text-center">
+                                                                            <td class="text-right">------</td>
+                                                                            <td style="max-width:30%" class="text-right">
                                                                                 ---
                                                                             </td>
                                                                         @elseif($stock->product_type == 'vatadjust')
-                                                                            <td class="text-center" style="width:85px">
+                                                                            <td class="text-right" style="width:85px">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
-                                                                            <td style="max-width:15%" class="text-center">
+                                                                            <td style="max-width:15%" class="text-right">
                                                                                 ------
                                                                             </td>
-                                                                            <td style="max-width:15%" class="text-center">
+                                                                            <td style="max-width:15%" class="text-right">
                                                                                 ------
                                                                             </td>
-                                                                            <td class="text-center">
+                                                                            <td class="text-right">
                                                                                 {{ number_format($stock->product_amount, 2) }}
                                                                             </td>
-                                                                            <td style="max-width:30%" class="text-center">
+                                                                            <td style="max-width:30%" class="text-right">
                                                                                 ------
                                                                             </td>
                                                                         @elseif($stock->product_type == 'mktpromo')
                                                                             <td class="text-center" style="width:85px">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
-                                                                            <td style="max-width:15%" class="text-center">
+                                                                            <td style="max-width:15%" class="text-right">
                                                                                 ------
                                                                             </td>
-                                                                            <td style="max-width:15%" class="text-center">
+                                                                            <td style="max-width:15%" class="text-right">
                                                                                 ------
                                                                             </td>
                                                                             <td class="text-center">------</td>
-                                                                            <td style="max-width:30%" class="text-center">
+                                                                            <td style="max-width:30%" class="text-right">
                                                                                 {{ number_format($stock->product_amount, 2) }}
                                                                             </td>
                                                                         @endif
@@ -337,13 +337,14 @@
                                                                 @foreach ($insentives as $data)
                                                                     <tr>
                                                                         <td>{{ $data->received_date }}</td>
-                                                                        <td>{{ number_format($data->insentive_amount, 2) }}
+                                                                        <td class="text-right">
+                                                                            {{ number_format($data->insentive_amount, 2) }}
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
                                                                 <tr>
                                                                     <td>Total</td>
-                                                                    <td class="bg-success text-danger">
+                                                                    <td class="bg-success text-danger text-right">
                                                                         {{ number_format($insentives->sum('insentive_amount'), 2) }}
                                                                     </td>
                                                                 </tr>
@@ -363,9 +364,12 @@
                                                         @foreach ($sales as $sale)
                                                             <tr>
                                                                 <td>{{ $sale->sales_date }}</td>
-                                                                <td>{{ number_format($sale->total_amount, 2) }}</td>
-                                                                <td>{{ number_format($sale->collection_amount, 2) }}</td>
-                                                                <td>{{ number_format($sale->due_amount, 2) }}</td>
+                                                                <td class="text-right">
+                                                                    {{ number_format($sale->total_amount, 2) }}</td>
+                                                                <td class="text-right">
+                                                                    {{ number_format($sale->collection_amount, 2) }}</td>
+                                                                <td class="text-right">
+                                                                    {{ number_format($sale->due_amount, 2) }}</td>
                                                             </tr>
                                                         @endforeach
                                                     </table>
@@ -389,9 +393,11 @@
                                                                 <tr>
                                                                     <td>{{ $row->trade_lisence }}</td>
                                                                     <td>{{ $row->invoice_no }}</td>
-                                                                    <td>{{ number_format($row->total, 2) }}
+                                                                    <td class="text-right">
+                                                                        {{ number_format($row->total, 2) }}
                                                                     </td>
-                                                                    <td>{{ number_format($row->current_due, 2) }}
+                                                                    <td class="text-right">
+                                                                        {{ number_format($row->current_due, 2) }}
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
@@ -404,7 +410,8 @@
                                                             @foreach ($AlldepositsHO as $deposit)
                                                                 <tr>
                                                                     <td>{{ $deposit->deposit_date }}</td>
-                                                                    <td>{{ number_format($deposit->deposit_amount, 2) }}
+                                                                    <td class="text-right">
+                                                                        {{ number_format($deposit->deposit_amount, 2) }}
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
