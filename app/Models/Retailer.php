@@ -19,4 +19,19 @@ class Retailer extends Model
     {
         return $this->hasMany(RetailerDues::class);
     }
+
+    public function point()
+    {
+        return $this->belongsTo(Point::class);
+    }
+
+    public function manager()
+    {
+        return $this->belongsTo(Employee::class, 'manager_id');
+    }
+
+    public function delman()
+    {
+        return $this->belongsTo(Employee::class, 'delman_id');
+    }
 }
