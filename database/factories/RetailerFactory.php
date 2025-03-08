@@ -25,7 +25,7 @@ class RetailerFactory extends Factory
             'proprietor_name' => $this->faker->name,
             'market_name' => $this->faker->name . " Market",
             'shop_address' => $this->faker->address,
-            'trade_lisence' =>  Str::random(10),
+            'retailer_code' =>  Str::random(10),
             'contact_person' => $this->faker->name,
             'contact_number' =>  random_int(170000000000, 179900000000),
             'contact_email' => fake()->unique()->safeEmail(),

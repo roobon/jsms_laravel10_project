@@ -31,9 +31,14 @@ class Business extends Model
     {
         return $this->belongsTo(Company::class, 'company_id');
     }
-    public function employee()
+    // public function employee()
+    // {
+    //     return $this->belongsTo(Employee::class, 'employee_id');
+    // }
+
+    public function point()
     {
-        return $this->belongsTo(Employee::class, 'employee_id');
+        return $this->belongsTo(Point::class, 'point_id');
     }
 
     public function investment()

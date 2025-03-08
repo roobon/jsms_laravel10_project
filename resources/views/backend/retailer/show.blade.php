@@ -56,7 +56,7 @@
                                         <h4 class="mb-20">Business Info</h4>
                                         <p class="mb-50">Business Starting Date: {{ $retailer->business_starts }} <br>
                                             Proprietor Name: {{ $retailer->proprietor_name }} <br>
-                                            Retailer Code: {{ $retailer->trade_lisence }} <br>
+                                            Retailer Code: {{ $retailer->retailer_code }} <br>
 
 
                                         </p>

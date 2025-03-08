@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('proprietor_name', 50);
             $table->string('market_name')->nullable();
             $table->string('shop_address');
-            $table->string('trade_lisence', 50)->nullable();
+            $table->string('retailer_code', 50);
             $table->string('contact_person', 50);
             $table->string('contact_number', 20);
             $table->string('contact_email', 50)->nullable();

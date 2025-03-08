@@ -41,7 +41,7 @@ class RetailerController extends Controller
                 'shop_name' => 'required',
                 'proprietor_name' => 'required',
                 'address' => 'min:10',
-                'trade_lisence' => 'required',
+                'retailer_code' => 'required',
                 'contact_person' => 'min:4',
                 'contact_number' => 'min:11',
                 'contact_email' => 'nullable|email',
@@ -69,7 +69,7 @@ class RetailerController extends Controller
         $retailer->proprietor_name = $request->proprietor_name;
         $retailer->market_name = $request->market_name;
         $retailer->shop_address = $request->address;
-        $retailer->trade_lisence = $request->trade_lisence;
+        $retailer->retailer_code = $request->retailer_code;
         $retailer->contact_person = $request->contact_person;
         $retailer->contact_number = $request->contact_number;
         $retailer->contact_email  = $request->contact_email;
@@ -121,7 +121,7 @@ class RetailerController extends Controller
                 'shop_name' => 'required',
                 'proprietor_name' => 'required',
                 'address' => 'min:10',
-                'trade_lisence' => 'required',
+                'retailer_code' => 'required',
                 'contact_person' => 'min:4',
                 'contact_number' => 'min:11',
                 'contact_email' => 'nullable|email',
@@ -147,7 +147,7 @@ class RetailerController extends Controller
         $retailer->proprietor_name = $request->proprietor_name;
         $retailer->market_name = $request->market_name;
         $retailer->shop_address = $request->address;
-        $retailer->trade_lisence = $request->trade_lisence;
+        $retailer->retailer_code = $request->retailer_code;
         $retailer->contact_person = $request->contact_person;
         $retailer->contact_number = $request->contact_number;
         $retailer->contact_email  = $request->contact_email;

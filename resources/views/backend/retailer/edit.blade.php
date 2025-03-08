@@ -117,8 +117,8 @@
                                                     Code*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
-                                                        <input type="text" name="trade_lisence"
-                                                            value="{{ $retailer->trade_lisence ?? old('trade_lisence') }}"
+                                                        <input type="text" name="retailer_code"
+                                                            value="{{ $retailer->retailer_code ?? old('retailer_code') }}"
                                                             class="form-control" id="exampleInputuname_4"
                                                             placeholder="Enter Retailer Code">
                                                         <div class="input-group-addon"></div>
