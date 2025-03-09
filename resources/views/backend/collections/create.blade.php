@@ -242,7 +242,8 @@
                     content += '<tr><td> Market Name</td><td>' + receivedData[0].market_name + '</td></tr>';
                     content += '<tr><td> Shop Address</td><td>' + receivedData[0].shop_address +
                         '</td></tr>';
-                    content += '<tr><td> Current Due</td><th>' + receivedData[0].current_due + '</th></tr>';
+                    content += '<tr><td> Current Due</td><th class="bg-info"><h5>' + receivedData[0]
+                        .current_due + '</h5></th></tr>';
                     content += '<tr><td> Contact Person</td><td>' + receivedData[0].contact_person +
                         '</td></tr>';
                     content += '<tr><td> Contact Number</td><td>' + receivedData[0].contact_number +

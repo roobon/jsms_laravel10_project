@@ -52,10 +52,10 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Shop Name and Address</th>
-                                                <th>Collection Amount</th>
                                                 <th>Date</th>
+                                                <th>Invoice No</th>
+                                                <th>Collection Amount</th>
                                                 <th>Rest Amount</th>
-                                                <th>Business Name</th>
                                                 <th style="width: 15%;" class="text-center">Action</th>
                                             </tr>
                                         </thead>
@@ -63,10 +63,10 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Shop Name and Address</th>
-                                                <th>Collection Amount</th>
                                                 <th>Date</th>
+                                                <th>Invoice No</th>
+                                                <th>Collection Amount</th>
                                                 <th>Rest Amount</th>
-                                                <th>Business Name</th>
                                                 <th style="width: 15%;" class="text-center">Action</th>
                                             </tr>
                                         </tfoot>
@@ -74,10 +74,10 @@
                                             @foreach ($items as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->shop_name }}</td>
-                                                    <td>{{ $item->sales_memo }}</td>
+                                                    <td>{{ $item->retailer->shop_name }}</td>
+                                                    <td>{{ $item->invoice_date }}</td>
+                                                    <td>{{ $item->invoice_no }}</td>
                                                     <td class="text-danger bg-warning">{{ $item->collection_amount }}</td>
-                                                    <td>{{ $item->collection_date }}</td>
                                                     <td>{{ $item->rest_amount }}</td>
                                                     <td style="width: 15%;" class="text-center">
 

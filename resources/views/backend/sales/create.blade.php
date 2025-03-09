@@ -63,7 +63,9 @@
                                                             @foreach ($delmans as $delm)
                                                                 <option value="{{ $delm->id }}"
                                                                     {{ old('delman') ? 'selected=selected' : '' }}>
-                                                                    {{ $delm->name }}</option>
+                                                                    {{ $delm->name }}
+                                                                    {{ $delm->point->point_name ? ', ' . $delm->point->point_name : '' }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                         <div class="input-group-addon"></div>
@@ -117,7 +119,9 @@
                                                             @foreach ($managers as $manager)
                                                                 <option value="{{ $manager->id }}"
                                                                     {{ old('manager') ? 'selected=selected' : '' }}>
-                                                                    {{ $manager->name }}</option>
+                                                                    {{ $manager->name }}
+                                                                    {{ $manager->point->point_name ? ', ' . $manager->point->point_name : '' }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                         <div class="input-group-addon"></div>
@@ -154,7 +158,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputuname_4" class="col-sm-3 control-label">Sales
-                                                    Voucher Photo</label>
+                                                    Voucher</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
                                                         <input type="file" name="photo" value="{{ old('photo') }}"

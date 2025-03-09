@@ -79,8 +79,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputuname_4" class="col-sm-3 control-label">From
-                                                    Business
-                                                    Name*</label>
+                                                    Business*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
                                                         <select name="business" class="form-control" id="retailerId">
@@ -107,7 +106,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group">
                                                 <label for="exampleInputuname_4" class="col-sm-3 control-label">Deposit By
                                                     Manager*</label>
@@ -116,7 +115,9 @@
                                                         <select name="manager" class="form-control" id="retailerId">
                                                             <option value="">Select one</option>
                                                             @foreach ($managers as $manager)
-                                                                <option value="{{ $manager->id }}">{{ $manager->name }}
+                                                                <option value="{{ $manager->id }}">
+                                                                    {{ $manager->name }}
+                                                                    {{ $manager->point->point_name ? ', ' . $manager->point->point_name : '' }}
                                                                 </option>
                                                             @endforeach
                                                         </select>

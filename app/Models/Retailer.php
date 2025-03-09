@@ -34,4 +34,9 @@ class Retailer extends Model
     {
         return $this->belongsTo(Employee::class, 'delman_id');
     }
+
+    public function collection()
+    {
+        return $this->hasMany(Collection::class);
+    }
 }
