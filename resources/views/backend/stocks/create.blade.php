@@ -125,7 +125,7 @@
                                                     <div class="input-group">
                                                         <select name="product_type" id="" class="form-control">
                                                             <option value="">Select one</option>
-                                                            <option value="regular"
+                                                            <option value="normal"
                                                                 {{ old('product_type') == 'regular' ? 'selected=selected' : '' }}>
                                                                 Regular</option>
                                                             <option value="slab"
@@ -137,6 +137,12 @@
                                                             <option value="mktpromo"
                                                                 {{ old('product_type') == 'mktpromo' ? 'selected=selected' : '' }}>
                                                                 Marketing Promotion</option>
+                                                            <option value="replacement"
+                                                                {{ old('product_type') == 'replacement' ? 'selected=selected' : '' }}>
+                                                                Replacement</option>
+                                                            <option value="out_of_policy"
+                                                                {{ old('product_type') == 'out_of_policy' ? 'selected=selected' : '' }}>
+                                                                Out of Policy</option>
                                                         </select>
                                                         <div class="input-group-addon"></div>
                                                     </div>
@@ -166,7 +172,9 @@
                                                         <select name="employee" class="form-control" id="retailerId">
                                                             <option value="">Select one</option>
                                                             @foreach ($employees as $employee)
-                                                                <option value="{{ $employee->id }}">{{ $employee->name }}
+                                                                <option value="{{ $employee->id }}">
+                                                                    {{ $employee->name }}{{ ', ' . $employee->designation }}
+                                                                    {{ $employee->point->point_name ? ', ' . $employee->point->point_name : '' }}
                                                                 </option>
                                                             @endforeach
                                                         </select>

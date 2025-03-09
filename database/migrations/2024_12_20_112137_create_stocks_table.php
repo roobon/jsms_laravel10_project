@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('invoice_date');
             $table->decimal('product_amount', total: 10, places: 2);
             $table->date('received_date');
-            $table->enum('product_type', ['regular', 'slab', 'vatadjust', 'mktpromo']);
+            $table->enum('product_type', ['normal', 'slab', 'vatadjust', 'mktpromo', 'replacement', 'out_of_policy']);
             $table->string('invoice_photo')->nullable();
             $table->integer('business_id'); // for which business
             $table->integer('company_id'); // Received From
