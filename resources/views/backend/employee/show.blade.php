@@ -104,8 +104,13 @@
                             <img class="img-responsive" id="item-display"
                                 src="{{ $employee->nid ? asset($employee->nid) : asset('images/nophoto.jpg') }}"
                                 alt="product" />
-                            <a href="{{ $employee->resume ? asset($employee->resume) : '' }}"
-                                class="btn  btn-primary mt-20">RESUME</a>
+                            @if ($employee->resume)
+                                {{ $employee->resume }}<br>
+                                <a href="{{ $employee->resume ? asset($employee->resume) : '' }}"
+                                    class="btn  btn-success mt-20">Show RESUME</a>
+                            @else
+                                <h5>No Resume </h5>
+                            @endif
 
                         </div>
                     </div>
