@@ -9,7 +9,51 @@
                 <i class="fa fa-search top-nav-icon"></i>
             </a>
         </li>
-
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                    class="fa fa-yoast top-nav-icon"></i></a>
+            <ul class="dropdown-menu app-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-home mr-10"></i> All
+                        Company</a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-note mr-10"></i>New
+                        Company</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-home mr-10"></i> All
+                        Center</a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-note mr-10"></i>New
+                        Center</a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-modx top-nav-icon"></i></a>
+            <ul class="dropdown-menu app-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-home mr-10"></i> All
+                        Company</a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-note mr-10"></i>New
+                        Company</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-home mr-10"></i> All
+                        Center</a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-note mr-10"></i>New
+                        Center</a>
+                </li>
+            </ul>
+        </li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-th top-nav-icon"></i></a>
             <ul class="dropdown-menu app-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -47,7 +91,7 @@
                                         <span class="block">Businesses</span>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                     </ul>
@@ -69,11 +113,11 @@
                 <li class="text-center">
                     <ul class="app-icon-wrap">
                         <li>
-                                    <a href="{{ route('investment.index') }}" class="connection-item">
-                                        <i class="pe-7s-helm txt-primary"></i>
-                                        <span class="block">Investments</span>
-                                    </a>
-                                </li>
+                            <a href="{{ route('investment.index') }}" class="connection-item">
+                                <i class="pe-7s-helm txt-primary"></i>
+                                <span class="block">Investments</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="{{ route('payment.index') }}" class="connection-item">
                                 <i class="pe-7s-cash txt-info"></i>
