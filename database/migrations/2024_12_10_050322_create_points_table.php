@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('point_name', 50);
             $table->string('point_address');
             $table->date('opening_date');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

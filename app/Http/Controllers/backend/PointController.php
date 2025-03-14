@@ -38,16 +38,26 @@ class PointController extends Controller
             [
                 'point_name' => 'required',
                 'point_address' => 'required',
-                'opening_date' => 'required'
+                'opening_date' => 'required',
+                'photo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             ],
 
         );
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'images/point/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $photo = $destinationPath . $postImage;
+        } else {
+            $photo = NULL;
+        }
 
         $point = new Point;
 
         $point->point_name = $request->point_name;
         $point->point_address = $request->point_address;
         $point->opening_date = $request->opening_date;
+        $point->photo = $photo;
         $point->save();
 
         return redirect()->route('points.index')->with('msg', "Center Created Successfully ");
@@ -81,16 +91,27 @@ class PointController extends Controller
     {
         $request->validate(
             [
-                'point_name' => 'required | min:5',
+                'point_name' => 'required',
                 'point_address' => 'required',
-                'opening_date' => 'required'
+                'opening_date' => 'required',
+                'photo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             ],
 
         );
 
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'images/point/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $photo = $destinationPath . $postImage;
+        } else {
+            $photo = $point->photo;
+        }
+
         $point->point_name = $request->point_name;
         $point->point_address = $request->point_address;
         $point->opening_date = $request->opening_date;
+        $point->photo = $photo;
         $point->update();
 
         return redirect()->route('points.index')->with('msg', "Center Updated Successfully ");
