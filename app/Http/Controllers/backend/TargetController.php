@@ -78,28 +78,12 @@ class TargetController extends Controller
             $date = Carbon::createFromFormat('Y-n-d', $request->start_date);
             $month = $date->format('n');
             $year = $date->format('Y');
-
-            /*
-              $items = Item::select('*')
-
-                                ->whereBetween('created_at', 
-
-                                    [Carbon::now()->subMonth()->startOfMonth(), Carbon::now()->subMonth()->endOfMonth()]
-
-                                )
-
-                                ->get()
-
-                                ->toArray();
-            */
             $date = Carbon::createFromFormat('Y-m-d', $request->start_date)->subMonth();
 
   
 
             $prevStartDate = $date->format('Y-m-d');
     
-      
-
             $closingRow = DB::table('opening_closing')->select('*')
                 ->where('report_date', $prevStartDate)
                 ->where('business_id', $request->business)
@@ -225,7 +209,8 @@ class TargetController extends Controller
     {
         $points = Point::orderBy('id')->get();
         $companies = Company::orderBy('id')->get();
-        return view('backend.target.edit', compact('target', 'points', 'companies'));
+        $businesses = Business::orderBy('id')->get();
+        return view('backend.target.edit', compact('target', 'points', 'companies', 'businesses'));
     }
 
     /**
