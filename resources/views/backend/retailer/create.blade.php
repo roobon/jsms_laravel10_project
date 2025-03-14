@@ -219,7 +219,7 @@
                                                                 <option value="{{ $delm->id }}"
                                                                     {{ old('delman') ? 'selected=selected' : '' }}>
                                                                     {{ $delm->name }}
-                                                                    ({{ $delm->point->point_name ? $delm->point->point_name : '' }})
+                                                                    ({{ $delm->point->point_name ?? $delm->point->point_name }})
                                                                 </option>
                                                             @endforeach
                                                         </select>

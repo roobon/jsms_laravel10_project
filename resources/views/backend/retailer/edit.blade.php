@@ -224,7 +224,9 @@
                                                             @foreach ($delmans as $delm)
                                                                 <option value="{{ $delm->id }}"
                                                                     {{ $retailer->delman_id == $delm->id ? 'selected=selected' : '' }}>
-                                                                    {{ $delm->name }}</option>
+                                                                    {{ $delm->name }}
+                                                                    ({{ $delm->point->point_name ?? $delm->point->point_name }})
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                         <div class="input-group-addon"></div>
