@@ -48,9 +48,7 @@ class TargetController extends Controller
                 'collection_target' => 'required',
                 'working_days' => 'required',
                 'business' => 'required'
-
             ],
-
         );
 
         $target = new Target;
@@ -218,7 +216,25 @@ class TargetController extends Controller
      */
     public function update(Request $request, Target $target)
     {
-        //
+        $request->validate(
+            [
+                'start_date' => 'required',
+                'end_date' => 'required',
+                'ims_target' => 'required',
+                'collection_target' => 'required',
+                'working_days' => 'required',
+                'business' => 'required'
+            ],
+        );
+
+        $target->start_date = $request->start_date;
+        $target->end_date = $request->end_date;
+        $target->ims_target = $request->ims_target;
+        $target->collection_target = $request->collection_target;
+        $target->working_days = $request->working_days;
+        $target->business_id = $request->business;
+        $target->update();
+        return redirect()->route('target.index')->with('msg', 'Updated Successfully');
     }
 
     /**

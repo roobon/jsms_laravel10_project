@@ -57,9 +57,8 @@
                                                             <option value="">Select one</option>
                                                             @foreach ($businesses as $business)
                                                                 <option value="{{ $business->id }}"
-                                                                    {{ $target->_buisness_id == $business->id ? 'selected=selected' : '' }}>
-                                                                    {{ $business->name }}
-                                                                    ({{ $business->point->point_name ?? $business->point->point_name }})
+                                                                    {{ $target->business_id == $business->id ? 'selected=selected' : '' }}>
+                                                                    {{ $business->business_name }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -74,8 +73,8 @@
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
                                                         <input type="date" name="start_date"
-                                                            value="{{ old('start_date') }}" class="form-control"
-                                                            id="exampleInputuname_4">
+                                                            value="{{ $target->start_date ?? old('start_date') }}"
+                                                            class="form-control" id="exampleInputuname_4">
                                                         <div class="input-group-addon"></div>
                                                     </div>
                                                 </div>
@@ -85,7 +84,8 @@
                                                     Date*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
-                                                        <input type="date" name="end_date" value="{{ old('end_date') }}"
+                                                        <input type="date" name="end_date"
+                                                            value="{{ $target->end_date ?? old('end_date') }}"
                                                             class="form-control" id="exampleInputuname_4">
                                                         <div class="input-group-addon"></div>
                                                     </div>
@@ -97,8 +97,9 @@
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
                                                         <input type="text" name="ims_target"
-                                                            value="{{ old('ims_target') }}" class="form-control"
-                                                            id="exampleInputuname_4" placeholder="Enter Target Amount">
+                                                            value="{{ $target->ims_target ?? old('ims_target') }}"
+                                                            class="form-control" id="exampleInputuname_4"
+                                                            placeholder="Enter Target Amount">
                                                         <div class="input-group-addon"></div>
                                                     </div>
                                                 </div>
@@ -109,8 +110,8 @@
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
                                                         <input type="text" name="collection_target"
-                                                            value="{{ old('collection_target') }}" class="form-control"
-                                                            id="exampleInputuname_4"
+                                                            value="{{ $target->collection_target ?? old('collection_target') }}"
+                                                            class="form-control" id="exampleInputuname_4"
                                                             placeholder="Enter Collection Target (%) ">
                                                         <div class="input-group-addon"></div>
                                                     </div>
@@ -122,8 +123,8 @@
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
                                                         <input type="text" name="working_days"
-                                                            value="{{ old('working_days') }}" class="form-control"
-                                                            id="exampleInputuname_4"
+                                                            value="{{ $target->working_days ?? old('working_days') }}"
+                                                            class="form-control" id="exampleInputuname_4"
                                                             placeholder="Enter Numbr of Working Days for Current month">
                                                         <div class="input-group-addon"></div>
                                                     </div>
