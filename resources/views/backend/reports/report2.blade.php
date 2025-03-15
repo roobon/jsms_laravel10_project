@@ -64,31 +64,31 @@
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th rowspan="2">Date</th>
-                                                <th rowspan="2" class="text-center">Total Security Money (Tk.)</th>
+                                                <th rowspan="2" class="extra">Date</th>
+                                                <th rowspan="2" class="text-center extra">Total Security Money (Tk.)</th>
                                                 <th colspan="2" class="text-center">Investment</th>
                                                 <th colspan="2" class="text-center">Bank Deposit</th>
                                                 <th colspan="6" class="text-center">Product Received</th>
-                                                <th rowspan="2" class="text-center">Insentive Received (Tk.)</th>
-                                                <th rowspan="2" class="text-center">Delivery Date</th>
-                                                <th rowspan="2" class="text-center">Total Sale (Tk.)</th>
-                                                <th rowspan="2" class="text-center">Deposit to Office (Tk.)</th>
-                                                <th rowspan="2" class="text-center">Due (Tk.)</th>
-                                                <th rowspan="2" class="text-center">Due Realization (Tk.)</th>
-                                                <th rowspan="2" class="text-center">Total Due (Tk.)</th>
-                                                <th rowspan="2" class="text-center">Deposit to HO (Tk.)</th>
+                                                <th rowspan="2" class="text-center extra">Insentive Received (Tk.)</th>
+                                                <th rowspan="2" class="text-center extra">Delivery Date</th>
+                                                <th rowspan="2" class="text-center extra">Total Sale (Tk.)</th>
+                                                <th rowspan="2" class="text-center extra">Deposit to Office (Tk.)</th>
+                                                <th rowspan="2" class="text-center extra">Due (Tk.)</th>
+                                                <th rowspan="2" class="text-center extra">Due Realization (Tk.)</th>
+                                                <th rowspan="2" class="text-center extra">Total Due (Tk.)</th>
+                                                <th rowspan="2" class="text-center extra">Deposit to HO (Tk.)</th>
                                             </tr>
                                             <tr>
-                                                <th class="text-center">Date</th>
-                                                <th class="text-center">Amount in Tk.</th>
-                                                <th class="text-center">Date</th>
-                                                <th class="text-center">Amount in Tk.</th>
-                                                <th class="text-center">Date</th>
-                                                <th class="text-center">Invoice No.</th>
-                                                <th class="text-center">Amount in Tk.</th>
-                                                <th class="text-center">Slab (Tk.)</th>
-                                                <th class="text-center">VAT Adjustment</th>
-                                                <th class="text-center">Market Promotion (Tk.)</th>
+                                                <th class="text-center extra">Date</th>
+                                                <th class="text-center extra">Amount in Tk.</th>
+                                                <th class="text-center extra">Date</th>
+                                                <th class="text-center extra">Amount in Tk.</th>
+                                                <th class="text-center extra">Date</th>
+                                                <th class="text-center extra">Invoice No.</th>
+                                                <th class="text-center extra">Amount in Tk.</th>
+                                                <th class="text-center extra">Slab (Tk.)</th>
+                                                <th class="text-center extra">VAT Adjustment</th>
+                                                <th class="text-center extra">Market Promotion (Tk.)</th>
                                             </tr>
                                             <tr>
                                                 <td>Opening</td>
@@ -577,6 +577,12 @@
             $(".current_month").css({
                 'background-color': 'rgba(31, 80, 174, 0.55)'
             })
+            $(".extra").css({
+                'background-color': 'rgb(38, 181, 196)',
+                'font-size': '16px',
+                'color': 'white',
+                'min-width': '110px'
+            });
             //	$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
         });
     </script>
