@@ -85,12 +85,12 @@ class InvestmentController extends Controller
             ->where('month', $m)
             ->where('year', $y)
             ->where('business_id', $request->business)
-            ->where('period', 'opening')
-            ->get();
-        if(count($openClose)>0){
+            ->where('period', 'closing')
+            ->first();
+        
             $openClose->investment_amount = $openClose->investment_amount + $request->amount;
             $openClose->update(); 
-        }
+        
 
       
         
