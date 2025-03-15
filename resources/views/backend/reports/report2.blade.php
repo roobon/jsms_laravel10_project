@@ -241,7 +241,7 @@
                                                                         <td style="max-width:58px">
                                                                             {{ $stock->received_date }}
                                                                         </td>
-                                                                        @if ($stock->product_type == 'regular')
+                                                                        @if ($stock->product_type == 'normal')
                                                                             <td class="text-right" style="max-width:85px">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>

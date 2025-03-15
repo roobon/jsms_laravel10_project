@@ -78,10 +78,10 @@
                                                                                 action="{{ route('report1') }}">
                                                                                 <div class="form-group mr-15">
                                                                                     <label class="control-label mr-0"
-                                                                                        for="email_inline">Business:</label>
+                                                                                        for="email_inline">Company:</label>
                                                                                     <select name="company">
                                                                                         <option value="">Select
-                                                                                            Business
+                                                                                            Company
                                                                                         </option>
                                                                                         @foreach ($companies as $company)
                                                                                             <option
