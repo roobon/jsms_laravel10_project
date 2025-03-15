@@ -31,11 +31,10 @@ class ReportController extends Controller
     {
         $company = Company::find($request->company);
         $businesses = Business::where('company_id', $request->company)->get();
+        //dd($businesses);
         $month = $request->month;
         $year = $request->year;
         $items = DB::table('opening_closing')
-           // ->join('points', 'points.id', '=', 'sales_payments_stocks.point_id')
-           // ->where('company_id', $company->id)
             ->whereMonth('month', $month)
             ->whereYear('year', $year)
             ->get();

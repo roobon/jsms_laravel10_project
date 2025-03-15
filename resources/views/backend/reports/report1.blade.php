@@ -68,7 +68,7 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Center</th>
+                                                <th>Business</th>
                                                 <th>IMS Target</th>
                                                 <th>Collection Target</th>
                                                 <th>Daily IMS Target</th>
@@ -87,7 +87,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Center</th>
+                                                <th>Business</th>
                                                 <th>IMS Target (100%)</th>
                                                 <th>Collection Target (95%)</th>
                                                 <th>Daily IMS Target</th>

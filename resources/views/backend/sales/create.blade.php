@@ -74,13 +74,13 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Memo
-                                                    Number*</label>
+                                                <label for="exampleInputuname_4"
+                                                    class="col-sm-3 control-label">Invoice*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
                                                         <input type="text" name="voucher" value="{{ old('voucher') }}"
                                                             class="form-control" id="exampleInputuname_4"
-                                                            placeholder="Enter Voucher Number">
+                                                            placeholder="Enter Invoice Number">
                                                         <div class="input-group-addon"></div>
                                                     </div>
                                                 </div>
