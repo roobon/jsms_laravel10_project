@@ -391,7 +391,7 @@
                                                             </tr>
                                                             @foreach ($CollectionDues as $row)
                                                                 <tr>
-                                                                    <td>{{ $row->trade_lisence }}</td>
+                                                                    <td>{{ $row->retailer_code }}</td>
                                                                     <td>{{ $row->invoice_no }}</td>
                                                                     <td class="text-right">
                                                                         {{ number_format($row->total, 2) }}
