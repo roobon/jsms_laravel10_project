@@ -538,6 +538,13 @@
         </div>
         <!-- /Row -->
     </div>
+    @php
+        // use App\Models\Investment;
+        // $InvestmentTotal = Investment::select(DB::raw('SUM(investment_amount) as total'))
+        //     ->where('business_id', $business->id)
+        //     //->groupBy('business_id')
+        //     ->get();
+    @endphp
 
 @endsection
 

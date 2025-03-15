@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Business;
 use App\Models\Company;
+use App\Models\Investment;
 use App\Models\Point;
 use App\Models\Target;
 use Carbon\Carbon;
@@ -138,11 +139,18 @@ class TargetController extends Controller
                     'status' => 'running',
                 ]);
             } else {
+            //    Find Investment Amount
+            
+            $Investments = Investment::where('business_id', $request->business)
+            ->get();
            
+            
+            $InvestmentTotal = $Investments->sum('investment_amount');
+            
             DB::table('opening_closing')->insert([
 
                 'security_money' =>  $business->security_money,
-                'investment_amount' =>  0,
+                'investment_amount' =>  $InvestmentTotal, // all investments will collect and pass
                 'bank_deposit_amount' =>  0,
                 'product_received_amount' => 0,
                 'slab_received_amount' =>   0,
@@ -166,7 +174,7 @@ class TargetController extends Controller
             DB::table('opening_closing')->insert([
 
                'security_money' =>  $business->security_money,
-                'investment_amount' =>  0,
+                'investment_amount' =>  $InvestmentTotal,
                 'bank_deposit_amount' =>  0,
                 'product_received_amount' => 0,
                 'slab_received_amount' =>   0,
