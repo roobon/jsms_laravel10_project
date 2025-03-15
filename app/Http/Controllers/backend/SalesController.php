@@ -46,7 +46,6 @@ class SalesController extends Controller
         $request->validate(
             [
                 'delman' => 'required',
-                'voucher' => 'required',
                 'total_amount' => 'required',
                 'collection_amount' => 'required',
                 'manager' => 'required',
@@ -68,7 +67,6 @@ class SalesController extends Controller
         $sales = new Sales();
 
         $sales->delman_id = $request->delman;
-        $sales->invoice_number = $request->voucher;
         $sales->total_amount = $request->total_amount;
         $sales->collection_amount = $request->collection_amount;
         $currentDue = $sales->total_amount - $sales->collection_amount;

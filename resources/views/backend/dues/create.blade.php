@@ -91,8 +91,8 @@
                                                     Invoice*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
-                                                        <input type="text" name="invoice_no"
-                                                            value="{{ old('invoice_no') }}" class="form-control"
+                                                        <input type="text" name="invoice_number"
+                                                            value="{{ old('invoice_number') }}" class="form-control"
                                                             id="exampleInputuname_4" placeholder="Enter Sales Invoice">
                                                         <div class="input-group-addon"></div>
                                                     </div>

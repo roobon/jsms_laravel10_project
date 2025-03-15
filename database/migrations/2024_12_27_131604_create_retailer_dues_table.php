@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('retailer_dues', function (Blueprint $table) {
             $table->id();
             $table->integer('retailer_id');
-            $table->string('invoice_no', 60);
             $table->date('sales_date');
+            $table->string('invoice_number', 50);
             $table->decimal('sales_amount', total: 10, places: 2)->default(0);
             $table->decimal('collection_amount', total: 10, places: 2)->default(0);
             $table->decimal('due_amount', total: 10, places: 2)->default(0);

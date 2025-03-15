@@ -55,7 +55,7 @@
                     </div>
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body">
-                            <h3 class="text-muted text-center">Jahanara Traders</h3>
+                            <h3 class="text-muted text-center heading">Jahanara Traders</h3>
                             <p class="text-muted text-center">{{ $business->business_name }} Business</p>
                             <p class="text-muted text-center">Report from {{ $target->start_date }} to
                                 {{ $target->end_date }}</p>
@@ -68,7 +68,7 @@
                                                 <th rowspan="2" class="text-center extra">Total Security Money (Tk.)</th>
                                                 <th colspan="2" class="text-center">Investment</th>
                                                 <th colspan="2" class="text-center">Bank Deposit</th>
-                                                <th colspan="6" class="text-center">Product Received</th>
+                                                <th colspan="8" class="text-center">Product Received</th>
                                                 <th rowspan="2" class="text-center extra">Insentive Received (Tk.)</th>
                                                 <th rowspan="2" class="text-center extra">Delivery Date</th>
                                                 <th rowspan="2" class="text-center extra">Total Sale (Tk.)</th>
@@ -89,32 +89,42 @@
                                                 <th class="text-center extra">Slab (Tk.)</th>
                                                 <th class="text-center extra">VAT Adjustment</th>
                                                 <th class="text-center extra">Market Promotion (Tk.)</th>
+                                                <th class="text-center extra">Replacement (Tk.)</th>
+                                                <th class="text-center extra">Out of Policy (Tk.)</th>
                                             </tr>
                                             <tr>
-                                                <td>Opening</td>
+                                                <td class="extra_sm2">Opening</td>
                                                 <td class="bg-primary">
                                                     <strong>{{ isset($opening->security_money) ? number_format($opening->security_money, 2) : '' }}</strong>
                                                 </td>
-                                                <td>Up to last Month</td>
+                                                <td class="extra_sm2">Up to last Month</td>
                                                 <td class="bg-primary">
                                                     <strong>{{ isset($opening->investment_amount) ? number_format($opening->investment_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td>Up to last Month</td>
+                                                <td class="extra_sm2">Up to last Month</td>
                                                 <td style="width:125px" class="bg-primary">
                                                     <strong>{{ isset($opening->bank_deposit_amount) ? number_format($opening->bank_deposit_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td style="width:94px">Up to last Month </td>
-                                                <td>N/A</td>
+                                                <td class="extra_sm2">Up to last Month </td>
+                                                <td class="extra_sm2">N/A</td>
                                                 <td style="width:110px" class="bg-primary">
                                                     <strong>{{ isset($opening->product_received_amount) ? number_format($opening->product_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td style="width:110px">
+                                                <td class="extra_sm2 text-right">
                                                     <strong>{{ isset($opening->slab_received_amount) ? number_format($opening->slab_received_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="bg-primary">
                                                     <strong>{{ isset($opening->vat_adjustment_received_amount) ? number_format($opening->vat_adjustment_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td>
+                                                <td class="extra_sm2 text-right">
+                                                    <strong>{{ isset($opening->promotion_received_amount) ? number_format($opening->promotion_received_amount, 2) : '' }}</strong>
+                                                </td>
+                                                {{-- Replacement --}}
+                                                <td class="extra_sm2 text-right">
+                                                    <strong>{{ isset($opening->promotion_received_amount) ? number_format($opening->promotion_received_amount, 2) : '' }}</strong>
+                                                </td>
+                                                {{-- Out of Policy --}}
+                                                <td class="extra_sm2 text-right">
                                                     <strong>{{ isset($opening->promotion_received_amount) ? number_format($opening->promotion_received_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="bg-primary">
@@ -147,12 +157,15 @@
                                                 <td class="text-center"></td>
 
                                                 {{-- Investment --}}
-                                                <td colspan="2" class="align-text-top text-center">
+                                                <td colspan="2" style="vertical-align:top">
                                                     <table class="table table-bordered mb-0">
                                                         @foreach ($investments as $investment)
                                                             <tr>
-                                                                <td>{{ $investment->investment_date }}</td>
-                                                                <td>{{ number_format($investment->investment_amount, 2) }}
+                                                                <td class="extra_sm2 text-center">
+                                                                    {{ $investment->investment_date }}
+                                                                </td>
+                                                                <td class="extra_sm2 text-right">
+                                                                    {{ number_format($investment->investment_amount, 2) }}
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -206,7 +219,7 @@
                                                 </td>
                                                 {{-- Bank Deposit End --}}
                                                 {{-- Product Received --}}
-                                                <td colspan="6">
+                                                <td colspan="8" style="vertical-align: top">
                                                     @if (count($productReceivedCompanies) > 0)
                                                         @foreach ($productReceivedCompanies as $productRecCompany)
                                                             <table class="table table-bordered"
@@ -238,65 +251,121 @@
 
                                                                 @foreach ($stocks as $stock)
                                                                     <tr>
-                                                                        <td style="max-width:58px">
+                                                                        <td class="text-center extra_sm3"
+                                                                            style="max-width: 25px; min-width:20px">
                                                                             {{ $stock->received_date }}
                                                                         </td>
+                                                                        {{-- Normal Product --}}
                                                                         @if ($stock->product_type == 'normal')
-                                                                            <td class="text-right" style="max-width:85px">
+                                                                            <td class="text-center extra_sm3"
+                                                                                style="max-width: 25px; min-width:20px">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
-                                                                            <td style="max-width:10%" class="text-right">
+                                                                            <td class="text-right extra_sm3"
+                                                                                style="max-width: 25px; min-width:20px">
                                                                                 {{ number_format($stock->product_amount, 2) }}
                                                                             </td>
-                                                                            <td style="max-width:15%" class="text-right">
-                                                                                ------
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
                                                                             </td>
-                                                                            <td class="text-right">------</td>
-                                                                            <td style="max-width:30%" class="text-right">
-                                                                                ------
+                                                                            <td class="text-right extra_sm3"
+                                                                                style="max-width: 50px; min-width:40px">
+                                                                                5.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3"
+                                                                                style="max-width: 50px; min-width:40px">
+                                                                                6.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3"
+                                                                                style="max-width: 50px; min-width:40px">
+                                                                                7.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3"
+                                                                                style="max-width: 40px; min-width:30px">
+                                                                                0.00
                                                                             </td>
                                                                         @elseif($stock->product_type == 'slab')
-                                                                            <td class="text-right" style="width:85px">
+                                                                            <td class="text-center extra_sm3">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
-                                                                            <td style="max-width:15%" class="text-right">
-                                                                                ------
-                                                                            </td>
-                                                                            <td style="max-width:15%" class="text-right">
-                                                                                {{ number_format($stock->product_amount, 2) }}
-                                                                            </td>
-                                                                            <td class="text-right">------</td>
-                                                                            <td style="max-width:30%" class="text-right">
-                                                                                ---
-                                                                            </td>
-                                                                        @elseif($stock->product_type == 'vatadjust')
-                                                                            <td class="text-right" style="width:85px">
-                                                                                {{ $stock->invoice_number }}
-                                                                            </td>
-                                                                            <td style="max-width:15%" class="text-right">
-                                                                                ------
-                                                                            </td>
-                                                                            <td style="max-width:15%" class="text-right">
-                                                                                ------
+                                                                            <td class="text-right">
+                                                                                0.00
                                                                             </td>
                                                                             <td class="text-right">
                                                                                 {{ number_format($stock->product_amount, 2) }}
                                                                             </td>
-                                                                            <td style="max-width:30%" class="text-right">
-                                                                                ------
+                                                                            <td class="text-right">0.00</td>
+                                                                            <td class="text-right">
+                                                                                0.00
                                                                             </td>
-                                                                        @elseif($stock->product_type == 'mktpromo')
-                                                                            <td class="text-center" style="width:85px">
+                                                                            <td class="text-right">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                        @elseif($stock->product_type == 'vatadjust')
+                                                                            <td class="text-right">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
-                                                                            <td style="max-width:15%" class="text-right">
-                                                                                ------
+                                                                            <td class="text-right">
+                                                                                0.00
                                                                             </td>
-                                                                            <td style="max-width:15%" class="text-right">
-                                                                                ------
+                                                                            <td class="text-right">
+                                                                                0.00
                                                                             </td>
-                                                                            <td class="text-center">------</td>
-                                                                            <td style="max-width:30%" class="text-right">
+                                                                            <td class="text-right">
+                                                                                {{ number_format($stock->product_amount, 2) }}
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                        @elseif($stock->product_type == 'mktpromo')
+                                                                            <td class="text-center">
+                                                                                {{ $stock->invoice_number }}
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-center">0.00</td>
+                                                                            <td class="text-right">
+                                                                                {{ number_format($stock->product_amount, 2) }}
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                        @elseif($stock->product_type == 'replacement')
+                                                                            <td class="text-center extra_sm3">
+                                                                                {{ $stock->invoice_number }}
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
                                                                                 {{ number_format($stock->product_amount, 2) }}
                                                                             </td>
                                                                         @endif
@@ -306,10 +375,7 @@
                                                         @endforeach
                                                     @endif
                                                 </td>
-
-
-
-                                                <td>
+                                                <td style="vertical-align:top">
                                                     {{-- Starts --}}
                                                     @if (count($insentiveAmounts) > 0)
                                                         @foreach ($insentiveAmounts as $insentive)
@@ -359,11 +425,12 @@
                                                 </td>
 
                                                 {{-- Sales --}}
-                                                <td colspan="4">
-                                                    <table class="table table-bordered" style="padding: 0; margin:0">
+                                                <td colspan="4" style="vertical-align: top">
+                                                    <table class="table table-bordered" style="padding: 0; margin:1px">
                                                         @foreach ($sales as $sale)
                                                             <tr>
-                                                                <td>{{ $sale->sales_date }}</td>
+                                                                <td class="extra_sm2 text-center">{{ $sale->sales_date }}
+                                                                </td>
                                                                 <td class="text-right">
                                                                     {{ number_format($sale->total_amount, 2) }}</td>
                                                                 <td class="text-right">
@@ -415,8 +482,8 @@
                                             </tr>
                                         </tbody>
                                         <tfoot>
-                                            <tr class="current_month">
-                                                <td>Current</td>
+                                            <tr>
+                                                <td class="extra_sm2">Current</td>
                                                 <td></td>
                                                 <td></td>
                                                 <td class="bg-primary text-muted text-right">
@@ -438,6 +505,12 @@
                                                 </td>
                                                 <td class="bg-primary text-muted text-right">
                                                     {{ number_format($vatadjustamount, 2) }}</td>
+                                                <td class="bg-info text-muted text-right">
+                                                    {{ number_format($mktpromoamount, 2) }}
+                                                </td>
+                                                <td class="bg-info text-muted text-right">
+                                                    {{ number_format($mktpromoamount, 2) }}
+                                                </td>
                                                 <td class="bg-info text-muted text-right">
                                                     {{ number_format($mktpromoamount, 2) }}
                                                 </td>
@@ -494,6 +567,14 @@
                                                     <!-- Marketing Promotion Amount -->
                                                     <strong>{{ isset($closing->promotion_received_amount) ? number_format($closing->promotion_received_amount, 2) : '' }}</strong>
                                                 </td>
+                                                <td class="bg-warning text-danger text-right">
+                                                    <!-- Replacement Amount -->
+                                                    <strong>{{ isset($closing->promotion_received_amount) ? number_format($closing->promotion_received_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td class="bg-warning text-danger text-right">
+                                                    <!-- Out of Policy Amount -->
+                                                    <strong>{{ isset($closing->promotion_received_amount) ? number_format($closing->promotion_received_amount, 2) : '' }}</strong>
+                                                </td>
                                                 <td class="bg-info text-danger text-right">
                                                     <!-- Incentive Amount -->
                                                     <strong>{{ isset($closing->insentive_received_amount) ? number_format($closing->insentive_received_amount, 2) : '' }}</strong>
@@ -546,28 +627,28 @@
     @parent
     <script>
         $(document).ready(function() {
-            $("table td").css({
-                'vertical-align': 'top'
-            });
-            $("td").css({
-                'padding': '12px'
-            });
+            // $("table td").css({
+            //     'vertical-align': 'top'
+            // });
+            // $("td").css({
+            //     'padding': '12px'
+            // });
             $(".datas td").css({
                 'padding': '0',
                 'color': '000'
             });
-            $("tbody>tr").css({
-                'background-color': 'rgba(107, 154, 182, 0.55)',
-                'color': 'rgb(252, 252, 252)'
-            });
-            $("thead>tr").css({
-                'background-color': 'rgba(69, 146, 191, 0.55)',
-                'color': 'rgb(252, 252, 252)'
-            });
-            $("tfoot>tr").css({
-                'background-color': 'rgb(123, 44, 44)',
-                'color': 'white'
-            });
+            // $("tbody>tr").css({
+            //     'background-color': 'rgba(107, 154, 182, 0.55)',
+            //     'color': 'rgb(252, 252, 252)'
+            // });
+            // $("thead>tr").css({
+            //     'background-color': 'rgba(69, 146, 191, 0.55)',
+            //     'color': 'rgb(252, 252, 252)'
+            // });
+            // $("tfoot>tr").css({
+            //     'background-color': 'rgb(123, 44, 44)',
+            //     'color': 'white'
+            // });
             $(".current_month").css({
                 'background-color': 'rgba(31, 80, 174, 0.55)'
             })
@@ -581,10 +662,33 @@
             $(".extra_sm").css({
                 'font-size': '14px',
                 'color': 'white',
-                'min-width': '110px',
+                'min-width': '112px',
                 'font-weight': 'bolder'
             });
-            //	$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
+            $(".extra_sm2").css({
+                'font-size': '14px',
+                'color': 'black',
+                'min-width': '50px',
+                'max-width': '72px',
+                'font-weight': 'bolder'
+            });
+            $(".extra_sm3").css({
+                'font-size': '12px',
+                'color': 'black',
+                'font-weight': 'bold',
+
+            });
+            // $(".panel_body").css({
+
+            //     'background': 'linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("https://unsplash.imgix.net/photo-1416339442236-8ceb164046f8?q=75&fm=jpg&s=8eb83df8a744544977722717b1ea4d09")',
+            //     'background-repeat': 'no-repeat',
+            //     'background-size': 'cover',
+            //     'background-position': 'center center',
+            //     'color': '#fff',
+            //     'height': '450px',
+            //     'padding-top': '50px'
+            // })
+
         });
     </script>
 @endsection

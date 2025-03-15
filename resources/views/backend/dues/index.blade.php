@@ -76,7 +76,7 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->retailer->shop_name }}</td>
-                                                    <td>{{ $item->invoice_no }}</td>
+                                                    <td>{{ $item->invoice_number }}</td>
                                                     <td>{{ $item->sales_date }}</td>
                                                     <td>{{ $item->sales_amount }}</td>
                                                     <td>{{ $item->collection_amount }}</td>

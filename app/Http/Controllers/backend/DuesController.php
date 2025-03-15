@@ -43,8 +43,8 @@ class DuesController extends Controller
         $request->validate(
             [
                 'retailer' => 'required',
-                'invoice_no' => 'required',
                 'sales_date' => 'required',
+                'invoice_number' => 'required',
                 'sales_amount' => 'required',
                 'collection_amount' => 'required',
                 'business' => 'required',
@@ -64,8 +64,8 @@ class DuesController extends Controller
         $dues = new RetailerDues();
 
         $dues->retailer_id = $request->retailer;
-        $dues->invoice_no = $request->invoice_no;
         $dues->sales_date = $request->sales_date;
+        $dues->invoice_number = $request->invoice_number;
         $dues->sales_amount = $request->sales_amount;
         $dues->collection_amount = $request->collection_amount;
         $due = $request->sales_amount - $request->collection_amount;

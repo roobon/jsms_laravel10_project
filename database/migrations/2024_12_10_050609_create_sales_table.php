@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->integer('delman_id');
-            $table->string('invoice_number', 30);
             $table->decimal('total_amount', total: 10, places: 2);
             $table->decimal('collection_amount', total: 10, places: 2)->default(0);
             $table->decimal('due_amount', total: 10, places: 2);
