@@ -383,20 +383,14 @@
                                                     @endphp
                                                     @if (count($CollectionDues) > 0)
                                                         <table class="table table-bordered" style="padding: 0; margin:0">
-                                                            <tr class="text-center bg-dark">
-                                                                <th class="text-muted">Retailer Code</th>
-                                                                <th class="text-muted">Invoice</th>
-                                                                <th class="text-muted">Collection</th>
-                                                                <th class="text-muted">Due</th>
-                                                            </tr>
+
                                                             @foreach ($CollectionDues as $row)
                                                                 <tr>
-                                                                    <td>{{ $row->retailer_code }}</td>
-                                                                    <td>{{ $row->invoice_no }}</td>
+                                                                    <td>{{ $row->invoice_date }}</td>
                                                                     <td class="text-right">
                                                                         {{ number_format($row->total, 2) }}
                                                                     </td>
-                                                                    <td class="text-right">
+                                                                    <td class="text-right extra_sm">
                                                                         {{ number_format($row->current_due, 2) }}
                                                                     </td>
                                                                 </tr>
@@ -580,6 +574,12 @@
             $(".extra").css({
                 'background-color': 'rgb(38, 181, 196)',
                 'font-size': '16px',
+                'color': 'white',
+                'min-width': '110px',
+                'font-weight': 'bolder'
+            });
+            $(".extra_sm").css({
+                'font-size': '14px',
                 'color': 'white',
                 'min-width': '110px',
                 'font-weight': 'bolder'

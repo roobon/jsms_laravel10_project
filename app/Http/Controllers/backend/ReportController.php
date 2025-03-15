@@ -149,11 +149,11 @@ class ReportController extends Controller
 
        $CollectionDues = DB::table('collections')
     ->join('retailers', 'collections.retailer_id', '=', 'retailers.id')
-    ->select('collections.invoice_no', 'retailer_code', 'retailers.current_due',DB::raw('SUM(collection_amount) as total') )
+    ->select('invoice_date', 'retailers.current_due',DB::raw('SUM(collection_amount) as total') )
     ->where('business_id', $request->business)
     ->whereMonth('invoice_date', $month)
     ->whereYear('invoice_date', $year)
-    ->groupBy('invoice_no')	
+    ->groupBy('invoice_date')	
     ->get();
     $totalRetailerCollection = $CollectionDues->sum('total');
     $totalRetailerDues = $CollectionDues->sum('current_due');
