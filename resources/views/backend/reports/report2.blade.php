@@ -581,7 +581,8 @@
                 'background-color': 'rgb(38, 181, 196)',
                 'font-size': '16px',
                 'color': 'white',
-                'min-width': '110px'
+                'min-width': '110px',
+                'font-weight': 'bolder'
             });
             //	$("td").css({'background-color':'rgba(97, 85, 155, 0.27)', 'font-size':'18px', 'color':'blue'});
         });
