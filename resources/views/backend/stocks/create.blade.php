@@ -126,8 +126,8 @@
                                                         <select name="product_type" id="" class="form-control">
                                                             <option value="">Select one</option>
                                                             <option value="normal"
-                                                                {{ old('product_type') == 'regular' ? 'selected=selected' : '' }}>
-                                                                Regular</option>
+                                                                {{ old('product_type') == 'normal' ? 'selected=selected' : '' }}>
+                                                                Normal</option>
                                                             <option value="slab"
                                                                 {{ old('product_type') == 'slab' ? 'selected=selected' : '' }}>
                                                                 Slab</option>

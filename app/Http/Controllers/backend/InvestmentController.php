@@ -80,6 +80,7 @@ class InvestmentController extends Controller
         $investment->save();
     //  }
         
+    //    If target and opening record is available investment will update in opening balance
         $openClose = OpeningClosing::where('business_id', $request->business)
             ->where('month', $m)
             ->where('year', $y)

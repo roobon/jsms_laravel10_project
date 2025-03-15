@@ -103,10 +103,10 @@ class PaymentController extends Controller
             ->where('period', 'closing')
             ->first();
 
-        $openClose->bank_deposit_amount  = $openClose->bank_deposit_amount  + $request->payment_amount;
+            $openClose->bank_deposit_amount  = $openClose->bank_deposit_amount  + $request->payment_amount;
         
-        $openClose->update(); 
-        // Investment update to Closing Investment End
+            $openClose->update(); 
+            // Investment update to Closing Investment End
             return redirect()->route('payment.index')->with('msg', "Successfully Payment Added");
         }
     }
