@@ -64,32 +64,31 @@ class InvestmentController extends Controller
          $timestamp = strtotime($request->date);
          $m = date('m', $timestamp);
          $y = date('Y', $timestamp);
-        
-    //     // Check Target
-    //      $row = DB::table('targets')
-    //      ->whereYear('start_date', $y)
-    //      ->whereMonth('start_date', $m)
-    //      ->where('business_id', '=', $request->business)
-    //      ->get();
-
-    //      //return dd($row);
-    //  if (count($row) == 0) {
-    //      return back()->with('error', "Sorry, No Target Entry Available for entering Investment")->withInput();
-    //  } else {
-        
+               
         $investment->save();
-    //  }
+   
         
-    //    If target and opening record is available investment will update in opening balance
-        $openClose = OpeningClosing::where('business_id', $request->business)
+    //    If closing record is available investment will update in cloing balance
+        $opening = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $m)
+            ->where('year', $y)
+            ->where('business_id', $request->business)
+            ->where('period', 'opening')
+            ->first();
+        $closing = OpeningClosing::where('business_id', $request->business)
             ->where('month', $m)
             ->where('year', $y)
             ->where('business_id', $request->business)
             ->where('period', 'closing')
-            ->first();
-        
-            $openClose->investment_amount = $openClose->investment_amount + $request->amount;
-            $openClose->update(); 
+            ->first();    
+        if($closing){
+            $closing->investment_amount = $closing->investment_amount + $request->amount;
+            $closing->update(); 
+         } 
+        //else {
+        //     $opening->investment_amount = $opening->investment_amount + $request->amount;
+        //     $opening->update(); 
+        // }
         
 
       
