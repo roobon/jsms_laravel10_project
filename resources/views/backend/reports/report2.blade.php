@@ -70,6 +70,8 @@
                                                 <th colspan="2" class="text-center">Bank Deposit</th>
                                                 <th colspan="8" class="text-center">Product Received</th>
                                                 <th rowspan="2" class="text-center extra">Insentive Received (Tk.)</th>
+                                                <th rowspan="2" class="text-center extra">Damage Product Send to Company
+                                                    (Tk.)</th>
                                                 <th rowspan="2" class="text-center extra">Delivery Date</th>
                                                 <th rowspan="2" class="text-center extra">Total Sale (Tk.)</th>
                                                 <th rowspan="2" class="text-center extra">Deposit to Office (Tk.)</th>
@@ -127,7 +129,11 @@
                                                 <td class="extra_sm2 text-right">
                                                     <strong>{{ isset($opening->promotion_received_amount) ? number_format($opening->promotion_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-primary">
+                                                <td class="bg-primary text-right">
+                                                    <strong>{{ isset($opening->insentive_received_amount) ? number_format($opening->insentive_received_amount, 2) : '' }}</strong>
+                                                </td>
+                                                {{-- Damage Product Sent --}}
+                                                <td class="extra_sm2 text-right">
                                                     <strong>{{ isset($opening->insentive_received_amount) ? number_format($opening->insentive_received_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td>Up to last Month</td>
@@ -224,7 +230,7 @@
                                                         @foreach ($productReceivedCompanies as $productRecCompany)
                                                             <table class="table table-bordered"
                                                                 style="padding: 0; margin:0; width:100%">
-                                                                <caption class="text-center text-white bg-dark">
+                                                                <caption class="text-center text-success bg-blue">
                                                                     {{ $productRecCompany->company->company_name }}
                                                                 </caption>
                                                                 @php
@@ -252,7 +258,7 @@
                                                                 @foreach ($stocks as $stock)
                                                                     <tr>
                                                                         <td class="text-center extra_sm3"
-                                                                            style="max-width: 25px; min-width:20px">
+                                                                            style="max-width: 40px; min-width:20px">
                                                                             {{ $stock->received_date }}
                                                                         </td>
                                                                         {{-- Normal Product --}}
@@ -270,15 +276,15 @@
                                                                             </td>
                                                                             <td class="text-right extra_sm3"
                                                                                 style="max-width: 50px; min-width:40px">
-                                                                                5.00
+                                                                                0.00
                                                                             </td>
                                                                             <td class="text-right extra_sm3"
                                                                                 style="max-width: 50px; min-width:40px">
-                                                                                6.00
+                                                                                0.00
                                                                             </td>
                                                                             <td class="text-right extra_sm3"
                                                                                 style="max-width: 50px; min-width:40px">
-                                                                                7.00
+                                                                                0.00
                                                                             </td>
                                                                             <td class="text-right extra_sm3"
                                                                                 style="max-width: 40px; min-width:30px">
@@ -288,65 +294,89 @@
                                                                             <td class="text-center extra_sm3">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">
                                                                                 {{ number_format($stock->product_amount, 2) }}
                                                                             </td>
-                                                                            <td class="text-right">0.00</td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">0.00
+
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
                                                                             <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
                                                                         @elseif($stock->product_type == 'vatadjust')
-                                                                            <td class="text-right">
+                                                                            <td class="text-center extra_sm3">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">
                                                                                 {{ number_format($stock->product_amount, 2) }}
                                                                             </td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
                                                                             <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
                                                                         @elseif($stock->product_type == 'mktpromo')
-                                                                            <td class="text-center">
+                                                                            <td class="text-center extra_sm3">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
-                                                                            <td class="text-center">0.00</td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">0.00</td>
+                                                                            <td class="text-right extra_sm3">
                                                                                 {{ number_format($stock->product_amount, 2) }}
                                                                             </td>
-                                                                            <td class="text-right">
+                                                                            <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
                                                                             <td class="text-right extra_sm3">
                                                                                 0.00
                                                                             </td>
                                                                         @elseif($stock->product_type == 'replacement')
+                                                                            <td class="text-center extra_sm3">
+                                                                                {{ $stock->invoice_number }}
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                {{ number_format($stock->product_amount, 2) }}
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                        @elseif($stock->product_type == 'out_of_policy')
                                                                             <td class="text-center extra_sm3">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
@@ -375,6 +405,56 @@
                                                         @endforeach
                                                     @endif
                                                 </td>
+                                                <td style="vertical-align:top">
+                                                    {{-- Starts --}}
+                                                    @if (count($insentiveAmounts) > 0)
+                                                        @foreach ($insentiveAmounts as $insentive)
+                                                            <table class="table table-bordered mb-0"
+                                                                style="padding: 0; margin:0">
+                                                                <caption class="text-center bg-dark">
+                                                                    {{ $insentive->company->company_name }}
+                                                                </caption>
+                                                                @php
+                                                                    $insentives = App\Models\Insentive::where(
+                                                                        'business_id',
+                                                                        $businessInfo['id'],
+                                                                    )
+                                                                        ->whereMonth(
+                                                                            'received_date',
+                                                                            $businessInfo['month'],
+                                                                        )
+                                                                        ->whereYear(
+                                                                            'received_date',
+                                                                            $businessInfo['year'],
+                                                                        )
+                                                                        ->where('company_id', $insentive->company_id)
+                                                                        ->get();
+                                                                @endphp
+                                                                @foreach ($insentives as $data)
+                                                                    <tr>
+                                                                        <td>{{ $data->received_date }}</td>
+                                                                        <td class="text-right">
+                                                                            {{ number_format($data->insentive_amount, 2) }}
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                                <tr>
+                                                                    <td>Total</td>
+                                                                    <td class="bg-success text-danger text-right">
+                                                                        {{ number_format($insentives->sum('insentive_amount'), 2) }}
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        @endforeach
+                                                        @php
+                                                            $totalpayments = $insentives->sum('insentive_amount');
+                                                        @endphp
+                                                    @endif
+                                                    {{-- {{ isset($insentiveAmounts->insentive_amount) ? number_format($insentiveAmounts->insentive_amount, 2) : '' }} --}}
+
+                                                </td>
+
+                                                {{-- Damaged Product Sent --}}
                                                 <td style="vertical-align:top">
                                                     {{-- Starts --}}
                                                     @if (count($insentiveAmounts) > 0)
@@ -517,6 +597,10 @@
                                                 <td class="bg-primary text-muted text-right">
                                                     {{ number_format($totalInsentiveAmount, 2) }}
                                                 </td>
+                                                {{-- Damaged Product Sent --}}
+                                                <td class="bg-primary text-muted text-right">
+                                                    {{ number_format($totalInsentiveAmount, 2) }}
+                                                </td>
                                                 <td></td>
                                                 <td class="bg-primary text-muted text-right">
                                                     {{ number_format($totalsales, 2) }}</td>
@@ -536,26 +620,26 @@
                                             </tr>
 
                                             <tr class="cumulative_data">
-                                                <td>Cumulative</td>
+                                                <td class="extra">Cumulative</td>
                                                 <td class="bg-info text-danger text-right">
                                                     <strong>{{ isset($closing->security_money) ? number_format($closing->security_money, 2) : '' }}</strong>
                                                 </td>
-                                                <td></td> {{-- Investment Start --}}
+                                                <td class="extra"></td> {{-- Investment Start --}}
                                                 <td class="bg-info text-danger text-right">
                                                     <strong>{{ isset($closing->investment_amount) ? number_format($closing->investment_amount, 2) : '' }}</strong>
                                                 </td>
                                                 {{-- Investment End --}}
-                                                <td></td>
+                                                <td class="extra"></td>
                                                 <td class="bg-info text-danger text-right">
                                                     <strong>{{ isset($closing->bank_deposit_amount) ? number_format($closing->bank_deposit_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td></td>
-                                                <th></th>
+                                                <td class="extra"></td>
+                                                <th class="extra"></th>
                                                 <td class="bg-info text-danger text-right">
                                                     <!-- Product Received Amount -->
                                                     <strong>{{ isset($closing->product_received_amount) ? number_format($closing->product_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-warning text-danger text-right">
+                                                <td class="extra text-danger text-right">
                                                     <!-- Slab Received Amount -->
                                                     <strong>{{ isset($closing->slab_received_amount) ? number_format($closing->slab_received_amount, 2) : '' }}</strong>
                                                 </td>
@@ -563,7 +647,7 @@
                                                     <!-- VAT Adjustment Amount -->
                                                     <strong>{{ isset($closing->vat_adjustment_received_amount) ? number_format($closing->vat_adjustment_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-warning text-danger text-right">
+                                                <td class="extra text-danger text-right">
                                                     <!-- Marketing Promotion Amount -->
                                                     <strong>{{ isset($closing->promotion_received_amount) ? number_format($closing->promotion_received_amount, 2) : '' }}</strong>
                                                 </td>
@@ -571,7 +655,7 @@
                                                     <!-- Replacement Amount -->
                                                     <strong>{{ isset($closing->promotion_received_amount) ? number_format($closing->promotion_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-warning text-danger text-right">
+                                                <td class="extra text-danger text-right">
                                                     <!-- Out of Policy Amount -->
                                                     <strong>{{ isset($closing->promotion_received_amount) ? number_format($closing->promotion_received_amount, 2) : '' }}</strong>
                                                 </td>
@@ -579,24 +663,28 @@
                                                     <!-- Incentive Amount -->
                                                     <strong>{{ isset($closing->insentive_received_amount) ? number_format($closing->insentive_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td></td>
+                                                <td class="bg-info text-danger text-right">
+                                                    <!-- Damaged Amount -->
+                                                    <strong>{{ isset($closing->insentive_received_amount) ? number_format($closing->insentive_received_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td class="extra"></td>
                                                 <td class="bg-info text-danger text-right">
                                                     <!-- Sales Amount -->
                                                     <strong>{{ isset($closing->sales_amount) ? number_format($closing->sales_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-warning text-danger text-right">
+                                                <td class="extra text-danger text-right">
                                                     <strong>{{ isset($closing->collection_amount) ? number_format($closing->collection_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="bg-info text-danger text-right">
                                                     <strong>{{ isset($closing->due_amount) ? number_format($closing->due_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-warning text-danger text-right">
+                                                <td class="extra text-danger text-right">
                                                     <strong>{{ isset($closing->due_realize_amount) ? number_format($closing->due_realize_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="bg-info text-danger text-right">
                                                     <strong>{{ isset($closing->total_due_amount) ? number_format($closing->total_due_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-warning text-danger text-right">
+                                                <td class="extra text-danger text-right">
                                                     <strong>{{ isset($closing->ho_deposit_amount) ? number_format($closing->ho_deposit_amount, 2) : '' }}</strong>
                                                 </td>
                                             </tr>
