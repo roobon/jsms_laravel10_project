@@ -30,8 +30,45 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-note mr-10"></i>New
                         Center</a>
                 </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-home mr-10"></i> All
+                        Employees</a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-note mr-10"></i>New
+                        Employee</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-home mr-10"></i> All
+                        Retailers</a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-note mr-10"></i>New
+                        Retailer</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-home mr-10"></i> All
+                        Business</a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-note mr-10"></i>New
+                        Business</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-home mr-10"></i> All
+                        Investments</a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-note mr-10"></i>New
+                        Investment</a>
+                </li>
             </ul>
         </li>
+
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-modx top-nav-icon"></i></a>
             <ul class="dropdown-menu app-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -55,7 +92,8 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-th top-nav-icon"></i></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                    class="fa fa-th top-nav-icon"></i></a>
             <ul class="dropdown-menu app-dropdown" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                 <li>
                     <ul class="app-icon-wrap">
@@ -91,7 +129,12 @@
                                         <span class="block">Businesses</span>
                                     </a>
                                 </li>
-
+                                <li>
+                                    <a href="{{ route('investment.index') }}" class="connection-item">
+                                        <i class="pe-7s-helm txt-primary"></i>
+                                        <span class="block">Investments</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -112,12 +155,7 @@
                 <li class="divider"></li>
                 <li class="text-center">
                     <ul class="app-icon-wrap">
-                        <li>
-                            <a href="{{ route('investment.index') }}" class="connection-item">
-                                <i class="pe-7s-helm txt-primary"></i>
-                                <span class="block">Investments</span>
-                            </a>
-                        </li>
+
                         <li>
                             <a href="{{ route('payment.index') }}" class="connection-item">
                                 <i class="pe-7s-cash txt-info"></i>
@@ -157,6 +195,12 @@
                             <a href="{{ route('collection.index') }}" class="connection-item">
                                 <i class="pe-7s-graph1 txt-primary"></i>
                                 <span class="block">Collections</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('damage.index') }}" class="connection-item">
+                                <i class="pe-7s-trash txt-info"></i>
+                                <span class="block">Damage Products</span>
                             </a>
                         </li>
                         <li>

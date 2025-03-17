@@ -7,6 +7,7 @@ use App\Http\Controllers\backend\CollectionController;
 use App\Http\Controllers\backend\DoctorController;
 use App\Http\Controllers\backend\SpecialistController;
 use App\Http\Controllers\backend\CompanyController;
+use App\Http\Controllers\backend\DamageController;
 use App\Http\Controllers\backend\DepositController;
 use App\Http\Controllers\backend\DuesController;
 use App\Http\Controllers\backend\EmployeeController;
@@ -93,7 +94,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/collection', CollectionController::class);
     // Route::resource('/slab', RetailerController::class);
     // Route::resource('/display_center', RetailerController::class);
-    // Route::resource('/expired', RetailerController::class);
+     Route::resource('/damage', DamageController::class);
     // Route::resource('/claim', RetailerController::class);
     // Route::resource('/report/companywise', ReportController::class);
     Route::resource('/target', TargetController::class);
