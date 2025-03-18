@@ -36,7 +36,46 @@ class DamageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'voucher_num' => 'required',
+                'claim_date' => 'required',
+                'claim_type' => 'required',
+                'claim_amount' => 'required',
+                'photo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
+                'business' => 'required',
+                'company' => 'required',
+                'manager' => 'required'
+            ]
+        );
+
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'images/damage/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $photo = $destinationPath . $postImage;
+        } else {
+            $photo = NULL;
+        }
+
+        $damage = new DamageProduct;
+
+        $damage->voucher_num = $request->voucher_num;
+        $damage->claim_date = $request->claim_date;
+        $damage->claim_type = $request->claim_type;
+        $damage->claim_amount = $request->claim_amount;
+        $damage->claim_photo = $photo;
+        $damage->business_id = $request->business;
+        $damage->company_id = $request->company;
+        $damage->employee_id = $request->manager;
+
+         // Get Year and Month from Investment date
+         $timestamp = strtotime($request->date);
+         $m = date('m', $timestamp);
+         $y = date('Y', $timestamp);
+               
+        $damage->save();
+        return redirect()->route('damage.index')->with('msg', "Successfully Damage Product Entered");
     }
 
     /**

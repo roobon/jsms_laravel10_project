@@ -66,25 +66,84 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Total
-                                                    Amount*</label>
+                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Claim
+                                                    Date*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
-                                                        <input type="text" name="total_amount"
-                                                            value="{{ old('total_amount') }}" class="form-control"
-                                                            id="exampleInputuname_4" placeholder="Enter Total Amount">
+                                                        <input type="date" name="claim_date"
+                                                            value="{{ old('claim_date') }}" class="form-control"
+                                                            id="exampleInputuname_4">
                                                         <div class="input-group-addon"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Collection
+                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Claim
+                                                    Type*</label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group">
+                                                        <select name="claim_type" class="form-control" id="retailerId">
+                                                            <option value="">Select one</option>
+                                                            <option value="replacement">Replacement</option>
+                                                            <option value="outofpolicy">Out of Policy</option>
+                                                        </select>
+                                                        <div class="input-group-addon"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Claim
                                                     Amount*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
-                                                        <input type="text" name="collection_amount"
-                                                            value="{{ old('collection_amount') }}" class="form-control"
-                                                            id="exampleInputuname_4" placeholder="Enter Collection Amount">
+                                                        <input type="text" name="claim_amount"
+                                                            value="{{ old('claim_amount') }}" class="form-control"
+                                                            id="exampleInputuname_4" placeholder="Enter Claim Amount">
+                                                        <div class="input-group-addon"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Voucher
+                                                    Photo
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group">
+                                                        <input type="file" name="photo" value="{{ old('photo') }}"
+                                                            class="form-control" id="exampleInputuname_4">
+                                                        <div class="input-group-addon"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">From
+                                                    Business
+                                                    *</label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group">
+                                                        <select name="business" class="form-control">
+                                                            <option value="">Select one</option>
+                                                            @foreach ($businesses as $business)
+                                                                <option value="{{ $business->id }}">
+                                                                    {{ $business->business_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <div class="input-group-addon"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Claim
+                                                    Company*</label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group">
+                                                        <select name="company" class="form-control">
+                                                            <option value="">Select one</option>
+                                                            @foreach ($companies as $company)
+                                                                <option value="{{ $company->id }}">
+                                                                    {{ $company->company_name }}</option>
+                                                            @endforeach
+                                                        </select>
                                                         <div class="input-group-addon"></div>
                                                     </div>
                                                 </div>
@@ -108,57 +167,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Business
-                                                    Name*</label>
-                                                <div class="col-sm-9">
-                                                    <div class="input-group">
-                                                        <select name="business" class="form-control">
-                                                            <option value="">Select one</option>
-                                                            @foreach ($businesses as $business)
-                                                                <option value="{{ $business->id }}">
-                                                                    {{ $business->business_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <div class="input-group-addon"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Sales
-                                                    Date*</label>
-                                                <div class="col-sm-9">
-                                                    <div class="input-group">
-                                                        <input type="date" name="sales_date"
-                                                            value="{{ old('sales_date') }}" class="form-control"
-                                                            id="exampleInputuname_4">
-                                                        <div class="input-group-addon"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Sales
-                                                    Voucher</label>
-                                                <div class="col-sm-9">
-                                                    <div class="input-group">
-                                                        <input type="file" name="photo" value="{{ old('photo') }}"
-                                                            class="form-control" id="exampleInputuname_4">
-                                                        <div class="input-group-addon"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail_4"
-                                                    class="col-sm-3 control-label">Note</label>
-                                                <div class="col-sm-9">
-                                                    <div class="input-group">
-                                                        <textarea type="text" name="note" class="form-control" id="exampleInputEmail_4"
-                                                            placeholder="Enter any message" rows="10">{{ old('note') }}</textarea>
-                                                        <div class="input-group-addon"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                             <div class="form-group mb-0">
                                                 <div class="col-sm-offset-3 col-sm-9">
                                                     <button type="submit" id="btnSub"

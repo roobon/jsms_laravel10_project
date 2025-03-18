@@ -9,4 +9,9 @@ class DamageProduct extends Model
 {
     use HasFactory;
     protected $table = 'damage_products';
+
+    public function business()
+    {
+        return $this->belongsTo(Business::class, 'business_id');
+    }
 }

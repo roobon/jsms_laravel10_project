@@ -60,4 +60,10 @@ class Business extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function damage()
+    {
+        return $this->hasMany(DamageProduct::class);
+    }
+
 }
