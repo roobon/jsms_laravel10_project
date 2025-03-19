@@ -749,7 +749,8 @@
                 'font-size': '16px',
                 'color': 'white',
                 'min-width': '110px',
-                'font-weight': 'bolder'
+                'font-weight': 'bolder',
+                'border': '2px solid white'
             });
             $(".extra_sm").css({
                 'font-size': '14px',
