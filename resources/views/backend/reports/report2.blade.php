@@ -100,7 +100,7 @@
                                                     <strong>{{ isset($opening->security_money) ? number_format($opening->security_money, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="extra_sm2">Up to last Month</td>
-                                                <td class="bg-primary">
+                                                <td class="bg-primary text-right">
                                                     <strong>{{ isset($opening->investment_amount) ? number_format($opening->investment_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="extra_sm2">Up to last Month</td>
