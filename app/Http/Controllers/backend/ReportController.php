@@ -47,11 +47,12 @@ class ReportController extends Controller
         // Month and Year
         $month = $request->month;
         $year = $request->year;
+        $busi_id = $request->business;
         // Find Business
-        $business = Business::find($request->business)->first();
+        $business = Business::where('id', $busi_id)->first();
 
         // Find Target
-        $target = Target::where('business_id', $request->business)
+        $target = Target::where('business_id', $busi_id)
             ->whereMonth('start_date', $month)
             ->whereYear('start_date', $year)
             ->first();
