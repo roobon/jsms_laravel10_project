@@ -122,7 +122,7 @@
                                                     <strong>{{ isset($opening->promotion_received_amount) ? number_format($opening->promotion_received_amount, 2) : '' }}</strong>
                                                 </td>
                                                 {{-- Replacement --}}
-                                                <td class="extra_sm2 text-right">
+                                                <td class="text-right bg-primary">
                                                     <strong>{{ isset($opening->promotion_received_amount) ? number_format($opening->promotion_received_amount, 2) : '' }}</strong>
                                                 </td>
                                                 {{-- Out of Policy --}}
@@ -179,12 +179,13 @@
                                                 </td>
 
                                                 {{-- Bank Deposit Starts --}}
-                                                <td colspan="2" class="align-top text-center">
+                                                <td colspan="2" class="align-top text-center"
+                                                    style="vertical-align: top">
                                                     @if (count($paidtoCompanies) > 0)
                                                         @foreach ($paidtoCompanies as $payCompany)
                                                             <table class="table table-bordered mb-0"
                                                                 style="padding: 0; margin:0">
-                                                                <caption class="text-center bg-dark">
+                                                                <caption class="text-center bg-primary">
                                                                     {{ $payCompany->company->company_name }}
                                                                 </caption>
                                                                 @php
@@ -205,13 +206,15 @@
                                                                 @endphp
                                                                 @foreach ($payments as $data)
                                                                     <tr>
-                                                                        <td>{{ $data->payment_date }}</td>
-                                                                        <td>{{ number_format($data->payment_amount, 2) }}
+                                                                        <td class="extra_sm3">{{ $data->payment_date }}
+                                                                        </td>
+                                                                        <td class="extra_sm3">
+                                                                            {{ number_format($data->payment_amount, 2) }}
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
                                                                 <tr>
-                                                                    <td>Total</td>
+                                                                    <td class="extra_sm3">Total</td>
                                                                     <td class="bg-success text-danger">
                                                                         {{ number_format($payments->sum('payment_amount'), 2) }}
                                                                     </td>
@@ -230,7 +233,7 @@
                                                         @foreach ($productReceivedCompanies as $productRecCompany)
                                                             <table class="table table-bordered"
                                                                 style="padding: 0; margin:0; width:100%">
-                                                                <caption class="text-center text-success bg-blue">
+                                                                <caption class="text-center bg-primary">
                                                                     {{ $productRecCompany->company->company_name }}
                                                                 </caption>
                                                                 @php
@@ -257,37 +260,30 @@
 
                                                                 @foreach ($stocks as $stock)
                                                                     <tr>
-                                                                        <td class="text-center extra_sm3"
-                                                                            style="max-width: 40px; min-width:20px">
+                                                                        <td class="text-center extra_sm3 col-sm-1">
                                                                             {{ $stock->received_date }}
                                                                         </td>
                                                                         {{-- Normal Product --}}
                                                                         @if ($stock->product_type == 'normal')
-                                                                            <td class="text-center extra_sm3"
-                                                                                style="max-width: 25px; min-width:20px">
+                                                                            <td class="text-center extra_sm3 col-sm-1">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
-                                                                            <td class="text-right extra_sm3"
-                                                                                style="max-width: 25px; min-width:20px">
+                                                                            <td class="text-right extra_sm3 col-sm-1">
                                                                                 {{ number_format($stock->product_amount, 2) }}
                                                                             </td>
-                                                                            <td class="text-right extra_sm3">
+                                                                            <td class="text-right extra_sm3 col-sm-1">
                                                                                 0.00
                                                                             </td>
-                                                                            <td class="text-right extra_sm3"
-                                                                                style="max-width: 50px; min-width:40px">
+                                                                            <td class="text-right extra_sm3 col-sm-2">
                                                                                 0.00
                                                                             </td>
-                                                                            <td class="text-right extra_sm3"
-                                                                                style="max-width: 50px; min-width:40px">
+                                                                            <td class="text-right extra_sm3 col-sm-1">
                                                                                 0.00
                                                                             </td>
-                                                                            <td class="text-right extra_sm3"
-                                                                                style="max-width: 50px; min-width:40px">
+                                                                            <td class="text-right extra_sm3 col-sm-2">
                                                                                 0.00
                                                                             </td>
-                                                                            <td class="text-right extra_sm3"
-                                                                                style="max-width: 40px; min-width:30px">
+                                                                            <td class="text-right extra_sm3 col-sm-1">
                                                                                 0.00
                                                                             </td>
                                                                         @elseif($stock->product_type == 'slab')
@@ -578,21 +574,21 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td class="bg-primary text-muted text-right">
-                                                    {{ number_format($resularamount, 2) }}
+                                                    {{ number_format($normalStockSum, 2) }}
                                                 </td>
-                                                <td class="bg-info text-muted text-right">
-                                                    {{ number_format($slbstockamount, 2) }}
+                                                <td class="bg-info text-muted text-right extra_sm2">
+                                                    {{ number_format($slabStockSum, 2) }}
                                                 </td>
                                                 <td class="bg-primary text-muted text-right">
                                                     {{ number_format($vatadjustamount, 2) }}</td>
-                                                <td class="bg-info text-muted text-right">
+                                                <td class="bg-info text-muted text-right extra_sm2">
                                                     {{ number_format($mktpromoamount, 2) }}
                                                 </td>
-                                                <td class="bg-info text-muted text-right">
-                                                    {{ number_format($mktpromoamount, 2) }}
+                                                <td class="bg-primary text-right extra_sm2">
+                                                    {{ number_format($replacceStockSum, 2) }}
                                                 </td>
                                                 <td class="bg-info text-muted text-right">
-                                                    {{ number_format($mktpromoamount, 2) }}
+                                                    {{ number_format($outoPolicyStockSum, 2) }}
                                                 </td>
                                                 <td class="bg-primary text-muted text-right">
                                                     {{ number_format($totalInsentiveAmount, 2) }}
@@ -639,7 +635,7 @@
                                                     <!-- Product Received Amount -->
                                                     <strong>{{ isset($closing->product_received_amount) ? number_format($closing->product_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="extra text-danger text-right">
+                                                <td class="extra_sm3 text-danger text-right">
                                                     <!-- Slab Received Amount -->
                                                     <strong>{{ isset($closing->slab_received_amount) ? number_format($closing->slab_received_amount, 2) : '' }}</strong>
                                                 </td>
@@ -653,11 +649,11 @@
                                                 </td>
                                                 <td class="bg-warning text-danger text-right">
                                                     <!-- Replacement Amount -->
-                                                    <strong>{{ isset($closing->promotion_received_amount) ? number_format($closing->promotion_received_amount, 2) : '' }}</strong>
+                                                    <strong>{{ isset($closing->replacement_received_amount) ? number_format($closing->replacement_received_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="extra text-danger text-right">
                                                     <!-- Out of Policy Amount -->
-                                                    <strong>{{ isset($closing->promotion_received_amount) ? number_format($closing->promotion_received_amount, 2) : '' }}</strong>
+                                                    <strong>{{ isset($closing->outofpolicy_received_amount) ? number_format($closing->outofpolicy_received_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="bg-info text-danger text-right">
                                                     <!-- Incentive Amount -->
@@ -766,6 +762,7 @@
                 'font-weight': 'bold',
 
             });
+
             // $(".panel_body").css({
 
             //     'background': 'linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("https://unsplash.imgix.net/photo-1416339442236-8ceb164046f8?q=75&fm=jpg&s=8eb83df8a744544977722717b1ea4d09")',

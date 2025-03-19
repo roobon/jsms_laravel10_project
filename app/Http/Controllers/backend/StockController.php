@@ -46,9 +46,12 @@ class StockController extends Controller
         $request->validate(
             [
                 'invoice' => 'required',
+                'invoice_date' => 'required',
                 'product_amount' => 'required',
-                'business' => 'required',
                 'received_date' => 'required',
+                'product_type' => 'required',
+                'photo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
+                'business' => 'required',
                 'company' => 'required',
                 'employee' => 'required'
             ]
@@ -66,15 +69,15 @@ class StockController extends Controller
         $stock = new Stock;
 
         $stock->invoice_number = $request->invoice;
+        $stock->invoice_date = $request->invoice_date;
         $stock->product_amount = $request->product_amount;
-        $stock->business_id = $request->business;
         $stock->received_date = $request->received_date;
         $stock->product_type  = $request->product_type;
+        $stock->invoice_photo = $photo;
+        $stock->business_id = $request->business;        
         $stock->company_id  = $request->company;
         $stock->employee_id  = $request->employee;
-        $stock->invoice_photo = $photo;
-
-
+        
         // Get Year and Month from Received date
         $timestamp = strtotime($request->received_date);
         $m = date('m', $timestamp);
@@ -93,7 +96,7 @@ class StockController extends Controller
         } else {
             $stock->save();
 
-           if($request->product_type=='regular'){
+           if($request->product_type=='normal'){
             $openClose = OpeningClosing::where('business_id', $request->business)
             ->where('month', $m)
             ->where('year', $y)
@@ -132,6 +135,26 @@ class StockController extends Controller
             ->first();
 
             $openClose->promotion_received_amount   = $openClose->promotion_received_amount   + $request->product_amount;
+            $openClose->update(); 
+           } elseif($request->product_type=='replacement'){
+            $openClose = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $m)
+            ->where('year', $y)
+            ->where('business_id', $request->business)
+            ->where('period', 'closing')
+            ->first();
+
+            $openClose->replacement_received_amount   = $openClose->replacement_received_amount   + $request->product_amount;
+            $openClose->update(); 
+           } elseif($request->product_type=='out_of_policy'){
+            $openClose = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $m)
+            ->where('year', $y)
+            ->where('business_id', $request->business)
+            ->where('period', 'closing')
+            ->first();
+
+            $openClose->outofpolicy_received_amount   = $openClose->outofpolicy_received_amount   + $request->product_amount;
             $openClose->update(); 
            }
 

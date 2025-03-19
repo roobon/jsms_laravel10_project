@@ -93,20 +93,20 @@ class ReportController extends Controller
             ->get();
 
         // Normal Stock
-        $regular = Stock::where('business_id', $request->business)
+        $normalStock = Stock::where('business_id', $request->business)
          ->whereMonth('received_date', $month)
          ->whereYear('received_date', $year)
-         ->where('product_type', 'regular')
+         ->where('product_type', 'normal')
          ->get();
-        $resularamount = $regular->sum('product_amount');
+        $normalStockSum = $normalStock->sum('product_amount');
 
         // Slab Stock
-        $slbstocks = Stock::where('business_id', $request->business)
+        $slabstocks = Stock::where('business_id', $request->business)
          ->whereMonth('received_date', $month)
          ->whereYear('received_date', $year)
          ->where('product_type', 'slab')
          ->get();
-        $slbstockamount = $slbstocks->sum('product_amount');
+        $slabStockSum = $slabstocks->sum('product_amount');
 
         // VAT Adjustment Stock
         $vatadjust = Stock::where('business_id', $request->business)
@@ -123,6 +123,22 @@ class ReportController extends Controller
             ->where('product_type', 'mktpromo')
             ->get();
         $mktpromoamount = $mktpromo->sum('product_amount');
+
+         // Replace Stock Received
+         $replacceStock = Stock::where('business_id', $request->business)
+         ->whereMonth('received_date', $month)
+         ->whereYear('received_date', $year)
+         ->where('product_type', 'replacement')
+         ->get();
+        $replacceStockSum = $replacceStock->sum('product_amount');
+
+         // Out of Policy Stock Received
+         $outoPolicyStock = Stock::where('business_id', $request->business)
+         ->whereMonth('received_date', $month)
+         ->whereYear('received_date', $year)
+         ->where('product_type', 'out_of_policy')
+         ->get();
+        $outoPolicyStockSum = $outoPolicyStock->sum('product_amount');
 
     // Insentive Received 
     $insentiveAmounts = Insentive::where('business_id', $request->business)
@@ -198,15 +214,12 @@ class ReportController extends Controller
         $data['totalsales'] =  $totalSales;
         $data['collections'] =  $collections;
         $data['dues'] =  $dues;
-        $data['resularamount'] =  $resularamount;
+        
+        
         // Deposit to Head Office
         $data['AlldepositsHO'] =  $AlldepositsHO;
         $data['totalDepositHO'] =  $totalDepositHO;
-        
-        $data['slbstocks'] =  $slbstocks;
-        $data['slbstockamount'] =  $slbstockamount;
-        $data['vatadjustamount'] =  $vatadjustamount;
-        $data['mktpromoamount'] =  $mktpromoamount;
+                
         // Collection  and Dues
         $data['CollectionDues'] =  $CollectionDues;
         $data['totalRetailerCollection'] =  $totalRetailerCollection;
@@ -219,9 +232,20 @@ class ReportController extends Controller
 
         // Product Received
         $data['productReceivedCompanies'] =  $productReceivedCompanies;
+       
+        $data['normalStockSum'] =  $normalStockSum;  // Normal Product
+        $data['slabstocks'] =  $slabstocks;           // Slab Products
+        $data['slabStockSum'] =  $slabStockSum; // Slab Stock Amounts
+        $data['vatadjustamount'] =  $vatadjustamount; 
+        $data['mktpromoamount'] =  $mktpromoamount;
+        
+        $data['replacceStock'] =  $replacceStock;      // Replacement Stock Amounts
+        $data['replacceStockSum'] =  $replacceStockSum;
+        $data['outoPolicyStockSum'] =  $outoPolicyStockSum;
         // Insentive Amounts
         $data['insentiveAmounts'] =  $insentiveAmounts;
         $data['totalInsentiveAmount'] =  $totalInsentiveAmount;
+        
         return view('backend.reports.report2', $data);
     }
 
