@@ -144,9 +144,8 @@ class ReportController extends Controller
     $insentiveAmounts = Insentive::where('business_id', $request->business)
       ->whereMonth('received_date', $month)
       ->whereYear('received_date', $year)
-      ->groupBy('company_id')
       ->get();
-    $totalInsentiveAmount = $insentiveAmounts->sum('insentive_amount'); 
+    $InsentiveAmountSum = $insentiveAmounts->sum('insentive_amount'); 
 
     // Sales Data
     $sales = Sales::where('business_id', $request->business)
@@ -244,7 +243,7 @@ class ReportController extends Controller
         $data['outoPolicyStockSum'] =  $outoPolicyStockSum;
         // Insentive Amounts
         $data['insentiveAmounts'] =  $insentiveAmounts;
-        $data['totalInsentiveAmount'] =  $totalInsentiveAmount;
+        $data['InsentiveAmountSum'] =  $InsentiveAmountSum;
         
         return view('backend.reports.report2', $data);
     }

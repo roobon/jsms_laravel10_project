@@ -66,9 +66,9 @@
                                             <tr>
                                                 <th rowspan="2" class="extra">Date</th>
                                                 <th rowspan="2" class="text-center extra">Total Security Money (Tk.)</th>
-                                                <th colspan="2" class="text-center">Investment</th>
-                                                <th colspan="2" class="text-center">Bank Deposit</th>
-                                                <th colspan="8" class="text-center">Product Received</th>
+                                                <th colspan="2" class="text-center extra_lg">Investment</th>
+                                                <th colspan="2" class="text-center extra_lg">Bank Deposit</th>
+                                                <th colspan="8" class="text-center extra_lg">Product Received</th>
                                                 <th rowspan="2" class="text-center extra">Insentive Received (Tk.)</th>
                                                 <th rowspan="2" class="text-center extra">Damage Product Send to Company
                                                     (Tk.)</th>
@@ -407,7 +407,7 @@
                                                         @foreach ($insentiveAmounts as $insentive)
                                                             <table class="table table-bordered mb-0"
                                                                 style="padding: 0; margin:0">
-                                                                <caption class="text-center bg-dark">
+                                                                <caption class="text-center bg-primary">
                                                                     {{ $insentive->company->company_name }}
                                                                 </caption>
                                                                 @php
@@ -428,14 +428,15 @@
                                                                 @endphp
                                                                 @foreach ($insentives as $data)
                                                                     <tr>
-                                                                        <td>{{ $data->received_date }}</td>
-                                                                        <td class="text-right">
+                                                                        <td class="extra_sm3">{{ $data->received_date }}
+                                                                        </td>
+                                                                        <td class="text-right extra_sm3">
                                                                             {{ number_format($data->insentive_amount, 2) }}
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
                                                                 <tr>
-                                                                    <td>Total</td>
+                                                                    <td class="extra_sm3">Total</td>
                                                                     <td class="bg-success text-danger text-right">
                                                                         {{ number_format($insentives->sum('insentive_amount'), 2) }}
                                                                     </td>
@@ -591,11 +592,11 @@
                                                     {{ number_format($outoPolicyStockSum, 2) }}
                                                 </td>
                                                 <td class="bg-primary text-muted text-right">
-                                                    {{ number_format($totalInsentiveAmount, 2) }}
+                                                    {{ number_format($InsentiveAmountSum, 2) }}
                                                 </td>
                                                 {{-- Damaged Product Sent --}}
                                                 <td class="bg-primary text-muted text-right">
-                                                    {{ number_format($totalInsentiveAmount, 2) }}
+                                                    {{ number_format($InsentiveAmountSum, 2) }}
                                                 </td>
                                                 <td></td>
                                                 <td class="bg-primary text-muted text-right">
@@ -661,7 +662,7 @@
                                                 </td>
                                                 <td class="bg-info text-danger text-right">
                                                     <!-- Damaged Amount -->
-                                                    <strong>{{ isset($closing->insentive_received_amount) ? number_format($closing->insentive_received_amount, 2) : '' }}</strong>
+                                                    <strong>{{ isset($closing->damage_sent_amount) ? number_format($closing->damage_sent_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="extra"></td>
                                                 <td class="bg-info text-danger text-right">
@@ -738,6 +739,13 @@
             })
             $(".extra").css({
                 'background-color': 'rgb(38, 181, 196)',
+                'font-size': '16px',
+                'color': 'white',
+                'min-width': '110px',
+                'font-weight': 'bolder'
+            });
+            $(".extra_lg").css({
+                'background-color': 'rgba(34, 70, 31, 0.97)',
                 'font-size': '16px',
                 'color': 'white',
                 'min-width': '110px',
