@@ -10,8 +10,16 @@
         .report-header {
             border: 1px solid rgb(13, 0, 255);
             padding: 15px;
-            background-color: rgba(26, 8, 87, 0.551);
+            background-color: rgba(34, 152, 191, 0.343);
             color: white;
+            margin-bottom: 0;
+            background: url("../images/bg_03.jpg") repeat-x;
+        }
+
+        .report-header h1,
+        h4,
+        h5 {
+            text-shadow: 1px 3px 3px rgb(231, 229, 225);
         }
     </style>
 @endsection
@@ -49,16 +57,20 @@
                         <div>
                             @include('backend.layouts.success')
                             {{-- <h6 class="panel-title txt-dark">Employee List</h6> --}}
+                            <div class="report-header">
+                                <h1 class="text-shadow text-center heading">Jahanara Traders</h1>
+                                <h4 class="text-shadow text-center">{{ $business->business_name }}</h4>
+                                <h5 class="text-shadow text-center">Report Month:
+                                    {{ \Carbon\Carbon::parse($target->start_date)->format('F, Y') }}</h5>
+
+                            </div>
                         </div>
 
                         <div class="clearfix"></div>
                     </div>
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body">
-                            <h3 class="text-muted text-center heading">Jahanara Traders</h3>
-                            <p class="text-muted text-center">{{ $business->business_name }} Business</p>
-                            <p class="text-muted text-center">Report from {{ $target->start_date }} to
-                                {{ $target->end_date }}</p>
+
                             <div class="table-wrap mt-40">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered">
@@ -454,50 +466,70 @@
                                                 {{-- Damaged Product Sent --}}
                                                 <td style="vertical-align:top">
                                                     {{-- Starts --}}
-                                                    @if (count($insentiveAmounts) > 0)
-                                                        @foreach ($insentiveAmounts as $insentive)
+                                                    @if (count($damageSendCompanies) > 0)
+                                                        @foreach ($damageSendCompanies as $item)
                                                             <table class="table table-bordered mb-0"
                                                                 style="padding: 0; margin:0">
-                                                                <caption class="text-center bg-dark">
-                                                                    {{ $insentive->company->company_name }}
+                                                                <caption class="text-center bg-primary">
+                                                                    {{ $item->company->company_name }}
                                                                 </caption>
                                                                 @php
-                                                                    $insentives = App\Models\Insentive::where(
+                                                                    $damages = App\Models\DamageProduct::where(
                                                                         'business_id',
                                                                         $businessInfo['id'],
                                                                     )
                                                                         ->whereMonth(
-                                                                            'received_date',
+                                                                            'claim_date',
                                                                             $businessInfo['month'],
                                                                         )
-                                                                        ->whereYear(
-                                                                            'received_date',
-                                                                            $businessInfo['year'],
-                                                                        )
-                                                                        ->where('company_id', $insentive->company_id)
+                                                                        ->whereYear('claim_date', $businessInfo['year'])
+                                                                        ->where('company_id', $item->company_id)
                                                                         ->get();
                                                                 @endphp
-                                                                @foreach ($insentives as $data)
-                                                                    <tr>
-                                                                        <td>{{ $data->received_date }}</td>
-                                                                        <td class="text-right">
-                                                                            {{ number_format($data->insentive_amount, 2) }}
-                                                                        </td>
-                                                                    </tr>
+                                                                <tr>
+                                                                    <td class="extra_sm3 text-center">DATE</td>
+                                                                    <td class="extra_sm3 text-center">REP</td>
+                                                                    <td class="extra_sm3 text-center">OOP</td>
+                                                                </tr>
+                                                                @foreach ($damages as $data)
+                                                                    @if ($data->claim_type == 'replacement')
+                                                                        <tr>
+                                                                            <td class="extra_sm3">{{ $data->claim_date }}
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                {{ number_format($data->claim_amount, 2) }}
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                        </tr>
+                                                                    @elseif($data->claim_type == 'outofpolicy')
+                                                                        <tr>
+                                                                            <td class="extra_sm3">{{ $data->claim_date }}
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                0.00
+                                                                            </td>
+                                                                            <td class="text-right extra_sm3">
+                                                                                {{ number_format($data->claim_amount, 2) }}
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endif
                                                                 @endforeach
                                                                 <tr>
-                                                                    <td>Total</td>
-                                                                    <td class="bg-success text-danger text-right">
-                                                                        {{ number_format($insentives->sum('insentive_amount'), 2) }}
+                                                                    <td class="extra_sm3">Total</td>
+                                                                    <td class="bg-success text-danger text-right"
+                                                                        colspan="2">
+                                                                        {{ number_format($damages->sum('claim_amount'), 2) }}
                                                                     </td>
                                                                 </tr>
                                                             </table>
                                                         @endforeach
                                                         @php
-                                                            $totalpayments = $insentives->sum('insentive_amount');
+                                                            $totalClaims = $damages->sum('claim_amount');
                                                         @endphp
                                                     @endif
-                                                    {{-- {{ isset($insentiveAmounts->insentive_amount) ? number_format($insentiveAmounts->insentive_amount, 2) : '' }} --}}
+                                                    {{-- {{ isset($damages->claim_amount) ?? number_format($damages->claim_amount, 2) }} --}}
 
                                                 </td>
 
@@ -596,7 +628,7 @@
                                                 </td>
                                                 {{-- Damaged Product Sent --}}
                                                 <td class="bg-primary text-muted text-right">
-                                                    {{ number_format($InsentiveAmountSum, 2) }}
+                                                    {{ number_format($replaceProductSum + $oopProductSum, 2) }}
                                                 </td>
                                                 <td></td>
                                                 <td class="bg-primary text-muted text-right">
@@ -746,8 +778,9 @@
             });
             $(".extra_lg").css({
                 'background-color': 'rgba(34, 70, 31, 0.97)',
+                'background-image': 'url("../images/bg_03.jpg")',
                 'font-size': '16px',
-                'color': 'white',
+                'color': 'black',
                 'min-width': '110px',
                 'font-weight': 'bolder',
                 'border': '2px solid white'

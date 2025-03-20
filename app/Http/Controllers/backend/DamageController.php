@@ -7,7 +7,9 @@ use App\Models\Business;
 use App\Models\Company;
 use App\Models\DamageProduct;
 use App\Models\Employee;
+use App\Models\OpeningClosing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DamageController extends Controller
 {
@@ -69,13 +71,47 @@ class DamageController extends Controller
         $damage->company_id = $request->company;
         $damage->employee_id = $request->manager;
 
-         // Get Year and Month from Investment date
-         $timestamp = strtotime($request->date);
-         $m = date('m', $timestamp);
-         $y = date('Y', $timestamp);
-               
-        $damage->save();
+        // Get Year and Month from Received date
+        $timestamp = strtotime($request->claim_date);
+        $m = date('m', $timestamp);
+        $y = date('Y', $timestamp);
+
+
+        // Check Target
+        $row = DB::table('targets')
+            ->whereYear('start_date', $y)
+            ->whereMonth('start_date', $m)
+            ->where('business_id', '=', $request->business)
+            ->get();
+
+        if (count($row) == 0) {
+            return back()->with('error', "Sorry, No Target Available for entering Damages")->withInput();
+        } else {
+            $damage->save();
+
+           if($request->claim_type == 'replacement'){
+            $openClose = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $m)
+            ->where('year', $y)
+            ->where('business_id', $request->business)
+            ->where('period', 'closing')
+            ->first();
+
+            $openClose->damage_sent_amount   = $openClose->damage_sent_amount + $request->claim_amount;
+            $openClose->update(); 
+           } elseif($request->claim_type == 'outofpolicy'){
+            $openClose = OpeningClosing::where('business_id', $request->business)
+            ->where('month', $m)
+            ->where('year', $y)
+            ->where('business_id', $request->business)
+            ->where('period', 'closing')
+            ->first();
+
+            $openClose->damage_sent_amount   = $openClose->damage_sent_amount   + $request->claim_amount;
+            $openClose->update(); 
+           }
         return redirect()->route('damage.index')->with('msg', "Successfully Damage Product Entered");
+        }
     }
 
     /**

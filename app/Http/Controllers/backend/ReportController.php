@@ -8,6 +8,7 @@ use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Company;
+use App\Models\DamageProduct;
 use App\Models\Deposit;
 use App\Models\Investment;
 use App\Models\Insentive;
@@ -142,10 +143,41 @@ class ReportController extends Controller
 
     // Insentive Received 
     $insentiveAmounts = Insentive::where('business_id', $request->business)
-      ->whereMonth('received_date', $month)
-      ->whereYear('received_date', $year)
-      ->get();
-    $InsentiveAmountSum = $insentiveAmounts->sum('insentive_amount'); 
+        ->whereMonth('received_date', $month)
+        ->whereYear('received_date', $year)
+        ->groupBy('company_id')
+        ->get();    
+
+
+    $insentives = Insentive::where('business_id', $request->business)
+        ->whereMonth('received_date', $month)
+        ->whereYear('received_date', $year)
+        ->get();    
+    $InsentiveAmountSum = $insentives->sum('insentive_amount'); 
+
+    // Damage Product Send 
+    $damageSendCompanies = DamageProduct::where('business_id', $request->business)
+    ->whereMonth('claim_date', $month)
+    ->whereYear('claim_date', $year)
+    ->groupBy('company_id')
+    ->get();
+
+    // Replacement
+    $replaceProduct = DamageProduct::where('business_id', $request->business)
+    ->whereMonth('claim_date', $month)
+    ->whereYear('claim_date', $year)
+    ->where('claim_type', 'replacement')
+    ->get();
+    $replaceProductSum = $replaceProduct->sum('claim_amount');
+
+    // Out of Policy
+    $oopProduct = DamageProduct::where('business_id', $request->business)
+    ->whereMonth('claim_date', $month)
+    ->whereYear('claim_date', $year)
+    ->where('claim_type', 'outofpolicy')
+    ->get();
+    $oopProductSum = $oopProduct->sum('claim_amount');
+
 
     // Sales Data
     $sales = Sales::where('business_id', $request->business)
@@ -181,9 +213,6 @@ class ReportController extends Controller
     ->get();
     $totalDepositHO = $AlldepositsHO->sum('deposit_amount');
 
-
-
-
         $opening = DB::table('opening_closing')
             ->where('business_id', $request->business)
             ->where('month', $month)
@@ -201,19 +230,16 @@ class ReportController extends Controller
         $data['opening'] = $opening;
         $data['closing'] = $closing;
         $data['investments'] =  $investments;
-        // $data['squaredatas'] =  $squaredatas;
+        
         $data['business'] = $business;
-        // $data['stocks'] = $stocks;
+        
         $data['totalInvestment'] =  $totalInvestment;
-        // $data['squarepayments'] =  $squarepayments;
-        // $data['kamaldatas'] =  $kamaldatas;
-        // $data['kamalpayments'] =  $kamalpayments;
+        
         $data['target'] =  $target;
         $data['sales'] =  $sales;
         $data['totalsales'] =  $totalSales;
         $data['collections'] =  $collections;
         $data['dues'] =  $dues;
-        
         
         // Deposit to Head Office
         $data['AlldepositsHO'] =  $AlldepositsHO;
@@ -226,8 +252,11 @@ class ReportController extends Controller
         
         // Paid to Company
         $data['paidtoCompanies'] =  $paidtoCompanies;
-        $data['businessInfo'] =  $businessInfo;
         $data['totalCompanyPaids'] =  $totalCompanyPaids;
+
+        // Business information
+        $data['businessInfo'] =  $businessInfo;
+        
 
         // Product Received
         $data['productReceivedCompanies'] =  $productReceivedCompanies;
@@ -244,6 +273,11 @@ class ReportController extends Controller
         // Insentive Amounts
         $data['insentiveAmounts'] =  $insentiveAmounts;
         $data['InsentiveAmountSum'] =  $InsentiveAmountSum;
+
+        // Damage Amounts
+        $data['damageSendCompanies'] =  $damageSendCompanies;
+        $data['replaceProductSum'] =  $replaceProductSum;
+        $data['oopProductSum'] =  $oopProductSum;
         
         return view('backend.reports.report2', $data);
     }
