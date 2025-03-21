@@ -108,26 +108,26 @@
                                             </tr>
                                             <tr>
                                                 <td class="extra_sm2">Opening</td>
-                                                <td class="bg-primary">
+                                                <td class="bg-primary extra_sm2 text-right">
                                                     <strong>{{ isset($opening->security_money) ? number_format($opening->security_money, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="extra_sm2">Up to last Month</td>
-                                                <td class="bg-primary text-right">
+                                                <td class="bg-primary text-right extra_sm2">
                                                     <strong>{{ isset($opening->investment_amount) ? number_format($opening->investment_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="extra_sm2">Up to last Month</td>
-                                                <td style="width:125px" class="bg-primary">
+                                                <td style="width:125px" class="bg-primary extra_sm2 text-right">
                                                     <strong>{{ isset($opening->bank_deposit_amount) ? number_format($opening->bank_deposit_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="extra_sm2">Up to last Month </td>
                                                 <td class="extra_sm2">N/A</td>
-                                                <td style="width:110px" class="bg-primary">
+                                                <td style="width:110px" class="bg-primary extra_sm2 text-right">
                                                     <strong>{{ isset($opening->product_received_amount) ? number_format($opening->product_received_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="extra_sm2 text-right">
                                                     <strong>{{ isset($opening->slab_received_amount) ? number_format($opening->slab_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-primary">
+                                                <td class="bg-primary extra_sm2 text-right">
                                                     <strong>{{ isset($opening->vat_adjustment_received_amount) ? number_format($opening->vat_adjustment_received_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="extra_sm2 text-right">
@@ -148,23 +148,23 @@
                                                 <td class="extra_sm2 text-right">
                                                     <strong>{{ isset($opening->insentive_received_amount) ? number_format($opening->insentive_received_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td>Up to last Month</td>
-                                                <td class="bg-primary">
+                                                <td class="extra_sm2">Up to last Month</td>
+                                                <td class="bg-primary extra_sm2 text-right">
                                                     <strong>{{ isset($opening->sales_amount) ? number_format($opening->sales_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td>
+                                                <td class="extra_sm2 text-right">
                                                     <strong>{{ isset($opening->collection_amount) ? number_format($opening->collection_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-primary">
+                                                <td class="bg-primary extra_sm2 text-right">
                                                     <strong>{{ isset($opening->due_amount) ? number_format($opening->due_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td>
+                                                <td class="extra_sm2 text-right">
                                                     <strong>{{ isset($opening->due_realize_amount) ? number_format($opening->due_realize_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td class="bg-primary">
+                                                <td class="bg-primary extra_sm2 text-right">
                                                     <strong>{{ isset($opening->total_due_amount) ? number_format($opening->total_due_amount, 2) : '' }}</strong>
                                                 </td>
-                                                <td>
+                                                <td class="extra_sm2 text-right">
                                                     <strong>{{ isset($opening->ho_deposit_amount) ? number_format($opening->ho_deposit_amount, 2) : '' }}</strong>
                                                 </td>
                                             </tr>
@@ -179,7 +179,7 @@
                                                     <table class="table table-bordered mb-0">
                                                         @foreach ($investments as $investment)
                                                             <tr>
-                                                                <td class="extra_sm2 text-center">
+                                                                <td class="extra_sm2 text-center ">
                                                                     {{ $investment->investment_date }}
                                                                 </td>
                                                                 <td class="extra_sm2 text-right">
@@ -540,11 +540,11 @@
                                                             <tr>
                                                                 <td class="extra_sm2 text-center">{{ $sale->sales_date }}
                                                                 </td>
-                                                                <td class="text-right">
+                                                                <td class="text-right extra_sm2">
                                                                     {{ number_format($sale->total_amount, 2) }}</td>
-                                                                <td class="text-right">
+                                                                <td class="text-right extra_sm2">
                                                                     {{ number_format($sale->collection_amount, 2) }}</td>
-                                                                <td class="text-right">
+                                                                <td class="text-right extra_sm2">
                                                                     {{ number_format($sale->due_amount, 2) }}</td>
                                                             </tr>
                                                         @endforeach
@@ -574,13 +574,14 @@
                                                         </table>
                                                     @endif
                                                 </td>
-                                                <td>
+                                                <td style="vertical-align: top">
                                                     <table class="table table-bordered" style="padding: 0; margin:0">
                                                         @if (isset($AlldepositsHO))
                                                             @foreach ($AlldepositsHO as $deposit)
                                                                 <tr>
-                                                                    <td>{{ $deposit->deposit_date }}</td>
-                                                                    <td class="text-right">
+                                                                    <td class="extra_sm3 text-center">
+                                                                        {{ $deposit->deposit_date }}</td>
+                                                                    <td class="text-right extra_sm2">
                                                                         {{ number_format($deposit->deposit_amount, 2) }}
                                                                     </td>
                                                                 </tr>
@@ -773,7 +774,8 @@
                 'background-color': 'rgb(38, 181, 196)',
                 'font-size': '16px',
                 'color': 'white',
-                'min-width': '110px',
+                'min-width': '170px',
+                'max-width': '200px',
                 'font-weight': 'bolder'
             });
             $(".extra_lg").css({
