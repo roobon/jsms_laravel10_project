@@ -82,7 +82,8 @@
                                                 <th colspan="2" class="text-center extra_lg">Bank Deposit</th>
                                                 <th colspan="8" class="text-center extra_lg">Product Received</th>
                                                 <th rowspan="2" class="text-center extra">Insentive Received (Tk.)</th>
-                                                <th rowspan="2" class="text-center extra">Damage Product Send to Company
+                                                <th rowspan="2" class="text-center extra_lg2">Damage Product Send to
+                                                    Company
                                                     (Tk.)</th>
                                                 <th rowspan="2" class="text-center extra">Delivery Date</th>
                                                 <th rowspan="2" class="text-center extra">Total Sale (Tk.)</th>
@@ -479,10 +480,13 @@
                                                                         $businessInfo['id'],
                                                                     )
                                                                         ->whereMonth(
-                                                                            'claim_date',
+                                                                            'chalan_date',
                                                                             $businessInfo['month'],
                                                                         )
-                                                                        ->whereYear('claim_date', $businessInfo['year'])
+                                                                        ->whereYear(
+                                                                            'chalan_date',
+                                                                            $businessInfo['year'],
+                                                                        )
                                                                         ->where('company_id', $item->company_id)
                                                                         ->get();
                                                                 @endphp
@@ -491,10 +495,14 @@
                                                                     <td class="extra_sm3 text-center">REP</td>
                                                                     <td class="extra_sm3 text-center">OOP</td>
                                                                 </tr>
+                                                                @php
+                                                                    $repsum = 0;
+                                                                    $oopsum = 0;
+                                                                @endphp
                                                                 @foreach ($damages as $data)
                                                                     @if ($data->claim_type == 'replacement')
                                                                         <tr>
-                                                                            <td class="extra_sm3">{{ $data->claim_date }}
+                                                                            <td class="extra_sm3">{{ $data->chalan_date }}
                                                                             </td>
                                                                             <td class="text-right extra_sm3">
                                                                                 {{ number_format($data->claim_amount, 2) }}
@@ -503,9 +511,12 @@
                                                                                 0.00
                                                                             </td>
                                                                         </tr>
+                                                                        @php
+                                                                            $repsum += $data->claim_amount;
+                                                                        @endphp
                                                                     @elseif($data->claim_type == 'outofpolicy')
                                                                         <tr>
-                                                                            <td class="extra_sm3">{{ $data->claim_date }}
+                                                                            <td class="extra_sm3">{{ $data->chalan_date }}
                                                                             </td>
                                                                             <td class="text-right extra_sm3">
                                                                                 0.00
@@ -514,13 +525,16 @@
                                                                                 {{ number_format($data->claim_amount, 2) }}
                                                                             </td>
                                                                         </tr>
+                                                                        @php  $oopsum += $data->claim_amount @endphp
                                                                     @endif
                                                                 @endforeach
                                                                 <tr>
                                                                     <td class="extra_sm3">Total</td>
-                                                                    <td class="bg-success text-danger text-right"
-                                                                        colspan="2">
-                                                                        {{ number_format($damages->sum('claim_amount'), 2) }}
+                                                                    <td class="bg-success text-danger text-right">
+                                                                        {{ number_format($repsum, 2) }}
+                                                                    </td>
+                                                                    <td class="bg-success text-danger text-right">
+                                                                        {{ number_format($oopsum, 2) }}
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -695,7 +709,7 @@
                                                 </td>
                                                 <td class="bg-info text-danger text-right">
                                                     <!-- Damaged Amount -->
-                                                    <strong>{{ isset($closing->damage_sent_amount) ? number_format($closing->damage_sent_amount, 2) : '' }}</strong>
+                                                    <strong>{{ isset($closing->damage_sent_rep_amount) || isset($closing->damage_sent_oop_amount) ? number_format($closing->damage_sent_rep_amount + $closing->damage_sent_oop_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="extra"></td>
                                                 <td class="bg-info text-danger text-right">
@@ -774,8 +788,8 @@
                 'background-color': 'rgb(38, 181, 196)',
                 'font-size': '16px',
                 'color': 'white',
-                'min-width': '170px',
-                'max-width': '200px',
+                'min-width': '150px',
+                'max-width': '160px',
                 'font-weight': 'bolder'
             });
             $(".extra_lg").css({
@@ -784,6 +798,15 @@
                 'font-size': '16px',
                 'color': 'black',
                 'min-width': '110px',
+                'font-weight': 'bolder',
+                'border': '2px solid white'
+            });
+            $(".extra_lg2").css({
+                'background-color': 'rgb(38, 181, 196)',
+                'font-size': '16px',
+                'color': 'white',
+                'min-width': '218px',
+                'max-width': '250px',
                 'font-weight': 'bolder',
                 'border': '2px solid white'
             });

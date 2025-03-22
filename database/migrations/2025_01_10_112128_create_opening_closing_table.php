@@ -23,7 +23,8 @@ return new class extends Migration
             $table->decimal('replacement_received_amount', total: 12, places: 2)->default(0);
             $table->decimal('outofpolicy_received_amount', total: 12, places: 2)->default(0);
             $table->decimal('insentive_received_amount', total: 12, places: 2)->default(0);
-            $table->decimal('damage_sent_amount', total: 12, places: 2)->default(0);
+            $table->decimal('damage_sent_rep_amount', total: 12, places: 2)->default(0);
+            $table->decimal('damage_sent_oop_amount', total: 12, places: 2)->default(0);
             $table->decimal('sales_amount', total: 12, places: 2)->default(0);
             $table->decimal('collection_amount', total: 12, places: 2)->default(0);
             $table->decimal('due_amount', total: 12, places: 2)->default(0);

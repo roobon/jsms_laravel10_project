@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('insentives', function (Blueprint $table) {
             $table->id();
             $table->decimal('insentive_amount', total: 10, places: 2);
+            $table->date('incentive_month');
             $table->date('received_date');
             $table->integer('business_id'); // for which business
             $table->integer('company_id'); // Received From

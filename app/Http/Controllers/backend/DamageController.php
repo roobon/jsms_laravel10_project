@@ -40,8 +40,8 @@ class DamageController extends Controller
     {
         $request->validate(
             [
-                'voucher_num' => 'required',
-                'claim_date' => 'required',
+                'factory_name' => 'required',
+                'chalan_date' => 'required',
                 'claim_type' => 'required',
                 'claim_amount' => 'required',
                 'photo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
@@ -62,8 +62,8 @@ class DamageController extends Controller
 
         $damage = new DamageProduct;
 
-        $damage->voucher_num = $request->voucher_num;
-        $damage->claim_date = $request->claim_date;
+        $damage->factory_name = $request->factory_name;
+        $damage->chalan_date = $request->chalan_date;
         $damage->claim_type = $request->claim_type;
         $damage->claim_amount = $request->claim_amount;
         $damage->claim_photo = $photo;
@@ -72,7 +72,7 @@ class DamageController extends Controller
         $damage->employee_id = $request->manager;
 
         // Get Year and Month from Received date
-        $timestamp = strtotime($request->claim_date);
+        $timestamp = strtotime($request->chalan_date);
         $m = date('m', $timestamp);
         $y = date('Y', $timestamp);
 
@@ -97,7 +97,7 @@ class DamageController extends Controller
             ->where('period', 'closing')
             ->first();
 
-            $openClose->damage_sent_amount   = $openClose->damage_sent_amount + $request->claim_amount;
+            $openClose->damage_sent_rep_amount   = $openClose->damage_sent_rep_amount + $request->claim_amount;
             $openClose->update(); 
            } elseif($request->claim_type == 'outofpolicy'){
             $openClose = OpeningClosing::where('business_id', $request->business)
@@ -107,7 +107,7 @@ class DamageController extends Controller
             ->where('period', 'closing')
             ->first();
 
-            $openClose->damage_sent_amount   = $openClose->damage_sent_amount   + $request->claim_amount;
+            $openClose->damage_sent_oop_amount   = $openClose->damage_sent_oop_amount   + $request->claim_amount;
             $openClose->update(); 
            }
         return redirect()->route('damage.index')->with('msg', "Successfully Damage Product Entered");

@@ -68,7 +68,7 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Business</th>
+                                                <th>Business Name</th>
                                                 <th>IMS Target</th>
                                                 <th>Collection Target</th>
                                                 <th>Daily IMS Target</th>
@@ -87,7 +87,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Business</th>
+                                                <th>Business Name</th>
                                                 <th>IMS Target (100%)</th>
                                                 <th>Collection Target (95%)</th>
                                                 <th>Daily IMS Target</th>
@@ -109,26 +109,32 @@
                                             @endphp
                                             @foreach ($businesses as $business)
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td colspan="11">{{ $business->business_name }}</td>
-                                                    <td>{{ number_format($business->target->ims_target, 0) }}</td>
-                                                    {{-- <td>
-                                                        {{ number_format(($business->ims_target * $item->collection_target) / 100, 0) }}
+                                                    <td> {{ $business->business_name }}</td>
+                                                </tr>
+                                                @php
+                                                    // $payments = App\Models\Target::where(
+                                                    //     'business_id',
+                                                    //     $businessInfo['id'],
+                                                    // )
+                                                    //     ->whereMonth('payment_date', $businessInfo['month'])
+                                                    //     ->whereYear('payment_date', $businessInfo['year'])
+                                                    //     ->where('company_id', $payCompany->company_id)
+                                                    //     ->get();
+                                                @endphp
+                                                {{-- @foreach ($payments as $data)
+                                                    <tr>
+                                                        <td class="extra_sm3">{{ $data->payment_date }}
+                                                        </td>
+                                                        <td class="extra_sm3">
+                                                            {{ number_format($data->payment_amount, 2) }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach --}}
+                                                <tr>
+                                                    <td class="extra_sm3">Total</td>
+                                                    <td class="bg-success text-danger">
+                                                        {{-- {{ number_format($payments->sum('payment_amount'), 2) }} --}}
                                                     </td>
-                                                    <td>{{ number_format($item->ims_target / $item->working_days, 0) }}</td>
-                                                    <td class="green">{{ $item->sales_amount }}</td>
-                                                    <td class="green">{{ $item->sales_amount }}</td>
-                                                    <td class="green">{{ $item->collection_amount }}</td>
-                                                    <td>{{ $item->deposit_amount }}</td>
-                                                    <td>
-                                                        {{ $item->ims_target * ($item->collection_target / 100) - $item->deposit_amount }}
-                                                    </td>
-                                                    <td>{{ $item->startMonthdue }}</td>
-                                                    <td>{{ $item->sales_amount - $item->collection_amount }}
-                                                    </td>
-                                                    <td>{{ $item->godownstock }}</td>
-                                                    <td>{{ $item->ledgerDue }}</td> --}}
-
                                                 </tr>
                                             @endforeach
                                         </tbody>

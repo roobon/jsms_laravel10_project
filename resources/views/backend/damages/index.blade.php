@@ -49,8 +49,8 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Voucher Number</th>
-                                                <th>Claim Date</th>
+                                                <th>Factory Name</th>
+                                                <th>Chalan Date</th>
                                                 <th>Type</th>
                                                 <th>Claim Amount</th>
                                                 <th>Business</th>
@@ -60,8 +60,8 @@
                                         <tfoot>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Voucher Number</th>
-                                                <th>Claim Date</th>
+                                                <th>Factory Name</th>
+                                                <th>Chalan Date</th>
                                                 <th>Type</th>
                                                 <th>Claim Amount</th>
                                                 <th>Business</th>
@@ -72,8 +72,8 @@
                                             @foreach ($items as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->voucher_num }}</td>
-                                                    <td>{{ $item->claim_date }}</td>
+                                                    <td>{{ $item->factory_name }}</td>
+                                                    <td>{{ $item->chalan_date }}</td>
                                                     <td>{{ $item->claim_type }}</td>
                                                     <td>{{ $item->claim_amount }}</td>
                                                     <td>{{ $item->business->business_name }}</td>

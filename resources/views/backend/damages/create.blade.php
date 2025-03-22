@@ -54,24 +54,24 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">
-                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Voucher
-                                                    Number*</label>
+                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Factory
+                                                    Name*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
-                                                        <input type="text" name="voucher_num"
-                                                            value="{{ old('voucher_num') }}" class="form-control"
-                                                            id="exampleInputuname_4" placeholder="Enter Voucher Number">
+                                                        <input type="text" name="factory_name"
+                                                            value="{{ old('factory_name') }}" class="form-control"
+                                                            id="exampleInputuname_4" placeholder="Enter Factory Name">
                                                         <div class="input-group-addon"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Claim
+                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Chalan
                                                     Date*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
-                                                        <input type="date" name="claim_date"
-                                                            value="{{ old('claim_date') }}" class="form-control"
+                                                        <input type="date" name="chalan_date"
+                                                            value="{{ old('chalan_date') }}" class="form-control"
                                                             id="exampleInputuname_4">
                                                         <div class="input-group-addon"></div>
                                                     </div>

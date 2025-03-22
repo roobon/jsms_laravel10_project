@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('damage_products', function (Blueprint $table) {
             $table->id();
-            $table->string('voucher_num');
-            $table->date('claim_date');
+            $table->string('factory_name');
+            $table->date('chalan_date');
             $table->enum('claim_type', ['replacement', 'outofpolicy']);
             $table->decimal('claim_amount', total: 12, places: 2)->default(0);
             $table->string('claim_photo')->nullable();

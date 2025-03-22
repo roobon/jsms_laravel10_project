@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Insentive List
+    Incentive List
 @endsection
 
 @section('content')
@@ -15,14 +15,14 @@
         <div class="row heading-bg bg-green">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 
-                <h5 class="txt-light">Insentive List</h5>
+                <h5 class="txt-light">Incentive List</h5>
             </div>
             <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="#"><span>Insentives</span></a></li>
-                    <li class="active"><span>Insentive list</span></li>
+                    <li><a href="#"><span>Incentives</span></a></li>
+                    <li class="active"><span>Incentive list</span></li>
                 </ol>
             </div>
             <!-- /Breadcrumb -->
@@ -39,7 +39,7 @@
                             {{-- <h6 class="panel-title txt-dark">Point List</h6> --}}
                         </div>
                         <div class="pull-right"><a href="{{ route('insentive.create') }}" class="btn btn-success">New
-                                Insentive</a></div>
+                                Incentive</a></div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="panel-wrapper collapse in">
@@ -50,8 +50,9 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Insentive Amount</th>
-                                                <th>Date</th>
+                                                <th>Incentive Amount</th>
+                                                <th>Incentive Month</th>
+                                                <th>Received Date</th>
                                                 <th>Business Name</th>
                                                 <th style="width: 10%;" class="text-center">Action</th>
                                             </tr>
@@ -59,8 +60,9 @@
                                         <tfoot>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Insentive Amount</th>
-                                                <th>Date</th>
+                                                <th>Incentive Amount</th>
+                                                <th>Incentive Month</th>
+                                                <th>Received Date</th>
                                                 <th>Business Name</th>
                                                 <th style="width: 10%;" class="text-center">Action</th>
                                             </tr>
@@ -70,6 +72,8 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->insentive_amount }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($item->incentive_month)->format('F, Y') }}
+                                                    </td>
                                                     <td>{{ $item->received_date }}</td>
                                                     <td>{{ $item->business->business_name }}</td>
                                                     <td style="width: 15%;" class="text-center">

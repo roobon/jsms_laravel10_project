@@ -171,7 +171,7 @@
                         <li>
                             <a href="{{ route('insentive.index') }}" class="connection-item">
                                 <i class="pe-7s-gift txt-primary"></i>
-                                <span class="block">Insentives</span>
+                                <span class="block">Incentives</span>
                             </a>
                         </li>
                     </ul>

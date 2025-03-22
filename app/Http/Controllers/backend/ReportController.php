@@ -31,7 +31,8 @@ class ReportController extends Controller
     public function report1(Request $request)
     {
         $company = Company::find($request->company);
-        $businesses = Business::where('company_id', $request->company)->get();
+        $businesses = Business::where('company_id', $request->company)
+        ->get();
         //dd($businesses);
         $month = $request->month;
         $year = $request->year;
@@ -157,23 +158,23 @@ class ReportController extends Controller
 
     // Damage Product Send 
     $damageSendCompanies = DamageProduct::where('business_id', $request->business)
-    ->whereMonth('claim_date', $month)
-    ->whereYear('claim_date', $year)
+    ->whereMonth('chalan_date', $month)
+    ->whereYear('chalan_date', $year)
     ->groupBy('company_id')
     ->get();
 
     // Replacement
     $replaceProduct = DamageProduct::where('business_id', $request->business)
-    ->whereMonth('claim_date', $month)
-    ->whereYear('claim_date', $year)
+    ->whereMonth('chalan_date', $month)
+    ->whereYear('chalan_date', $year)
     ->where('claim_type', 'replacement')
     ->get();
     $replaceProductSum = $replaceProduct->sum('claim_amount');
 
     // Out of Policy
     $oopProduct = DamageProduct::where('business_id', $request->business)
-    ->whereMonth('claim_date', $month)
-    ->whereYear('claim_date', $year)
+    ->whereMonth('chalan_date', $month)
+    ->whereYear('chalan_date', $year)
     ->where('claim_type', 'outofpolicy')
     ->get();
     $oopProductSum = $oopProduct->sum('claim_amount');

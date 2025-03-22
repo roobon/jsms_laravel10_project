@@ -7,6 +7,7 @@ use App\Models\Business;
 use App\Models\Insentive;
 use App\Models\OpeningClosing;
 use App\Models\Company;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,6 +40,8 @@ class InsentiveController extends Controller
     {
         $request->validate(
             [
+                'month' => 'required',
+                'year' => 'required',
                 'amount' => 'required',
                 'date' => 'required',
                 'business' => 'required',
@@ -59,6 +62,12 @@ class InsentiveController extends Controller
         $insentive = new Insentive;
 
         $insentive->insentive_amount = $request->amount;
+
+        
+        $month = $request->month;
+        $year = $request->year;
+        $date = $year . '-' . $month . '-' . '00'; 
+        $insentive->incentive_month = $date;
         $insentive->received_date = $request->date;
         $insentive->business_id = $request->business;
         $insentive->company_id = $request->company;
@@ -74,7 +83,7 @@ class InsentiveController extends Controller
          ->whereMonth('start_date', $m)
          ->where('business_id', '=', $request->business)
          ->get();
-
+//dd($insentive);
          //return dd($row);
      if (count($row) == 0) {
          return back()->with('error', "Sorry, No Target Entry Available for entering Insentive")->withInput();
@@ -96,7 +105,7 @@ class InsentiveController extends Controller
     $openClose->update(); 
     // Insentive update to Closing Insentive End
        
-        return redirect()->route('insentive.index')->with('msg', "Successfully insentive Created");
+        return redirect()->route('insentive.index')->with('msg', "Successfully incentive Created");
     }
 
     /**
