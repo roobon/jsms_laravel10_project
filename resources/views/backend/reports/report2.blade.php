@@ -81,7 +81,8 @@
                                                 <th colspan="2" class="text-center extra_lg">Investment</th>
                                                 <th colspan="2" class="text-center extra_lg">Bank Deposit</th>
                                                 <th colspan="8" class="text-center extra_lg">Product Received</th>
-                                                <th rowspan="2" class="text-center extra">Insentive Received (Tk.)</th>
+                                                <th rowspan="2" class="text-center extra_lg2">Incentive Received (Tk.)
+                                                </th>
                                                 <th rowspan="2" class="text-center extra_lg2">Damage Product Send to
                                                     Company
                                                     (Tk.)</th>
@@ -91,7 +92,7 @@
                                                 <th rowspan="2" class="text-center extra">Due (Tk.)</th>
                                                 <th rowspan="2" class="text-center extra">Due Realization (Tk.)</th>
                                                 <th rowspan="2" class="text-center extra">Total Due (Tk.)</th>
-                                                <th rowspan="2" class="text-center extra">Deposit to HO (Tk.)</th>
+                                                <th rowspan="2" class="text-center extra_lg2">Deposit to HO (Tk.)</th>
                                             </tr>
                                             <tr>
                                                 <th class="text-center extra">Date</th>
@@ -443,6 +444,9 @@
                                                                     <tr>
                                                                         <td class="extra_sm3">{{ $data->received_date }}
                                                                         </td>
+                                                                        <td class="extra_sm3 text-center">
+                                                                            {{ \Carbon\Carbon::parse($data->incentive_month)->format('M, Y') }}
+                                                                        </td>
                                                                         <td class="text-right extra_sm3">
                                                                             {{ number_format($data->insentive_amount, 2) }}
                                                                         </td>
@@ -450,7 +454,9 @@
                                                                 @endforeach
                                                                 <tr>
                                                                     <td class="extra_sm3">Total</td>
-                                                                    <td class="bg-success text-danger text-right">
+
+                                                                    <td class="bg-success text-danger text-right"
+                                                                        colspan="2">
                                                                         {{ number_format($insentives->sum('insentive_amount'), 2) }}
                                                                     </td>
                                                                 </tr>
@@ -805,7 +811,7 @@
                 'background-color': 'rgb(38, 181, 196)',
                 'font-size': '16px',
                 'color': 'white',
-                'min-width': '218px',
+                'min-width': '230px',
                 'max-width': '250px',
                 'font-weight': 'bolder',
                 'border': '2px solid white'
