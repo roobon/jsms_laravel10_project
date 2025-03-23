@@ -83,7 +83,8 @@
                                                 <th colspan="8" class="text-center extra_lg">Product Received</th>
                                                 <th rowspan="2" class="text-center extra_lg2">Incentive Received (Tk.)
                                                 </th>
-                                                <th rowspan="2" class="text-center extra_lg2">Damage Product Send to
+                                                <th rowspan="2" colspan="2" class="text-center extra_lg2">Damage
+                                                    Product Send to
                                                     Company
                                                     (Tk.)</th>
                                                 <th rowspan="2" class="text-center extra">Delivery Date</th>
@@ -147,7 +148,7 @@
                                                     <strong>{{ isset($opening->insentive_received_amount) ? number_format($opening->insentive_received_amount, 2) : '' }}</strong>
                                                 </td>
                                                 {{-- Damage Product Sent --}}
-                                                <td class="extra_sm2 text-right">
+                                                <td class="extra_sm2 text-right" colspan="2">
                                                     <strong>{{ isset($opening->insentive_received_amount) ? number_format($opening->insentive_received_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="extra_sm2">Up to last Month</td>
@@ -279,7 +280,7 @@
                                                                         </td>
                                                                         {{-- Normal Product --}}
                                                                         @if ($stock->product_type == 'normal')
-                                                                            <td class="text-center extra_sm3 col-sm-1">
+                                                                            <td class="text-center extra_sm3 col-sm-2">
                                                                                 {{ $stock->invoice_number }}
                                                                             </td>
                                                                             <td class="text-right extra_sm3 col-sm-1">
@@ -297,7 +298,7 @@
                                                                             <td class="text-right extra_sm3 col-sm-2">
                                                                                 0.00
                                                                             </td>
-                                                                            <td class="text-right extra_sm3 col-sm-1">
+                                                                            <td class="text-right extra_sm3 col-sm-2">
                                                                                 0.00
                                                                             </td>
                                                                         @elseif($stock->product_type == 'slab')
@@ -471,7 +472,7 @@
                                                 </td>
 
                                                 {{-- Damaged Product Sent --}}
-                                                <td style="vertical-align:top">
+                                                <td style="vertical-align:top" colspan="2">
                                                     {{-- Starts --}}
                                                     @if (count($damageSendCompanies) > 0)
                                                         @foreach ($damageSendCompanies as $item)
@@ -648,8 +649,11 @@
                                                     {{ number_format($InsentiveAmountSum, 2) }}
                                                 </td>
                                                 {{-- Damaged Product Sent --}}
-                                                <td class="bg-primary text-muted text-right">
-                                                    {{ number_format($replaceProductSum + $oopProductSum, 2) }}
+                                                <td class="text-muted text-right extra_sm2">
+                                                    {{ number_format($replaceProductSum, 2) }}
+                                                </td>
+                                                <td class="text-muted text-right extra_sm2">
+                                                    {{ number_format($oopProductSum, 2) }}
                                                 </td>
                                                 <td></td>
                                                 <td class="bg-primary text-muted text-right">
@@ -715,7 +719,11 @@
                                                 </td>
                                                 <td class="bg-info text-danger text-right">
                                                     <!-- Damaged Amount -->
-                                                    <strong>{{ isset($closing->damage_sent_rep_amount) || isset($closing->damage_sent_oop_amount) ? number_format($closing->damage_sent_rep_amount + $closing->damage_sent_oop_amount, 2) : '' }}</strong>
+                                                    <strong>{{ isset($closing->damage_sent_rep_amount) ? number_format($closing->damage_sent_rep_amount, 2) : '' }}</strong>
+                                                </td>
+                                                <td class="bg-info text-danger text-right">
+                                                    <!-- OOP Amount -->
+                                                    <strong>{{ isset($closing->damage_sent_oop_amount) ? number_format($closing->damage_sent_oop_amount, 2) : '' }}</strong>
                                                 </td>
                                                 <td class="extra"></td>
                                                 <td class="bg-info text-danger text-right">
