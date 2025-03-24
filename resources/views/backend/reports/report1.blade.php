@@ -20,8 +20,12 @@
 
         .extra_sm2 {
 
-            color: black;
+            color: rgb(248, 244, 244);
 
+        }
+
+        .sorting_1 {
+            color: black;
         }
     </style>
 @endsection
@@ -97,11 +101,19 @@
 
                                         <tbody>
                                             @php
-                                                //return count($businesses);
                                                 $imsTargetSum = 0;
                                                 $collTargetSum = 0;
                                                 $collTarget = 0;
                                                 $dailyTarget = 0;
+                                                $salesAmount = 0;
+                                                $salesPerTargetSum = 0;
+                                                $collectionSum = 0;
+                                                $depositBankSum = 0;
+                                                $depoVScollSum = 0;
+                                                $dueBegMonthSum = 0;
+                                                $dueEndMonthSum = 0;
+                                                $goDownStockSum = 0;
+                                                $ledgerDueSum = 0;
                                             @endphp
                                             @foreach ($businesses as $business)
                                                 <tr>
@@ -112,75 +124,125 @@
                                                             100;
                                                         $collTargetSum += $collTarget;
                                                         $dailyTarget = $collTarget / $business->working_days;
+                                                        $opening = App\Models\OpeningClosing::where(
+                                                            'business_id',
+                                                            $business->id,
+                                                        )
+                                                            ->where('month', $month)
+                                                            ->where('year', $year)
+                                                            ->where('period', 'opening')
+                                                            ->first();
+                                                        $closing = App\Models\OpeningClosing::where(
+                                                            'business_id',
+                                                            $business->id,
+                                                        )
+                                                            ->where('month', $month)
+                                                            ->where('year', $year)
+                                                            ->where('period', 'closing')
+                                                            ->first();
                                                     @endphp
-                                                    <td class="bg-primary"> {{ $loop->iteration }}</td>
-                                                    <td class="bg-primary"> {{ $business->business_name }}</td>
+                                                    <td class="bg-primary"> {{ $loop->iteration }}
+                                                        {{-- ID --}}
+                                                    </td>
+                                                    <td class="bg-primary"> {{ $business->business_name }}
+                                                        {{-- Business Name --}}
+                                                    </td>
                                                     <td class="bg-red text-right">
 
-                                                        {{ number_format($business->ims_target, 2) }}</td>
+                                                        {{ number_format($business->ims_target, 2) }}
+                                                        {{-- IMS Target --}}
+                                                    </td>
                                                     <td class="bg-pink text-right"> {{ number_format($collTarget, 2) }}
+                                                        {{-- Collection Target --}}
                                                     </td>
                                                     <td class="bg-red text-right"> {{ number_format($dailyTarget, 2) }}
+                                                        {{-- Daily IMS Target --}}
                                                     </td>
                                                     <td class="bg-pink text-right">
+                                                        @php
+                                                            $dateinfo = getdate();
+                                                            // print_r($dateinfo);
+                                                            $m = $dateinfo['mon'];
+                                                            $d = $dateinfo['mday'];
+                                                            $d++;
+                                                        @endphp
+                                                        {{ $m == $month ? number_format($dailyTarget * $d, 2) : number_format($business->ims_target, 2) }}
+                                                        {{-- Sales As per Target --}}
                                                     </td>
                                                     <td class="bg-red text-right">
+                                                        {{ number_format($closing->sales_amount, 2) }}
+                                                        {{-- Sales Upto --}}
                                                     </td>
                                                     <td class="bg-pink text-right">
+                                                        {{ number_format($closing->collection_amount + $closing->due_realize_amount, 2) }}
+                                                        {{-- Collection Upto --}}
                                                     </td>
                                                     <td class="bg-red text-right">
+                                                        @php
+                                                            $depositBankSum += $closing->bank_deposit_amount;
+                                                        @endphp
+                                                        {{ number_format($closing->bank_deposit_amount, 2) }}
+                                                        {{-- Bank Deposit --}}
                                                     </td>
                                                     <td class="bg-pink text-right">
+                                                        {{ number_format($closing->bank_deposit_amount - $closing->collection_amount, 2) }}
+                                                        {{-- Deposit vs Collection --}}
                                                     </td>
                                                     <td class="bg-red text-right">
+                                                        {{ number_format($opening->total_due_amount, 2) }}
+                                                        {{-- Total Due Opening --}}
                                                     </td>
                                                     <td class="bg-pink text-right">
+                                                        {{ $dueEndMonthSum += number_format($closing->total_due_amount, 2) }}
+                                                        {{-- Total Due Closing --}}
                                                     </td>
                                                     <td class="bg-red text-right">
+                                                        {{ number_format($closing->collection_amount, 2) }}
                                                     </td>
                                                     <td class="bg-pink text-right">
+                                                        {{ number_format($closing->ho_deposit_amount, 2) }}
                                                     </td>
                                                 </tr>
-                                                @php
-                                                    // $payments = App\Models\Target::where(
-                                                    //     'business_id',
-                                                    //     $businessInfo['id'],
-                                                    // )
-                                                    //     ->whereMonth('payment_date', $businessInfo['month'])
-                                                    //     ->whereYear('payment_date', $businessInfo['year'])
-                                                    //     ->where('company_id', $payCompany->company_id)
-                                                    //     ->get();
-                                                @endphp
-                                                {{-- @foreach ($payments as $data)
-                                                    <tr>
-                                                        <td class="extra_sm3">{{ $data->payment_date }}
-                                                        </td>
-                                                        <td class="extra_sm3">
-                                                            {{ number_format($data->payment_amount, 2) }}
-                                                        </td>
-                                                    </tr>
-                                                @endforeach --}}
                                             @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <td></td>
-                                                <td class="bg-info text-center">Total</td>
+                                                <td class="bg-info text-center extra_sm2">Total</td>
                                                 <td class="bg-primary text-right">{{ number_format($imsTargetSum, 2) }}
                                                 </td>
                                                 <td class="bg-primary text-right">{{ number_format($collTargetSum, 2) }}
                                                 </td>
                                                 <td class="bg-primary text-right">{{ number_format($dailyTarget, 2) }}
+                                                    Daily Target
                                                 </td>
-                                                <th class="bg-primary text-right">Sales As per Target</th>
-                                                <th class="bg-primary text-right">Sales upto</th>
-                                                <th class="bg-primary text-right">Collection upto</th>
-                                                <th class="bg-primary text-right">Deposit to Bank</th>
-                                                <th class="bg-primary text-right">Depost VS Collection</th>
-                                                <th class="bg-primary text-right">Due Begning Month</th>
-                                                <th class="bg-primary text-right">Due Endof Month</th>
-                                                <th class="bg-primary text-right">Godown Stock</th>
-                                                <th class="bg-primary text-right">Ledger View</th>
+                                                <td class="bg-primary text-right">
+                                                    {{ number_format($dueEndMonthSum, 2) }}
+                                                    Sales As per Target</td>
+                                                <td class="bg-primary text-right">
+                                                    {{ number_format($dueEndMonthSum, 2) }}
+                                                    Sales upto</td>
+                                                <td class="bg-primary text-right">
+                                                    {{ number_format($dueEndMonthSum, 2) }}
+                                                    Collection upto</td>
+                                                <td class="bg-primary text-right">
+                                                    {{ number_format($depositBankSum, 2) }}
+                                                    {{-- Deposit to Bank --}}
+                                                </td>
+                                                <td class="bg-primary text-right">
+                                                    {{ number_format($dueEndMonthSum, 2) }}
+                                                    Deposit VS Collection</td>
+                                                <td class="bg-primary text-right">
+                                                    {{ number_format($dueEndMonthSum, 2) }}
+                                                    Due Begning Month</td>
+                                                <td class="bg-primary text-right">{{ number_format($dueEndMonthSum, 2) }}
+                                                </td>
+                                                <td class="bg-primary text-right">
+                                                    {{ number_format($dueEndMonthSum, 2) }}
+                                                    Godown Stock</td>
+                                                <td class="bg-primary text-right extra_sm2">
+                                                    {{ number_format($dueEndMonthSum, 2) }}
+                                                    Ledger View</td>
 
                                             </tr>
                                         </tfoot>

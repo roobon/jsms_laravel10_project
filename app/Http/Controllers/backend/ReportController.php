@@ -36,19 +36,23 @@ class ReportController extends Controller
         // ->get();
 
         $businesses = DB::table('businesses')
-    ->join('targets', 'businesses.id', '=', 'targets.business_id')
-    ->where('company_id', $request->company)
-    ->get();
+        ->join('targets', 'businesses.id', '=', 'targets.business_id')
+        ->where('company_id', $request->company)
+        ->get();
 
         //dd($businesses);
         $month = $request->month;
         $year = $request->year;
-        $items = DB::table('opening_closing')
-            ->whereMonth('month', $month)
-            ->whereYear('year', $year)
-            ->get();
+      
+      
+    $data['businesses'] = $businesses;
+    $data['company'] = $company;
+    $data['month'] = $month;
+    $data['year'] = $year;
+            
 
-        return view('backend.reports.report1', compact('items', 'company', 'businesses'));
+
+        return view('backend.reports.report1', $data);
     }
 
     public function report2(Request $request)

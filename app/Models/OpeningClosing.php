@@ -9,4 +9,9 @@ class OpeningClosing extends Model
 {
     use HasFactory;
     protected $table = 'opening_closing';
+
+    public function business()
+    {
+        return $this->belongsTo(Business::class, 'business_id');
+    }
 }

@@ -66,4 +66,10 @@ class Business extends Model
         return $this->hasMany(DamageProduct::class);
     }
 
+    public function opening_closing()
+    {
+        return $this->hasMany(OpeningClosing::class);
+    }
+
+
 }
