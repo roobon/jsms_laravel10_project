@@ -65,8 +65,8 @@
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <div class="form-wrap">
-                                        <form class="form-horizontal" method="post" action="{{ route('dues.store') }}"
-                                            enctype="multipart/form-data">
+                                        <form class="form-horizontal" method="post"
+                                            action="{{ route('duerealize.store') }}" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="exampleInputuname_4" class="col-sm-3 control-label">Retailer
@@ -99,7 +99,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Sales
+                                                <label for="exampleInputuname_4" class="col-sm-3 control-label">Invoice
                                                     Date*</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">

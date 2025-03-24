@@ -13,6 +13,16 @@
             background-color: rgba(26, 8, 87, 0.551);
             color: white;
         }
+
+        body {
+            color: black;
+        }
+
+        .extra_sm2 {
+
+            color: black;
+
+        }
     </style>
 @endsection
 
@@ -58,7 +68,7 @@
                             <div class="table-wrap">
                                 <div class="table-responsive">
                                     <table id="example" class="table table-bordered display  pb-30">
-                                        <caption class="report-header">
+                                        <caption class="bg-info text-center">
                                             <div class="report-caption">Companywise Summary Report</div>
                                             <span class="report-title">Company Name: {{ $company->company_name }} <br>
 
@@ -67,49 +77,69 @@
                                         </caption>
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Business Name</th>
-                                                <th>IMS Target</th>
-                                                <th>Collection Target</th>
-                                                <th>Daily IMS Target</th>
-                                                <th class="green">Sales As per Target</th>
-                                                <th class="green">Sales upto</th>
-                                                <th class="green">Collection upto</th>
-                                                <th>Deposit to Bank</th>
-                                                <th>Depost VS Collection</th>
-                                                <th>Due Begning Month</th>
-                                                <th>Due Endof Month</th>
-                                                <th>Godown Stock</th>
-                                                <th>Ledger Due</th>
+                                                <th class="bg-info extra_sm2">ID</th>
+                                                <th class="bg-info extra_sm2">Business Name</th>
+                                                <th class="bg-primary extra_sm2">IMS Target</th>
+                                                <th class="bg-primary extra_sm2">Collection Target</th>
+                                                <th class="bg-primary extra_sm2">Daily IMS Target</th>
+                                                <th class="bg-primary extra_sm2">Sales As per Target</th>
+                                                <th class="bg-primary extra_sm2">Sales upto</th>
+                                                <th class="bg-primary extra_sm2">Collection upto</th>
+                                                <th class="bg-primary extra_sm2">Deposit to Bank</th>
+                                                <th class="bg-primary extra_sm2">Depost VS Collection</th>
+                                                <th class="bg-primary extra_sm2">Due Begning Month</th>
+                                                <th class="bg-primary extra_sm2">Due Endof Month</th>
+                                                <th class="bg-primary extra_sm2">Godown Stock</th>
+                                                <th class="bg-primary extra_sm2">Ledger Due</th>
 
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Business Name</th>
-                                                <th>IMS Target (100%)</th>
-                                                <th>Collection Target (95%)</th>
-                                                <th>Daily IMS Target</th>
-                                                <th class="green">Sales As per Target</th>
-                                                <th class="green">Sales upto</th>
-                                                <th class="green">Collection upto</th>
-                                                <th>Deposit to Bank</th>
-                                                <th>Depost VS Collection</th>
-                                                <th>Due Begning Month</th>
-                                                <th>Due Endof Month</th>
-                                                <th>Godown Stock</th>
-                                                <th>Ledger View</th>
 
-                                            </tr>
-                                        </tfoot>
                                         <tbody>
                                             @php
                                                 //return count($businesses);
+                                                $imsTargetSum = 0;
+                                                $collTargetSum = 0;
+                                                $collTarget = 0;
+                                                $dailyTarget = 0;
                                             @endphp
                                             @foreach ($businesses as $business)
                                                 <tr>
-                                                    <td> {{ $business->business_name }}</td>
+                                                    @php
+                                                        $imsTargetSum += $business->ims_target;
+                                                        $collTarget =
+                                                            ($business->ims_target * $business->collection_target) /
+                                                            100;
+                                                        $collTargetSum += $collTarget;
+                                                        $dailyTarget = $collTarget / $business->working_days;
+                                                    @endphp
+                                                    <td class="bg-primary"> {{ $loop->iteration }}</td>
+                                                    <td class="bg-primary"> {{ $business->business_name }}</td>
+                                                    <td class="bg-red text-right">
+
+                                                        {{ number_format($business->ims_target, 2) }}</td>
+                                                    <td class="bg-pink text-right"> {{ number_format($collTarget, 2) }}
+                                                    </td>
+                                                    <td class="bg-red text-right"> {{ number_format($dailyTarget, 2) }}
+                                                    </td>
+                                                    <td class="bg-pink text-right">
+                                                    </td>
+                                                    <td class="bg-red text-right">
+                                                    </td>
+                                                    <td class="bg-pink text-right">
+                                                    </td>
+                                                    <td class="bg-red text-right">
+                                                    </td>
+                                                    <td class="bg-pink text-right">
+                                                    </td>
+                                                    <td class="bg-red text-right">
+                                                    </td>
+                                                    <td class="bg-pink text-right">
+                                                    </td>
+                                                    <td class="bg-red text-right">
+                                                    </td>
+                                                    <td class="bg-pink text-right">
+                                                    </td>
                                                 </tr>
                                                 @php
                                                     // $payments = App\Models\Target::where(
@@ -130,14 +160,30 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach --}}
-                                                <tr>
-                                                    <td class="extra_sm3">Total</td>
-                                                    <td class="bg-success text-danger">
-                                                        {{-- {{ number_format($payments->sum('payment_amount'), 2) }} --}}
-                                                    </td>
-                                                </tr>
                                             @endforeach
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td></td>
+                                                <td class="bg-info text-center">Total</td>
+                                                <td class="bg-primary text-right">{{ number_format($imsTargetSum, 2) }}
+                                                </td>
+                                                <td class="bg-primary text-right">{{ number_format($collTargetSum, 2) }}
+                                                </td>
+                                                <td class="bg-primary text-right">{{ number_format($dailyTarget, 2) }}
+                                                </td>
+                                                <th class="bg-primary text-right">Sales As per Target</th>
+                                                <th class="bg-primary text-right">Sales upto</th>
+                                                <th class="bg-primary text-right">Collection upto</th>
+                                                <th class="bg-primary text-right">Deposit to Bank</th>
+                                                <th class="bg-primary text-right">Depost VS Collection</th>
+                                                <th class="bg-primary text-right">Due Begning Month</th>
+                                                <th class="bg-primary text-right">Due Endof Month</th>
+                                                <th class="bg-primary text-right">Godown Stock</th>
+                                                <th class="bg-primary text-right">Ledger View</th>
+
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -154,16 +200,15 @@
     @parent
     <script>
         $(document).ready(function() {
-            $("td").css({
-                'background-color': 'rgba(97, 85, 155, 0.27)',
-                'font-size': '18px',
-                'color': 'blue'
+
+            $(".extra_sm2").css({
+                'font-size': '16px',
+                'color': 'black',
+                'min-width': '50px',
+                'max-width': '72px',
+                'font-weight': 'bolder'
             });
-            $("td.green, th.green").css({
-                'background-color': '#4bed4d',
-                'font-size': '14px',
-                'color': 'blue'
-            });
+
         });
     </script>
 @endsection

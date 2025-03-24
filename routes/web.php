@@ -9,6 +9,7 @@ use App\Http\Controllers\backend\SpecialistController;
 use App\Http\Controllers\backend\CompanyController;
 use App\Http\Controllers\backend\DamageController;
 use App\Http\Controllers\backend\DepositController;
+use App\Http\Controllers\backend\DuesCollectionController;
 use App\Http\Controllers\backend\DuesController;
 use App\Http\Controllers\backend\EmployeeController;
 use App\Http\Controllers\backend\InsentiveController;
@@ -100,6 +101,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/target', TargetController::class);
     Route::resource('/stock', StockController::class);
     Route::resource('/dues', DuesController::class);
+    Route::resource('/duerealize', DuesCollectionController::class);
     Route::resource('/deposit', DepositController::class);
     Route::get('/report', [ReportController::class, 'index']);
     Route::get('/report1', [ReportController::class, 'report1'])->name('report1');

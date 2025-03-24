@@ -38,7 +38,8 @@
                             @include('backend.layouts.success')
                             {{-- <h6 class="panel-title txt-dark">Retailer List</h6> --}}
                         </div>
-                        <div class="pull-right"><a href="{{ route('dues.create') }}" class="btn btn-success">New Due</a>
+                        <div class="pull-right"><a href="{{ route('duerealize.create') }}" class="btn btn-success">New
+                                Due</a>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -51,8 +52,8 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Shop Name</th>
-                                                <th>Invoice No</th>
-                                                <th>Sales Date</th>
+                                                <th>Invoice</th>
+                                                <th>Invoice Date</th>
                                                 <th>Sales Amount</th>
                                                 <th>Collection Amount</th>
                                                 <th>Due Amount</th>
@@ -63,8 +64,8 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Shop Name</th>
-                                                <th>Invoice No</th>
-                                                <th>Sales Date</th>
+                                                <th>Invoice</th>
+                                                <th>Invoice Date</th>
                                                 <th>Sales Amount</th>
                                                 <th>Collection Amount</th>
                                                 <th>Due Amount</th>
@@ -72,25 +73,25 @@
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                            @foreach ($items as $item)
+                                            @foreach ($dues as $due)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $item->retailer->shop_name }}</td>
-                                                    <td>{{ $item->invoice_number }}</td>
-                                                    <td>{{ $item->sales_date }}</td>
-                                                    <td>{{ $item->sales_amount }}</td>
-                                                    <td>{{ $item->collection_amount }}</td>
-                                                    <td>{{ $item->due_amount }}</td>
+                                                    <td>{{ $due->retailer->shop_name }}</td>
+                                                    <td>{{ $due->invoice }}</td>
+                                                    <td>{{ $due->invoice_date }}</td>
+                                                    <td>{{ $due->sales_amount }}</td>
+                                                    <td>{{ $due->collection_amount }}</td>
+                                                    <td>{{ $due->due_amount }}</td>
                                                     <td style="width: 15%;" class="text-center">
 
 
 
                                                         <form onSubmit="return confirm('Are you sure to Delete')"
-                                                            action="{{ route('dues.destroy', $item->id) }}" method="post">
+                                                            action="{{ route('dues.destroy', $due->id) }}" method="post">
                                                             <a class="btn btn-default btn-icon-anim btn-circle"
-                                                                href="{{ route('retailer.show', $item->id) }}"><i
+                                                                href="{{ route('retailer.show', $due->id) }}"><i
                                                                     class="glyphicon glyphicon-search"></i></a>
-                                                            <a href="{{ route('dues.edit', $item->id) }}"
+                                                            <a href="{{ route('dues.edit', $due->id) }}"
                                                                 class="btn btn-primary btn-icon-anim btn-circle"><i
                                                                     class="glyphicon glyphicon-edit"></i></a>
                                                             @csrf

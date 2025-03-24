@@ -31,8 +31,15 @@ class ReportController extends Controller
     public function report1(Request $request)
     {
         $company = Company::find($request->company);
-        $businesses = Business::where('company_id', $request->company)
-        ->get();
+        // $businesses = Business::where('company_id', $request->company)
+        // ->with('targets', 'business_id')
+        // ->get();
+
+        $businesses = DB::table('businesses')
+    ->join('targets', 'businesses.id', '=', 'targets.business_id')
+    ->where('company_id', $request->company)
+    ->get();
+
         //dd($businesses);
         $month = $request->month;
         $year = $request->year;
