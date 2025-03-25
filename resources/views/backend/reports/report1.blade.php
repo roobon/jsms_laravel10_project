@@ -4,7 +4,7 @@
     @parent
     <style>
         .report-caption {
-            font-size: 30px;
+            padding: 10px;
         }
 
         .report-header {
@@ -72,12 +72,13 @@
                             <div class="table-wrap">
                                 <div class="table-responsive">
                                     <table id="example" class="table table-bordered display  pb-30">
-                                        <caption class="bg-info text-center">
-                                            <div class="report-caption">Companywise Summary Report</div>
-                                            <span class="report-title">Company Name: {{ $company->company_name }} <br>
+                                        <caption class="bg-info text-center report-caption">
+                                            <h2 class="text-primary">Companywise Summary Report</h2>
+                                            <h4 class="text-info">Company Name:
+                                                {{ $company->company_name }}</h4>
 
-                                                Report Duration: 01-01-2025 to 31-01-2025
-                                            </span>
+                                            <h5 class="text-shadow text-center">Report Month: {{ $month . ', ' . $year }}
+
                                         </caption>
                                         <thead>
                                             <tr>
@@ -90,9 +91,9 @@
                                                 <th class="bg-primary extra_sm2">Sales upto</th>
                                                 <th class="bg-primary extra_sm2">Collection upto</th>
                                                 <th class="bg-primary extra_sm2">Deposit to Bank</th>
-                                                <th class="bg-primary extra_sm2">Depost VS Collection</th>
-                                                <th class="bg-primary extra_sm2">Due Begning Month</th>
-                                                <th class="bg-primary extra_sm2">Due Endof Month</th>
+                                                <th class="bg-primary extra_sm2">Deposit VS Collection</th>
+                                                <th class="bg-primary extra_sm2">Due Start of Month</th>
+                                                <th class="bg-primary extra_sm2">Due End of Month</th>
                                                 <th class="bg-primary extra_sm2">Godown Stock</th>
                                                 <th class="bg-primary extra_sm2">Ledger Due</th>
 
@@ -105,10 +106,12 @@
                                                 $collTargetSum = 0;
                                                 $collTarget = 0;
                                                 $dailyTarget = 0;
-                                                $salesAmount = 0;
+                                                $dailyTargetSum = 0;
+                                                $salesAmountSum = 0;
                                                 $salesPerTargetSum = 0;
                                                 $collectionSum = 0;
                                                 $depositBankSum = 0;
+                                                $depoVScoll = 0;
                                                 $depoVScollSum = 0;
                                                 $dueBegMonthSum = 0;
                                                 $dueEndMonthSum = 0;
@@ -124,6 +127,8 @@
                                                             100;
                                                         $collTargetSum += $collTarget;
                                                         $dailyTarget = $collTarget / $business->working_days;
+                                                        $dailyTargetSum += $dailyTarget; // Daily IMS Target Sum
+
                                                         $opening = App\Models\OpeningClosing::where(
                                                             'business_id',
                                                             $business->id,
@@ -140,6 +145,21 @@
                                                             ->where('year', $year)
                                                             ->where('period', 'closing')
                                                             ->first();
+                                                        $salesAmountSum += $closing->sales_amount; // Sales Amount Sum
+                                                        $collectionSum +=
+                                                            $closing->collection_amount + $closing->due_realize_amount;
+                                                        $depoVScoll = $collTarget - $closing->bank_deposit_amount;
+                                                        $depoVScollSum += $depoVScoll;
+                                                        $dueBegMonthSum += $opening->total_due_amount;
+                                                        $dueEndMonthSum += $closing->total_due_amount;
+                                                        $goDownStock =
+                                                            $closing->product_received_amount +
+                                                            $closing->vat_adjustment_received_amount;
+                                                        $goDownStockSum += $goDownStock;
+                                                        $ledgerDue =
+                                                            $closing->bank_deposit_amount -
+                                                            $closing->product_received_amount;
+                                                        $ledgerDueSum += $ledgerDue;
                                                     @endphp
                                                     <td class="bg-primary"> {{ $loop->iteration }}
                                                         {{-- ID --}}
@@ -152,10 +172,12 @@
                                                         {{ number_format($business->ims_target, 2) }}
                                                         {{-- IMS Target --}}
                                                     </td>
-                                                    <td class="bg-pink text-right"> {{ number_format($collTarget, 2) }}
+                                                    <td class="bg-pink text-right">
+                                                        {{ number_format($collTarget, 2) }}{{ ' (' . $business->collection_target . '%)' }}
                                                         {{-- Collection Target --}}
                                                     </td>
                                                     <td class="bg-red text-right"> {{ number_format($dailyTarget, 2) }}
+                                                        {{ '(Working Day: ' . $business->working_days . ')' }}
                                                         {{-- Daily IMS Target --}}
                                                     </td>
                                                     <td class="bg-pink text-right">
@@ -165,8 +187,11 @@
                                                             $m = $dateinfo['mon'];
                                                             $d = $dateinfo['mday'];
                                                             $d++;
+                                                            $daysTarget = $dailyTarget * $d;
+                                                            $salesPerTargetSum += $daysTarget;
                                                         @endphp
-                                                        {{ $m == $month ? number_format($dailyTarget * $d, 2) : number_format($business->ims_target, 2) }}
+                                                        {{ $m == $month ? number_format($daysTarget, 2) : number_format($business->ims_target, 2) }}
+                                                        <br>{{ 'Total Days: ' . $d }}
                                                         {{-- Sales As per Target --}}
                                                     </td>
                                                     <td class="bg-red text-right">
@@ -185,7 +210,7 @@
                                                         {{-- Bank Deposit --}}
                                                     </td>
                                                     <td class="bg-pink text-right">
-                                                        {{ number_format($closing->bank_deposit_amount - $closing->collection_amount, 2) }}
+                                                        {{ number_format($depoVScoll, 2) }}
                                                         {{-- Deposit vs Collection --}}
                                                     </td>
                                                     <td class="bg-red text-right">
@@ -197,10 +222,11 @@
                                                         {{-- Total Due Closing --}}
                                                     </td>
                                                     <td class="bg-red text-right">
-                                                        {{ number_format($closing->collection_amount, 2) }}
+                                                        {{ number_format($goDownStock, 2) }}
+                                                        {{-- Godown Stock --}}
                                                     </td>
                                                     <td class="bg-pink text-right">
-                                                        {{ number_format($closing->ho_deposit_amount, 2) }}
+                                                        {{ number_format($ledgerDue, 2) }}
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -209,40 +235,47 @@
                                             <tr>
                                                 <td></td>
                                                 <td class="bg-info text-center extra_sm2">Total</td>
-                                                <td class="bg-primary text-right">{{ number_format($imsTargetSum, 2) }}
-                                                </td>
-                                                <td class="bg-primary text-right">{{ number_format($collTargetSum, 2) }}
-                                                </td>
-                                                <td class="bg-primary text-right">{{ number_format($dailyTarget, 2) }}
-                                                    Daily Target
+                                                <td class="bg-primary text-right">
+                                                    {{ number_format($imsTargetSum, 2) }}
                                                 </td>
                                                 <td class="bg-primary text-right">
-                                                    {{ number_format($dueEndMonthSum, 2) }}
-                                                    Sales As per Target</td>
+                                                    {{ number_format($collTargetSum, 2) }}
+                                                </td>
                                                 <td class="bg-primary text-right">
-                                                    {{ number_format($dueEndMonthSum, 2) }}
-                                                    Sales upto</td>
+                                                    {{ number_format($dailyTargetSum, 2) }}
+                                                </td>
                                                 <td class="bg-primary text-right">
-                                                    {{ number_format($dueEndMonthSum, 2) }}
-                                                    Collection upto</td>
+                                                    {{ number_format($salesPerTargetSum, 2) }}
+                                                </td>
+                                                <td class="bg-primary text-right">
+                                                    {{ number_format($salesAmountSum, 2) }}
+                                                </td>
+                                                <td class="bg-primary text-right">
+                                                    {{ number_format($collectionSum, 2) }}
+                                                </td>
                                                 <td class="bg-primary text-right">
                                                     {{ number_format($depositBankSum, 2) }}
                                                     {{-- Deposit to Bank --}}
                                                 </td>
                                                 <td class="bg-primary text-right">
-                                                    {{ number_format($dueEndMonthSum, 2) }}
-                                                    Deposit VS Collection</td>
+                                                    {{ number_format($depoVScollSum, 2) }}
+                                                    {{-- Deposit VS Collection --}}
+                                                </td>
                                                 <td class="bg-primary text-right">
-                                                    {{ number_format($dueEndMonthSum, 2) }}
-                                                    Due Begning Month</td>
-                                                <td class="bg-primary text-right">{{ number_format($dueEndMonthSum, 2) }}
+                                                    {{ number_format($dueBegMonthSum, 2) }}
+                                                    {{-- Due Begning Month --}}
                                                 </td>
                                                 <td class="bg-primary text-right">
                                                     {{ number_format($dueEndMonthSum, 2) }}
-                                                    Godown Stock</td>
-                                                <td class="bg-primary text-right extra_sm2">
-                                                    {{ number_format($dueEndMonthSum, 2) }}
-                                                    Ledger View</td>
+                                                </td>
+                                                <td class="bg-primary text-right">
+                                                    {{ number_format($goDownStockSum, 2) }}
+                                                    {{-- Godown Stock --}}
+                                                </td>
+                                                <td class="bg-primary text-right">
+                                                    {{ number_format($ledgerDueSum, 2) }}
+                                                    {{-- Ledger due --}}
+                                                </td>
 
                                             </tr>
                                         </tfoot>
