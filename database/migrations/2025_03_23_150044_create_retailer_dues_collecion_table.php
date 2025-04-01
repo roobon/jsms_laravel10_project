@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->integer('business_id'); // Business
             $table->integer('employee_id'); // Delivery Man
+            $table->enum('status', ['pending', 'clear']);
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ class DuesCollectionController extends Controller
         {
             $items = Retailer::orderBy('id', 'desc')->get();
             $businesses = Business::all();
-            $dues = RetailerDuesCollection::orderBy('id', 'desc')->get();
+            $dues = RetailerDuesCollection::orderBy('id', 'desc')->where('transaction', 'sales')->get();
             return view('backend.dues.index', compact('items', 'businesses', 'dues'));
         }
     }
@@ -50,6 +50,7 @@ class DuesCollectionController extends Controller
                 'business' => 'required',
                 'delman' => 'required',
                 'photo' => 'nullable'
+                
             ],
         );
         if ($image = $request->file('photo')) {
@@ -75,6 +76,11 @@ class DuesCollectionController extends Controller
         $dues->business_id = $request->business;
         $dues->employee_id = $request->delman;
         $dues->photo = $photo;
+        if($due>0){
+            $dues->status = 'pending';    
+        } else {
+            $dues->status = 'clear';    
+        }
         $dues->save();
         
         $retailer = Retailer::find($request->retailer);
@@ -95,7 +101,8 @@ class DuesCollectionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $dues = RetailerDuesCollection::find($id);
+        return view('backend.dues.show', compact('dues'));
     }
 
     /**

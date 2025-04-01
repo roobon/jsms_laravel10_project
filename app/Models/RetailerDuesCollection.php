@@ -12,6 +12,6 @@ class RetailerDuesCollection extends Model
 
     public function retailer()
     {
-        
+        return $this->belongsTo(Retailer::class);
     }
 }

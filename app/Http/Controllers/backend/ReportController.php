@@ -30,6 +30,7 @@ class ReportController extends Controller
 
     public function report1(Request $request)
     {
+        $months = [1=>'January', 2=>'February', 3=>'March', 4=>'April', 5=>'May', 6=>'June', 7=>'July', 8=>'August', 9=>'September', 10=>'October', 11=>'November', 12=>'December'];
         $company = Company::find($request->company);
         // $businesses = Business::where('company_id', $request->company)
         // ->with('targets', 'business_id')
@@ -49,6 +50,7 @@ class ReportController extends Controller
     $data['company'] = $company;
     $data['month'] = $month;
     $data['year'] = $year;
+    $data['months'] = $months;
             
 
 

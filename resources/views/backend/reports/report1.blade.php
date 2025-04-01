@@ -77,7 +77,8 @@
                                             <h4 class="text-info">Company Name:
                                                 {{ $company->company_name }}</h4>
 
-                                            <h5 class="text-shadow text-center">Report Month: {{ $month . ', ' . $year }}
+                                            <h5 class="text-shadow text-center">Report Month:
+                                                {{ $months[$month] . ', ' . $year }}
 
                                         </caption>
                                         <thead>

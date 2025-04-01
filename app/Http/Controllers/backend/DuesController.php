@@ -7,6 +7,7 @@ use App\Models\Business;
 use App\Models\Employee;
 use App\Models\Retailer;
 use App\Models\RetailerDues;
+use App\Models\RetailerDuesCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,9 +20,9 @@ class DuesController extends Controller
      */
     public function index()
     {
-        $items = RetailerDues::orderBy('id', 'desc')->get();
+        $dues = RetailerDuesCollection::orderBy('id', 'desc')->get();
         $businesses = Business::all();
-        return view('backend.dues.index', compact('items', 'businesses'));
+        return view('backend.dues.index', compact('dues', 'businesses'));
     }
 
     /**

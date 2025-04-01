@@ -74,36 +74,73 @@
                                         </tfoot>
                                         <tbody>
                                             @foreach ($dues as $due)
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $due->retailer->shop_name }}</td>
-                                                    <td>{{ $due->invoice }}</td>
-                                                    <td>{{ $due->invoice_date }}</td>
-                                                    <td>{{ $due->sales_amount }}</td>
-                                                    <td>{{ $due->collection_amount }}</td>
-                                                    <td>{{ $due->due_amount }}</td>
-                                                    <td style="width: 15%;" class="text-center">
+                                                @if ($due->status == 'pending')
+                                                    <tr class="bg-dark">
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $due->retailer->shop_name }}</td>
+                                                        <td>{{ $due->invoice }}</td>
+                                                        <td>{{ $due->invoice_date }}</td>
+                                                        <td>{{ $due->sales_amount }}</td>
+                                                        <td>{{ $due->collection_amount }}</td>
+                                                        <td>{{ $due->due_amount }}</td>
+                                                        <td style="width: 15%;" class="text-center">
 
 
 
-                                                        <form onSubmit="return confirm('Are you sure to Delete')"
-                                                            action="{{ route('dues.destroy', $due->id) }}" method="post">
-                                                            <a class="btn btn-default btn-icon-anim btn-circle"
-                                                                href="{{ route('retailer.show', $due->id) }}"><i
-                                                                    class="glyphicon glyphicon-search"></i></a>
-                                                            <a href="{{ route('dues.edit', $due->id) }}"
-                                                                class="btn btn-primary btn-icon-anim btn-circle"><i
-                                                                    class="glyphicon glyphicon-edit"></i></a>
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn btn-danger btn-icon-anim btn-circle"
-                                                                type="submit" name="submit"><i
-                                                                    class="glyphicon glyphicon-trash"></i></button>
-                                                        </form>
+                                                            <form onSubmit="return confirm('Are you sure to Delete')"
+                                                                action="{{ route('duerealize.destroy', $due->id) }}"
+                                                                method="post">
+                                                                <a class="btn btn-default btn-icon-anim btn-circle"
+                                                                    href="{{ route('duerealize.show', $due->id) }}"><i
+                                                                        class="glyphicon glyphicon-search"></i></a>
+                                                                <a href="{{ route('duerealize.edit', $due->id) }}"
+                                                                    class="btn btn-primary btn-icon-anim btn-circle"><i
+                                                                        class="glyphicon glyphicon-edit"></i></a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="btn btn-danger btn-icon-anim btn-circle"
+                                                                    type="submit" name="submit"><i
+                                                                        class="glyphicon glyphicon-trash"></i></button>
+                                                            </form>
 
-                                                    </td>
+                                                        </td>
+                                                        <td><a href="{{ 'duerealize.create' }}">Due Realize</a></td>
 
-                                                </tr>
+                                                    </tr>
+                                                @else
+                                                    <tr class="bg-success">
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $due->retailer->shop_name }}</td>
+                                                        <td>{{ $due->invoice }}</td>
+                                                        <td>{{ $due->invoice_date }}</td>
+                                                        <td>{{ $due->sales_amount }}</td>
+                                                        <td>{{ $due->collection_amount }}</td>
+                                                        <td>{{ $due->due_amount }}</td>
+                                                        <td style="width: 15%;" class="text-center">
+
+
+
+                                                            <form onSubmit="return confirm('Are you sure to Delete')"
+                                                                action="{{ route('duerealize.destroy', $due->id) }}"
+                                                                method="post">
+                                                                <a class="btn btn-default btn-icon-anim btn-circle"
+                                                                    href="{{ route('duerealize.show', $due->id) }}"><i
+                                                                        class="glyphicon glyphicon-search"></i></a>
+                                                                <a href="{{ route('duerealize.edit', $due->id) }}"
+                                                                    class="btn btn-primary btn-icon-anim btn-circle"><i
+                                                                        class="glyphicon glyphicon-edit"></i></a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="btn btn-danger btn-icon-anim btn-circle"
+                                                                    type="submit" name="submit"><i
+                                                                        class="glyphicon glyphicon-trash"></i></button>
+                                                            </form>
+
+                                                        </td>
+                                                        <td><a href="{{ 'duerealize.create' }}">Due Realize</a></td>
+
+                                                    </tr>
+                                                @endif
                                             @endforeach
                                         </tbody>
                                     </table>
