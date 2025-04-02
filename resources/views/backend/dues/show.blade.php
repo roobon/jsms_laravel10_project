@@ -2,6 +2,7 @@
 
 @section('styles')
     @parent
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- jquery-steps css -->
     <link rel="stylesheet" href="{{ asset('vendors/bower_components/jquery.steps/demo/css/jquery.steps.css') }}">
 
@@ -142,37 +143,60 @@
                                                 <h5 class="modal-title">Modal Content is Responsive</h5>
                                             </div>
                                             <div class="modal-body">
-                                                <form>
+                                                <form method="post" enctype="multipart/form-data" id="realizeForm">
+
                                                     <div class="form-group">
                                                         <label for="retailer" class="control-label mb-10">Retailer
-                                                            ID:</label>
-                                                        <input type="text" class="form-control" id="retailer">
+                                                            Code:</label>
+                                                        <input type="text" class="form-control" id="retailer"
+                                                            name="retailer">
+                                                        <input type="text" class="form-control" id="retailer-code"
+                                                            disabled>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="invoice-no" class="control-label mb-10">Invoice:</label>
-                                                        <input type="text" class="form-control" id="invoice-no">
+                                                        <label for="invoice" class="control-label mb-10">Invoice:</label>
+                                                        <input type="text" class="form-control" id="invoice"
+                                                            name="invoice">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="invoice-date" class="control-label mb-10">Invoice
+                                                        <label for="invoice-date" class="control-label mb-10">Collection
                                                             Date:</label>
-                                                        <input type="date" class="form-control" id="invoice-date">
+                                                        <input type="date" class="form-control" id="invoice-date"
+                                                            name="collection_date">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="collection-amount"
+                                                        <label for="collection_amount"
                                                             class="control-label mb-10">Collection Amount:</label>
-                                                        <input type="number" class="form-control" id="collection-amount">
+                                                        <input type="number" class="form-control" id="collection_amount"
+                                                            name="collection_amount">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="message-text"
-                                                            class="control-label mb-10">Message:</label>
-                                                        <textarea class="form-control" id="message-text"></textarea>
+                                                        <label for="business" class="control-label mb-10">Business
+                                                            Name:</label>
+                                                        <input type="number" class="form-control" id="business"
+                                                            name="business">
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="employee" class="control-label mb-10">Employee
+                                                            Name:</label>
+                                                        <input type="number" class="form-control" id="employee"
+                                                            name="employee">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="photo" class="control-label mb-10">Photo
+                                                            Name:</label>
+                                                        <input type="file" class="form-control" id="photo"
+                                                            name="photo">
+                                                    </div>
+                                                    <input type="hidden" class="form-control" id="dueold"
+                                                        name="dueold">
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default"
                                                     data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-danger">Save changes</button>
+                                                <button type="button" class="btn btn-danger"
+                                                    id="saveBtn">Save</button>
                                             </div>
                                         </div>
                                     </div>
@@ -207,6 +231,11 @@
                                             <th>{{ $history->transaction }}</th>
                                             <th>{{ $history->collection_amount }}</th>
                                             <th>{{ $history->due_amount }}</th>
+                                            @php
+                                                if ($history->due_amount) {
+                                                    $dues->due_amount = $history->due_amount;
+                                                }
+                                            @endphp
                                         </tr>
                                     @endforeach
 
@@ -219,7 +248,10 @@
                                             Dues list</span></a>
                                 </div>
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#responsive-modal" data-retailerid="@retailer">New
+                                    data-target="#responsive-modal" data-retailer="{{ $dues->retailer_id }}"
+                                    data-invoice="{{ $dues->invoice }}"
+                                    data-retailercode="{{ $dues->retailer->retailer_code }}"
+                                    data-dueold="{{ $dues->due_amount }}">New
                                     Collection</button>
                                 <!-- Button trigger modal -->
                             </div>

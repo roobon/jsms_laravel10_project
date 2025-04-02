@@ -102,6 +102,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('/stock', StockController::class);
     Route::resource('/dues', DuesController::class);
     Route::resource('/duerealize', DuesCollectionController::class);
+    Route::post('/duerealization/entry', [DuesCollectionController::class, 'realize_entry'])->name('realize.entry');
     Route::resource('/deposit', DepositController::class);
     Route::get('/report', [ReportController::class, 'index']);
     Route::get('/report1', [ReportController::class, 'report1'])->name('report1');

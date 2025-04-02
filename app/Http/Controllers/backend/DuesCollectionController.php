@@ -96,6 +96,62 @@ class DuesCollectionController extends Controller
         return redirect()->route('duerealize.index')->with('msg', "Due Entered Successfully ");
     }
 
+    public function realize_entry(Request $request)
+    {
+        // $request->validate(
+        //     [
+        //         'retailer' => 'required',  
+        //         'invoice' => 'required',
+        //         'collection_amount' => 'required'
+        //         // 'business' => 'required',
+        //         // 'delman' => 'required',
+        //         // 'photo' => 'nullable'
+                
+        //     ],
+        // );
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'images/dues/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $photo = $destinationPath . $postImage;
+        } else {
+            $photo = NULL;
+        }
+
+        $dues = new RetailerDuesCollection();
+
+        $dues->retailer_id = $request->retailer;
+        $dues->invoice = $request->invoice;
+        $dues->invoice_date = $request->collection_date;
+        $dues->transaction = 'realization';
+        $dues->sales_amount = 0;
+        $dues->collection_amount = $request->collection_amount;
+        $due = $request->dueold - $request->collection_amount;
+        $dues->due_amount = $due;
+        $dues->business_id = $request->business;
+        $dues->employee_id = $request->employee;
+        $dues->photo = $photo;
+        if($due>0){
+            $dues->status = 'pending';    
+        } else {
+            $dues->status = 'clear';    
+        }
+        $dues->save();
+        
+        // $retailer = Retailer::find($request->retailer);
+        // $retailer->current_due = $retailer->current_due + $due;
+        // if($retailer->current_due>19999) {
+        //     $retailer->performance = "poor";
+        // } elseif($retailer->current_due>9999){
+        //     $retailer->performance = "good";
+        // } 
+        
+        // $retailer->update(); 
+        //dd($dues);
+
+        return redirect()->back()->with('msg', "Due Realization Entered Successfully ");
+    }
+
     /**
      * Display the specified resource.
      */

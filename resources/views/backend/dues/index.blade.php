@@ -57,6 +57,7 @@
                                                 <th>Sales Amount</th>
                                                 <th>Collection Amount</th>
                                                 <th>Due Amount</th>
+                                                <th>Current Due</th>
                                                 <th style="width: 15%;" class="text-center">Action</th>
                                             </tr>
                                         </thead>
@@ -69,6 +70,7 @@
                                                 <th>Sales Amount</th>
                                                 <th>Collection Amount</th>
                                                 <th>Due Amount</th>
+                                                <th>Current Due</th>
                                                 <th style="width: 15%;" class="text-center">Action</th>
                                             </tr>
                                         </tfoot>
@@ -83,6 +85,7 @@
                                                         <td>{{ $due->sales_amount }}</td>
                                                         <td>{{ $due->collection_amount }}</td>
                                                         <td>{{ $due->due_amount }}</td>
+                                                        <td>{{ $due->retailer->current_due }}</td>
                                                         <td style="width: 15%;" class="text-center">
 
 
@@ -104,7 +107,7 @@
                                                             </form>
 
                                                         </td>
-                                                        <td><a href="{{ 'duerealize.create' }}">Due Realize</a></td>
+
 
                                                     </tr>
                                                 @else
@@ -116,6 +119,7 @@
                                                         <td>{{ $due->sales_amount }}</td>
                                                         <td>{{ $due->collection_amount }}</td>
                                                         <td>{{ $due->due_amount }}</td>
+                                                        <td>{{ $due->retailer->current_due }}</td>
                                                         <td style="width: 15%;" class="text-center">
 
 
@@ -137,7 +141,7 @@
                                                             </form>
 
                                                         </td>
-                                                        <td><a href="{{ 'duerealize.create' }}">Due Realize</a></td>
+
 
                                                     </tr>
                                                 @endif
