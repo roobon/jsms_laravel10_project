@@ -91,8 +91,8 @@
                                                 <th rowspan="2" class="text-center extra">Total Sale (Tk.)</th>
                                                 <th rowspan="2" class="text-center extra">Deposit to Office (Tk.)</th>
                                                 <th rowspan="2" class="text-center extra">Due (Tk.)</th>
-                                                <th rowspan="2" class="text-center extra">Due Realization (Tk.)</th>
-                                                <th rowspan="2" class="text-center extra">Total Due (Tk.)</th>
+                                                <th rowspan="2" class="text-center extra_lg2">Due Realization (Tk.)</th>
+                                                <th rowspan="2" class="text-center extra_lg2">Total Due (Tk.)</th>
                                                 <th rowspan="2" class="text-center extra_lg2">Deposit to HO (Tk.)</th>
                                             </tr>
                                             <tr>
@@ -581,51 +581,141 @@
 
                                                     @if (count($SalesByRetailer) > 0)
                                                         <table class="table table-bordered" style="padding: 0; margin:0">
+                                                            <tr class="bg-primary text-center">
+                                                                <td>Date</td>
+                                                                <td>Sales</td>
+                                                                <td>Collection</td>
+                                                                <td>Dues</td>
+                                                                <td>Realize</td>
+                                                                <td>Final Due</td>
+                                                            </tr>
+                                                            @php
+                                                                $TotalSales = 0;
+                                                                $TotalCollections = 0;
+                                                                $TotalDues = 0;
+                                                                $TotalRealizes = 0;
+                                                                $dailyCollections = 0;
+                                                                $dailySales = 0;
+                                                                $dailyRealizes = 0;
+                                                                $dailyDues = 0;
+                                                                $dailyFinalDues = 0;
 
+                                                            @endphp
                                                             @foreach ($SalesByRetailer as $row)
                                                                 <tr>
-                                                                    <td>{{ $row->invoice_date }}</td>
-                                                                    <td class="text-right">
-                                                                        @php
-                                                                            $sales = App\Models\RetailerDuesCollection::groupBy(
+                                                                    <td class="extra_sm3">{{ $row->invoice_date }}</td>
+                                                                    @php
+
+                                                                        $sales = App\Models\RetailerDuesCollection::where(
+                                                                            'business_id',
+                                                                            $businessInfo['id'],
+                                                                        )
+                                                                            ->whereMonth(
                                                                                 'invoice_date',
+                                                                                $businessInfo['month'],
                                                                             )
-                                                                                ->where(
-                                                                                    'business_id',
-                                                                                    $businessInfo['id'],
-                                                                                )
-                                                                                ->whereMonth(
-                                                                                    'invoice_date',
-                                                                                    $businessInfo['month'],
-                                                                                )
-                                                                                ->whereYear(
-                                                                                    'invoice_date',
-                                                                                    $businessInfo['year'],
-                                                                                )
-                                                                                ->where('transaction', 'sales')
-                                                                                ->selectRaw(
-                                                                                    'invoice_date, sum(sales_amount) as TotalSalesAmount, sum(due_amount) as TotalDueAmount',
-                                                                                )
-                                                                                ->get();
+                                                                            ->whereYear(
+                                                                                'invoice_date',
+                                                                                $businessInfo['year'],
+                                                                            )
+                                                                            ->where('transaction', 'sales')
+                                                                            ->where('invoice_date', $row->invoice_date)
+                                                                            ->groupBy('invoice_date')
+                                                                            ->selectRaw(
+                                                                                'sum(sales_amount) as TotalSalesAmount, sum(due_amount) as TotalDueAmount, sum(collection_amount) as TotalCollectAmount',
+                                                                            )
+                                                                            ->get();
 
-                                                                        @endphp
+                                                                    @endphp
 
-                                                                        {{-- {{ $sales->TotalSalesAmount }} --}}
-
-
-
+                                                                    <td class="text-right extra_sm3">
+                                                                        @foreach ($sales as $sale)
+                                                                            {{ $dailySales = $sale->TotalSalesAmount }}
+                                                                            @php
+                                                                                $TotalSales += $dailySales;
+                                                                            @endphp
+                                                                        @endforeach
                                                                     </td>
-                                                                    <td class="text-right">
-                                                                        Dues
+                                                                    <td class="text-right extra_sm3">
+                                                                        @foreach ($sales as $collection)
+                                                                            {{ $dailyCollections = $collection->TotalCollectAmount }}
+                                                                            @php
+                                                                                $TotalCollections += $dailyCollections;
+                                                                            @endphp
+                                                                        @endforeach
                                                                     </td>
-                                                                    <td class="text-right">
-                                                                        Due Realize
+                                                                    <td class="text-right extra_sm3">
+                                                                        @foreach ($sales as $due)
+                                                                            {{ $dailyDues = $due->TotalDueAmount }}
+                                                                            @php
+                                                                                $TotalDues += $dailyDues;
+                                                                            @endphp
+                                                                        @endforeach
                                                                     </td>
-                                                                    <td class="text-right">
-                                                                        total Due
+
+                                                                    @php
+                                                                        $Retailerdues = App\Models\RetailerDuesCollection::where(
+                                                                            'business_id',
+                                                                            $businessInfo['id'],
+                                                                        )
+                                                                            ->whereMonth(
+                                                                                'invoice_date',
+                                                                                $businessInfo['month'],
+                                                                            )
+                                                                            ->whereYear(
+                                                                                'invoice_date',
+                                                                                $businessInfo['year'],
+                                                                            )
+                                                                            ->where('transaction', 'realization')
+                                                                            ->where('invoice_date', $row->invoice_date)
+                                                                            ->groupBy('invoice_date')
+                                                                            ->selectRaw(
+                                                                                'sum(collection_amount) as TotalRealizeAmount',
+                                                                            )
+                                                                            ->get();
+
+                                                                    @endphp
+
+                                                                    <td class="text-right extra_sm3">
+                                                                        @foreach ($Retailerdues as $coll)
+                                                                            {{ $dailyRealizes = $coll->TotalRealizeAmount }}
+                                                                            @php
+                                                                                $TotalRealizes += $dailyRealizes;
+                                                                            @endphp
+                                                                        @endforeach
                                                                     </td>
+                                                                    <td class="text-right extra_sm3">
+                                                                        {{-- @foreach ($Retailerdues as $TotDue)
+                                                                            {{ $TotDue->TotalDueAmount }}
+                                                                        @endforeach --}}
+                                                                        {{-- {{ $dailyDues = $dailySales - ($dailyCollections + $dailyRealizes) }} --}}
+                                                                        @if ($dailyRealizes != true)
+                                                                            {{ $dailyFinalDues = $dailyDues }}
+                                                                        @elseif($dailySales < 0 || $dailyCollections < 0)
+                                                                            {{ $dailyFinalDues = $dailyFinalDues - $dailyRealizes }}
+                                                                        @else
+                                                                            {{ $dailyFinalDues = $dailySales - ($dailyCollections + $dailyRealizes) }}
+                                                                        @endif
+                                                                    </td>
+
                                                                 </tr>
                                                             @endforeach
+                                                            <tr>
+                                                                <td class="extra_sm3">Total</td>
+                                                                <td class="bg-success text-right extra_sm3">
+                                                                    {{ number_format($TotalSales, 2) }}
+                                                                </td>
+                                                                <td class="bg-success text-right extra_sm3">
+                                                                    {{ number_format($TotalCollections, 2) }}
+                                                                </td>
+                                                                <td class="bg-success text-right extra_sm3">
+                                                                    {{ number_format($TotalDues, 2) }}
+                                                                </td>
+                                                                <td class="bg-success text-right extra_sm3">
+                                                                    {{ number_format($TotalRealizes, 2) }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
                                                         </table>
                                                     @endif
                                                 </td>
