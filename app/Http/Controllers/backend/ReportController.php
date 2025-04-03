@@ -14,9 +14,11 @@ use App\Models\Investment;
 use App\Models\Insentive;
 use App\Models\Payment;
 use App\Models\RetailerDues;
+use App\Models\RetailerDuesCollection;
 use App\Models\Sales;
 use App\Models\Stock;
 use App\Models\Target;
+
 
 class ReportController extends Controller
 {
@@ -193,7 +195,7 @@ class ReportController extends Controller
     $oopProductSum = $oopProduct->sum('claim_amount');
 
 
-    // Sales Data
+    // Sales Data by Delivery Man
     $sales = Sales::where('business_id', $request->business)
         ->whereMonth('sales_date', $month)
         ->whereYear('sales_date', $year)
@@ -202,6 +204,47 @@ class ReportController extends Controller
         $collections = $sales->sum('collection_amount');
         $dues = $sales->sum('due_amount');  
     
+    // Sales, Dues and Due Realization by Retailer
+
+    $SalesByRetailer = RetailerDuesCollection::groupBy('invoice_date')
+    ->where('business_id', $request->business)
+    ->whereMonth('invoice_date', $month)
+    ->whereYear('invoice_date', $year)
+    ->get(); 
+
+
+    // $SalesByRetailer = RetailerDuesCollection::groupBy('invoice_date')
+    //     ->where('business_id', $request->business)
+    //     ->whereMonth('invoice_date', $month)
+    //     ->whereYear('invoice_date', $year)
+    //     ->where('transaction', 'sales')
+    //     ->selectRaw('invoice_date, sum(sales_amount) as TotalSalesAmount, sum(due_amount) as TotalDueAmount')
+    //     ->get();
+
+    // $DueRealization = RetailerDuesCollection::groupBy('invoice_date')
+    //     ->where('business_id', $request->business)
+    //     ->whereMonth('invoice_date', $month)
+    //     ->whereYear('invoice_date', $year)
+    //     ->where('transaction', 'realization')
+    //     ->selectRaw('invoice_date, sum(collection_amount) as TotalCollectionAmount')
+    //     ->get();    
+
+
+    // $SalesByRetailer = RetailerDuesCollection::where('business_id', $request->business)
+    //     ->whereMonth('invoice_date', $month)
+    //     ->whereYear('invoice_date', $year)
+    //     ->where('transaction', 'sales')
+    //     ->groupBy('invoice_date')
+    //     ->get();
+    //$SalesByRetailerSum = $SalesByRetailer->sum('sales_amount');
+    //$DueRealizationsSum = $SalesByRetailer->where('transaction', 'realization')->sum('collection_amount');
+    //dd($SalesByRetailerSum);
+    //$DuesSum = $SalesByRetailer->sum('due_amount');      
+
+
+
+
+
     // Collection and Dues    
     // $CollectionDues = Collection::select('invoice_no', SUM('collection_amount'), )->where('business_id', $request->business)
     //    ->whereMonth('invoice_date', $month)
@@ -260,6 +303,7 @@ class ReportController extends Controller
         $data['totalDepositHO'] =  $totalDepositHO;
                 
         // Collection  and Dues
+        $data['SalesByRetailer'] =  $SalesByRetailer;
         $data['CollectionDues'] =  $CollectionDues;
         $data['totalRetailerCollection'] =  $totalRetailerCollection;
         $data['totalRetailerDues'] =  $totalRetailerDues;

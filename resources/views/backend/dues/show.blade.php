@@ -9,6 +9,11 @@
     <!-- bootstrap-touchspin CSS -->
     <link href="{{ asset('vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css') }}"
         rel="stylesheet" type="text/css" />
+    <style>
+        .text-white {
+            color: white;
+        }
+    </style>
 @endsection
 
 @section('title')
@@ -26,7 +31,7 @@
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ route('duerealize.index') }}"><span>Dues</span></a></li>
+                    <li><a href="{{ route('dues.index') }}"><span>Dues</span></a></li>
                     <li class="active"><span>Due details</span></li>
                 </ol>
             </div>
@@ -72,7 +77,7 @@
                                             <tr>
                                                 <th>Due Amount</th>
                                                 @if ($dues->due_amount > 0)
-                                                    <th class="bg-dark">
+                                                    <th class="bg-red lead text-white">
                                                         {{ $dues->due_amount }}
                                                     </th>
                                                 @else
@@ -230,7 +235,11 @@
                                             <th>{{ $history->invoice_date }}</th>
                                             <th>{{ $history->transaction }}</th>
                                             <th>{{ $history->collection_amount }}</th>
-                                            <th>{{ $history->due_amount }}</th>
+                                            @if ($history->due_amount > 0)
+                                                <th class="bg-red text-white">{{ $history->due_amount }}</th>
+                                            @else
+                                                <th class="bg-green text-white lead">{{ $history->due_amount }}</th>
+                                            @endif
                                             @php
                                                 if ($history->due_amount) {
                                                     $dues->due_amount = $history->due_amount;
@@ -243,7 +252,7 @@
                                 {{-- Table --}}
 
                                 <div class="btn-group mr-10">
-                                    <a href="{{ route('duerealize.index') }}" class="btn btn-success btn-anim"><i
+                                    <a href="{{ route('dues.index') }}" class="btn btn-success btn-anim"><i
                                             class="fa  fa-angle-double-left"></i><span class="btn-text">Back to
                                             Dues list</span></a>
                                 </div>

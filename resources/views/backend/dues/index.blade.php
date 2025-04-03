@@ -38,7 +38,7 @@
                             @include('backend.layouts.success')
                             {{-- <h6 class="panel-title txt-dark">Retailer List</h6> --}}
                         </div>
-                        <div class="pull-right"><a href="{{ route('duerealize.create') }}" class="btn btn-success">New
+                        <div class="pull-right"><a href="{{ route('dues.create') }}" class="btn btn-success">New
                                 Due</a>
                         </div>
                         <div class="clearfix"></div>
@@ -77,7 +77,7 @@
                                         <tbody>
                                             @foreach ($dues as $due)
                                                 @if ($due->status == 'pending')
-                                                    <tr class="bg-dark">
+                                                    <tr class="bg-red">
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $due->retailer->shop_name }}</td>
                                                         <td>{{ $due->invoice }}</td>
@@ -91,12 +91,12 @@
 
 
                                                             <form onSubmit="return confirm('Are you sure to Delete')"
-                                                                action="{{ route('duerealize.destroy', $due->id) }}"
+                                                                action="{{ route('dues.destroy', $due->id) }}"
                                                                 method="post">
                                                                 <a class="btn btn-default btn-icon-anim btn-circle"
-                                                                    href="{{ route('duerealize.show', $due->id) }}"><i
+                                                                    href="{{ route('dues.show', $due->id) }}"><i
                                                                         class="glyphicon glyphicon-search"></i></a>
-                                                                <a href="{{ route('duerealize.edit', $due->id) }}"
+                                                                <a href="{{ route('dues.edit', $due->id) }}"
                                                                     class="btn btn-primary btn-icon-anim btn-circle"><i
                                                                         class="glyphicon glyphicon-edit"></i></a>
                                                                 @csrf
@@ -111,7 +111,7 @@
 
                                                     </tr>
                                                 @else
-                                                    <tr class="bg-success">
+                                                    <tr class="bg-green">
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $due->retailer->shop_name }}</td>
                                                         <td>{{ $due->invoice }}</td>
@@ -125,12 +125,12 @@
 
 
                                                             <form onSubmit="return confirm('Are you sure to Delete')"
-                                                                action="{{ route('duerealize.destroy', $due->id) }}"
+                                                                action="{{ route('dues.destroy', $due->id) }}"
                                                                 method="post">
                                                                 <a class="btn btn-default btn-icon-anim btn-circle"
-                                                                    href="{{ route('duerealize.show', $due->id) }}"><i
+                                                                    href="{{ route('dues.show', $due->id) }}"><i
                                                                         class="glyphicon glyphicon-search"></i></a>
-                                                                <a href="{{ route('duerealize.edit', $due->id) }}"
+                                                                <a href="{{ route('dues.edit', $due->id) }}"
                                                                     class="btn btn-primary btn-icon-anim btn-circle"><i
                                                                         class="glyphicon glyphicon-edit"></i></a>
                                                                 @csrf

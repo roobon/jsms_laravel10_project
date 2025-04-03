@@ -93,7 +93,7 @@ class DuesCollectionController extends Controller
         
         $retailer->update(); 
 
-        return redirect()->route('duerealize.index')->with('msg', "Due Entered Successfully ");
+        return redirect()->route('dues.index')->with('msg', "Due Entered Successfully ");
     }
 
     public function realize_entry(Request $request)
@@ -137,16 +137,22 @@ class DuesCollectionController extends Controller
             $dues->status = 'clear';    
         }
         $dues->save();
+
+        $duesRecord = RetailerDuesCollection::where('invoice', $request->invoice)->where('transaction', 'sales')->first();
+        $duesRecord->status = 'clear';
+        $duesRecord->update();
+
+        $retailer = Retailer::find($request->retailer);
+        $retailer->current_due = $retailer->current_due - $request->collection_amount;
+        if($retailer->current_due>19999) {
+            $retailer->performance = "poor";
+        } elseif($retailer->current_due>9999){
+            $retailer->performance = "good";
+        } else {
+            $retailer->performance = "excellent";
+        }
         
-        // $retailer = Retailer::find($request->retailer);
-        // $retailer->current_due = $retailer->current_due + $due;
-        // if($retailer->current_due>19999) {
-        //     $retailer->performance = "poor";
-        // } elseif($retailer->current_due>9999){
-        //     $retailer->performance = "good";
-        // } 
-        
-        // $retailer->update(); 
+        $retailer->update(); 
         //dd($dues);
 
         return redirect()->back()->with('msg', "Due Realization Entered Successfully ");

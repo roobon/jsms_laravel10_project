@@ -574,21 +574,55 @@
                                                 {{-- Sales --}}
 
 
-                                                <td colspan="2">
+                                                <td colspan="2" style="vertical-align: top">
                                                     @php
                                                         //print_r($CollectionDues);
                                                     @endphp
-                                                    @if (count($CollectionDues) > 0)
+
+                                                    @if (count($SalesByRetailer) > 0)
                                                         <table class="table table-bordered" style="padding: 0; margin:0">
 
-                                                            @foreach ($CollectionDues as $row)
+                                                            @foreach ($SalesByRetailer as $row)
                                                                 <tr>
                                                                     <td>{{ $row->invoice_date }}</td>
                                                                     <td class="text-right">
-                                                                        {{ number_format($row->total, 2) }}
+                                                                        @php
+                                                                            $sales = App\Models\RetailerDuesCollection::groupBy(
+                                                                                'invoice_date',
+                                                                            )
+                                                                                ->where(
+                                                                                    'business_id',
+                                                                                    $businessInfo['id'],
+                                                                                )
+                                                                                ->whereMonth(
+                                                                                    'invoice_date',
+                                                                                    $businessInfo['month'],
+                                                                                )
+                                                                                ->whereYear(
+                                                                                    'invoice_date',
+                                                                                    $businessInfo['year'],
+                                                                                )
+                                                                                ->where('transaction', 'sales')
+                                                                                ->selectRaw(
+                                                                                    'invoice_date, sum(sales_amount) as TotalSalesAmount, sum(due_amount) as TotalDueAmount',
+                                                                                )
+                                                                                ->get();
+
+                                                                        @endphp
+
+                                                                        {{-- {{ $sales->TotalSalesAmount }} --}}
+
+
+
                                                                     </td>
-                                                                    <td class="text-right extra_sm">
-                                                                        {{ number_format($row->current_due, 2) }}
+                                                                    <td class="text-right">
+                                                                        Dues
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        Due Realize
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        total Due
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
