@@ -594,10 +594,6 @@
                                                                 $TotalCollections = 0;
                                                                 $TotalDues = 0;
                                                                 $TotalRealizes = 0;
-                                                                $dailyCollections = 0;
-                                                                $dailySales = 0;
-                                                                $dailyRealizes = 0;
-                                                                $dailyDues = 0;
                                                                 $dailyFinalDues = 0;
 
                                                             @endphp
@@ -605,6 +601,10 @@
                                                                 <tr>
                                                                     <td class="extra_sm3">{{ $row->invoice_date }}</td>
                                                                     @php
+                                                                        $dailyCollections = 0;
+                                                                        $dailySales = 0;
+                                                                        $dailyRealizes = 0;
+                                                                        $dailyDues = 0;
 
                                                                         $sales = App\Models\RetailerDuesCollection::where(
                                                                             'business_id',
@@ -630,24 +630,28 @@
 
                                                                     <td class="text-right extra_sm3">
                                                                         @foreach ($sales as $sale)
-                                                                            {{ $dailySales = $sale->TotalSalesAmount }}
+                                                                            {{ number_format($sale->TotalSalesAmount, 2) }}
                                                                             @php
+                                                                                $dailySales = $sale->TotalSalesAmount;
                                                                                 $TotalSales += $dailySales;
                                                                             @endphp
                                                                         @endforeach
                                                                     </td>
                                                                     <td class="text-right extra_sm3">
                                                                         @foreach ($sales as $collection)
-                                                                            {{ $dailyCollections = $collection->TotalCollectAmount }}
+                                                                            {{ number_format($collection->TotalCollectAmount, 2) }}
                                                                             @php
+                                                                                $dailyCollections =
+                                                                                    $collection->TotalCollectAmount;
                                                                                 $TotalCollections += $dailyCollections;
                                                                             @endphp
                                                                         @endforeach
                                                                     </td>
                                                                     <td class="text-right extra_sm3">
                                                                         @foreach ($sales as $due)
-                                                                            {{ $dailyDues = $due->TotalDueAmount }}
+                                                                            {{ number_format($due->TotalDueAmount, 2) }}
                                                                             @php
+                                                                                $dailyDues = $due->TotalDueAmount;
                                                                                 $TotalDues += $dailyDues;
                                                                             @endphp
                                                                         @endforeach
@@ -678,8 +682,10 @@
 
                                                                     <td class="text-right extra_sm3">
                                                                         @foreach ($Retailerdues as $coll)
-                                                                            {{ $dailyRealizes = $coll->TotalRealizeAmount }}
+                                                                            {{ number_format($coll->TotalRealizeAmount, 2) }}
                                                                             @php
+                                                                                $dailyRealizes =
+                                                                                    $coll->TotalRealizeAmount;
                                                                                 $TotalRealizes += $dailyRealizes;
                                                                             @endphp
                                                                         @endforeach
@@ -690,11 +696,11 @@
                                                                         @endforeach --}}
                                                                         {{-- {{ $dailyDues = $dailySales - ($dailyCollections + $dailyRealizes) }} --}}
                                                                         @if ($dailyRealizes != true)
-                                                                            {{ $dailyFinalDues = $dailyDues }}
-                                                                        @elseif($dailySales < 0 || $dailyCollections < 0)
+                                                                            {{ $dailyFinalDues += $dailyDues }}
+                                                                        @elseif($dailySales == false && $dailyCollections == false && $dailyDues == false)
                                                                             {{ $dailyFinalDues = $dailyFinalDues - $dailyRealizes }}
                                                                         @else
-                                                                            {{ $dailyFinalDues = $dailySales - ($dailyCollections + $dailyRealizes) }}
+                                                                            {{ $dailyFinalDues += $dailySales - ($dailyCollections + $dailyRealizes) }}
                                                                         @endif
                                                                     </td>
 
